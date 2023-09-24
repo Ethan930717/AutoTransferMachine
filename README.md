@@ -112,11 +112,7 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 56.1ptba 1PTBA
 57.zhuque 朱雀
 58.zmpt 织梦
-![image](https://github.com/Ethan930717/Auto-Transfer-Machine/assets/51702667/addf928c-018e-45af-851f-c44abf4090e2)
 
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
 [npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
