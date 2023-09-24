@@ -29,7 +29,7 @@ def main():
         print(res)
 
     if yamlinfo['mod']=='upload':
-
+        torrentaddress = yamlinfo['basic']['torrent_path']
         sites=makesites(yamlinfo['site info'])
         #for item in sites:
         #    sites[item].print()
