@@ -1,5 +1,5 @@
 # Auto-Transfer—Machine
-> PT转载机（ATM）
+> ATM转载机——为发光发热而生
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
