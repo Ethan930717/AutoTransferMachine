@@ -1,10 +1,15 @@
 # Auto Transfer Machine
 > ATM转载机 - 为发光发热而生
 
-## Installation
+## 功能
 
-OS X & Linux:
+* 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源）
+* 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种
+* 自动生成截图（可指定数量与格式）
+* 自动生成新的PTGEN与MediaINFO信息
 
+## 注意事项
+* 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
 ```sh
 npm install my-crazy-module --save
 ```
