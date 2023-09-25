@@ -13,17 +13,20 @@
 
 ## 已适配转出站点
 
-| 已适配 | 施工中 |
-| --- | --- |
-| HDPOST 普斯特 | BTSCHOOL 学校 | PTSBAO 烧包 | HUDBT 蝴蝶 |  |  |
-
-| 已适配                                   |        施工中     |
-| :---:                                 |      :---: |
-| 已适配                                   |        施工中     |
-| :---:                                 |      :---: |
-| :---:                                 |      :---: |
-| Audience      | 观众       |         |
-| BTSchool   | 学校       |     |
+<table>
+<tr>
+<td colspan="5">已适配</td> <!-- 合并前五个单元格 -->
+<td>施工中</td>
+</tr>
+<tr>
+<td>HDPOST 普斯特</td>
+<td>BTSCHOOL 学校</td>
+<td>PTSBAO 烧包</td>
+<td>HUDBT 蝴蝶</td>
+<td></td> <!-- 空白单元格 -->
+<td></td> <!-- 空白单元格 -->
+</tr>
+</table>
 
 2.btschool 学校（施工中）
 
