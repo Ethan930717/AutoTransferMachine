@@ -12,6 +12,10 @@
 * 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
 
 ## 已适配转出站点
+| 站点        | 别称        | 适配情况     |
+| :---        |    :----:   |          ---: |
+| Audience      | 观众       | 已适配        |
+| Paragraph   | Text        | And more      |
 1.audience 观众
 
 2.btschool 学校（施工中）
