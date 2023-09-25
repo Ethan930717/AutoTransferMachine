@@ -16,8 +16,7 @@
 <table>
   <tr>
     <td colspan="5" align="center" style="font-weight:bold;color:pink">:star:已适配</td>
-    <td align="center" style="font-weight:bold;color:pink">:construction_worker_man:施工中</td>
-  </tr>  
+    <td align="center" style="font-weight:bold;color:pink">:construction_worker_man:施工中</td>  </tr>  
   <tr>
     <td>Audience 观众</td>
     <td>CarPT 小汽车</td> 
@@ -50,41 +49,26 @@
     <td>HDMAYI 小蚂蚁</td>     
     <td>HDPOST 普斯特</td> <!-- 施工中 -->
   </tr> 
+  <tr>
+    <td>HDVIDEO</td>
+    <td>HDZONE</td> 
+    <td>HHClub 大聪明</td> 
+    <td>HITPT 北川</td> 
+    <td>ICC 冰淇淋</td>     
+    <td>HUDBT 蝴蝶</td> <!-- 施工中 -->
+  </tr> 
+  <tr>
+    <td>ilolicon 爱萝莉</td>
+    <td>ITZMX PT分享站</td> 
+    <td>JOYHD 开心</td> 
+    <td>KUFEI 库非</td> 
+    <td>3WMG 芒果</td>     
+    <td>不可说</td> <!-- 施工中 -->
+  </tr>   
 </table>
 
 
 
-
-
-19.
-
-20.
-
-21.
-
-22.
-
-23.hdvideo HDVIDEO
-
-24.hdzone 高清地带
-
-25.hhclub 大聪明
-
-26.hitpt 北川
-
-27.hudbt 蝴蝶（施工中）
-
-28.icc 冰淇淋
-
-29.ilolicon 爱萝莉
-
-30.itzmx ITZMX
-
-31.joyhd 开心
-
-32.kufei 库非
-
-33.mangguo 芒果
 
 34.mteam 馒头
 
@@ -117,8 +101,6 @@
 48.rousi 肉丝
 
 49.soulvoice 聆音
-
-50.ssd 不可说（未测试）
 
 51.tccf 他吹吹风
 
