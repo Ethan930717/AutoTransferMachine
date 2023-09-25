@@ -13,9 +13,9 @@
 
 ## 已适配转出站点
 
-<table align="center">
+<table>
   <tr>
-    <td colspan="5">:star:已适配</td>
+    <td colspan="5" align="center">:star:已适配</td>
     <td align="center">:construction_worker_man:施工中</td>
   </tr>  
   <tr>
@@ -47,23 +47,23 @@
     <td>HDSKY 天空</td> 
     <td>HDTIME 高清时光</td> 
     <td>HDU 好多油</td> 
-    <td>HDMAYI 小蚂蚁</td>     
-    <td>HDPOST 普斯特</td> <!-- 施工中 -->
-  </tr> 
-  <tr>
-    <td>HDVIDEO</td>
-    <td>HDZONE</td> 
-    <td>HHClub 大聪明</td> 
-    <td>HITPT 北川</td> 
-    <td>ICC 冰淇淋</td>     
+    <td>HDVIDEO</td>     
     <td>HUDBT 蝴蝶</td> <!-- 施工中 -->
   </tr> 
   <tr>
+    <td>HDZONE</td> 
+    <td>HHClub 大聪明</td> 
+    <td>HITPT 北川</td> 
+    <td>ICC 冰淇淋</td>
     <td>ilolicon 爱萝莉</td>
+    <td>Ourbits 我堡</td> <!-- 施工中 -->
+  </tr> 
+  <tr>
     <td>ITZMX PT分享站</td> 
     <td>JOYHD 开心</td> 
     <td>KUFEI 库非</td> 
-    <td>3WMG 芒果</td>     
+    <td>3WMG 芒果</td>
+    <td>M-team 馒头</td>     
     <td>不可说</td> <!-- 施工中 -->
   </tr>   
 </table>
@@ -71,7 +71,7 @@
 
 
 
-34.mteam 馒头
+34.
 
 35.nanyang 南洋
 
