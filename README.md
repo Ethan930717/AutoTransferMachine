@@ -26,12 +26,6 @@
     <td>DiscFan 碟粉</td>     
     <td> BTSchool</td> <!-- 施工中 -->
   </tr>  
-  <tr>
-    <td>HDPOST 普斯特</td>
-    <td>BTSCHOOL 学校</td>
-    <td>PTSBAO 烧包</td>
-    <td>HUDBT 蝴蝶</td>
-  </tr> 
 </table>
 
 2.btschool 学校（施工中）
