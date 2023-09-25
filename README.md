@@ -16,7 +16,7 @@
 <table>
   <tr>
     <td colspan="6" align="center">:star:已适配</td>
-    <td align="center" bgcolor="red">:construction_worker_man:施工中</td>
+    <td style="background-color:green">:construction_worker_man:施工中</td>
   </tr>  
   <tr>
     <td>Audience 观众</td>
