@@ -1,17 +1,17 @@
 import lxml
 import cloudscraper
-import requests
 from bs4 import BeautifulSoup
 from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
-import re
-cookie = "c_secure_ssl=eWVhaA%3D%3D; c_secure_uid=MTAxMDE%3D; c_secure_pass=c6d9cbc34bff5b2b31f8807861b0bd0a; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=eWVhaA%3D%3D; cf_clearance=laKceomz6EoYHyxJ56jCueug5Xw1HLsahF9VLd84fOo-1694007990-0-1-11f5c490.59cc3e0c.46f49b70-0.2.1694007990"
-tmdb_api = "107492d808d58cb5f5fae5005c7d764d"
-
-url_list=["https://shadowflow.org/details.php?id=9790&hit=1",
-"https://shadowflow.org/details.php?id=9789&hit=1",
-"https://shadowflow.org/details.php?id=9770&hit=1",]
+import logger
+import sys
+choice = input(f"是否需要重新生成YAML信息 \n y：重新生成    n：续写") # 提示用户输入N或Y，并赋值给choice变量
+cookie = cookie
+tmdb_api = tmdbapi
+detailsfile = "details.txt"
+f = open(detailsfile, "r")
+url_list = f.readlines()
 #以上资源地址这里是举例，仅供测试用
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -20,13 +20,53 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict) # 调用requests模块中的函数
 scraper = cloudscraper.create_scraper()
-info_dict = {}
 counter = 0
+
+#批量爬非禁转种
+def download_torrents(download_url,passkey):
+    r = scraper.post(download_url, cookies=cookies_raw2jar(cookie), timeout=30)
+    soup = BeautifulSoup(r.text, "html.parser")
+    tree = lxml.etree.HTML(r.text)
+    tree = lxml.etree.ElementTree(tree)
+    tds = soup.find_all('td', class_='embedded')
+    tds_with_b = [td for td in tds if td.find('b')]
+    tds_without_ban = []
+    filenames = []
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Shadow_torrents"
+    ws["A1"] = "标题"
+    ws["B1"] = "种子链接"
+    ws["C1"] = "下载链接"
+    row = 2
+    for td in tds_with_b:
+        if "禁转" not in str(td):
+            tds_without_ban.append(td)
+    links_with_details = []
+    for td in tds_without_ban:
+        links = td.find_all("a")
+        for link in links:
+            href = link["href"]
+            href = "https://shadowflow.org/" + href
+            detail = href
+            href = href.replace("details", "download")
+            download = href.replace("hit=1", "passkey=" + passkey)
+            title = link.parent.find("b").text
+            print(f"{title}  {href}")
+            ws["A" + str(row)] = title
+            ws["B" + str(row)] = detail
+            ws["C" + str(row)] = download
+            row += 1
+    wb.save("影下载链接.xlsx")
+    return download_torrents
+
 for url in url_list:
-    info_subdict = {}
+    import makeyaml
+    counter += 1
     r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
     soup = BeautifulSoup(r.text, "html.parser")
     tree = lxml.etree.HTML(r.text)
+    print(f"当前检索链接 {url}")
 
 #主标题
     xpath_name = "//*[@id='top']/text()"
@@ -35,7 +75,6 @@ for url in url_list:
         name = name.rstrip()
     except IndexError:
         name = input(f"无法读取主标题名，请手动输入,种子地址{url}")
-    info_subdict["name"] = name
     print(f"成功记录主标题名 {name}")
 
 # 种子名称
@@ -46,11 +85,10 @@ for url in url_list:
             if "download" in href:
                 torrent = link.text
                 filename=torrent.replace(".torrent","")
-                filename=torrent.replace("[Shadow].","")
+                filename=filename.replace("[Shadow].","")
     except IndexError:
         torrent= input(f"无法读取种子名称，请手动输入,种子地址{url}")
     print(f"成功读取文件名称 {filename}")
-    info_subdict["filename"] = filename
 
     #副标题
     try:
@@ -60,7 +98,7 @@ for url in url_list:
            print(f"成功读取副标题名 {small_descr}")
     except IndexError:
         small_descr = input(f"无法读取副标题名，请手动输入,种子地址{url}")
-    info_subdict["small_descr"] = small_descr
+
 
     #产地&年份
     kdescr = soup.find(id="kdescr")
@@ -72,7 +110,6 @@ for url in url_list:
         print(f"读取产地成功 {country}")
     except IndexError:
         country= input(f"无法确认产地，请手动输入,文件标题{name}")
-    info_subdict["country"] = country
 
     try:
         for line in lines:
@@ -81,7 +118,6 @@ for url in url_list:
         print(f"读取年份成功 {date}")
     except IndexError:
         date= input(f"无法确认年份，请手动输入,文件标题{name}")
-    info_subdict["date"] = date
 
     #标签
     try:
@@ -89,9 +125,11 @@ for url in url_list:
         texts_tags = [element.get_text() for element in elements]
         tags = " ".join(texts_tags)
         print(f"读取标签成功 {tags}")
+        if "mv" in tags.lower() or "体育" in tags or "音轨" in tags or "sport" in tags.lower() :
+            print("当前尚未适配转载该类型资源，即将跳过本资源")
+            continue
     except IndexError:
         tags = input(f"无法确认标签，请手动输入,资源链接{url}")
-    info_subdict["tags"] = tags
 
     #确认完结
     if "complete" in name.lower() and "完结" in tags:
@@ -108,13 +146,13 @@ for url in url_list:
         choice = input("资源已勾选完结标签，但标题不包含Complete，请手动确认该资源是否完结。输入'1'代表完结，输入'0'代表未完结")
         if choice == '1':
             complete = 1
+            name = input(f"请在主标题中手动加入Complete,添加位置在季数之后，如 S01 Complete\n当前主标题{name}")
         elif choice == '0':
             complete = 0
         else:
             print("无效的输入，请重新输入")
     else:
         complete = 0
-    info_subdict["complete"] = complete
 
     #基本信息
     try:
@@ -130,13 +168,7 @@ for url in url_list:
         audio = infolist[10]
         standard = infolist[12]
         team = infolist[14]
-        info_subdict["size"] = size
-        info_subdict["type"] = type
-        info_subdict["medium"] = medium
-        info_subdict["codec"] = codec
-        info_subdict["audio"] = audio
-        info_subdict["standard"] = standard
-        info_subdict["team"] = team
+
         print(f"资源体积 {size}")
         print(f"类型 {type}")
         if "电影" in type:
@@ -151,13 +183,20 @@ for url in url_list:
             type = "anime"
         elif "音轨" in type:
             type = "music"
+            print("检测到类型为音轨，当前尚未适配转载该类型资源，即将跳过本资源")
+            continue
         elif "MV" in type:
             type = "mv"
+            print("检测到类型为MV，当前尚未适配转载该类型资源，即将跳过本资源")
+            continue
         elif "体育" in type:
             type = "sport"
+            print("检测到类型为体育，当前尚未适配转载该类型资源，即将跳过本资源")
+            continue
         else:
             type = "other"
-        info_subdict["type"] = type
+            print("未检测到当前资源类型，即将跳过本资源")
+            continue
 
         print(f"媒介 {medium}")
         print(f"编码 {codec}")
@@ -177,7 +216,6 @@ for url in url_list:
     except IndexError:
         douban = ""
         print("无法获取豆瓣链接")
-    info_subdict["douban"] = douban
 
     #IMDB
     try:
@@ -229,9 +267,8 @@ for url in url_list:
     except IndexError:
         imdb = ""
         print("无法获取IMDB链接")
-    counter += 1
     print(f"第{counter}个资源读取完成")
-
+    makeyaml.mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,choice,torrent)
 
 
 
