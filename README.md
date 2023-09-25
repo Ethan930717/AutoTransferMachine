@@ -15,7 +15,7 @@
 
 <table>
 <tr>
-<td colspan="5">已适配</td> <!-- 合并前五个单元格 -->
+  <td colspan="5">已适配</td> <!-- 合并前五个单元格 -->
   <td>施工中</td>
   <td>HDPOST 普斯特</td>
   <td>BTSCHOOL 学校</td>
