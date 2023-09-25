@@ -23,7 +23,7 @@ def readargs():
     parser.add_argument('-in','--img-num', type=int, help='Choose the number of screenshots,default=3',required=False,default=3)
 
 
-    
+
     parser.add_argument('-yp','--yaml-path', type=str, help='Path of your au.yaml',required=True,default=yaml_path)
     parser.add_argument('-bp','--basic-path', type=str, help='Path of your basicinfo.yaml',required=False,default=basic_path)
     args = parser.parse_args()
