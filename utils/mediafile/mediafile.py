@@ -1020,7 +1020,7 @@ class mediafile(object):
         found = False
         for file in os.listdir(self.torrentaddress):
             file_path = os.path.join(self.torrentaddress, file)
-            if os.path.isfile(file_path) and file == self.pathinfo.filename:
+            if os.path.isfile(file_path) and self.pathinfo.filename in file:
                 self.torrentpath = f"{self.torrentaddress}/{self.pathinfo.filename}"
                 logger.info(f"{self.torrentpath}已寻找到同名种子文件，开始转种")
                 found = True
