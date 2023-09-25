@@ -13,10 +13,11 @@
 
 ## 已适配转出站点
 
-<table>
+<table align="center">
   <tr>
-    <td colspan="5" align="center" style="font-weight:bold;color:pink">:star:已适配</td>
-    <td align="center" style="font-weight:bold;color:pink">:construction_worker_man:施工中</td>  </tr>  
+    <td colspan="5">:star:已适配</td>
+    <td align="center">:construction_worker_man:施工中</td>
+  </tr>  
   <tr>
     <td>Audience 观众</td>
     <td>CarPT 小汽车</td> 
