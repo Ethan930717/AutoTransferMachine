@@ -16,7 +16,7 @@
 <table>
   <tr>
     <td colspan="6" align="center">:star:已适配</td>
-    <td align="center">:construction_worker_man:施工中</td>
+    <td align="center" bgcolor="red">:construction_worker_man:施工中</td>
   </tr>  
   <tr>
     <td>Audience 观众</td>
@@ -69,7 +69,7 @@
     <td>KUFEI 库非</td> 
     <td>3WMG 芒果</td>
     <td>M-team 馒头</td>
-    <td>pttime PT时光</td>
+    <td>PTtime PT时光</td>
     <td>不可说</td> <!-- 施工中 -->
   </tr> 
   <tr>
