@@ -19,11 +19,12 @@
     <td>施工中</td>
   </tr>  
   <tr>
-    <td></td> <!-- 空白单元格 -->
-    <td></td> <!-- 空白单元格 -->
-    <td></td> <!-- 空白单元格 -->
-    <td></td> <!-- 空白单元格 -->
-    <td></td> <!-- 空白单元格 -->
+    <td>Audience 观众</td>
+    <td>CarPT 小汽车</td> 
+    <td>Cyanbug 大青龙</td> 
+    <td>DAJIAO 打胶</td> 
+    <td>DiscFan 碟粉</td>     
+    <td> BTSchool</td> <!-- 施工中 -->
   </tr>  
   <tr>
     <td>HDPOST 普斯特</td>
