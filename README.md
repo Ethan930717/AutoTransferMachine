@@ -15,8 +15,8 @@
 
 <table>
   <tr>
-    <td colspan="5">已适配</td> <!-- 合并前五个单元格 -->
-    <td>施工中</td>
+    <td colspan="5" align="center" style="font-weight:bold;color:pink">:star:已适配</td>
+    <td>:construction_worker_man:施工中</td>
   </tr>  
   <tr>
     <td>Audience 观众</td>
@@ -24,7 +24,7 @@
     <td>Cyanbug 大青龙</td> 
     <td>DAJIAO 打胶</td> 
     <td>DiscFan 碟粉</td>     
-    <td> BTSchool</td> <!-- 施工中 -->
+    <td> BTSCHOOL 学校</td> <!-- 施工中 -->
   </tr>  
   <tr>
     <td>Dragonhd 龙之家</td>
@@ -34,40 +34,35 @@
     <td>HDArea 好大</td>     
     <td>HDAtmos 阿童木</td> <!-- 施工中 -->
   </tr> 
+  <tr>
+    <td>freefarm 自由农场</td>
+    <td>HDdolby 杜比</td> 
+    <td>HDFans 红豆饭</td> 
+    <td>HDHOME 家园</td> 
+    <td>HDMAYI 小蚂蚁</td>     
+    <td>HDPOST 普斯特</td> <!-- 施工中 -->
+  </tr> 
+  <tr>
+    <td>HDPT 明教</td>
+    <td>HDSKY 天空</td> 
+    <td>HDTIME 高清时光</td> 
+    <td>HDU 好多油</td> 
+    <td>HDMAYI 小蚂蚁</td>     
+    <td>HDPOST 普斯特</td> <!-- 施工中 -->
+  </tr> 
 </table>
 
 
-7.
-
-8.freefarm 自由农场
-
-9.
-
-10.
-
-11.
-
-12.
 
 
 
-14.hddolby 杜比
+19.
 
-15.hdfans 红豆饭
+20.
 
-16.hdhome 家园
+21.
 
-17.hdmayi 蚂蚁
-
-18.hdpost 普斯特（施工中）
-
-19.hdpt 明教
-
-20.hdsky 天空
-
-21.hdtime 高清时光
-
-22.hdu 好多油
+22.
 
 23.hdvideo HDVIDEO
 
