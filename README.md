@@ -12,20 +12,9 @@
 * 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
 
 ## 已适配转出站点
-<table>
-    <tr>
-        <td>行/列</td> 
-        <td>列2</td> 
-        <td>列3</td> 
-   </tr>
-    <tr>
-  		 <td>行2列1</td> 
-      	 <td colspan="2">跨两列合并行</td>    
-    </tr>
-    <tr>
-        <td colspan="3">跨三列合并行</td>    
-    </tr>
-</table>
+| 已适配 | 施工中 |
+| --- | --- |
+| HDPOST 普斯特 | BTSCHOOL 学校 | PTSBAO 烧包 | HUDBT 蝴蝶 |  |  |
 
 | 已适配                                   |        施工中     |
 | :---:                                 |      :---: |
