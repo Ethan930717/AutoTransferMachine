@@ -269,9 +269,9 @@ class mediafile(object):
                 b=item.split('\n')
                 for subitem in b:
                     if subitem.lower().startswith('language') or subitem.lower().startswith('title'):
-                        if 'SC' in subitem.upper() or 'CHS' in subitem.upper() or 'GB' in subitem.upper() or '简' in subitem.upper() or '簡' in subitem.upper() or '中字' in self.pathinfo.biaoqian:
+                        if 'SC' in subitem.upper() or 'CHS' in subitem.upper() or 'GB' in subitem.upper() or '简' in subitem.upper() or '簡' in subitem.upper() or '中字' in self.pathinfo.tags:
                             sc=1
-                        if 'TC' in subitem.upper() or 'CHT' in subitem.upper() or 'BIG5' in subitem.upper() or '繁' in subitem.upper() or '中字' in self.pathinfo.biaoqian:
+                        if 'TC' in subitem.upper() or 'CHT' in subitem.upper() or 'BIG5' in subitem.upper() or '繁' in subitem.upper() or '中字' in self.pathinfo.tags:
                             tc=1
                         if 'JP' in subitem.upper() or 'JA' in subitem.upper() or'JAPANESE' in subitem.upper() or '日' in subitem.upper():
                             jp=1
@@ -330,16 +330,16 @@ class mediafile(object):
                 for subitem in b:
                     if subitem.lower().startswith('language') or subitem.lower().startswith('title'):
 
-                        if 'CHINESE' in subitem.upper() or '中' in subitem.upper() or '国' in subitem.upper() or '国语' in self.pathinfo.biaoqian or '国语' in self.pathinfo.small_descr:
+                        if 'CHINESE' in subitem.upper() or '中' in subitem.upper() or '国' in subitem.upper() or '国语' in self.pathinfo.tags or '国语' in self.pathinfo.small_descr:
                             ch=1
                             #logger.info('根据mediainfo音轨分析，语言为'+self.language)
-                        if  'JAPANESE' in subitem.upper() or '日' in subitem.upper() or '日语' in self.pathinfo.biaoqian or '日语' in self.pathinfo.small_descr:
+                        if  'JAPANESE' in subitem.upper() or '日' in subitem.upper() or '日语' in self.pathinfo.tags or '日语' in self.pathinfo.small_descr:
                             jp=1
                             #logger.info('根据mediainfo音轨分析，语言为'+self.language)
-                        if 'ENGLISH' in subitem.upper() or '英' in subitem.upper() or '英语' in self.pathinfo.biaoqian or '英语' in self.pathinfo.small_descr:
+                        if 'ENGLISH' in subitem.upper() or '英' in subitem.upper() or '英语' in self.pathinfo.tags or '英语' in self.pathinfo.small_descr:
                             en=1
                             #logger.info('根据mediainfo音轨分析，语言为'+self.language)
-                        if 'CANTON' in subitem.upper() or '粤' in subitem.upper() or '粤语' in self.pathinfo.biaoqian or '粤语' in self.pathinfo.small_descr:
+                        if 'CANTON' in subitem.upper() or '粤' in subitem.upper() or '粤语' in self.pathinfo.tags or '粤语' in self.pathinfo.small_descr:
                             yue=1
 
         '''
@@ -780,11 +780,11 @@ class mediafile(object):
                 search_url = base_url + "/search/movie"
             elif 'series' in self.pathinfo.type.lower():    
                 search_url = base_url + "/search/tv"
-            elif 'doc' in self.pathinfo.type.lower() and "完结" in self.pathinfo.biaoqian:
+            elif 'doc' in self.pathinfo.type.lower() and "完结" in self.pathinfo.tags:
                 search_url = base_url + "/search/tv" 
             elif 'doc' in self.pathinfo.type.lower():
                 search_url = base_url + "/search/movie"
-            elif 'anime' in self.pathinfo.type.lower() and "完结" in self.pathinfo.biaoqian:   
+            elif 'anime' in self.pathinfo.type.lower() and "完结" in self.pathinfo.tags:   
                 search_url = base_url + "/search/tv" 
             elif 'anime' in self.pathinfo.type.lower():
                 search_url = base_url + "/search/movie"                
