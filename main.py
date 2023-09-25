@@ -11,7 +11,7 @@ from doubaninfo.doubaninfo import getdoubaninfo
 @logger.catch
 def main():
     os.system('clear')
-    logger.info("大胡ATM启动\n")
+    logger.info("ATM启动\n")
     yamlinfo=read_para()
     #设置路径，如果有下载文件都下载到screenshot_path
     os.chdir(yamlinfo['basic']['screenshot_path'])
