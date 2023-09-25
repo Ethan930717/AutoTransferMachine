@@ -1,22 +1,22 @@
 # Auto Transfer Machine
 > ATM转载机 - 为发光发热而生
 
-## 功能
+## :triangular_flag_on_post:功能
 
 * 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源）
 * 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种
 * 自动生成截图（可指定数量与格式）
 * 自动生成新的PTGEN与MediaINFO信息
 
-## 注意事项
+## :warning:注意事项
 * 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
 
-## 已适配转出站点
+## :warning:已适配转出站点
 
 <table>
   <tr>
     <td colspan="6" align="center">:star:已适配</td>
-    <td style="background-color:green">:construction_worker_man:施工中</td>
+    <td align="center">:construction_worker_man:施工中</td>
   </tr>  
   <tr>
     <td>Audience 观众</td>
