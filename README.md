@@ -15,7 +15,7 @@
 
 <table>
   <tr>
-    <td colspan="5" align="center">:star:已适配</td>
+    <td colspan="6" align="center">:star:已适配</td>
     <td align="center">:construction_worker_man:施工中</td>
   </tr>  
   <tr>
@@ -80,29 +80,28 @@
     <td>PIGGO 猪猪</td>
     <td>Redleaves 红叶</td>
     <td>PTSBAO 烧包</td> <!-- 施工中 -->
-  </tr>     
+  </tr>
+  <tr>
+    <td>ROUSI 肉丝</td> 
+    <td>SoulVoice 聆音</td> 
+    <td>TCCF 他吹吹风</td> 
+    <td>Ubits 你堡</td>
+    <td>Wintersakura 冬樱</td>
+    <td>52PT</td>
+    <td>HDChina 瓷</td> <!-- 施工中 -->
+  </tr>
+  <tr>
+    <td>YDY 伊甸园</td> 
+    <td>1PTBA</td> 
+    <td>ZHUQUE 朱雀</td> 
+    <td>Ubits 你堡</td>
+    <td>ZMPT 织梦</td>
+    <td></td>
+    <td></td> <!-- 施工中 -->
+  </tr> 
 </table>
 
 
 
-48.rousi 肉丝
 
-49.soulvoice 聆音
 
-51.tccf 他吹吹风
-
-52.ubits 你堡
-
-53.wintersakura 冬樱
-
-54.52pt 52PT
-
-55.ydy 伊甸园
-
-56.1ptba 1PTBA
-
-57.zhuque 朱雀
-
-58.zmpt 织梦
-
-59.未完待续
