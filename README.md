@@ -26,31 +26,30 @@
     <td>DiscFan 碟粉</td>     
     <td> BTSchool</td> <!-- 施工中 -->
   </tr>  
+  <tr>
+    <td>Dragonhd 龙之家</td>
+    <td>GTK</td> 
+    <td>Haidan 海胆</td> 
+    <td>Hares 白兔</td> 
+    <td>HDArea 好大</td>     
+    <td>HDAtmos 阿童木</td> <!-- 施工中 -->
+  </tr> 
 </table>
 
-2.btschool 学校（施工中）
 
-3.carpt 小汽车
-
-4.cyanbug 大青龙
-
-5.dajiao 打胶
-
-6.discfan 碟粉
-
-7.dragonhd 龙之家
+7.
 
 8.freefarm 自由农场
 
-9.gtk GTK
+9.
 
-10.haidan 海胆
+10.
 
-11.hares 白兔
+11.
 
-12.hdarea 好大
+12.
 
-13.hdatmos 阿童木(一直关门，没时间测试，待定）
+
 
 14.hddolby 杜比
 
