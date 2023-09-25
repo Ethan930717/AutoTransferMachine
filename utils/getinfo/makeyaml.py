@@ -235,7 +235,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    type: {type}\n"
     text += f'    contenthead: \'[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]YingWEB[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]\'\n'
     text += f"    audio_format: {audio}\n"
-    text += f"    video_type: {codec}\n"
+    text += f"    video_format: {codec}\n"
     text += f"    medium: {medium}\n"
     text += f"    source: {medium}\n"
     text += f"    doubanurl: {douban}\n"
