@@ -13,10 +13,9 @@
 
 ## 已适配转出站点
 | 站点        | 别称        | 适配情况     |
-| :---        |    :----:   |          ---: |
+| :---:        |    :----:   |     :---: |
 | Audience      | 观众       | 已适配        |
-| Paragraph   | Text        | And more      |
-1.audience 观众
+| BTSchool   | 学校       | 施工中    |
 
 2.btschool 学校（施工中）
 
