@@ -1,6 +1,8 @@
 import re
 import datetime
-def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id):
+import sys
+
+def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,choice,torrent):
     #亚洲国家
     east_asia = ["中国大陆", "蒙古", "朝鲜", "韩国", "日本", "香港", "台湾", "澳门","中国" ] #仅作判定使用，无任何地缘政治因素
     southeast_asia = ["菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"]
@@ -103,14 +105,18 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     site += f"    zmpt: 0\n"
 
     # 确定中文名
+    cnname = ""
     cnname = filename.split(".")  # 以空格为分隔符分割字符串
     cnname = cnname[0]  # 取第一个元素作为中文名
     cnname = cnname[0:len(cnname)]  # 取整个字符串作为中文名（这一步其实可以省略）
-    cnname = cnname.replace(":", " ")  # 将冒号替换为空格
-    cnname = cnname.replace("：", " ")  # 将中文冒号替换为空格
+    cnname = cnname.replace(":", " ")
+    cnname = cnname.replace("：", " ")
+    cnname = cnname.replace("’", " ")
+    cnname = cnname.replace("”", " ")
     print(cnname)
 
     # 确定英文名
+    enname=""
     if "2019" in name:
         en1 = name.split("2019")[0]
         enname = en1.replace(".", " ")
@@ -123,6 +129,8 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     elif "20" in name:
         en1 = name.split("20")[0]
         enname = en1.replace(".", " ")
+    enname = enname.replace("'", " ")
+    enname = enname.replace(":", " ")
     print(enname)
 
     #获取path序列
@@ -206,6 +214,8 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
         audio = "DD2.0"
     elif "DD" in name.upper():
         audio = "DD"
+    elif "FLAC" in name.upper():
+        audio = "FLAC"
     else:
         audio = input(f"无法确认音频格式，请手动输入,文件标题{name}")
 
@@ -214,20 +224,20 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    downloadpath: /download\n"
     text += f"    enable: 1\n"
     text += f"    collection: 1\n"
-    text += f"    complete: 1\n"
-    text += f"    path: /home/{filename}\n"
-    text += f"    chinesename: {cnname}\n"
-    text += f"    englishname: {enname}\n"
-    text += f"    zeroday_name: {name}\n"
-    text += f"    small_descr: '{small_descr}'\n"
+    text += f"    path: /home/media/{filename}\n"
+    text += f"    uploadname: \"{name}\"\n"
+    text += f"    filename: \"{torrent}\"\n"
+    text += f"    chinesename: \"{cnname}\"\n"
+    text += f"    englishname: \"{enname}\"\n"
+    text += f"    small_descr: \"{small_descr}\"\n"
     text += f"    biaoqian: {tags}\n"
     text += f"    sub: {team}\n"
     text += f"    type: {type}\n"
     text += f'    contenthead: \'[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]YingWEB[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]\'\n'
     text += f"    audio_format: {audio}\n"
     text += f"    video_type: {codec}\n"
-    text += f"    meijie: {medium}\n"
-    text += f"    laiyuan: {medium}\n"
+    text += f"    medium: {medium}\n"
+    text += f"    source: {medium}\n"
     text += f"    doubanurl: {douban}\n"
     text += f"    screenshot: null\n"
     text += f"    from_url: null\n"
@@ -235,5 +245,12 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    tmdb_id: {tmdb_id}\n"
     text += f"{site}"
     print(text)
-    f = open("text.txt",  "a+", encoding="utf-8")
-    f.write(text)
+    if choice.lower() == "n" :
+        f = open("text.txt", "w", encoding="utf-8")
+        f.write(text)
+    elif choice.lower() == "y":
+        f = open("text.txt",  "a+", encoding="utf-8")
+        f.write(text)
+    else:
+        print("输入错误，请重新运行程序")
+        sys.exit(0)
