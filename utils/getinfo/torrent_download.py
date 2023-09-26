@@ -23,9 +23,9 @@ def get_torrent(yamlinfo):
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
-    siteurl = audata['site info'][sitename]['url']
-    sitecookie = audata['site info'][sitename]['cookie']
-    sitepasskey = audata['site info'][sitename]['passkey']
+    siteurl = yamlinfo['site info'][sitename]['url']
+    sitecookie = yamlinfo['site info'][sitename]['cookie']
+    sitepasskey = yamlinfo['site info'][sitename]['passkey']
 
     scraper = cloudscraper.create_scraper()
     wb = openpyxl.Workbook()
