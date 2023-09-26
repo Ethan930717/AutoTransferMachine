@@ -32,60 +32,101 @@ def get_torrent(yamlinfo):
     ws = wb.active
     row = 2
     ws.title = f"{sitename}_torrents"
-    for page in range(999):
-            torrent_url= f"{siteurl}torrents.php?page={page}"
-            r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
-            soup = BeautifulSoup(r.content, "html.parser")
-            if r.status_code == 200:
-                # 查找id为torrents的表格元素
-                table = soup.find("table", class_="torrents")
-                if table:
-                    trs = table.find_all("tr")[1:]
-                    ws["A1"] = "标题"
-                    ws["B1"] = "体积"
-                    ws["C1"] = "做种人数"
-                    ws["D1"] = "发布时间"
-                    ws["E1"] = "种子ID"
-                    ws["F1"] = "下载链接"
-                    for tr in trs:
-                        if "禁转" in tr.text or "分集" in tr.text : # 这里可以排除不想爬的种子标签
-                            print(f"不符合筛选条件，跳过")
-                            continue
-                        try:
-                            embedded = tr.find("td", class_="embedded")
-                            a = embedded.find("a", href=lambda x: "details" in x)
-                            b = a["href"]
-                            title = a["title"]
-                            details = f"{siteurl}{b}"
-                            pattern = "id=(\d+)&hit"
-                            torrent_id= re.search(pattern, details)
-                            if torrent_id:
-                                print(torrent_id.group(1))
-                            else:
-                                print("未识别到种子ID")
-                            download = details.replace("details", "download")
-                            download = download.replace("hit=1", f"passkey={sitepasskey}")
-                            seeders = tr.find_all("td")[-4].text
-                            size = tr.find_all("td")[-5].text
-                            uploadtime = tr.find_all("td")[-6].text
-                            ws["A" + str(row)] = title
-                            ws["B" + str(row)] = size
-                            ws["C" + str(row)] = seeders
-                            ws["D" + str(row)] = uploadtime
-                            ws["E" + str(row)] = torrent_id.group(1)
-                            ws["F" + str(row)] = download
-                            row += 1  # 行号加一
-
-                        except IndexError:
-                            print("啥也没找到")
-                            continue
+    pagenum = input('请输入本次需要爬取几页种子（默认只爬取前十页）')
+    try:
+        pagenum = int(pagenum)
+        if pagenum > 0:  # 如果输入是正整数
+            print(f"您选择了爬取{pagenum}页种子")
+        else:
+            print("您输入的数字不合理，请重新输入！")
+    except ValueError:
+        pagenum = 10
+        print(f"您没有输入数字，将默认爬取{pagenum}页种子")
+    for page in range(pagenum):
+        torrent_url= f"{siteurl}torrents.php?page={page}"
+        r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
+        soup = BeautifulSoup(r.content, "html.parser")
+        if r.status_code == 200:
+            # 查找id为torrents的表格元素
+            table = soup.find("table", class_="torrents")
+            if table:
+                trs = table.find_all("tr")[1:]
+                ws["A1"] = "标题"
+                ws["B1"] = "体积"
+                ws["C1"] = "做种人数"
+                ws["D1"] = "发布时间"
+                ws["E1"] = "种子ID"
+                ws["F1"] = "下载链接"
+                outtag=input(f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD34\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR")
+                tags = []
+                tags.append("禁转")
+                tags.append("限转")
+                if "a" in outtag.lower():
+                    tags.append("电影")
+                if "b" in outtag.lower():
+                    tags.append("剧集")
+                if "c" in outtag.lower():
+                    tags.append("综艺")
+                if "d" in outtag.lower():
+                    tags.append("动漫")
+                if "e" in outtag.lower():
+                    tags.append("纪录片")
+                if "f" in outtag.lower():
+                    tags.append("MV")
+                if "1" in outtag:
+                    tags.append("国语")
+                if "2" in outtag:
+                    tags.append("粤语")
+                if "3" in outtag:
+                    tags.append("中字")
+                if "4" in outtag:
+                    tags.append("DIY")
+                if "5" in outtag:
+                    tags.append("完结")
+                if "6" in outtag:
+                    tags.append("分集")
+                if "7" in outtag:
+                    tags.append("杜比视界")
+                if "8" in outtag:
+                    tags.append("HDR")
+                for tr in trs:
+                    if any(x in tr.text for x in tags):
+                        print(f"不符合筛选条件，跳过")
+                        continue
+                    try:
+                        embedded = tr.find("td", class_="embedded")
+                        a = embedded.find("a", href=lambda x: "details" in x)
+                        b = a["href"]
+                        title = a["title"]
+                        details = f"{siteurl}{b}"
+                        pattern = "id=(\d+)&hit"
+                        torrent_id= re.search(pattern, details)
+                        if torrent_id:
+                            print(torrent_id.group(1))
+                        else:
+                            print("未识别到种子ID")
+                        download = details.replace("details", "download")
+                        download = download.replace("hit=1", f"passkey={sitepasskey}")
+                        seeders = tr.find_all("td")[-4].text
+                        size = tr.find_all("td")[-5].text
+                        uploadtime = tr.find_all("td")[-6].text
+                        ws["A" + str(row)] = title
+                        ws["B" + str(row)] = size
+                        ws["C" + str(row)] = seeders
+                        ws["D" + str(row)] = uploadtime
+                        ws["E" + str(row)] = torrent_id.group(1)
+                        ws["F" + str(row)] = download
+                        row += 1  # 行号加一
                         print(title,size,seeders,uploadtime,details)
-                else:
-                    print("没东西了，停")
-                    break
+                    except IndexError:
+                        print("啥也没找到")
+                        continue
             else:
                 print("没东西了，停")
-                continue
+                break
+        else:
+            print("没东西了，停")
+            continue
     wb.save(f"{sitename}_torrents.csv")
     total_rows = row - 1
     total_pages = page + 1
