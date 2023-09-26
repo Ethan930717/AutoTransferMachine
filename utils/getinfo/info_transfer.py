@@ -12,53 +12,14 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict) # 调用requests模块中的函数
 scraper = cloudscraper.create_scraper()
-counter = 0
 
-#批量爬非禁转种
-def get_download_url(download_url,passkey,audata):
-    choice = input(f"是否需要重新生成YAML信息 \n y：重新生成   n：续写")  # 提示用户输入N或Y，并赋值给choice变量
-    cookie = cookie
-    tmdb_api = tmdbapi
-    detailsfile = "details.txt"
-    f = open(detailsfile, "r")
-    url_list = f.readlines()
-    r = scraper.post(download_url, cookies=cookies_raw2jar(cookie), timeout=30)
-    soup = BeautifulSoup(r.text, "html.parser")
-    tree = lxml.etree.HTML(r.text)
-    tree = lxml.etree.ElementTree(tree)
-    tds = soup.find_all('td', class_='embedded')
-    tds_with_b = [td for td in tds if td.find('b')]
-    tds_without_ban = []
-    filenames = []
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "Shadow_torrents"
-    ws["A1"] = "标题"
-    ws["B1"] = "种子链接"
-    ws["C1"] = "下载链接"
-    row = 2
-    for td in tds_with_b:
-        if "禁转" not in str(td):
-            tds_without_ban.append(td)
-    links_with_details = []
-    for td in tds_without_ban:
-        links = td.find_all("a")
-        for link in links:
-            href = link["href"]
-            href = "https://shadowflow.org/" + href
-            detail = href
-            href = href.replace("details", "download")
-            download = href.replace("hit=1", "passkey=" + passkey)
-            title = link.parent.find("b").text
-            print(f"{title}  {href}")
-            ws["A" + str(row)] = title
-            ws["B" + str(row)] = detail
-            ws["C" + str(row)] = download
-            row += 1
-    wb.save("影下载链接.xlsx")
-    return get_download_url
+
+cookie = "cookie"
+tmdb_api = "tmdbapi"
+
 
 def getmediainfo(url_list):
+    counter = 0
     for url in url_list:
         import makeyaml
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
