@@ -230,7 +230,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    chinesename: \"{cnname}\"\n"
     text += f"    englishname: \"{enname}\"\n"
     text += f"    small_descr: \"{small_descr}\"\n"
-    text += f"    biaoqian: {tags}\n"
+    text += f"    tags: {tags}\n"
     text += f"    sub: {team}\n"
     text += f"    type: {type}\n"
     text += f'    contenthead: \'[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]YingWEB[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]\'\n'
