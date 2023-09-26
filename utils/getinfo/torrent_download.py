@@ -117,7 +117,8 @@ def get_torrent(yamlinfo):
                         ws["B" + str(row)] = size
                         ws["C" + str(row)] = seeders
                         ws["D" + str(row)] = uploadtime
-                        ws["E" + str(row)] = torrent_id.group(1)
+                        ws["E" + str(row)] = details
+                         #ws["E" + str(row)] = torrent_id.group(1)
                         ws["F" + str(row)] = download
                         row += 1  # 行号加一
                         print(title,size,seeders,uploadtime,details)
