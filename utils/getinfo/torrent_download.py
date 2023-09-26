@@ -137,19 +137,22 @@ def get_torrent(yamlinfo):
     end_time = time.time()
     execution_time = end_time - start_time
     logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.结束ATM")
-    choice = input("请输入您的选择：")
-    if choice == "1":
-        print("以下是所有的种子链接：")
-        for i in range(2, row):
-            details = ws["E" + str(i)].value
-            print(details)
-    elif choice == "2":
-        print("以下是所有的下载链接：")
-        for i in range(2, row):
-            download = ws["F" + str(i)].value
-            print(download)
-    elif choice == "3":
-        print("感谢您使用ATM，再见！")
-        sys.exit(0)  # 结束脚本
-    else:
-        print("您输入的选项不正确，请重新输入！")
+    running = True
+    while running:
+        choice = input("请输入您的选择：")
+        if choice == "1":
+            print("以下是所有的种子链接：")
+            for i in range(2, row):
+                details = ws["E" + str(i)].value
+                print(details)
+        elif choice == "2":
+            print("以下是所有的下载链接：")
+            for i in range(2, row):
+                download = ws["F" + str(i)].value
+                print(download)
+        elif choice == "3":
+            print("感谢您使用ATM，再见！")
+            sys.exit(0)  # 结束脚本
+        else:
+            print("您输入的选项不正确，请重新输入！")
+        continue  # 跳过当前循环，回到输入框重新输入
