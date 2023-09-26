@@ -12,7 +12,7 @@ while True:
     try:
         query.check_returncode()
         print(query.stdout)
-        ps = subprocess.run(["ps", "-C", "atm", "-o", "pid,stat"], capture_output=True, text=True)
+        ps = subprocess.run(["ps", "-C", "AutoTransferMachine", "-o", "pid,stat"], capture_output=True, text=True)
         ps.check_returncode()
         lines = ps.stdout.split("\n")
         columns = lines[1].split()
@@ -28,13 +28,13 @@ while True:
             print("达到最大上传速度，暂停发种")
             paused = True 
         else: # 如果脚本没有运行
-            print("ATM处于暂停状态")
+            print("AutoTransferMachine处于暂停状态")
     elif current_upload < upload_min:
         if "T" in stat: # 如果脚本处于暂停状态
             subprocess.run(["screen", "-X", "-S", "fa", "stuff", "fg\n"])
             print("上传速度空闲，继续发种")
             paused = False # set paused flag to False
         else: 
-            print("ATM处于运行状态")
+            print("AutoTransferMachine处于运行状态")
     print("当前的实时上传速率为 " + str(round(current_upload / (1024 * 1024), 2)) + " MB/s")
     time.sleep(10)

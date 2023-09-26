@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -129,7 +129,7 @@ def okpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='12'
     elif 'DTS' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'ATMOS' in file1.Audio_Format.upper():
+    elif 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='10'
     elif 'TRUE' in file1.Audio_Format.upper():
         audiocodec_sel='19'

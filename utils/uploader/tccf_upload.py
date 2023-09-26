@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -90,9 +90,9 @@ def tccf_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'DTS-HDMA' in file1.pathinfo.audio_format.upper() or 'DTS-HD MA' in file1.pathinfo.audio_format.upper():
         audiocodec_sel='8'
         logger.info('已选择音频编码为DTS.HDMA')  
-    elif 'ATMOS' in file1.pathinfo.audio_format.upper():
+    elif 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
         audiocodec_sel='9'
-        logger.info('已选择音频编码为TrueHD Atmos')  
+        logger.info('已选择音频编码为TrueHD AutoTransferMachineos')  
     elif 'TRUE' in file1.pathinfo.audio_format.upper():
         audiocodec_sel='9'
         logger.info('已选择音频编码为TrueHD')  

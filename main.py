@@ -1,17 +1,17 @@
 from loguru import logger
 import os
-from atm.utils.para_ctrl.para_ctrl import *
-from atm.utils.site.site import makesites
-from atm.utils.pathinfo.pathinfo import findpathinfo
-from atm.utils.seed_machine.seed_machine import start_machine
-from atm.utils.img_upload.imgupload import img_upload
-from atm.utils.mediafile.mediafile import *
+from AutoTransferMachine.utils.para_ctrl.para_ctrl import *
+from AutoTransferMachine.utils.site.site import makesites
+from AutoTransferMachine.utils.pathinfo.pathinfo import findpathinfo
+from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
+from AutoTransferMachine.utils.img_upload.imgupload import img_upload
+from AutoTransferMachine.utils.mediafile.mediafile import *
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
 def main():
     os.system('clear')
-    logger.info("ATM启动\n")
+    logger.info("AutoTransferMachine启动\n")
     yamlinfo=read_para()
     #设置路径，如果有下载文件都下载到screenshot_path
     os.chdir(yamlinfo['basic']['screenshot_path'])

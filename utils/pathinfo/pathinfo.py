@@ -4,7 +4,7 @@ from urllib.parse import quote
 from urllib.parse import unquote
 import re
 import requests
-from atm.utils.para_ctrl.readyaml import write_yaml
+from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
 from shutil import move
 
 def findnum(name):

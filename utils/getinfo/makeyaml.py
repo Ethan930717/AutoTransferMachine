@@ -157,6 +157,33 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
         pathnum = "1" # 将pathnum设为1
         print("未找到path序列，已将pathnum设为1")
 
+
+    # 确认来源
+    if "UHD" in name.upper() and "BLU" in name.upper() and "DIY" in name.upper():
+        source = "UHD BLURAY DIY"
+    elif "UHD" in name.upper() and "BLU" in name.upper():
+        source = "UHD BLURAY"
+    elif "BLURAY" in name.upper():
+        source = "BLURAY"
+    elif "UHD" in name.upper() and "TV" in name.upper() and "DIY" in name.upper():
+        source = "UHD TV DIY"
+    elif "UHD" in name.upper() and "TV" in name.upper():
+        source = "UHD TV"
+    elif "UHD" in name.upper():
+        source = "UHD"
+    elif "HDTV" in name.upper():
+        source = "HDTV"
+    elif "WEB" in name.upper():
+        source = "WEBDL"
+    elif "DVD" in name.upper():
+        source = "DVD"
+    elif "CD" in name.upper():
+        source = "CD"
+    elif "ENCODE" in name.upper():
+        source = "ENCODE"
+    else:
+        source = "OTHER"
+
     #确认编码
     if "x265" in name and "10bit" in name:
         codec="x265 10bit"
@@ -188,10 +215,10 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
         audio = "DTS-HD MA 5.1"
     elif "DTS-HD" in name.upper() and "MA" in name.upper() and "7.1" in name.upper():
         audio = "DTS-HD MA 7.1"
-    elif "TRUE" in name.upper() and "ATMOS" in name.upper() and "7.1" in name.upper():
-        audio = "TrueHD Atmos 7.1"
-    elif "TRUE" in name.upper() and "ATMOS" in name.upper():
-        audio = "TrueHD Atmos"
+    elif "TRUE" in name.upper() and "AutoTransferMachineOS" in name.upper() and "7.1" in name.upper():
+        audio = "TrueHD AutoTransferMachineos 7.1"
+    elif "TRUE" in name.upper() and "AutoTransferMachineOS" in name.upper():
+        audio = "TrueHD AutoTransferMachineos"
     elif "TRUE" in name.upper() and "5.1" in name.upper():
         audio = "TrueHD 5.1"
     elif "TRUE" in name.upper():
@@ -202,8 +229,8 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
         audio = "AC3"
     elif "AC3" in name.upper():
         audio = "AC3"
-    elif "DDP" in name.upper() and "ATMOS" in name.upper() and "5.1" in name.upper():
-        audio = "DDP5.1 Atmos"
+    elif "DDP" in name.upper() and "AutoTransferMachineOS" in name.upper() and "5.1" in name.upper():
+        audio = "DDP5.1 AutoTransferMachineos"
     elif "DDP" in name.upper() and "5.1" in name.upper():
         audio = "DDP5.1"
     elif "DDP" in name.upper() and "2.0" in name.upper():
@@ -237,7 +264,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    audio_format: {audio}\n"
     text += f"    video_format: {codec}\n"
     text += f"    medium: {medium}\n"
-    text += f"    source: {medium}\n"
+    text += f"    source: {source}\n"
     text += f"    doubanurl: {douban}\n"
     text += f"    screenshot: null\n"
     text += f"    from_url: null\n"

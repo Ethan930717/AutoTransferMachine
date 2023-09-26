@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -110,7 +110,7 @@ def rousi_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='6'
     elif 'DTS-HDMA' in file1.Audio_Format.upper() or 'DTS-HD MA' in file1.Audio_Format.upper():
         audiocodec_sel='11'
-    elif 'TRUEHD ATMOS' in file1.Audio_Format.upper():
+    elif 'TRUEHD AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='8'
     elif 'PCM' in file1.Audio_Format.upper():
         audiocodec_sel='14'

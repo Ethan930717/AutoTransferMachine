@@ -6,7 +6,7 @@ def readargs():
     mainpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     yaml_path = os.path.join(mainpath,"au.yaml")
     basic_path = os.path.join(mainpath,"basicinfo.yaml")
-    parser = argparse.ArgumentParser(description='Weclome ATM By DaHU')
+    parser = argparse.ArgumentParser(description='Weclome AutoTransferMachine By DaHU')
     parser.add_argument('-u','--upload', action='store_true', default=False, help='Upload local resources automatically')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='SignUp automatically')
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='Upload picture as url')

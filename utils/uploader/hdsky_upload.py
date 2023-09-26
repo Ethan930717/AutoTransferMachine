@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -70,7 +70,7 @@ def hdsky_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='16'
     elif 'DTS-HDMA' in file1.Audio_Format.upper():
         audiocodec_sel='10'
-    elif 'TRUEHD ATMOS' in file1.Audio_Format.upper():
+    elif 'TRUEHD AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='17'
     elif 'LPCM' in file1.Audio_Format.upper():
         audiocodec_sel='13'
@@ -96,7 +96,7 @@ def hdsky_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='15'
     elif 'DSD' in file1.Audio_Format.upper():
         audiocodec_sel='18'
-    elif 'Dolby Digital Plus Dolby Atmos' in file1.Audio_Format.upper():
+    elif 'Dolby Digital Plus Dolby AutoTransferMachineos' in file1.Audio_Format.upper():
         audiocodec_sel='21'
     elif 'Dolby Digital Plus' in file1.Audio_Format.upper():
         audiocodec_sel='20'

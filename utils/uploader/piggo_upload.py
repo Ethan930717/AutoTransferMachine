@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -156,7 +156,7 @@ def piggo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='6'
     elif 'DTS-HDMA' in file1.pathinfo.audio_format.upper() or 'DTS-HD MA' in file1.pathinfo.audio_format.upper():
         audiocodec_sel='8'
-    elif 'DOLBY' in file1.pathinfo.audio_format.upper() and 'ATMOS' in file1.pathinfo.audio_format.upper():
+    elif 'DOLBY' in file1.pathinfo.audio_format.upper() and 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
         audiocodec_sel='10'
         tags.append(12)
     elif 'TRUE' in file1.pathinfo.audio_format.upper():

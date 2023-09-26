@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -101,7 +101,7 @@ def ilolicon_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='6'
     elif 'DTS-HDMA' in file1.Audio_Format.upper() or 'DTS-HD MA' in file1.Audio_Format.upper():
         audiocodec_sel='10'
-    elif "TRUE" in file1.Audio_Format.upper() and 'ATMOS' in file1.Audio_Format.upper():
+    elif "TRUE" in file1.Audio_Format.upper() and 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='18'
     elif 'TRUEHD' in file1.Audio_Format.upper():
         audiocodec_sel='9'

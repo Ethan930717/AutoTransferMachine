@@ -1,5 +1,5 @@
 # Auto Transfer Machine
-> ATM转载机 - 为发光发热而生
+> AutoTransferMachine转载机 - 为发光发热而生
 
 ## :triangular_flag_on_post:功能
 

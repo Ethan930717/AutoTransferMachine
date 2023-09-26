@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from atm.utils.uploader.upload_tools import *
+from AutoTransferMachine.utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -110,7 +110,7 @@ def hares_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         audiocodec_sel='11'
     elif 'DTS' in file1.Audio_Format.upper() and 'HR' in file1.Audio_Format.upper():
         audiocodec_sel='12'
-    elif 'ATMOS' in file1.Audio_Format.upper():
+    elif 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='8'
     elif 'LPCM' in file1.Audio_Format.upper():
         audiocodec_sel='14'

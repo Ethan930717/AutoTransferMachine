@@ -1,5 +1,5 @@
-from atm.utils.pathinfo.pathinfo import findnum
-from atm.utils.pathinfo.pathinfo import findeps
+from AutoTransferMachine.utils.pathinfo.pathinfo import findnum
+from AutoTransferMachine.utils.pathinfo.pathinfo import findeps
 import os
 from loguru import logger
 import time
@@ -7,8 +7,8 @@ import requests
 import re
 import json
 import sys
-from atm.utils.img_upload.imgupload import img_upload
-from atm.utils.edittorrent.edittorrent import *
+from AutoTransferMachine.utils.img_upload.imgupload import img_upload
+from AutoTransferMachine.utils.edittorrent.edittorrent import *
 from doubaninfo.doubaninfo import getdoubaninfo
 
 
@@ -996,7 +996,7 @@ class mediafile(object):
             plotstr=data['plot']
             plotstr=plotstr[0:plotstr.find('<a')]
             douban_info += "\n\n◎简　　介　" + "\n\n " +(plotstr)
-            self.douban_atm = douban_info       
+            self.douban_AutoTransferMachine = douban_info       
         if (data['awards'] and len(data['awards']) > 0) :
             awardstr=''
             for item in data['awards']:

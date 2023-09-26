@@ -1,9 +1,9 @@
 from loguru import logger
-from atm.utils.para_ctrl.readyaml import write_yaml
+from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
 import os
-from atm.utils.pathinfo.pathinfo import findnum
-from atm.utils.mediafile.mediafile import mediafile
-from atm.utils.uploader.auto_upload import auto_upload
+from AutoTransferMachine.utils.pathinfo.pathinfo import findnum
+from AutoTransferMachine.utils.mediafile.mediafile import mediafile
+from AutoTransferMachine.utils.uploader.auto_upload import auto_upload
 from shutil import move
 from qbittorrentapi import Client
 import time
