@@ -16,7 +16,6 @@ def main():
     yamlinfo=read_para()
     #设置路径，如果有下载文件都下载到screenshot_path
     os.chdir(yamlinfo['basic']['screenshot_path'])
-    logger.info(yamlinfo)
     if 'basic' in yamlinfo and 'log' in yamlinfo['basic'] and yamlinfo['basic']['log']!=None:
         log = yamlinfo['basic']['log']
         if os.path.exists(log):
@@ -63,7 +62,7 @@ def main():
             print('成功获得图片链接：\n'+res)
 
     if yamlinfo['mod']=='download':
-        td.get_torrent(siteinfo, site)
+        td.get_torrent(yamlinfo)
 
 
 if __name__ == '__main__':
