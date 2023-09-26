@@ -97,14 +97,14 @@ def get_torrent(yamlinfo):
         print("以下是所有的种子链接：")
     for i in range(2, row):
         details = ws["E" + str(i)].value
-    print(details)
+        print(details)
     elif choice == "2":
-    print("以下是所有的下载链接：")
-    for i in range(2, row):
-        download = ws["F" + str(i)].value
-    print(download)
+        print("以下是所有的下载链接：")
+        for i in range(2, row):
+            download = ws["F" + str(i)].value
+            print(download)
     elif choice == "3":
-    print("感谢您使用ATM，再见！")
-    sys.exit(0)  # 结束脚本
+        print("感谢您使用ATM，再见！")
+        sys.exit(0)  # 结束脚本
     else:
-    print("您输入的选项不正确，请重新输入！")
+        print("您输入的选项不正确，请重新输入！")
