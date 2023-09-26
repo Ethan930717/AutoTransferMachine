@@ -112,7 +112,6 @@ class mediafile(object):
         self.topath            = ''
         self.screenshotaddress = basic['screenshot_path']
         self.torrentaddress    = basic['torrent_path'] #种子文件目录
-        self.torrent_list      = basic['torrent_list.txt']
         self.screenshotnum     = int(basic['picture_num'])
         self.imgdata           = imgdata
         
