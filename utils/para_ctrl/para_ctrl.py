@@ -11,8 +11,8 @@ def read_para():
     iu=0#img upload
     su=0#sign
     ru=0#resources upload
-    if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img==1:
-        logger.error('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
+    if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img+args.download==1:
+        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
         raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
 
 
@@ -118,6 +118,9 @@ def read_para():
 
         if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
             au_data['basic']['picture_num']=int(args.img_num)
+
+        if 'download' in args:
+
 
 
         au_data['media_file']=args.media_file
