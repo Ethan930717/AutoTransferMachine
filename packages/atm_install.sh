@@ -23,7 +23,9 @@ sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-
 wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
 tar xzf Python-3.10.0.tgz
 echo "编译python"
-
+cd Python-3.10.0
+./configure --enable-optimizations
+make altinstall
 echo "删除安装包"
 sudo rm -rf $dir/Python-3.10.0
 sudo rm $dir/Python-3.10.0.tgz
@@ -32,7 +34,8 @@ echo "从Git克隆项目"
 cd $dir
 git clone https://github.com/Ethan930717/AutoTransferMachine.git AutoTransferMachine
 echo "安装ATM依赖"
-sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git loguru pyyaml
+sudo apt-get install -y python3-pip screen unzip git
+pip install ffmpeg mediainfo maketorrent loguru pyyaml doubaninfo pip install loguru pyyaml doubaninfo requests beautifulsoup4 lxml cloudscraper qbittorrent-api
 
 echo "转移openpyxl包"
 cd $dir/AutoTransferMachine/packages
