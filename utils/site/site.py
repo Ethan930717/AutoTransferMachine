@@ -5,6 +5,7 @@ import os.path
 class site(object):
     def __init__(self,sitename,sitedict):
         self.sitename   = sitename
+        self.exist_url   = False
         self.exist_cookie=False
         self.exist_passkey=False
         self.uplver =1
@@ -49,6 +50,13 @@ class site(object):
             self.enable =0
             sitedict['enable']=0
 
+        if 'url' in sitedict :
+            self.url=sitedict['url']
+            self.exist_url=True
+        else:
+            self.url=''
+            self.exist_url=False
+
 
         if 'cookie' in sitedict :
             self.cookie=sitedict['cookie']
@@ -92,6 +100,10 @@ class site(object):
         print('url:'       ,self.url       )
         print('loginurl:'  ,self.loginurl  )
         print('uploadurl:' ,self.uploadurl )
+        if self.exist_url:
+            print('url:',self.url)
+        else:
+            print('站点地址:未设置或未识别')
         if self.exist_cookie:
             print('cookie:',self.cookie)
         else:
@@ -100,6 +112,7 @@ class site(object):
             print('passkey:',self.passkey)
         else:
             print('passkey:未设置或未识别')
+
         print('')
 
 def makesites(siteinfo):
