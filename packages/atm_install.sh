@@ -23,7 +23,9 @@ sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-
 wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
 tar xzf Python-3.10.0.tgz
 echo "编译python"
-
+cd Python-3.10.0
+./configure --enable-optimizations
+make altinstall
 echo "删除安装包"
 sudo rm -rf $dir/Python-3.10.0
 sudo rm $dir/Python-3.10.0.tgz
@@ -31,13 +33,16 @@ sudo python3 -m pip install --upgrade pip
 echo "从Git克隆项目"
 cd $dir
 git clone https://github.com/Ethan930717/AutoTransferMachine.git AutoTransferMachine
+echo "安装ATM依赖"
+sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git loguru yaml
+
 echo "转移openpyxl包"
 cd $dir/AutoTransferMachine/packages
 unzip -o openpyxl.zip -d /usr/local/lib/python3.9/dist-packages/
 echo "删除openpyxl压缩包"
 sudo rm openpyxl.zip
 echo "生成转种配置文件"
-unzip atm.zip -d $dir/atm
+unzip -o atm.zip -d $dir/atm
 echo "删除配置文件压缩包"
 sudo rm atm.zip
 echo "转移命令行配置"
