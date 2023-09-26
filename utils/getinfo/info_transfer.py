@@ -5,7 +5,7 @@ from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
 
-choice = input(f"是否需要重新生成YAML信息 \n y：重新生成    n：续写") # 提示用户输入N或Y，并赋值给choice变量
+choice = input(f"是否需要重新生成YAML信息 \n y：重新生成   n：续写") # 提示用户输入N或Y，并赋值给choice变量
 cookie = cookie
 tmdb_api = tmdbapi
 detailsfile = "details.txt"
