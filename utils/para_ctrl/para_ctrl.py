@@ -1,6 +1,8 @@
 from AutoTransferMachine.utils.para_ctrl.readyaml import readyaml
 from AutoTransferMachine.utils.para_ctrl.readargs import readargs
 from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
+import AutoTransferMachine.utils.getinfo.torrent_download as td
+
 import os
 from loguru import logger
 
@@ -118,8 +120,8 @@ def read_para():
         if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
             au_data['basic']['picture_num']=int(args.img_num)
 
-
-
+        if args.download:
+            td.get_torrent(siteinfo,site)
 
         au_data['media_file']=args.media_file
 
