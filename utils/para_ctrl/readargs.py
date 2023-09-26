@@ -12,7 +12,7 @@ def readargs():
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='Upload picture as url')
     parser.add_argument('-di','--douban-info', action='store_true', default=False, help='获取豆瓣信息')
     parser.add_argument('-mi','--media-img', action='store_true', default=False, help='自动截图并上传图床')
-    parser.add_argument('-ih','--img-host', type=str, help='选择你想要上传的图床. [dahuimg,smms,pter,freeimage]',choices=['smms','pter','freeimage',,'dahuimg'],required=False,default='')
+    parser.add_argument('-ih','--img-host', type=str, help='选择你想要上传的图床. [dahuimg,smms,pter,freeimage],默认使用猫站图床',choices=['smms','pter','freeimage','dahuimg'],required=False,default='pter')
     parser.add_argument('-if','--img-file', nargs='+',help='指定图片路径',action='append',required=False)
     parser.add_argument('-iform','--img-form', help='指定返回的图床链接格式. [bbcode,img]',choices=['bbcode','img'],required=False,default='img')
     parser.add_argument('-du','--douban-url', type=str, help='指定豆瓣资源链接',required=False,default='')
