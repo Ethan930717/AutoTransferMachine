@@ -1,7 +1,6 @@
 from AutoTransferMachine.utils.para_ctrl.readyaml import readyaml
 from AutoTransferMachine.utils.para_ctrl.readargs import readargs
 from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
-import AutoTransferMachine.utils.getinfo.torrent_download as td
 
 import os
 from loguru import logger
@@ -36,7 +35,7 @@ def read_para():
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
     
-    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'
+    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download
 
     if args.upload:
         if not 'path info' in au_data or len(au_data['path info'])==0:
@@ -120,8 +119,6 @@ def read_para():
         if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
             au_data['basic']['picture_num']=int(args.img_num)
 
-        if args.download:
-            td.get_torrent(siteinfo,site)
 
         au_data['media_file']=args.media_file
 
