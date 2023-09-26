@@ -15,7 +15,7 @@ scraper = cloudscraper.create_scraper()
 counter = 0
 
 #批量爬非禁转种
-def download_torrents(download_url,passkey):
+def download_torrents(download_url,passkey,audata):
     choice = input(f"是否需要重新生成YAML信息 \n y：重新生成   n：续写")  # 提示用户输入N或Y，并赋值给choice变量
     cookie = cookie
     tmdb_api = tmdbapi
@@ -267,7 +267,7 @@ for url in url_list:
         imdb = ""
         print("无法获取IMDB链接")
     print(f"第{counter}个资源读取完成")
-    makeyaml.mkyaml(counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, choice, torrent)
+    makeyaml.mkyaml(counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, choice, torrent,audata)
 
 
 
