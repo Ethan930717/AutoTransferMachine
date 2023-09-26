@@ -23,9 +23,7 @@ sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-
 wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
 tar xzf Python-3.10.0.tgz
 echo "编译python"
-cd Python-3.10.0
-./configure --enable-optimizations
-make altinstall
+
 echo "删除安装包"
 sudo rm -rf $dir/Python-3.10.0
 sudo rm $dir/Python-3.10.0.tgz
