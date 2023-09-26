@@ -74,8 +74,6 @@ for url in url_list:
         getteam = text.split("-")
         # 取列表的最后一个元素，即最后一个"-"后面的内容
         team = getteam[-1]
-        # 返回这个内容
-        return last_part
     except IndexError:
         name = input(f"无法读取主标题名，请手动输入,种子地址{url}")
     print(f"成功记录主标题名 {name}")
