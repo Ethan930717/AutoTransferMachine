@@ -28,6 +28,7 @@ def readyaml(file):
     #au_data['yaml_path']=file
     newfile=file+'.bak'
     write_yaml(audata,newfile)
+    print(audata)
     return audata
     
 def write_yaml(au_data,file=''):

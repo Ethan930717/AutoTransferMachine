@@ -6,9 +6,12 @@ def readargs():
     mainpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     yaml_path = os.path.join(mainpath,"au.yaml")
     basic_path = os.path.join(mainpath,"basicinfo.yaml")
+    torrent_list = os.path.join(mainpath,"torrentlist.txt")
     parser = argparse.ArgumentParser(description='欢迎使用ATM自动转种机，交流Q群870081858，请自备最新的PTPP截图申请入群，进群需验证发种总数超过100')
+
     parser.add_argument('-u','--upload', action='store_true', default=False, help='自动转种模式')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='自动登陆模式')
+    parser.add_argument('-g','--getinfo', type=str, help='批量下载资源',required=True,default=torrent_list)
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='使用图片链接转发图床')
     parser.add_argument('-di','--douban-info', action='store_true', default=False, help='获取豆瓣信息')
     parser.add_argument('-mi','--media-img', action='store_true', default=False, help='自动截图并上传图床')

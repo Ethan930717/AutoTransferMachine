@@ -7,7 +7,7 @@ from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
 start_time = time.time()
-def fromsite(siteinfo,sitename,file,record_path,qbinfo,basic,hashlist):
+def fromsite(url,cookie,passkey.sitename):
     choosesite = input(f"请选择你要下载种子的网站\n1.影")
     if choosesite == "1":
         sitename = "shadowflow"
@@ -16,7 +16,8 @@ def fromsite(siteinfo,sitename,file,record_path,qbinfo,basic,hashlist):
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
     return eval(sitename+'_upload(siteinfo,siteitem,file,record_path,qbinfo,basic,hashlist)')
-    site = "shadowflow.org" #更换站点域名
+    site = "https://shadowflow.org/" #更换站点域名
+    sitename="影"
     get_torrent(site)
 def cookies_raw2jar(raw_cookies):
     cookie_dict = {}
@@ -29,8 +30,8 @@ def get_torrent(yamlinfo,siteinfo,site):
     wb = openpyxl.Workbook()
     ws = wb.active
     row = 2
-    ws.title = f"{site}_torrents"
-    for page in range(99999):
+    ws.title = f"{sitename}_torrents"
+    for page in range(3):
             torrent_url= f"{site}torrents.php?page={page}"
             r = scraper.get(torrent_url, cookies=cookies_raw2jar(siteinfo.cookie),timeout=30)
             soup = BeautifulSoup(r.content, "html.parser")

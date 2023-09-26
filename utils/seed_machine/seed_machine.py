@@ -82,7 +82,6 @@ def seedmachine_single(pathinfo,sites,pathyaml,basic,qbinfo,imgdata,hashlist):
     errornum=0
     succnum=0
     for pathep in pathinfo.eps:
-
         #判断此集有没有站点要发布,此集合收纳还没有发布过本集的站点
         site_upload=[]
         for siteitem in sites:

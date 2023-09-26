@@ -119,6 +119,8 @@ def read_para():
             au_data['basic']['picture_num']=int(args.img_num)
 
 
+    if args.download:
+
 
         au_data['media_file']=args.media_file
 
