@@ -7,24 +7,18 @@ def readargs():
     yaml_path = os.path.join(mainpath,"au.yaml")
     basic_path = os.path.join(mainpath,"basicinfo.yaml")
     parser = argparse.ArgumentParser(description='Weclome AutoTransferMachine By DaHU')
-    parser.add_argument('-u','--upload', action='store_true', default=False, help='Upload local resources automatically')
+    parser.add_argument('-u','--upload', action='store_true', default=False, help='自动转种模式')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='SignUp automatically')
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='Upload picture as url')
-    parser.add_argument('-di','--douban-info', action='store_true', default=False, help='Get douban info')
-    parser.add_argument('-mi','--media-img', action='store_true', default=False, help='Get screenshots of the video and upload the image')
-
-    parser.add_argument('-ih','--img-host', type=str, help='Choose your img host from the following list. [ptpimg,picgo,chd,smms,pter,emp,femp,imgbox,freeimage,redleaves,sharkimg]',choices=['ptpimg','picgo','chd','smms','pter','emp','femp','imgbox','freeimage','redleaves','sharkimg'],required=False,default='')
-    parser.add_argument('-if','--img-file', nargs='+',help='Choose your img file',action='append',required=False)
-    parser.add_argument('-iform','--img-form', help='Choose your img form the following list. [bbcode,img]',choices=['bbcode','img'],required=False,default='img')
-
-    parser.add_argument('-du','--douban-url', type=str, help='Input your douban-url',required=False,default='')
-
-    parser.add_argument('-mf','--media-file', type=str, help='Choose your mediafile',required=False,default='')
-    parser.add_argument('-in','--img-num', type=int, help='Choose the number of screenshots,default=3',required=False,default=3)
-
-
-
-    parser.add_argument('-yp','--yaml-path', type=str, help='Path of your au.yaml',required=True,default=yaml_path)
-    parser.add_argument('-bp','--basic-path', type=str, help='Path of your basicinfo.yaml',required=False,default=basic_path)
+    parser.add_argument('-di','--douban-info', action='store_true', default=False, help='获取豆瓣信息')
+    parser.add_argument('-mi','--media-img', action='store_true', default=False, help='自动截图并上传图床')
+    parser.add_argument('-ih','--img-host', type=str, help='选择你想要上传的图床. [dahuimg,smms,pter,freeimage]',choices=['smms','pter','freeimage',,'dahuimg'],required=False,default='')
+    parser.add_argument('-if','--img-file', nargs='+',help='指定图片路径',action='append',required=False)
+    parser.add_argument('-iform','--img-form', help='指定返回的图床链接格式. [bbcode,img]',choices=['bbcode','img'],required=False,default='img')
+    parser.add_argument('-du','--douban-url', type=str, help='指定豆瓣资源链接',required=False,default='')
+    parser.add_argument('-mf','--media-file', type=str, help='指定媒体路径',required=False,default='')
+    parser.add_argument('-in','--img-num', type=int, help='指定上传图片数量,默认三张',required=False,default=3)
+    parser.add_argument('-yp','--yaml-path', type=str, help='指定你的au.yaml路径',required=True,default=yaml_path)
+    parser.add_argument('-bp','--basic-path', type=str, help='指定你的basicinfo.yaml路径',required=False,default=basic_path)
     args = parser.parse_args()
     return args
