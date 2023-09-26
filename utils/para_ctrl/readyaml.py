@@ -1,6 +1,7 @@
 import os
 import yaml
 from loguru import logger
+from AutoTransferMachine.getinfo.torrent_download import get_torrent
 
 def readyaml(file):
     newfile=file+'.bak'
@@ -26,7 +27,7 @@ def readyaml(file):
     #au_data['yaml_path']=file
     newfile=file+'.bak'
     write_yaml(audata,newfile)
-    print(audata)
+    get_torrent(audata)
     return audata
     
 def write_yaml(au_data,file=''):
