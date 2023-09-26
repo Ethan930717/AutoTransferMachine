@@ -1,7 +1,7 @@
 import os
 import yaml
 from loguru import logger
-from AutoTransferMachine.getinfo.torrent_download import get_torrent
+from AutoTransferMachine.utils.getinfo.torrent_download import get_torrent
 
 def readyaml(file):
     newfile=file+'.bak'
