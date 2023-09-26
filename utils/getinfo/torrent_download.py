@@ -86,7 +86,7 @@ def get_torrent(yamlinfo):
             else:
                 print("没东西了，停")
                 continue
-    wb.save(f"{sitename}_torrents.xlsx")
+    wb.save(f"{sitename}_torrents.csv")
     total_rows = row - 1
     total_pages = page + 1
     end_time = time.time()
