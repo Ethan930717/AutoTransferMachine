@@ -32,7 +32,7 @@ def get_torrent(audata):
     ws = wb.active
     row = 2
     ws.title = f"{sitename}_torrents"
-    for page in range(3):
+    for page in range(999):
             torrent_url= f"{siteurl}torrents.php?page={page}"
             r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
             soup = BeautifulSoup(r.content, "html.parser")
@@ -48,7 +48,8 @@ def get_torrent(audata):
                     ws["E1"] = "种子ID"
                     ws["F1"] = "下载链接"
                     for tr in trs:
-                        if "禁转" in tr.text or "分集" in tr.text :  # 这里可以排除不想爬的种子标签
+                        if "禁转" in tr.text or "分集" in tr.text : # 这里可以排除不想爬的种子标签
+                            print(f"{details}\n不符合筛选条件，跳过")
                             continue
                         try:
                             embedded = tr.find("td", class_="embedded")
@@ -76,7 +77,8 @@ def get_torrent(audata):
                             row += 1  # 行号加一
 
                         except IndexError:
-                            print("啥也不是")
+                            print("啥也没找到")
+                            continue
                         print(title,size,seeders,uploadtime,details)
                 else:
                     print("没东西了，停")
@@ -89,5 +91,5 @@ def get_torrent(audata):
     total_pages = page + 1
     end_time = time.time()
     execution_time = end_time - start_time
-
-    print(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}")
+    print(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time},脚本结束")
+    sys.exit(0)
