@@ -33,7 +33,7 @@ echo "从Git克隆项目"
 cd $dir
 git clone https://github.com/Ethan930717/AutoTransferMachine.git AutoTransferMachine
 echo "转移openpyxl包"
-cd $dir/AutoTransferMachine/package
+cd $dir/AutoTransferMachine/packages
 unzip openpyxl.zip -d /usr/local/lib/python3.9/dist-packages/
 echo "删除openpyxl压缩包"
 sudo rm openpyxl.zip
