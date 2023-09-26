@@ -42,6 +42,41 @@ def get_torrent(yamlinfo):
     except ValueError:
         pagenum = 10
         print(f"您没有输入数字，将默认爬取{pagenum}页种子")
+    outtag = input(
+        f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR")
+    tags = []
+    tags.append("禁转")
+    tags.append("限转")
+    if "a" in outtag.lower():
+        tags.append("电影")
+    if "b" in outtag.lower():
+        tags.append("剧集")
+    if "c" in outtag.lower():
+        tags.append("综艺")
+    if "d" in outtag.lower():
+        tags.append("动漫")
+    if "e" in outtag.lower():
+        tags.append("纪录片")
+    if "f" in outtag.lower():
+        tags.append("MV")
+    if "1" in outtag:
+        tags.append("国语")
+    if "2" in outtag:
+        tags.append("粤语")
+    if "3" in outtag:
+        tags.append("中字")
+    if "4" in outtag:
+        tags.append("DIY")
+    if "5" in outtag:
+        tags.append("完结")
+    if "6" in outtag:
+        tags.append("分集")
+    if "7" in outtag:
+        tags.append("杜比视界")
+    if "8" in outtag:
+        tags.append("HDR")
+    tags_str = " ".join(tags)
+    logger.info(f"选择完毕，本次将为您排除{tags_str}的资源，爬种即将开始")
     for page in range(pagenum):
         torrent_url= f"{siteurl}torrents.php?page={page}"
         r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
@@ -57,40 +92,6 @@ def get_torrent(yamlinfo):
                 ws["D1"] = "发布时间"
                 ws["E1"] = "种子ID"
                 ws["F1"] = "下载链接"
-                outtag=input(f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD34\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR")
-                tags = []
-                tags.append("禁转")
-                tags.append("限转")
-                if "a" in outtag.lower():
-                    tags.append("电影")
-                if "b" in outtag.lower():
-                    tags.append("剧集")
-                if "c" in outtag.lower():
-                    tags.append("综艺")
-                if "d" in outtag.lower():
-                    tags.append("动漫")
-                if "e" in outtag.lower():
-                    tags.append("纪录片")
-                if "f" in outtag.lower():
-                    tags.append("MV")
-                if "1" in outtag:
-                    tags.append("国语")
-                if "2" in outtag:
-                    tags.append("粤语")
-                if "3" in outtag:
-                    tags.append("中字")
-                if "4" in outtag:
-                    tags.append("DIY")
-                if "5" in outtag:
-                    tags.append("完结")
-                if "6" in outtag:
-                    tags.append("分集")
-                if "7" in outtag:
-                    tags.append("杜比视界")
-                if "8" in outtag:
-                    tags.append("HDR")
-                tags_str = " ".join(tags)
-                logger.info(f"选择完毕，本次将为您排除{tags_str}的资源，爬种即将开始")
                 for tr in trs:
                     if any(x in tr.text for x in tags):
                         print(f"不符合筛选条件，跳过")
