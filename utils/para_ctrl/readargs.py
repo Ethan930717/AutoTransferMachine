@@ -11,6 +11,7 @@ def readargs():
 
     parser.add_argument('-u','--upload', action='store_true', default=False, help='自动转种模式')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='自动登陆模式')
+    parser.add_argument('-dl', '--download', action='store_true', default=False, help='拉种模式')
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='使用图片链接转发图床')
     parser.add_argument('-di','--douban-info', action='store_true', default=False, help='获取豆瓣信息')
     parser.add_argument('-mi','--media-img', action='store_true', default=False, help='自动截图并上传图床')
