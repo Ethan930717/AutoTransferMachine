@@ -35,7 +35,8 @@ def get_token(cookie):
 
 
 def zhuque_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
-    post_url = "https://zhuque.in/api/torrent/upload"
+    url = siteinfo.url
+    post_url = f"{url}api/torrent/upload"
     tags = []
     time_out = 40
     if (file1.pathinfo.type == 'anime' or file1.pathinfo.type == 'tv') and file1.pathinfo.collection == 0:

@@ -10,13 +10,11 @@ import certifi
 import ssl
 from ssl import create_default_context
 import cloudscraper
-    
-
-
 
 
 def hudbt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://hudbt.hust.edu.cn/takeupload.php"
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     tags=[]
     time_out=40
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:

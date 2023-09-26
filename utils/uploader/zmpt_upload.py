@@ -8,7 +8,8 @@ import cloudscraper
 
 
 def zmpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://zmpt.cc/takeupload.php"
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     time_out=40
     tags=[]
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:

@@ -34,15 +34,12 @@ def get_token(cookie):
     return res[0].attrs['content']
     
 def hdpost_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://pt.hdpost.top/upload"
     tags=[]
     time_out=40
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:
         fileinfo=file1.chinesename+'在'+siteinfo.sitename+'第'+file1.episodename+'集'
     else:
         fileinfo=file1.chinesename+'在'+siteinfo.sitename
-
-
     #选择类别
     if 'anime' in file1.pathinfo.type.lower() and file1.pathinfo.complete==1:
         select_type='2'
@@ -67,6 +64,8 @@ def hdpost_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     else:
         select_type='1'
         imdb_id=""
+    url = siteinfo.url
+    post_url = f"{url}post/{select_type}"
 
     #选择规格
     if 'WEBRIP' in file1.pathinfo.medium.upper():

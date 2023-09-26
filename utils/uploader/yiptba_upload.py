@@ -6,7 +6,8 @@ import re
 import cloudscraper
 
 def yiptba_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://1ptba.com/takeupload.php"
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     tags=[]
     time_out=40
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:

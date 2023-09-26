@@ -6,8 +6,8 @@ import re
 import cloudscraper
 
 def audience_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://audiences.me/takeupload.php"
-    tags=[]
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     time_out=40
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:
         fileinfo=file1.chinesename+'在'+siteinfo.sitename+'第'+file1.episodename+'集'

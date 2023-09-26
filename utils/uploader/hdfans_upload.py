@@ -6,7 +6,8 @@ import re
 import cloudscraper
 
 def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
-    post_url = "https://hdfans.org/takeupload.php"
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     tags=[]
     time_out=40
     if (file1.pathinfo.type=='anime' or file1.pathinfo.type=='tv') and file1.pathinfo.collection==0:
@@ -37,40 +38,40 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     #选择媒介
     if 'WEB' in file1.pathinfo.medium.upper():
         medium_sel='5'
-        logger.info('已成功选择媒介为WEB-DL')        
+        logger.info('已成功选择媒介为WEB-DL')
     elif 'UHD' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
         medium_sel='18'
         logger.info('已成功选择媒介为UHD-BLURAY DIY')
     elif 'UHD' in file1.pathinfo.medium.upper() and 'REMUX' in file1.pathinfo.medium.upper():
         medium_sel='19'
-        logger.info('已成功选择媒介为UHD-BLURAY DIY')          
+        logger.info('已成功选择媒介为UHD-BLURAY DIY')
     elif 'UHD' in file1.pathinfo.medium.upper():
         medium_sel='17'
-        logger.info('已成功选择媒介为UHD-BLURAY')  
+        logger.info('已成功选择媒介为UHD-BLURAY')
     elif 'ENCODE' in file1.pathinfo.medium.upper() and '2160' in file1.standard_sel:
         medium_sel='20'
         logger.info('已成功选择媒介为原盘压制')
     elif 'ENCODE' in file1.pathinfo.medium.upper() and '1080' in file1.standard_sel:
         medium_sel='24'
-        logger.info('已成功选择媒介为原盘压制')   
+        logger.info('已成功选择媒介为原盘压制')
     elif 'ENCODE' in file1.pathinfo.medium.upper() and '720' in file1.standard_sel:
         medium_sel='25'
-        logger.info('已成功选择媒介为原盘压制')           
+        logger.info('已成功选择媒介为原盘压制')
     elif 'BLU' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
         medium_sel='22'
-        logger.info('已成功选择媒介为BLURAY DIY') 
+        logger.info('已成功选择媒介为BLURAY DIY')
     elif 'REMUX' in file1.pathinfo.medium.upper():
         medium_sel='23'
-        logger.info('已成功选择媒介为BLURAY')         
+        logger.info('已成功选择媒介为BLURAY')
     elif 'HDTV' in file1.pathinfo.medium.upper():
         medium_sel='6'
-        logger.info('已成功选择媒介为HDTV')        
+        logger.info('已成功选择媒介为HDTV')
     elif 'DVD' in file1.pathinfo.medium.upper():
         medium_sel='7'
-        logger.info('已成功选择媒介为DVD')        
+        logger.info('已成功选择媒介为DVD')
     else:
         medium_sel='10'
-        logger.info('未识别到媒介信息，不选择媒介')    
+        logger.info('未识别到媒介信息，不选择媒介')
 
 
     #选择编码
@@ -79,37 +80,37 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         logger.info('已成功选择编码为H264/AVC')
     elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
         codec_sel='2'
-        logger.info('已成功选择编码为H264/AVC')     
+        logger.info('已成功选择编码为H264/AVC')
     elif 'AVC' in file1.pathinfo.video_format:
         codec_sel='1'
-        logger.info('已成功选择编码为H264/AVC')                
+        logger.info('已成功选择编码为H264/AVC')
     elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
         codec_sel='3'
         logger.info('已成功选择编码为H265/HEVC')
     elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
         codec_sel='4'
-        logger.info('已成功选择编码为H265/HEVC')    
+        logger.info('已成功选择编码为H265/HEVC')
     elif 'HEVC' in file1.pathinfo.video_format.upper():
         codec_sel='3'
-        logger.info('已成功选择编码为H265/HEVC')                
+        logger.info('已成功选择编码为H265/HEVC')
     elif 'MPEG-2' in file1.pathinfo.video_format.upper():
         codec_sel='10'
         logger.info('已成功选择编码为MPEG-2')
     elif 'MPEG-4' in file1.pathinfo.video_format.upper():
         codec_sel='11'
-        logger.info('已成功选择编码为MPEG-4')             
+        logger.info('已成功选择编码为MPEG-4')
     elif 'VC' in file1.pathinfo.video_format.upper():
         codec_sel='5'
-        logger.info('已成功选择编码为VC1')          
+        logger.info('已成功选择编码为VC1')
     elif 'XVID' in file1.pathinfo.video_format.upper():
         codec_sel='12'
-        logger.info('已成功选择编码为XVID') 
+        logger.info('已成功选择编码为XVID')
     elif 'AV' in file1.pathinfo.video_format.upper():
         codec_sel='14'
-        logger.info('已成功选择编码为AV1')          
+        logger.info('已成功选择编码为AV1')
     else:
         codec_sel='13'
-        logger.info('未识别到视频编码信息，不选择')  
+        logger.info('未识别到视频编码信息，不选择')
 
 #选择音频编码
     if file1.Audio_Format.upper()=='AAC':
@@ -165,7 +166,7 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     else:
         standard_sel='7'
     logger.info('已成功选择分辨率为'+file1.standard_sel)
-    
+
     #选择地区
     if not file1.country=='':
         if '大陆' in file1.country:
@@ -246,7 +247,7 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     else:
         team_sel='27'
     logger.info('制作组已成功选择为'+file1.sub)
-    
+
     if 'hdfan' in file1.sub.lower():
         tags.append(3)
         logger.info('已选择官方')
@@ -273,13 +274,13 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         logger.info('已选择杜比视界标签')
     if 'DIY' in file1.pathinfo.tags:
         tags.append(4)
-        logger.info('已选择DIY标签')            
+        logger.info('已选择DIY标签')
 
 
-    
+
     tags=list(set(tags))
     tags.sort()
-    
+
     if siteinfo.uplver==1:
         uplver='yes'
     else:
@@ -287,13 +288,13 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
     torrent_file = file1.torrentpath
     file_tup = ("file", (os.path.basename(torrent_file), open(torrent_file, 'rb'), 'application/x-bittorrent')),
-            
+
 
     other_data = {
             "name": file1.uploadname,
             "small_descr": file1.small_descr+file1.pathinfo.exinfo,
             "url" : file1.imdburl,
-            "pt_gen": file1.doubanurl,            
+            "pt_gen": file1.doubanurl,
             "color": "0",
             "font": "0",
             "size": "0",
@@ -324,5 +325,5 @@ def hdfans_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         except Exception as r:
             logger.warning('发布种子发生错误: %s' %(r))
             success_upload=0
-    
+
     return afterupload(r,fileinfo,record_path,siteinfo,file1,qbinfo,hashlist)

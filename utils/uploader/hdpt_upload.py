@@ -6,6 +6,8 @@ import re
 import cloudscraper
 
 def hdpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
+    url = siteinfo.url
+    post_url = f"{url}takeupload.php"
     post_url = "https://hdpt.xyz/takeupload.php"
     tags=[]
     time_out=40
