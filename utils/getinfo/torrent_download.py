@@ -23,9 +23,9 @@ def get_torrent(audata):
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
-    siteurl = audata['basic']['site info'][sitename]['url']
-    sitecookie = audata['basic']['site info'][sitename]['cookie']
-    sitepasskey = audata['basic']['site info'][sitename]['passkey']
+    siteurl = audata['site info'][sitename]['url']
+    sitecookie = audata['site info'][sitename]['cookie']
+    sitepasskey = audata['site info'][sitename]['passkey']
 
     scraper = cloudscraper.create_scraper()
     wb = openpyxl.Workbook()
