@@ -95,9 +95,9 @@ def get_torrent(yamlinfo):
     choice = input("请输入您的选择：")
     if choice == "1":
         print("以下是所有的种子链接：")
-    for i in range(2, row):
-        details = ws["E" + str(i)].value
-        print(details)
+        for i in range(2, row):
+            details = ws["E" + str(i)].value
+            print(details)
     elif choice == "2":
         print("以下是所有的下载链接：")
         for i in range(2, row):
