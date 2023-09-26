@@ -32,7 +32,7 @@ echo "从Git克隆项目"
 cd $dir
 git clone https://github.com/Ethan930717/AutoTransferMachine.git AutoTransferMachine
 echo "安装ATM依赖"
-sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git loguru yaml
+sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git loguru pyyaml
 
 echo "转移openpyxl包"
 cd $dir/AutoTransferMachine/packages
