@@ -7,7 +7,7 @@ from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
 start_time = time.time()
-def fromsite(url,cookie,passkey.sitename):
+def fromsite(url,cookie,passkey,sitename):
     choosesite = input(f"请选择你要下载种子的网站\n1.影")
     if choosesite == "1":
         sitename = "shadowflow"
@@ -30,7 +30,7 @@ def get_torrent(yamlinfo,siteinfo,site):
     wb = openpyxl.Workbook()
     ws = wb.active
     row = 2
-    ws.title = f"{sitename}_torrents"
+    ws.title = f"{site}_torrents"
     for page in range(3):
             torrent_url= f"{site}torrents.php?page={page}"
             r = scraper.get(torrent_url, cookies=cookies_raw2jar(siteinfo.cookie),timeout=30)
