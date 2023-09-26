@@ -5,12 +5,6 @@ from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
 
-choice = input(f"是否需要重新生成YAML信息 \n y：重新生成   n：续写") # 提示用户输入N或Y，并赋值给choice变量
-cookie = cookie
-tmdb_api = tmdbapi
-detailsfile = "details.txt"
-f = open(detailsfile, "r")
-url_list = f.readlines()
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
     for cookie in raw_cookies.split(";"):
@@ -22,6 +16,12 @@ counter = 0
 
 #批量爬非禁转种
 def download_torrents(download_url,passkey):
+    choice = input(f"是否需要重新生成YAML信息 \n y：重新生成   n：续写")  # 提示用户输入N或Y，并赋值给choice变量
+    cookie = cookie
+    tmdb_api = tmdbapi
+    detailsfile = "details.txt"
+    f = open(detailsfile, "r")
+    url_list = f.readlines()
     r = scraper.post(download_url, cookies=cookies_raw2jar(cookie), timeout=30)
     soup = BeautifulSoup(r.text, "html.parser")
     tree = lxml.etree.HTML(r.text)
