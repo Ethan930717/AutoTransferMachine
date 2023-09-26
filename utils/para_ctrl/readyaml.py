@@ -1,11 +1,14 @@
 import os
 import yaml
 from loguru import logger
+from AutoTransferMachine.utils.getinfo.makeyaml import makeyaml
+
 def readyaml(file):
     newfile=file+'.bak'
     logger.info('正在读取yaml...')
     f=open(file, encoding='utf-8')
     audata = yaml.load(f, Loader=yaml.FullLoader)
+    makeyaml.makeyal(audata)
     try:
         if (len(audata)<1):
             logger.warning('配置文件'+file+'数据少于一行，判断为数据缺失，已自动使用备份配置文件'+newfile)

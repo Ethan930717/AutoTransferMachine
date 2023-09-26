@@ -11,7 +11,6 @@ tmdb_api = tmdbapi
 detailsfile = "details.txt"
 f = open(detailsfile, "r")
 url_list = f.readlines()
-#以上资源地址这里是举例，仅供测试用
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
     for cookie in raw_cookies.split(";"):

@@ -1,0 +1,445 @@
+basic:
+  picture_num: 0
+  workpath: /home/atm/
+  doubancookie: bid=i9ChGJXH5jo; douban-fav-remind=1; ll="118173"; _pk_id.100001.8cb4=6bf4ba1276c93680.1679495151.;
+    push_noty_num=0; push_doumail_num=0; __utmv=30149280.27053; ct=y; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1692544334%2C%22https%3A%2F%2Fwintersakura.net%2F%22%5D;
+    __utmc=30149280; dbcl2="270537674:hJ8P4Xj1DrA"; ck=k_P-; frodotk_db="dcb552eaf5f61e3c961ff8c0e1e25ab4";
+    __utma=30149280.1791203946.1679495152.1693027447.1693067093.108; __utmz=30149280.1693067093.108.81.utmcsr=beitai.pt|utmccn=(referral)|utmcmd=referral|utmcct=/
+  new_folder: 0
+  check: 0
+  record_path: /home/atm/record_path
+  screenshot_path: /home/atm/screenshot_path
+  torrent_path: /home/atm/torrent_path
+  serverchan_api: SCT149255TZvd5PvMXbLkYuPd0dGvSKefr
+qbinfo:
+  qburl: 138.201.32.172:48087
+  qbwebuiusername: hudan717
+  qbwebuipassword: 453040
+  start: 1
+image hosting:
+  seq:
+    1: smms
+    2: pter
+    3: freeimage
+    4: dahuimg
+  pter:
+    cookie: KEEP_LOGIN_GOAUTH=vrksE%3Aecd5c7992a32ff33664c06c73f7ebfb991e9ad5e7c8b586d98fff54a134b90906b89bf9b66d5594f031fa0988396fbbee67148a3b8caf847d324f4b434d599b7aaeb69809251e3aba454dcf1705dbea000f63d9a3da319925d7279ad0d9b968ea40955971f9e48260cc662f510894665b8112a352241c190f456537b6d%3A1688651707;
+      PHPSESSID=b9ke7qoa5m26ajrg9f9f3oatam
+    url: https://s3.pterclub.com
+  dahuimg:
+    cookie: PHPSESSID=dbdd3255ab317d01ef919f820568a3a4; KEEP_LOGIN=Vjd%3Ae930dce2ba274be1dc02b9ea4df6f54f91c717dbb6ff799f9aaa7d1ea7dc8e372ca01418b59ce48e81367e5f1ae72ca464d5b745def1cc1f336f8ff521174295cfb206461c0a62f213e591d55eb1756a09c711567fa94322f203%3A1695032866
+    url: https://img.dahu.fun/
+  smms:
+    apikey: DcxpnsMh1RDoBayLhRuoWSrNWt5UF5Du
+  freeimage:
+    cookie: PHPSESSID=noceijt4u7ivqcs65js49f47mt; KEEP_LOGIN=APd0B%3Ae5f13d0e4391db957c1e9a4138cde6bbf57e10303496fbdd2eae0d1b425e11d9887602cb1c450f43d3230a092f5885f8433bf32986ac965113c5c1deb1673ffdfee4bad7240864a2a2d%3A1693226011
+    url: https://freeimage.host/
+site info:
+  ilolicon:
+    url: 'https://share.ilolicon.com/'
+    enable: 1
+    uplver: 0
+    passkey: ac7043bd28500dd8b219bc3d1690b3e8
+    cookie: c_secure_uid=MTA1NzE%3D; c_secure_pass=ccc9d8b36cd146ea26868d50ce47cfe8;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hdpost:
+    url: 'https://pt.hdpost.top/'
+    enable: 1
+    uplver: 0
+    cookie: remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d=eyJpdiI6IkYxb3cyV1hlOFZKc3RjaVR6N0wva3c9PSIsInZhbHVlIjoieEhxWE04aEYxd1FMUU5xKzBvTzBEUWF4a3QwTE9xTGRIUW84dVQ3cHZYQ2Y4U1J3cGMwZi9QSE82bHdoemUvWFlMcUFwSmdOWXZnZHY4V0RWMUpxbXZWM0dsM3B5dGMzNmVkRzBnbm1wTmNtNCtzSEptOENFVnhUR2lWc0x1YU9pRTdnYW13bkJtTDVRb2lHWXZFcDltRzhHd1BFeW9iR2NmNHc0V1creEhZc0NWNXhKckVwcW5DVEhiOFo5a0lJZ0daOEk5TDVIUU1FZGZzMG9DaG5EMENIamlRQ016T1NEYk5rT1RSTFdFMD0iLCJtYWMiOiI5YTY2MWMyYzVlZDg0NWZiZDU5YTA0OTllNGQ2ZDYzNzg1YTkxNDYyNWQyNDFmOTBhNTM3NTcxNjQzODJjZmNiIiwidGFnIjoiIn0%3D;laravel_cookie_consent=1;
+      XSRF-TOKEN=eyJpdiI6IjNsUDBoK291MndVT3NkZ01LN1VuZGc9PSIsInZhbHVlIjoiVXpQb3VxL0tOdmlYSHVraHhJNklHaWt3cFJmTktVZnl5dExHdGhhN1hNdmx5R2twZGhwekp6SFVTYVBKS2ZwWTE3SkhVODFtTGRrMnl6ZmFsU1M5VmhESGFUdkpQS0tCZG1DVTZXWll3SG1vaGQ3L3N5VXNiTlp2cTE4NW05SWwiLCJtYWMiOiIzNzlhYmIzMmJmMjQ2NTE2MDdhODY2MGE3MWViNmJiZDJhZjJhMDEyZjE5ZjNmZGY1OTY5NzFlMWE3MjAyYzc3IiwidGFnIjoiIn0%3D;laravel_session=eyJpdiI6IjlKZmNBRis0RWIwRGxGcXR6OGs4SUE9PSIsInZhbHVlIjoiaHJkOWhXTUxiSjBtUzJXVTRYMmJXb1Axa3BiWHBYWjkzbzdOYW03RllpbDUzK3l1T3BHcnlPSHk1cG9mZnRVVW1jMC9KWTI3a1BseGQzNUtpcVNucjVHM0M5dm1Hei9KNGNaMkZmMVNUcTNxeVROSGRKbzF4NkFNT1hXWE1zYUwiLCJtYWMiOiJjNDMwNjFkNjA1ZjU1MzgwNTRkOWM2NGFlYmNmZThhOWQzZTI3NDJiNjJiMGFmYzQyMGUyNmNlNDZjM2QzYzc3IiwidGFnIjoiIn0%3D
+  piggo:
+    url: 'https://piggo.me/'
+    enable: 1
+    uplver: 0
+    cookie: cf_clearance=9HHu0P.8Jx5.inEDTDDGwSJFwtYdKgj0wDc.ukW2enQ-1692636145-0-1-f9435de5.7b0f8210.ae420205-250.0.0;
+      _pk_id.1.bae2=63e50d4f58add8ec.1692636156.; c_secure_uid=MTk5MzA%3D; c_secure_pass=77101d092828f236bc566a9e62b0e656;
+      c_secure_token=vk1wcNGPKi7WbBly273a3giI1LY; c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D;
+      c_secure_login=bm9wZQ%3D%3D; _pk_ses.1.bae2=1
+  tccf:
+    url: 'https://et8.org/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=NzM1MDE%3D; c_secure_pass=05e0bd3a6d27c02a24fc4b012d355334;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  ptcafe:
+    url: 'https://ptcafe.club/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTEyMzY%3D; c_secure_pass=b73891883d140ea2a07ba8a8ef1098b6;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  ptchina:
+    url: 'https://ptchina.org/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTUzNTA%3D; c_secure_pass=e25fe32ec7d517b025a0a50c498e0d45;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=G2ZIHFxZ6xxwLPGYzTnMxVzM9lJO95aJTqHCg1mltkE-1689557149-0-160
+  ubits:
+    url: 'https://ubits.club/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTE5NzE%3D; c_secure_pass=27029f13c7a64f9ab8c910fd0890b2e7;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=fZKHxw4CRWzruUveR9wQ30FaX33xzcx6c9l_5y0q0eI-1693142410-0-1-f9435de5.28283cb.ae420205-0.2.1693142410
+  soulvoice:
+    url: 'https://pt.soulvoice.club/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTI3ODQ2; c_secure_pass=fcad55c40f20ebd83bacf8dbdb3d94ec;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  pter:
+    url: 'https://pterclub.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MjA1Mzk%3D; c_secure_pass=1568b7f8c8a1c5f4d1d1b5963b42b1e7;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      c_lang_folder=chs; PHPSESSID=6is4cc0ult65rr99arfugh6c6v
+  pthome:
+    url: 'https://www.pthome.net/'
+    enable: 1
+    uplver: 0
+    cookie: cf_clearance=LBRbkYNdw0nWLEVk.4SvghGgqdZ6iYVIUsqQQ3KlXtM-1682397650-0-150;
+      c_secure_uid=MTM0NjI0; c_secure_pass=a4a6eff7361c2f89c31ac5b826991ec0; c_secure_ssl=eWVhaA%3D%3D;
+      c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D; Hm_lvt_41bc5487f653d238d282d7de5990fd73=1692322776,1692425859,1692511453,1692582944;
+      Hm_lpvt_41bc5487f653d238d282d7de5990fd73=1693398370
+  ptsbao:
+    url: 'https://ptsbao.club/'
+    enable: 1
+    uplver: 0
+    cookie: PHPSESSID=h19vds80to5sc7ssa9gdfcee70; c_secure_uid=MTgyNTg%3D; c_secure_pass=76124f3736e9aa793b5a7747f9b8e9f6;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  pttime:
+    url: 'https://www.pttime.org/t'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=NTUxODQ%3D; c_secure_pass=d102990957479e5b19bbbc0847c4af59;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=YpTVzVmB_.iL8WqizVPl.IAo4LsoGBv4Y5P7MO04dOA-1693396534-0-1-a3dd4b9e.d1661146.f4dc147e-0.2.1693396534
+  oshen:
+    url: 'https://www.oshen.win/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      c_secure_uid=OTY0Mw%3D%3D; c_secure_pass=222190f3af42b0441139124945e20f70
+  joyhd:
+    url: 'https://www.joyhd.net/'
+    enable: 1
+    uplver: 0
+    passkey: c57a37e790d0189140b27a4ba19c2bd9
+    cookie: c_secure_uid=MjM4ODU%3D; c_secure_pass=33ccdb2608bbc77be3fdf65dc7d78ab0;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      PHPSESSID=ekupkpmc2229n4ehvli5bd5o31; t-se=1
+  icc:
+    url: 'https://www.icc2022.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTI0OTQ%3D; c_secure_pass=1e28e1f6672e098193c4ece729d8f998;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  gtk:
+    url: 'https://pt.gtk.pw/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTY1Ng%3D%3D; c_secure_pass=3dbe658764d4e19312053eaf0b9d7c8e;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cw_conversation=eyJhbGciOiJIUzI1NiJ9.eyJzb3VyY2VfaWQiOiI5ZGM3ZjdjMi05ZDVmLTQyMGUtOTExYi1hMmQ2NGFjYzFhOGYiLCJpbmJveF9pZCI6MTN9.Bceo2BaLKrps1IKUcf2ss9jDQthlgI1dgwExs7Sg8-M;
+      _gid=GA1.2.1708538894.1693488127; _ga=GA1.1.1852853845.1691333326; _ga_KE28WTJF8R=GS1.1.1693488126.71.1.1693488138.0.0.0
+  itzmx:
+    url: 'https://pt.itzmx.com/'
+    enable: 1
+    uplver: 0
+    passkey: e5e2ad0823d5b39444c8d0976942ac94
+    cookie: c_secure_uid=OTQ3NA%3D%3D; c_secure_pass=c2f168108c14afd0b98d7a672cba724f;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  ydy:
+    url: 'https://pt.hdbd.us/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=OTk3OA%3D%3D; c_secure_pass=57725dbf26139e3d83395ddbee5d444b;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  haidan:
+    url: 'https://www.haidan.video/'
+    enable: 1
+    uplver: 0
+    passkey: e91fc28d56a28b4e6e05518b8bb68d52
+    cookie: c_secure_uid=NTExNzQ%3D; c_secure_pass=37cd954779b94412574e4821b03490e8;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=S5cEcqjhPnO6XfzcJjmPLK.jEIXHk79sIyzxhIPPmLs-1693321357-0-1-f9435de5.fbc9ec14.ae420205-0.2.1693321357
+  hdhome:
+    url: 'https://hdhome.org/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTI1NDUw; c_secure_pass=3771863c5ab9344f1b8963b6f7d5d89c;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      c_secure_uid=MTI1NDUw; c_secure_pass=3771863c5ab9344f1b8963b6f7d5d89c; c_secure_ssl=bm9wZQ%3D%3D;
+      c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D; cf_clearance=q3IXtVF1xqolKKrdTiqLB1tXjd.VnS2c6SSJEOHqMEc-1686368793-0-150
+
+  hdmayi:
+    url: 'https://hdmayi.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTgwODk%3D; c_secure_pass=13ecd60f90135774ff897772e9401dda;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      Hm_lvt_6d8ca12c6bcfbd37eefefe2acf29b40d=1692322770,1692425851,1692511658,1692582925;
+      Hm_lpvt_6d8ca12c6bcfbd37eefefe2acf29b40d=1693276438
+  hddolby:
+    url: 'https://www.hddolby.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_uid=MzY1ODI%3D; c_secure_pass=c3c3253fab3ce1ee1932b25734b59046;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D; cf_clearance=9ueUO56oYG5Z2TH8Bz1np8dBfThtH8JSJeEeQ5cywY0-1693310266-0-1-f9435de5.4f7202fb.ae420205-150.0.0
+  nanyang:
+    url: 'https://nanyangpt.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_pass=4dadca4abe115416d6bcbfd6f09a4814; c_secure_login=bm9wZQ%3D%3D;
+      c_secure_uid=NTU4OTA%3D; c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D;
+      _gid=GA1.2.1029471647.1693370565; _ga=GA1.1.566121196.1686586524; _ga_CQG89CBE23=GS1.1.1693370562.350.1.1693372198.0.0.0
+  yiptba:
+    url: 'https://1ptba.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTAyNDA1; c_secure_pass=01048120f65ad7389dd38e781b3966a5;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      __guid=58235178.4078193667537285000.1681736281619.1365; sc_is_visitor_unique=rx12831779.1691319598.5C73A89859E04FB8FB1A864380E36AA9.3.3.3.3.3.3.3.3.3
+  hdarea:
+    url: 'https://hdarea.club/'
+    enable: 1
+    uplver: 0
+    passkey: b56808ea6c2c3316a18a805813b9d800
+    cookie: c_secure_uid=MTE4MTU1; c_secure_pass=bd973186043b4f9ec40afa6d49af99d1;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=VVcoQwSKml7ijqXIjV1s8Phg2fLuWkMR0N2L1BwPu1Q-1690169208-0-0.2.1690169208;
+      _ga=GA1.2.1350830195.1689478012; _gid=GA1.2.1115998010.1693233200; _ga_P7FXS6LFMX=GS1.1.1693233197.258.1.1693234328.0.0.0
+  mangguo:
+    url: 'https://www.3wmg.com/'
+    enable: 1
+    uplver: 0
+    cookie: _ga=GA1.1.19844985.1684465654; c_secure_uid=MTQ2OQ%3D%3D; c_secure_pass=61549c89037ac33d37051697ba87ae4b;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      _ga_9GHTJX11MX=GS1.1.1693207178.473.0.1693207237.1.0.0
+  wuerpt:
+    url: 'https://52pt.site/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTcwMDk%3D; c_secure_pass=22bd4eaf3a5bf0613e74dd24c918077c;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  btschool:
+    url: 'https://pt.btschool.club/'
+    enable: 1
+    uplver: 0
+    cookie: cf_clearance=HY2FKHNk0LrJkdnH3jtfIRj5mNeEp10QTByliIVD4mA-1694882438-0-1-831f7cc5.a838ac26.d41e2325-150.0.0;
+      c_secure_uid=MTIzNDQx; c_secure_pass=8fb3eefa837fc289f21a5f531a38bc86; c_secure_ssl=eWVhaA%3D%3D;
+      c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  cyanbug:
+    enable: 1
+    uplver: 0
+    url: https://cyanbug.net/
+    cookie: c_secure_uid=MTE5NTI%3D; c_secure_pass=2e2c76d6a2338d1411cdd582b2e66cf8;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  discfan:
+    url: 'https://discfan.net/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=NDY4NDc%3D; c_secure_pass=5dde6a3863462e9b7039f435864db9c7;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hdtime:
+    url: 'https://hdtime.org/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=ODQ5ODc%3D; c_secure_pass=aae5caf74b035761f6d1c1bc29a90049;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=KP1TWtU.41q2kTpubE4R7Hksk0jysQOCvn_37HNeqGI-1683039531-0-160
+  hdu:
+    url: 'https://pt.hdupt.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=Mzk3ODM%3D; c_secure_pass=7d2aa1b1c0545c66a05cece608650e4c;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      _ga=GA1.2.1800500714.1687443312; _gid=GA1.2.1709022391.1693294097; _ga_7ZG51VW129=GS1.1.1693294096.413.1.1693295838.0.0.0
+  dragonhd:
+    url: 'https://www.dragonhd.xyz/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MjI2OQ%3D%3D; c_secure_pass=fa984ba31844c8983d30304704682f9a;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  freefarm:
+    url: 'https://pt.0ff.cc/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=NjAxOA%3D%3D; c_secure_pass=3810190c22010e1c95b114c2e11057a7;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=Fq87kDRPD54PR7PKSVw3jbCv3M1Y.cPikIyTh4bAH0E-1688486783-0-160; Hm_lvt_0cbdbdcb93367660c01f0389a31e8901=1692322770,1692425821,1692511620,1692582937;
+      Hm_lpvt_0cbdbdcb93367660c01f0389a31e8901=1693228291
+  shadowflow:
+    url: 'https://shadowflow.org/'
+    enable: 0
+    uplver: 0
+    cookie: c_secure_ssl=eWVhaA%3D%3D; c_secure_uid=MTAxMDE%3D; c_secure_pass=c6d9cbc34bff5b2b31f8807861b0bd0a; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=eWVhaA%3D%3D; cf_clearance=Bh_M22MMrhSGSJf3SnsulWxfC273nZRMKdDj8xRGTNg-1695690650-0-1-789b8f61.2f87ad00.2f9ad081-0.2.1695690650
+  rousi:
+    url: 'https://rousi.zip/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTAzMTQ%3D; c_secure_pass=4c917dc78358b97a008561a40b962337;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      _pk_id.8.9341=7f3694eb687ba2e8.1687922536.; _pk_ref.8.9341=%5B%22%22%2C%22%22%2C1691075130%2C%22https%3A%2F%2Fhdmayi.com%2F%22%5D
+  wintersakura:
+    url: 'https://wintersakura.net/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTUyNjk%3D; c_secure_pass=660f9c2a416a43e40b406588ca7f27e4;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=mc.8Xej0tCdsF9Asqka7Zgdo_axneqoemAVAm8UAqHc-1691384139-0-1-f9435de5.45394775.ae420205-0.2.1691384139
+  dajiao:
+    url: 'https://dajiao.cyou'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTIzNzMw; c_secure_pass=ff3af45b7c22af12030d02fb37d96304;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  ptlsp:
+    url: 'https://www.ptlsp.com/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=ODg5Njk4; c_secure_pass=b1be9d3c8ab234ed9829987d8ab6f2f4;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hdvideo:
+    url: 'https://hdvideo.one/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTY2NzU%3D; c_secure_pass=b09066754b065a43bb0ce7805f95ffbf;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  audience:
+    url: 'https://audiences.me/'
+    enable: 0
+    uplver: 0
+    passkey: 3fa328a428bc4d4e5cb5109aa9f23d8a
+    cookie: c_secure_uid=MjE5MTc%3D; c_secure_pass=b515aab09d64f9dc7ac63a6735217649;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  carpt:
+    url: 'https://carpt.net/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTQzNTM%3D; c_secure_pass=5d8acfe24fcc01ae3e5902f332a21394;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=qACG2EUJpp9vrkhmDMw1avw3yBZl3XZ43fI3HAAnl64-1683038738-0-160
+  hares:
+    url: 'https://club.hares.top/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=NDkxNw%3D%3D; c_secure_pass=56f508c16eaa37eadc83f09d8db572b6;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  redleaves:
+    url: 'https://leaves.red/'
+    enable: 1
+    uplver: 0
+    cookie: _pk_id.1.0683=b4a1bf1d8c524501.1681653040.; c_secure_uid=MzQwNw%3D%3D; c_secure_pass=e0ac91d5a02fe38b4df92afdc43cef96; c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D; _pk_ref.1.0683=%5B%22%22%2C%22%22%2C1695131728%2C%22https%3A%2F%2Fwintersakura.net%2F%22%5D
+  hdzone:
+    url: 'https://hdfun.me/'
+    enable: 1
+    uplver: 0
+    passkey: 2d1ce30ef8ccc065f866e1f06eb80a38
+    cookie: c_secure_uid=MTcxNTA%3D; c_secure_pass=12739e8132b206806bf651b334c034c9;
+      c_secure_ssl=bm9wZQ%3D%3D; c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hdfans:
+    url: 'https://hdfans.org/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=Mzc5OTI%3D; c_secure_pass=7e197687ae4c56ada102c1d8cf133b7d;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hdpt:
+    url: 'https://hdpt.xyz/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTc0NzY%3D; c_secure_pass=0cd1176e1c9d8521aefcd1cfb9764132;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hhclub:
+    url: 'https://hhanclub.top/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTUyODI%3D; c_secure_pass=d31e997d006f45963c149d4b9e67481c;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      cf_clearance=CvB._pePY2qWY6g5v6UQUOWVTgsjBgWCcVOyaor3SEA-1685885967-0-250
+  mteam:
+    url: 'https://kp.m-team.cc/'
+    enable: 1
+    uplver: 0
+    cookie: cf_clearance=9Cb802RaeMMkp5PzFJ9ZK6bV3KtJHqo4cOgqDxKQS9U-1686323145-0-150;
+      tp=MjVmNDAzYzc3Y2IxMWFlNTg0ZGZlYTM5NDRmYmU1ZGIzYmE4ZTkwOA%3D%3D
+  zhuque:
+    url: 'https://zhuque.in/'
+    enable: 1
+    uplver: 0
+    cookie: connect.sid=s%3A668670312e8945bca1bcd9f92b1e89c4.6mu10vID9SUDLO2K70X2rEkZkzNXe2LA44Wm1fSM2cc
+    torrentkey: 4d4cb496108f4e10aac2850fafaa0885
+  zmpt:
+    url: 'https://zmpt.cc/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTQzNTI%3D; c_secure_pass=40d31dbd06a5838158bfe18dc0108938;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  kufei:
+    url: 'https://kufei.org/'
+    enable: 1
+    uplver: 0
+    cookie: _ga=GA1.1.1040071980.1686741554; _ga_238SZB0E45=GS1.1.1686741553.1.1.1686742562.0.0.0;
+      c_secure_uid=NTM5; c_secure_pass=fac3b4c87f97ecd22d3ab4b2f19b77cd; c_secure_ssl=eWVhaA%3D%3D;
+      c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  okpt:
+    url: 'https://www.okpt.net/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_ssl=bm9wZQ%3D%3D; c_secure_uid=MTA0NjQ%3D; c_secure_pass=3576655497578b49e368a1cc0bbe8a52;
+      c_secure_tracker_ssl=bm9wZQ%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  pandapt:
+    url: 'https://pandapt.net/'
+    enable: 1
+    uplver: 0
+    cookie: c_secure_uid=MTAxNDk%3D; c_secure_pass=cca4b7964888724cd42c56c5e47d457d;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D
+  hitpt:
+    url: 'https://www.hitpt.com/'
+    enable: 1
+    uplver: 0
+    passkey: b23c156925bafe865f4fb9cb54d10ae8
+    cookie: _hjSessionUser_1000704=eyJpZCI6IjEwYzFmODc4LWNmODctNWU2ZS1hNDE0LWJlZWVhYTQyZGUyNCIsImNyZWF0ZWQiOjE2ODY1ODQyNjQ4MjAsImV4aXN0aW5nIjp0cnVlfQ==;
+      c_secure_uid=NDcyMDY%3D; c_secure_pass=01836537b68daa2747780dfaf3d8068e; c_secure_ssl=eWVhaA%3D%3D;
+      c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D; cf_clearance=RZxj46rNB_1Kw37r2FDd9bO0Q_DO_11K2fDCPILq6PU-1693304393-0-1-f9435de5.aa047d47.ae420205-0.2.1693304393;
+      _gid=GA1.2.272077780.1693304397; _hjSession_1000704=eyJpZCI6IjEwMWExMjhjLThhODYtNDhlMy1hYWIxLTE4ZjVjNDEyZjAxMyIsImNyZWF0ZWQiOjE2OTMzMDQzOTY5NDEsImluU2FtcGxlIjp0cnVlfQ==;
+      _hjAbsoluteSessionInProgress=1; _ga_FQZR97RS0M=GS1.1.1693308508.412.1.1693308509.59.0.0;
+      _ga=GA1.2.2059480769.1686584259; _gat_gtag_UA_73531521_3=1; _hjIncludedInSessionSample_1000704=1
+  hudbt:
+    url: 'https://hudbt.hust.edu.cn/'
+    enable: 1
+    uplver: 0
+    passkey: d80f44cfc63199586d1dbd58b75395f0
+    cookie: c_secure_uid=MTM1ODQ2; c_secure_pass=866589449b428a85ae5b9ecea0d272a2;
+      c_secure_ssl=eWVhaA%3D%3D; c_secure_tracker_ssl=eWVhaA%3D%3D; c_secure_login=bm9wZQ%3D%3D;
+      _gid=GA1.3.1633602105.1693308542; _ga=GA1.1.1460009702.1686585152; _ga_7DS6B08FZG=GS1.1.1693308541.294.1.1693308596.5.0.0
+path info:
+  path4:
+    downloadpath: /download
+    enable: 1
+    collection: 1
+    path: /home/media/安迪·沃霍尔：时代日记.The.Andy.Warhol.Diaries.2022.S01.1080p.NF.WEB-DL.H265.10bit.HDR.DDP-YingWEB
+    uploadname: The Andy Warhol Diaries 2022 S01 Complete 1080p NF WEB-DL H265 10bit
+      HDR DDP-YingWEB
+    filename: '[Shadow].安迪·沃霍尔：时代日记.The.Andy.Warhol.Diaries.2022.S01.1080p.NF.WEB-DL.H265.10bit.HDR.DDP-YingWEB.torrent'
+    chinesename: 安迪·沃霍尔 时代日记
+    englishname: 'The Andy Warhol Diaries '
+    small_descr: 安迪·沃霍尔：时代日记/安迪·沃荷：时代日记 第一季 全6集 | 类型:纪录片 主演:安迪·沃霍尔 [英语|内封多字幕]
+    biaoqian: 官方 中字 完结 HDR10
+    sub: YingWEB
+    type: doc
+    contenthead: '[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]YingWEB[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]'
+    audio_format: DDP
+    video_format: H265 10bit HDR
+    medium: WEB-DL
+    source: WEB-DL
+    doubanurl: https://movie.douban.com/subject/35777998/
+    screenshot: null
+    from_url: https://mikanani.me/
+    imdb_url: https://www.imdb.com/title/tt18082212/
+    tmdb_id: 158233
+    complete: 1
+    transfer: 1
+    cyanbug: 0

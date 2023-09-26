@@ -4,27 +4,35 @@ from bs4 import BeautifulSoup
 import openpyxl
 import time
 from requests.cookies import cookiejar_from_dict
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from loguru import logger
+import sys
 start_time = time.time()
-#更换自己的cookie
-cookie = ""
-site = "shadowflow.org" #更换站点域名
-def cookies_raw2jar(raw_cookies
+def fromsite(siteinfo,sitename,file,record_path,qbinfo,basic,hashlist):
+    choosesite = input(f"请选择你要下载种子的网站\n1.影")
+    if choosesite == "1":
+        sitename = "shadowflow"
+        logger.info('即将从影站下载种子')
+    else:
+        logger.info('未能识别当前选择的站点，退出脚本')
+        sys.exit(0)
+    return eval(sitename+'_upload(siteinfo,siteitem,file,record_path,qbinfo,basic,hashlist)')
+    site = "shadowflow.org" #更换站点域名
+    get_torrent(site)
+def cookies_raw2jar(raw_cookies):
     cookie_dict = {}
     for cookie in raw_cookies.split(";"):
         key, value = cookie.split("=", 1)
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict)
-def get_torrent(siteinfo,file1,record_path,qbinfo,basic,hashlist):
+def get_torrent(yamlinfo,siteinfo,site):
     scraper = cloudscraper.create_scraper()
     wb = openpyxl.Workbook()
     ws = wb.active
     row = 2
     ws.title = f"{site}_torrents"
-    siteurl = f"https://{site}/"
     for page in range(99999):
-            torrent_url= f"{siteurl}torrents.php?page={page}"
-            r = scraper.get(torrent_url, cookies=cookies_raw2jar(cookie),timeout=30)
+            torrent_url= f"{site}torrents.php?page={page}"
+            r = scraper.get(torrent_url, cookies=cookies_raw2jar(siteinfo.cookie),timeout=30)
             soup = BeautifulSoup(r.content, "html.parser")
             if r.status_code == 200:
                 # 查找id为torrents的表格元素
@@ -45,7 +53,7 @@ def get_torrent(siteinfo,file1,record_path,qbinfo,basic,hashlist):
                             a = embedded.find("a", href=lambda x: "details" in x)
                             b = a["href"]
                             title = a["title"]
-                            details = f"{siteurl}{b}"
+                            details = f"{site}{b}"
                             pattern = "id=(\d+)&hit"
                             torrent_id= re.search(pattern, details)
                             if torrent_id:
