@@ -8,7 +8,8 @@ import re
 import json
 import sys
 from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.edittorrent.edittorrent import *
+from AutoTransferMachine.utils.img_upload.imgupload import img_upload
+from AutoTransferMachine.utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
 
 
@@ -111,6 +112,7 @@ class mediafile(object):
         self.topath            = ''
         self.screenshotaddress = basic['screenshot_path']
         self.torrentaddress    = basic['torrent_path'] #种子文件目录
+        self.torrent_list      = basic['torrent_list.txt']
         self.screenshotnum     = int(basic['picture_num'])
         self.imgdata           = imgdata
         
@@ -1011,7 +1013,11 @@ class mediafile(object):
         self.douban_info=douban_info
         self.getptgen_done=1
 
-
+    def get_details_url(self):
+        file = open(self.torrent_list, "r")
+        url_list = file.readlines()
+        file.close()
+        getmediainfo(url_list)
 
     #寻找已有的种子文件
     def find_torrentfile(self):
