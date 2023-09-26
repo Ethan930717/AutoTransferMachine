@@ -1,6 +1,7 @@
 from loguru import logger
 import json
 import os.path
+
 class site(object):
     def __init__(self,sitename,sitedict):
         self.sitename   = sitename
@@ -87,7 +88,6 @@ class site(object):
 
 
     def print(self):
-        from AutoTransferMachine.utils.getinfo.torrent_download import fromsite
         print('Site info:')
         print('sitename:'  ,self.sitename  )
         print('enable:'    ,self.enable    )
