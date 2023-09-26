@@ -119,9 +119,6 @@ def read_para():
         if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
             au_data['basic']['picture_num']=int(args.img_num)
 
-        if 'download' in args:
-
-
 
         au_data['media_file']=args.media_file
 
