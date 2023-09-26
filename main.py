@@ -6,6 +6,7 @@ from AutoTransferMachine.utils.pathinfo.pathinfo import findpathinfo
 from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
 from AutoTransferMachine.utils.img_upload.imgupload import img_upload
 from AutoTransferMachine.utils.mediafile.mediafile import *
+import AutoTransferMachine.utils.getinfo.torrent_download as td
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
@@ -60,6 +61,10 @@ def main():
             print(self.chinesename+'上传图床失败')
         else:
             print('成功获得图片链接：\n'+res)
+
+    if yamlinfo['mod']=='download':
+        td.get_torrent(siteinfo, site)
+
 
 if __name__ == '__main__':
     main()
