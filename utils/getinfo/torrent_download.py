@@ -89,6 +89,8 @@ def get_torrent(yamlinfo):
                     tags.append("杜比视界")
                 if "8" in outtag:
                     tags.append("HDR")
+                tags_str = " ".join(tags)
+                logger.info(f"选择完毕，本次将为您排除{tags_str}的资源，爬种即将开始")
                 for tr in trs:
                     if any(x in tr.text for x in tags):
                         print(f"不符合筛选条件，跳过")
