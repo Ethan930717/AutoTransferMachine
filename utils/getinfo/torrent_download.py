@@ -6,8 +6,16 @@ import time
 from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
+import json
 start_time = time.time()
-def fromsite(url,cookie,passkey,sitename):
+def cookies_raw2jar(raw_cookies):
+    cookie_dict = {}
+    for cookie in raw_cookies.split(";"):
+        key, value = cookie.split("=", 1)
+        cookie_dict[key] = value
+    return cookiejar_from_dict(cookie_dict)
+
+def get_torrent(audata):
     choosesite = input(f"请选择你要下载种子的网站\n1.影")
     if choosesite == "1":
         sitename = "shadowflow"
@@ -15,25 +23,18 @@ def fromsite(url,cookie,passkey,sitename):
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
-    return eval(sitename+'_upload(siteinfo,siteitem,file,record_path,qbinfo,basic,hashlist)')
-    site = "https://shadowflow.org/" #更换站点域名
-    sitename="影"
-    get_torrent(site)
-def cookies_raw2jar(raw_cookies):
-    cookie_dict = {}
-    for cookie in raw_cookies.split(";"):
-        key, value = cookie.split("=", 1)
-        cookie_dict[key] = value
-    return cookiejar_from_dict(cookie_dict)
-def get_torrent(yamlinfo,siteinfo,site):
+    siteurl = audata['basic']['site info'][sitename]['url']
+    sitecookie = audata['basic']['site info'][sitename]['cookie']
+    sitepasskey = audata['basic']['site info'][sitename]['passkey']
+
     scraper = cloudscraper.create_scraper()
     wb = openpyxl.Workbook()
     ws = wb.active
     row = 2
-    ws.title = f"{site}_torrents"
+    ws.title = f"{sitename}_torrents"
     for page in range(3):
-            torrent_url= f"{site}torrents.php?page={page}"
-            r = scraper.get(torrent_url, cookies=cookies_raw2jar(siteinfo.cookie),timeout=30)
+            torrent_url= f"{siteurl}torrents.php?page={page}"
+            r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
             soup = BeautifulSoup(r.content, "html.parser")
             if r.status_code == 200:
                 # 查找id为torrents的表格元素
@@ -54,7 +55,7 @@ def get_torrent(yamlinfo,siteinfo,site):
                             a = embedded.find("a", href=lambda x: "details" in x)
                             b = a["href"]
                             title = a["title"]
-                            details = f"{site}{b}"
+                            details = f"{siteurl}{b}"
                             pattern = "id=(\d+)&hit"
                             torrent_id= re.search(pattern, details)
                             if torrent_id:
@@ -62,7 +63,7 @@ def get_torrent(yamlinfo,siteinfo,site):
                             else:
                                 print("未识别到种子ID")
                             download = details.replace("details", "download")
-                            download = download.replace("hit=1", "passkey=")
+                            download = download.replace("hit=1", f"passkey={sitepasskey}")
                             seeders = tr.find_all("td")[-4].text
                             size = tr.find_all("td")[-5].text
                             uploadtime = tr.find_all("td")[-6].text
@@ -83,7 +84,7 @@ def get_torrent(yamlinfo,siteinfo,site):
             else:
                 print("没东西了，停")
                 continue
-    wb.save(f"{site}_torrents.xlsx")
+    wb.save(f"{sitename}_torrents.xlsx")
     total_rows = row - 1
     total_pages = page + 1
     end_time = time.time()
