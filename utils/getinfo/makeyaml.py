@@ -15,7 +15,7 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
     #站点特判
     #碟粉非亚洲资源与动漫.年份大于五年
     current_year = datetime.date.today().year # 获取当前年份
-    keep_year = abs(current_year - madeyear)
+    keep_year = abs(current_year - int(madeyear))
     if country in asia and not "anime" in type and keep_year > 4:
         discfan = '0'
         print(f"当前资源产地为{country},类型为{type},上映时间{keep_year}年\n符合碟粉发种要求")
