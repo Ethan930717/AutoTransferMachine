@@ -19,7 +19,7 @@ scraper = cloudscraper.create_scraper()
 
 
 def getmediainfo(yamlinfo):
-    au = f"{yamlinfo['basic']['workpath']}/au.yaml"
+    au = f"{yamlinfo['basic']['workpath']}au.yaml"
     wb = openpyxl.load_workbook(yamlinfo['basic']['torrent_list'])
     ws = wb.active
     data = ws.values
@@ -27,16 +27,16 @@ def getmediainfo(yamlinfo):
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     if writemode.lower() == "n":
         logger.info('当前为覆盖模式')
-        f = open("au", "w", encoding="utf-8")
-        lines = f.readlines()
-        for index, line in enumerate(lines):
-            if "path info" in line:
-                path_index = index
-                break
-        new_lines = lines[:path_index + 1]
-        for new_line in new_lines:
-            f.write(new_line + "\n")
-        f.close()
+        with open(au, "w") as f:
+            lines = f.readlines()
+            for index, line in enumerate(lines):
+                if "path info" in line:
+                    path_index = index
+                    break
+            new_lines = lines[:path_index + 1]
+            for new_line in new_lines:
+                f.write(new_line + "\n")
+            f.close()
     else:
         logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
