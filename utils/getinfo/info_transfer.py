@@ -203,6 +203,7 @@ def getmediainfo(yamlinfo):
             print("无法获取豆瓣链接")
 
         #IMDB
+        imdb = ""
         try:
             imdblinks = soup.find_all("a", href=lambda x: x and "imdb" in x)
             if imdblinks:
@@ -249,11 +250,10 @@ def getmediainfo(yamlinfo):
                 else:
                     imdb = ""
                     print("该资源暂无imdb链接")
-        except IndexError:
-            imdb = ""
+        except Exception as e:
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, date, standard, tmdb_id, writemode, torrent)
+        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, date, standard, tmdb_id,  torrent)
 
 
 
