@@ -2,7 +2,7 @@ import re
 import datetime
 from loguru import logger
 
-def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,date,standard,tmdb_id,torrent,yamlinfo):
+def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent,yamlinfo):
     #亚洲国家
     east_asia = ["中国大陆", "蒙古", "朝鲜", "韩国", "日本", "香港", "台湾", "澳门","中国" ] #仅作判定使用，无任何地缘政治因素
     southeast_asia = ["菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"]
@@ -15,15 +15,15 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     #站点特判
     #碟粉非亚洲资源与动漫.年份大于五年
     current_year = datetime.date.today().year # 获取当前年份
-    keep_year = abs(current_year - int(date))
+    keep_year = abs(current_year - madeyear)
     if country in asia and not "anime" in type and keep_year > 4:
         discfan = '0'
         print(f"当前资源产地为{country},类型为{type},上映时间{keep_year}年\n符合碟粉发种要求")
     else:
         discfan = 'null'
         print(f"当前资源产地为{country},类型为{type},上映时间{keep_year}年\n不符合碟粉发种要求")
-    #ilolicon动漫
-    if not type == 'anime':
+
+    if not 'anime' in type:
         ilolicon = 'null'
     else:
         ilolicon = '0'
@@ -103,6 +103,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     site += f"    wuerpt: 0\n"
     site += f"    zhuque: 0\n"
     site += f"    zmpt: 0\n"
+    site += f"    ilolicon: {ilolicon}\n"
 
     # 确定中文名
     cnname = ""
