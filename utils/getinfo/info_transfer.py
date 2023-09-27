@@ -263,7 +263,7 @@ def getmediainfo(yamlinfo):
         except Exception as e:
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
+        mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
 
 
 
