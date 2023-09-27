@@ -17,7 +17,7 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
 scraper = cloudscraper.create_scraper()
 
 # 找站点名字
-def find_key_by_value(dict, siteurl):
+def find_key_by_siteurl(dict, siteurl):
     for key, val in dict.items():
         if val == siteurl:
             return key
