@@ -71,14 +71,12 @@ def main():
     if yamlinfo['mod']=='transinfo':
         if yamlinfo['basic']['torrent_list']:
             if "csv" in yamlinfo['basic']['torrent_list']:
-                with fileinput.input(yamlinfo['basic']['torrent_list'], inplace=True) as csv_file:
-                    reader = csv.reader(csv_file)
+                getmediainfo(yamlinfo, reader)
             else:
                 print('torrent_list的路径不是一个正确的csv文件路径，请检查配置文件')
 
         else:
             print('配置文件中无torrent_list项,请检查配置文件')
-        getmediainfo(yamlinfo,reader)
 
 
 
