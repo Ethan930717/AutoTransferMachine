@@ -16,23 +16,6 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
     return cookiejar_from_dict(cookie_dict) # 调用requests模块中的函数
 scraper = cloudscraper.create_scraper()
 
-# 找站点名字
-def find_sitename(data, content, parent=None):
-    if isinstance(data, dict):
-        for key, value in data.items():
-            if value == content:
-                return key
-            else:
-                result = find_sitename(value, content, key)
-                if result:
-                    return result
-    elif isinstance(data, list):
-        for item in data:
-            result = find_sitename(item, content, parent)
-            if result:
-                return result
-    else:
-        return None
 
 def getmediainfo(yamlinfo):
     wb = openpyxl.load_workbook(yamlinfo['basic']['torrent_list'])
@@ -46,10 +29,9 @@ def getmediainfo(yamlinfo):
     for url in url_list:
         result = urllib.parse.urlparse(url)
         siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
-        print(f"当前域名 {siteurl}")
-        sitename = find_sitename(yamlinfo, siteurl)
-        print(f"当前域名 {siteurl},匹配站点 {sitename}")
-        cookie = yamlinfo['site info'][sitename]['cookie']
+        sitename = ws["G" + str(counter + 2)].value
+        cookie = ws["H" + str(counter + 2)].value
+        print(f"当前域名 {siteurl},匹配站点{sitename}")
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
         soup = BeautifulSoup(r.text, "html.parser")
         tree = lxml.etree.HTML(r.text)
