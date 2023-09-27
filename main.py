@@ -1,5 +1,7 @@
 from loguru import logger
 import os
+import csv
+import urllib
 from AutoTransferMachine.utils.para_ctrl.para_ctrl import *
 from AutoTransferMachine.utils.site.site import makesites
 from AutoTransferMachine.utils.pathinfo.pathinfo import findpathinfo
@@ -7,6 +9,7 @@ from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
 from AutoTransferMachine.utils.img_upload.imgupload import img_upload
 from AutoTransferMachine.utils.mediafile.mediafile import *
 import AutoTransferMachine.utils.getinfo.torrent_download as td
+import AutoTransferMachine.utils.getinfo.info_transfer as trans
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
@@ -63,6 +66,18 @@ def main():
 
     if yamlinfo['mod']=='download':
         td.get_torrent(yamlinfo)
+
+    if yamlinfo['mod']=='transinfo':
+        if yamlinfo['basic']['torrent_list']:
+            if "csv" in yamlinfo['basic']['torrent_list']:
+                with open(yamlinfo['basic']['torrent_list'], newline='') as csv_file:
+                    reader = csv.reader(csv_file)
+            else:
+                print('torrent_list的路径不是一个正确的csv文件路径，请检查配置文件')
+
+        else:
+            print('配置文件中无torrent_list项,请检查配置文件')
+        trans.getmediainfo(yamlinfo,reader)
 
 
 
