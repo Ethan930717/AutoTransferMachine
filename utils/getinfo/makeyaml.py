@@ -274,5 +274,5 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
     text += f"    tmdb_id: {tmdb_id}\n"
     text += f"{site}"
     logger.info(text)
-    with open("au", "a+", encoding="utf-8") as f:
+    with open(au, "a+", encoding="utf-8") as f:
         f.write(text)
