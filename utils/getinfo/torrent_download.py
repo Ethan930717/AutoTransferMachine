@@ -6,10 +6,8 @@ import time
 from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
-import fileinput
 import shutil
-import csv
-import json
+
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -167,11 +165,12 @@ def get_torrent(yamlinfo):
             lines = f.readlines()
         with open(au, 'w') as f:
             pattern = r"\s*:\s*torrent_list\s*"
-            replace = f"  torrent_list: {yamlinfo['basic']['screenshot_path']}/{sitename}_torrents.csv"
+            replace = f"  torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.csv"
         for line in lines:
             if re.search(pattern, line):
                 line = re.sub(pattern, replace, line)
-                f.write(line)
+        f.write(line)
+        logger.info(f"修改完成，当前路径yaml模板内容为{yamlinfo['basic']['torrent_list']}")
     else:
         logger.info("未选择替换路径，即将结束本次任务")
         sys.exit()
