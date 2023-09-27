@@ -71,7 +71,7 @@ def main():
     if yamlinfo['mod']=='transinfo':
         if yamlinfo['basic']['torrent_list']:
             if "csv" in yamlinfo['basic']['torrent_list']:
-                getmediainfo(yamlinfo, reader)
+                getmediainfo(yamlinfo)
             else:
                 print('torrent_list的路径不是一个正确的csv文件路径，请检查配置文件')
 
