@@ -1,6 +1,6 @@
 import re
 import datetime
-import sys
+from loguru import logger
 
 def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,writemode,torrent,yamlinfo):
     #亚洲国家
@@ -272,7 +272,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    imdb_url: {imdb}\n"
     text += f"    tmdb_id: {tmdb_id}\n"
     text += f"{site}"
-    print(text)
+    logger.info(text)
     if writemode.lower() == "n" :
         f = open("au", "w", encoding="utf-8")
         f.write(text)
