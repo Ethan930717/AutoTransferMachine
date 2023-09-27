@@ -135,7 +135,7 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
     print(enname)
 
     #获取path序列
-    au = f"{yamlinfo['basic']['workpath']}text.yaml"
+    au = f"{yamlinfo['basic']['workpath']}au.yaml"
     f = open(au, 'r',encoding='utf-8') # 以只读模式打开文件
     lines = f.readlines() # 读取所有行并存储在列表中
     f.close() # 关闭文件
