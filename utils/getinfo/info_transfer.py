@@ -28,15 +28,16 @@ def getmediainfo(yamlinfo):
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     if writemode.lower() == "n":
         logger.info('当前为覆盖模式')
-        with open(au, "r") as f:
+        with open(au, "r",encoding="utf-8") as f:
             lines = f.readlines()
             for index, line in enumerate(lines):
                 if "path info" in line:
                     path_index = index
                     break
             new_lines = lines[:path_index + 1]
-            for new_line in new_lines:
-                with open(au, "w") as f:
+            f.close()
+            with open(au, "w", encoding="utf-8") as f:
+                for new_line in new_lines:
                     f.write(new_line + "\n")
     else:
         logger.info('当前为续写模式')
@@ -103,12 +104,12 @@ def getmediainfo(yamlinfo):
         try:
             match = re.search("◎年　　份　(\d+)", kdescr.text)
             if match:
-                date = match.group(1)
-                print(f"读取年份成功 {date}")
+                madeyear = match.group(1)
+                print(f"读取年份成功 {madeyear}")
             else:
-                date = input(f"无法确认年份，请手动输入,文件标题{name}")
+                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}")
         except IndexError:
-            date= input(f"无法确认年份，请手动输入,文件标题{name}")
+            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}")
 
         #标签
         try:
@@ -258,7 +259,7 @@ def getmediainfo(yamlinfo):
         except Exception as e:
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, date, standard, tmdb_id,  torrent)
+        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, madeyear, standard, tmdb_id,  torrent)
 
 
 
