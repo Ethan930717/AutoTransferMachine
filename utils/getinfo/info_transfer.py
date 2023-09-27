@@ -5,6 +5,7 @@ from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
 from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
+import fileinput
 
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
@@ -22,7 +23,9 @@ def find_key_by_value(dict, siteurl):
             return key
     return None
 
-def getmediainfo(yamlinfo,reader):
+def getmediainfo(yamlinfo):
+    with fileinput.input(yamlinfo['basic']['torrent_list'], inplace=True) as csv_file:
+        reader = csv.reader(csv_file)
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     url_list = [cell for row in reader for cell in row if "detail" in cell]
     tmdb_api = yamlinfo['basic']['tmdb_api']
