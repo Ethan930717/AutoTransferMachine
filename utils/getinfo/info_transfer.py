@@ -35,8 +35,8 @@ def getmediainfo(yamlinfo):
                     break
             new_lines = lines[:path_index + 1]
             for new_line in new_lines:
-                f.write(new_line + "\n")
-            f.close()
+                with open(au, "w") as f:
+                    f.write(new_line + "\n")
     else:
         logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
