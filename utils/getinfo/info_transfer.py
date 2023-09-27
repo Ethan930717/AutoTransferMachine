@@ -27,7 +27,7 @@ def getmediainfo(yamlinfo):
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     if writemode.lower() == "n":
         logger.info('当前为覆盖模式')
-        with open(au, "w") as f:
+        with open(au, "r") as f:
             lines = f.readlines()
             for index, line in enumerate(lines):
                 if "path info" in line:
