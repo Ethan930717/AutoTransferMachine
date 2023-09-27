@@ -7,6 +7,7 @@ from requests.cookies import cookiejar_from_dict
 from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
 import openpyxl
 import urllib
+from loguru import logger
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -42,7 +43,7 @@ def getmediainfo(yamlinfo):
         try:
             name = tree.xpath(xpath_name)[0]
             name = name.rstrip()
-            getteam = text.split("-")
+            getteam = name.split("-")
             # 取列表的最后一个元素，即最后一个"-"后面的内容
             team = getteam[-1]
         except IndexError:
@@ -237,7 +238,7 @@ def getmediainfo(yamlinfo):
         except IndexError:
             imdb = ""
             print("无法获取IMDB链接")
-        print(f"第{counter}个资源读取完成")
+        logger.info(f"第{counter}个资源读取完成")
         return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, writemode, torrent)
 
 
