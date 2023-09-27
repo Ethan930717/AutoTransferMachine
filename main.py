@@ -9,7 +9,7 @@ from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
 from AutoTransferMachine.utils.img_upload.imgupload import img_upload
 from AutoTransferMachine.utils.mediafile.mediafile import *
 import AutoTransferMachine.utils.getinfo.torrent_download as td
-import AutoTransferMachine.utils.getinfo.info_transfer.getmediainfo as trans
+from AutoTransferMachine.utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
@@ -77,7 +77,7 @@ def main():
 
         else:
             print('配置文件中无torrent_list项,请检查配置文件')
-        trans.getmediainfo(yamlinfo,reader)
+        getmediainfo(yamlinfo,reader)
 
 
 
