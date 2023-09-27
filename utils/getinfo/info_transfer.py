@@ -23,12 +23,12 @@ def find_sitename(data, content, parent=None):
             if value == content:
                 return key
             else:
-                result = find_parent_name(value, content, key)
+                result = find_sitename(value, content, key)
                 if result:
                     return result
     elif isinstance(data, list):
         for item in data:
-            result = find_parent_name(item, content, parent)
+            result = find_sitename(item, content, parent)
             if result:
                 return result
     else:
@@ -256,7 +256,7 @@ def getmediainfo(yamlinfo):
             imdb = ""
             print("无法获取IMDB链接")
         print(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, writemode, torrent,audata)
+        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, writemode, torrent)
 
 
 
