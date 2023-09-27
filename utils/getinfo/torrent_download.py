@@ -159,14 +159,14 @@ def get_torrent(yamlinfo):
             print("您输入的选项不正确，请重新输入！")
         continue  # 跳过当前循环，回到输入框重新输入
     #获取path序列
-    forsure = input(f"是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
-    if forsure == "Y":
-        au = f"{yamlinfo['basic']['workpath']}au.yaml"
-        with fileinput.input(au, inplace=True) as f:
-            pattern = r"\s*:\s*torrent_list\s*"
-            replace = f"  torrent_list: {yamlinfo['basic']['screenshot_path']}/{sitename}_torrents.csv"
-            for line in f:
-                print(re.sub(pattern, replace, line), end='')
-    else:
-        logger.info("未选择替换路径，即将结束本次任务")
-        sys.exit()
+        forsure = input(f"是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
+        if forsure == "Y":
+            au = f"{yamlinfo['basic']['workpath']}au.yaml"
+            with fileinput.input(au, inplace=True) as f:
+                pattern = r"\s*:\s*torrent_list\s*"
+                replace = f"  torrent_list: {yamlinfo['basic']['screenshot_path']}/{sitename}_torrents.csv"
+                for line in f:
+                    print(re.sub(pattern, replace, line), end='')
+        else:
+            logger.info("未选择替换路径，即将结束本次任务")
+            sys.exit()
