@@ -6,7 +6,7 @@ import requests
 from requests.cookies import cookiejar_from_dict
 from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
 import fileinput
-
+import csv
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
