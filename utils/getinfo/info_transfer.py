@@ -68,6 +68,7 @@ def getmediainfo(yamlinfo):
         print(f"成功记录主标题名 {name}")
 
     # 种子名称
+        filename=""
         try:
             links = soup.find_all("a", class_="index")
             for link in links:
@@ -77,7 +78,7 @@ def getmediainfo(yamlinfo):
                     filename=torrent.replace(".torrent","")
                     filename=filename.replace("[Shadow].","")
         except IndexError:
-            torrent= input(f"无法读取种子名称，请手动输入,种子地址{url}")
+            filename= input(f"无法读取种子名称，请手动输入,种子地址{url}")
         print(f"成功读取文件名称 {filename}")
 
         #副标题
@@ -93,6 +94,7 @@ def getmediainfo(yamlinfo):
         #产地&年份
         kdescr = soup.find(id="kdescr")
         lines = kdescr.text.split("\n")
+        country = ''
         try:
             for line in lines:
                 if "◎产　　地　" in line:
@@ -101,6 +103,8 @@ def getmediainfo(yamlinfo):
         except IndexError:
             country= input(f"无法确认产地，请手动输入,文件标题{name}")
 
+
+        madeyear=''
         try:
             match = re.search("◎年　　份　(\d+)", kdescr.text)
             if match:
@@ -259,7 +263,7 @@ def getmediainfo(yamlinfo):
         except Exception as e:
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, madeyear, standard, tmdb_id,  torrent)
+        return mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
 
 
 
