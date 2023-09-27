@@ -169,7 +169,7 @@ def get_torrent(yamlinfo):
         for line in lines:
             if re.search(pattern, line):
                 line = re.sub(pattern, replace, line)
-        f.write(line)
+            f.write(line)
         logger.info(f"修改完成，当前路径yaml模板内容为{yamlinfo['basic']['torrent_list']}")
     else:
         logger.info("未选择替换路径，即将结束本次任务")
