@@ -38,12 +38,12 @@ def getmediainfo(yamlinfo):
             f.close()
             with open(au, "w", encoding="utf-8") as f:
                 for new_line in new_lines:
-                    f.write(new_line + "\n")
+                    f.write(new_line)
     else:
         logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
     tmdb_api = yamlinfo['basic']['tmdb_api']
-    counter = 0
+    counter = 1
     for url in url_list:
         result = urllib.parse.urlparse(url)
         siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
@@ -264,7 +264,7 @@ def getmediainfo(yamlinfo):
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
         mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
-
+    logger.info(f"模板转换结束,本次共转换path模板{counter}个")
 
 
 
