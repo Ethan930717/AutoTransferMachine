@@ -1,6 +1,7 @@
 from loguru import logger
 import os
 import csv
+import fileinput
 import urllib
 from AutoTransferMachine.utils.para_ctrl.para_ctrl import *
 from AutoTransferMachine.utils.site.site import makesites
@@ -70,7 +71,7 @@ def main():
     if yamlinfo['mod']=='transinfo':
         if yamlinfo['basic']['torrent_list']:
             if "csv" in yamlinfo['basic']['torrent_list']:
-                with open(yamlinfo['basic']['torrent_list'], newline='') as csv_file:
+                with fileinput.input(yamlinfo['basic']['torrent_list'], inplace=True) as csv_file:
                     reader = csv.reader(csv_file)
             else:
                 print('torrent_list的路径不是一个正确的csv文件路径，请检查配置文件')
