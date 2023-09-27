@@ -168,7 +168,7 @@ def get_torrent(yamlinfo):
             yamlinfo["basic"]["torrent_list"] = f"torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xls"
             with open(au, "w") as f:
                 yaml.dump(yamlinfo, f)
-        logger.info(f"修改完成，当前yaml模板的torrent_list为为{yamlinfo['basic']["torrent_list"]}")
+        logger.info(f"修改完成，当前yaml模板的torrent_list为{yamlinfo['basic']['torrent_list']}")
     else:
         logger.info("未选择替换路径，即将结束本次任务")
         sys.exit()
