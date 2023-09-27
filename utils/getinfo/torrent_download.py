@@ -8,7 +8,6 @@ from loguru import logger
 import sys
 import fileinput
 import json
-from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -161,7 +160,7 @@ def get_torrent(yamlinfo):
         continue  # 跳过当前循环，回到输入框重新输入
     #获取path序列
     forsure = input(f"是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
-    if forsure == "Y"
+    if forsure == "Y":
         au = f"{yamlinfo['basic']['workpath']}au.yaml"
         with fileinput.input(au, inplace=True) as f:
             pattern = r"\s*:\s*torrent_list\s*"
