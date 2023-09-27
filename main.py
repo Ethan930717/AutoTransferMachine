@@ -9,7 +9,7 @@ from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
 from AutoTransferMachine.utils.img_upload.imgupload import img_upload
 from AutoTransferMachine.utils.mediafile.mediafile import *
 import AutoTransferMachine.utils.getinfo.torrent_download as td
-import AutoTransferMachine.utils.getinfo.info_transfer as trans
+import AutoTransferMachine.utils.getinfo.info_transfer.getmediainfo as trans
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
