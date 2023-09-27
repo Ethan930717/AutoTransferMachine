@@ -17,11 +17,22 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
 scraper = cloudscraper.create_scraper()
 
 # 找站点名字
-def find_key_by_siteurl(dict, siteurl):
-    for key, val in dict.items():
-        if val == siteurl:
-            return key
-    return None
+def find_sitename(data, content, parent=None):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if value == content:
+                return key
+            else:
+                result = find_parent_name(value, content, key)
+                if result:
+                    return result
+    elif isinstance(data, list):
+        for item in data:
+            result = find_parent_name(item, content, parent)
+            if result:
+                return result
+    else:
+        return None
 
 def getmediainfo(yamlinfo):
     wb = openpyxl.load_workbook(yamlinfo['basic']['torrent_list'])
@@ -36,7 +47,7 @@ def getmediainfo(yamlinfo):
         result = urllib.parse.urlparse(url)
         siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
         print(f"当前域名 {siteurl}")
-        sitename = find_key_by_siteurl(yamlinfo["site info"], yamlinfo["site info"]['url'])
+        sitename = find_sitename(yamlinfo, siteurl)
         print(f"当前域名 {siteurl},匹配站点 {sitename}")
         cookie = yamlinfo['site info'][sitename]['cookie']
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
