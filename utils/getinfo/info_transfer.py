@@ -8,6 +8,7 @@ from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
 import openpyxl
 import urllib
 from loguru import logger
+import re
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -100,10 +101,12 @@ def getmediainfo(yamlinfo):
             country= input(f"无法确认产地，请手动输入,文件标题{name}")
 
         try:
-            for line in lines:
-                if "◎年　　份　" in line:
-                    date = line.split("◎年　　份　")[1]
-            print(f"读取年份成功 {date}")
+            match = re.search("◎年　　份　(\d+)", kdescr.text)
+            if match:
+                date = match.group(1)
+                print(f"读取年份成功 {date}")
+            else:
+                date = input(f"无法确认年份，请手动输入,文件标题{name}")
         except IndexError:
             date= input(f"无法确认年份，请手动输入,文件标题{name}")
 
