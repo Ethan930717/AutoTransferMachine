@@ -139,26 +139,23 @@ def get_torrent(yamlinfo):
     total_pages = page + 1
     end_time = time.time()
     execution_time = end_time - start_time
-    logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.结束ATM")
-    running = True
-    while running:
-        choice = input("请输入您的选择：")
-        if choice == "1":
-            print("以下是所有的种子链接：")
-            for i in range(2, row):
-                details = ws["E" + str(i)].value
-                print(details)
-        elif choice == "2":
-            print("以下是所有的下载链接：")
-            for i in range(2, row):
-                download = ws["F" + str(i)].value
-                print(download)
-        elif choice == "3":
-            print("感谢您使用ATM，再见！")
-            sys.exit(0)  # 结束脚本
-        else:
-            print("您输入的选项不正确，请重新输入！")
-            continue  # 跳过当前循环，回到输入框重新输入
+    logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
+    choice = input("请输入您的选择：")
+    if choice == "1":
+        print("以下是所有的种子链接：")
+        for i in range(2, row):
+            details = ws["E" + str(i)].value
+            print(details)
+    elif choice == "2":
+        print("以下是所有的下载链接：")
+        for i in range(2, row):
+            download = ws["F" + str(i)].value
+            print(download)
+    elif choice == "3":
+        print("好的")
+    else:
+        print("让你选123，你选了啥？拜拜")
+        sys.exit()
     #获取path序列
     forsure = input(f"是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
     if forsure == "Y":
