@@ -25,7 +25,7 @@ def find_key_by_value(dict, siteurl):
 def getmediainfo(yamlinfo):
     with open(yamlinfo['basic']['torrent_list'], 'r', encoding='gbk') as csv_file:
         reader = csv.reader(csv_file)
-    url_list = [cell for row in reader for cell in row if "detail" in cell]
+        url_list = [cell for row in reader for cell in row if "detail" in cell]
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     print(reader)
     print(yamlinfo['basic']['torrent_list'])
