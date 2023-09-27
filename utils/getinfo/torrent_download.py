@@ -159,16 +159,16 @@ def get_torrent(yamlinfo):
         print("让你选123，你选了啥？拜拜")
         sys.exit()
     #获取path序列
-    forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xls\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
+    forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xls\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
     if forsure.upper() == 'Y':
         au = f"{yamlinfo['basic']['workpath']}au.yaml"
         logger.info(f"检测到模板路径为{au}")
         with open(au, "r") as f:
             yamlinfo = yaml.load(f, Loader=yaml.FullLoader)
-            yamlinfo["basic"]["torrent_path"] = f"  torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xls"
+            yamlinfo["basic"]["torrent_list"] = f"torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xls"
             with open(au, "w") as f:
                 yaml.dump(yamlinfo, f)
-        logger.info(f"修改完成，当前yaml模板的basic内容为{yamlinfo['basic']}")
+        logger.info(f"修改完成，当前yaml模板的torrent_list为为{yamlinfo['basic']["torrent_list"]}")
     else:
         logger.info("未选择替换路径，即将结束本次任务")
         sys.exit()
