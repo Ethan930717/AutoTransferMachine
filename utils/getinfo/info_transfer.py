@@ -35,7 +35,8 @@ def getmediainfo(yamlinfo):
     for url in url_list:
         result = urllib.parse.urlparse(url)
         siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
-        sitename = find_key_by_siteurl(yamlinfo["site info"], siteurl)
+        print(f"当前域名 {siteurl}")
+        sitename = find_key_by_siteurl(yamlinfo["site info"], yamlinfo["site info"]['url'])
         print(f"当前域名 {siteurl},匹配站点 {sitename}")
         cookie = yamlinfo['site info'][sitename]['cookie']
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
