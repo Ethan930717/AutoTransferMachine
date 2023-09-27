@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
+from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
+
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -13,15 +15,24 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
     return cookiejar_from_dict(cookie_dict) # 调用requests模块中的函数
 scraper = cloudscraper.create_scraper()
 
+# 找站点名字
+def find_key_by_value(dict, siteurl):
+    for key, val in dict.items():
+        if val == siteurl:
+            return key
+    return None
 
-cookie = "cookie"
-tmdb_api = "tmdbapi"
-
-
-def getmediainfo(url_list):
+def getmediainfo(yamlinfo,reader):
+    writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
+    url_list = [cell for row in reader for cell in row if "detail" in cell]
+    tmdb_api = yamlinfo['basic']['tmdb_api']
     counter = 0
     for url in url_list:
-        import makeyaml
+        result = urllib.parse.urlparse(url)
+        siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
+        sitename = find_key_by_siteurl(site_info["site info"], siteurl)
+        print(f"当前域名 {siteurl},匹配站点 {sitename}")
+        cookie = yamlinfo['site info'][sitename]['cookie']
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
         soup = BeautifulSoup(r.text, "html.parser")
         tree = lxml.etree.HTML(r.text)
@@ -228,7 +239,7 @@ def getmediainfo(url_list):
             imdb = ""
             print("无法获取IMDB链接")
         print(f"第{counter}个资源读取完成")
-        return makeyaml.mkyaml(counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, choice, torrent,audata)
+        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, writemode, torrent,audata)
 
 
 
