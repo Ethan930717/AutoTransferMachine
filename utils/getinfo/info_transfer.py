@@ -24,6 +24,20 @@ def getmediainfo(yamlinfo):
     data = ws.values
     url_list = [cell for row in data for cell in row if "detail" in cell]
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
+    if writemode.lower() == "n":
+        logger.info('当前为覆盖模式')
+        f = open("au", "w", encoding="utf-8")
+        lines = f.readlines()
+        for index, line in enumerate(lines):
+            if "path info" in line:
+                path_index = index
+                break
+        new_lines = lines[:path_index + 1]
+        for new_line in new_lines:
+            f.write(new_line + "\n")
+        f.close()
+    else:
+        logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
     tmdb_api = yamlinfo['basic']['tmdb_api']
     counter = 0
@@ -239,7 +253,7 @@ def getmediainfo(yamlinfo):
             imdb = ""
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
-        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, writemode, torrent)
+        return mkyaml(yamlinfo,counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, country, date, standard, tmdb_id, writemode, torrent)
 
 
 
