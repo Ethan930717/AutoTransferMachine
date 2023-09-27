@@ -28,7 +28,6 @@ def getmediainfo(yamlinfo):
     data = ws.values
     url_list = [cell for row in data for cell in row if "detail" in cell]
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
-    print(reader)
     print(yamlinfo['basic']['torrent_list'])
     tmdb_api = yamlinfo['basic']['tmdb_api']
     counter = 0
