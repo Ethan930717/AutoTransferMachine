@@ -165,7 +165,7 @@ def get_torrent(yamlinfo):
         logger.info(f"检测到模板路径为{au}")
         with open(au, "r") as f:
             yamlinfo = yaml.load(f, Loader=yaml.FullLoader)
-            yamlinfo["basic"]["torrent_list"] = f"torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx"
+            yamlinfo["basic"]["torrent_list"] = f"{yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx"
             with open(au, "w") as f:
                 yaml.dump(yamlinfo, f)
         logger.info(f"修改完成，当前yaml模板的torrent_list为{yamlinfo['basic']['torrent_list']}")
