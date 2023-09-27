@@ -135,13 +135,13 @@ def get_torrent(yamlinfo):
         else:
             print("没东西了，停")
             continue
-    wb.save(f"{sitename}_torrents.xls")
+    wb.save(f"{sitename}_torrents.xlsx")
     total_rows = row - 1
     total_pages = page + 1
     end_time = time.time()
     execution_time = end_time - start_time
     logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
-    shutil.move(yamlinfo['basic']['screenshot_path'] + '/' + sitename + '_torrents.xls',yamlinfo['basic']['record_path'] + '/' + sitename + '_torrents.xls')
+    shutil.move(yamlinfo['basic']['screenshot_path'] + '/' + sitename + '_torrents.xlsx',yamlinfo['basic']['record_path'] + '/' + sitename + '_torrents.xlsx')
     choice = input("请输入您的选择：")
     if choice == "1":
         print("以下是所有的种子链接：")
@@ -159,13 +159,13 @@ def get_torrent(yamlinfo):
         print("让你选123，你选了啥？拜拜")
         sys.exit()
     #获取path序列
-    forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xls\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
+    forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
     if forsure.upper() == 'Y':
         au = f"{yamlinfo['basic']['workpath']}au.yaml"
         logger.info(f"检测到模板路径为{au}")
         with open(au, "r") as f:
             yamlinfo = yaml.load(f, Loader=yaml.FullLoader)
-            yamlinfo["basic"]["torrent_list"] = f"torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xls"
+            yamlinfo["basic"]["torrent_list"] = f"torrent_list: {yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx"
             with open(au, "w") as f:
                 yaml.dump(yamlinfo, f)
         logger.info(f"修改完成，当前yaml模板的torrent_list为{yamlinfo['basic']['torrent_list']}")
