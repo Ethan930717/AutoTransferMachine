@@ -19,6 +19,7 @@ scraper = cloudscraper.create_scraper()
 
 
 def getmediainfo(yamlinfo):
+    au = f"{yamlinfo['basic']['workpath']}/au.yaml"
     wb = openpyxl.load_workbook(yamlinfo['basic']['torrent_list'])
     ws = wb.active
     data = ws.values
