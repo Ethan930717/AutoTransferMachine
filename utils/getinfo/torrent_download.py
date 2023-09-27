@@ -7,6 +7,7 @@ from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
 import fileinput
+import csv
 import json
 
 start_time = time.time()
@@ -98,35 +99,35 @@ def get_torrent(yamlinfo):
                     if any(x in tr.text for x in tags):
                         print(f"不符合筛选条件，跳过")
                         continue
-                    try:
-                        embedded = tr.find("td", class_="embedded")
-                        a = embedded.find("a", href=lambda x: "details" in x)
-                        b = a["href"]
-                        title = a["title"]
-                        details = f"{siteurl}{b}"
-                        pattern = "id=(\d+)&hit"
-                        torrent_id= re.search(pattern, details)
-                        if torrent_id:
-                            print(torrent_id.group(1))
-                        else:
-                            print("未识别到种子ID")
-                        download = details.replace("details", "download")
-                        download = download.replace("hit=1", f"passkey={sitepasskey}")
-                        seeders = tr.find_all("td")[-4].text
-                        size = tr.find_all("td")[-5].text
-                        uploadtime = tr.find_all("td")[-6].text
-                        ws["A" + str(row)] = title
-                        ws["B" + str(row)] = size
-                        ws["C" + str(row)] = seeders
-                        ws["D" + str(row)] = uploadtime
-                        ws["E" + str(row)] = details
-                         #ws["E" + str(row)] = torrent_id.group(1)
-                        ws["F" + str(row)] = download
-                        row += 1  # 行号加一
-                        print(title,size,seeders,uploadtime,details)
-                    except IndexError:
-                        print("啥也没找到")
-                        continue
+                    else:
+                        try:
+                            embedded = tr.find("td", class_="embedded")
+                            a = embedded.find("a", href=lambda x: "details" in x)
+                            b = a["href"]
+                            title = a["title"]
+                            details = f"{siteurl}{b}"
+                            pattern = "id=(\d+)&hit"
+                            torrent_id= re.search(pattern, details)
+                            if torrent_id:
+                                print(torrent_id.group(1))
+                            else:
+                                print("未识别到种子ID")
+                            download = details.replace("details", "download")
+                            download = download.replace("hit=1", f"passkey={sitepasskey}")
+                            seeders = tr.find_all("td")[-4].text
+                            size = tr.find_all("td")[-5].text
+                            uploadtime = tr.find_all("td")[-6].text
+                            ws["A" + str(row)] = title
+                            ws["B" + str(row)] = size
+                            ws["C" + str(row)] = seeders
+                            ws["D" + str(row)] = uploadtime
+                            ws["E" + str(row)] = details
+                             #ws["E" + str(row)] = torrent_id.group(1)
+                            ws["F" + str(row)] = download
+                            row += 1  # 行号加一
+                            print(title,size,seeders,uploadtime,details)
+                        except IndexError:
+                            continue
             else:
                 print("没东西了，停")
                 break
