@@ -193,6 +193,7 @@ def getmediainfo(yamlinfo):
             print("无法获取基本信息")
 
     # 豆瓣
+        douban = ""
         try:
             dblinks = soup.find_all("a", href=lambda x: x and "douban" in x)
             douban = [(link.get("href"), link.get_text()) for link in dblinks]
@@ -200,11 +201,11 @@ def getmediainfo(yamlinfo):
                 douban = douban.get("href")
                 print(f"成功获取豆瓣链接 {douban}")
         except IndexError:
-            douban = ""
             print("无法获取豆瓣链接")
 
         #IMDB
         imdb = ""
+        tmdb_id = ""
         try:
             imdblinks = soup.find_all("a", href=lambda x: x and "imdb" in x)
             if imdblinks:
