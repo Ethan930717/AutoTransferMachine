@@ -5,9 +5,7 @@ from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
 from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
-import fileinput
 import csv
-from openpyxl import load_workbook
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -25,13 +23,9 @@ def find_key_by_value(dict, siteurl):
     return None
 
 def getmediainfo(yamlinfo):
-    wb = load_workbook(yamlinfo['basic']['torrent_list'])
-    ws = wb.active
-    url_list = []
-    for row in ws.rows:
-        for cell in row:
-            if "detail" in str(cell.value):
-                url_list.append(cell.value)
+    with open(yamlinfo['basic']['torrent_list'], 'r', encoding='gbk') as csv_file:
+        reader = csv.reader(csv_file, newline='')
+    url_list = [cell for row in reader for cell in row if "detail" in cell]
     writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
     print(reader)
     print(yamlinfo['basic']['torrent_list'])
