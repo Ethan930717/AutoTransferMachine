@@ -36,7 +36,7 @@ def read_para():
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
     
-    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download'
+    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download'+args.transinfo*'transinfo'
 
 
     if args.upload:
