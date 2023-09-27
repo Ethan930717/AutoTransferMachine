@@ -163,11 +163,15 @@ def get_torrent(yamlinfo):
     if forsure.upper() == 'Y':
         au = f"{yamlinfo['basic']['workpath']}au.yaml"
         logger.info(f"检测到模板路径为{au}")
-        with fileinput.input(au, inplace=True) as f:
+        with open(au, 'r') as f:
+            lines = f.readlines()
+        with open(au, 'w') as f:
             pattern = r"\s*:\s*torrent_list\s*"
             replace = f"  torrent_list: {yamlinfo['basic']['screenshot_path']}/{sitename}_torrents.csv"
-            for line in f:
-                print(re.sub(pattern, replace, line), end='')
+        for line in lines:
+            if re.search(pattern, line):
+                line = re.sub(pattern, replace, line)
+                f.write(line)
     else:
         logger.info("未选择替换路径，即将结束本次任务")
         sys.exit()
