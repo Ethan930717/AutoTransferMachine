@@ -158,8 +158,9 @@ def get_torrent(yamlinfo):
         sys.exit()
     #获取path序列
     forsure = input(f"是否需要将Yaml模板中的torrent_file路径替换成本次生成的CSV文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
-    if forsure == "Y":
+    if forsure.upper() == 'Y':
         au = f"{yamlinfo['basic']['workpath']}au.yaml"
+        logger.info(f"检测到模板路径为{au}")
         with fileinput.input(au, inplace=True) as f:
             pattern = r"\s*:\s*torrent_list\s*"
             replace = f"  torrent_list: {yamlinfo['basic']['screenshot_path']}/{sitename}_torrents.csv"
