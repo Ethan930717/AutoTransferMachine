@@ -96,6 +96,9 @@ def get_torrent(yamlinfo):
                 ws["D1"] = "发布时间"
                 ws["E1"] = "种子ID"
                 ws["F1"] = "下载链接"
+                ws["G1"] = "站点"
+                ws["H1"] = "cookie"
+                ws["I1"] = "passkey"
                 for tr in trs:
                     if any(x in tr.text for x in tags):
                         print(f"不符合筛选条件，跳过")
@@ -125,6 +128,10 @@ def get_torrent(yamlinfo):
                             ws["E" + str(row)] = details
                              #ws["E" + str(row)] = torrent_id.group(1)
                             ws["F" + str(row)] = download
+                            ws["G" + str(row)] = sitename
+                            ws["H" + str(row)] = sitecookie
+                            ws["I" + str(row)] = sitepasskey
+
                             row += 1  # 行号加一
                             print(title,size,seeders,uploadtime,details)
                         except IndexError:
