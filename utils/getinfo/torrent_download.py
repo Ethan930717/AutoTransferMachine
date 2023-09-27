@@ -7,6 +7,8 @@ from requests.cookies import cookiejar_from_dict
 from loguru import logger
 import sys
 import json
+from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
+
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
     cookie_dict = {}
