@@ -2,7 +2,7 @@ import re
 import datetime
 import sys
 
-def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,choice,torrent,audata):
+def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,writemode,torrent,yamlinfo):
     #亚洲国家
     east_asia = ["中国大陆", "蒙古", "朝鲜", "韩国", "日本", "香港", "台湾", "澳门","中国" ] #仅作判定使用，无任何地缘政治因素
     southeast_asia = ["菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"]
@@ -134,7 +134,8 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     print(enname)
 
     #获取path序列
-    f = open('text.txt', 'r',encoding='utf-8') # 以只读模式打开文件
+    au = f"{yamlinfo['basic']['workpath']}text.yaml"
+    f = open(au, 'r',encoding='utf-8') # 以只读模式打开文件
     lines = f.readlines() # 读取所有行并存储在列表中
     f.close() # 关闭文件
 
@@ -272,12 +273,9 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    tmdb_id: {tmdb_id}\n"
     text += f"{site}"
     print(text)
-    if choice.lower() == "n" :
-        f = open("text.txt", "w", encoding="utf-8")
-        f.write(text)
-    elif choice.lower() == "y":
-        f = open("text.txt",  "a+", encoding="utf-8")
+    if writemode.lower() == "n" :
+        f = open("au", "w", encoding="utf-8")
         f.write(text)
     else:
-        print("输入错误，请重新运行程序")
-        sys.exit(0)
+        f = open("au",  "a+", encoding="utf-8")
+        f.write(text)
