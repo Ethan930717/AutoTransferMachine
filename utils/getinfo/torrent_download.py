@@ -160,6 +160,8 @@ def get_torrent(yamlinfo):
         print("以下是所有的下载链接：")
         for i in range(2, row):
             download = ws["F" + str(i)].value
+            url_list = []
+            url_list.append(download)
             print(download)
     elif choice == "3":
         print("好的")
@@ -206,9 +208,7 @@ def get_torrent(yamlinfo):
         else:
             logger.info("选择错误，请重新选择")
             continue
-def download_torrent(ws,yamlinfo,download):
-    url_list = download.split("\n")
-    print(url_list)
+def download_torrent(ws,yamlinfo,url_list):
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
     for url in url_list:
