@@ -207,7 +207,7 @@ def get_torrent(yamlinfo):
             logger.info("选择错误，请重新选择")
             continue
 def download_torrent(ws,yamlinfo,download):
-    url_list = download.strip()
+    url_list = download.split("\n")
     print(url_list)
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
