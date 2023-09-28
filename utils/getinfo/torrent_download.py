@@ -212,8 +212,8 @@ def download_torrent(ws,yamlinfo,download):
     scraper = cloudscraper.create_scraper()
     counter = 1
     for url in url_list:
-        cookie = ws["H" + str(counter + 1)].value
-        r = scraper.get(url,cookies=cookies_raw2jar(cookie),timeout=30)
+        passkey = ws["I" + str(counter + 1)].value
+        r = scraper.get(url,params={"passkey": passkey})
         if r.status_code == 200:
             file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
             file_name = urllib.parse.unquote(file_name)
