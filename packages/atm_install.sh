@@ -130,11 +130,13 @@ cat > atm << EOF
 import re
 import sys
 from AutoTransferMachine.main import main
-if _name_ == '__main__':
+if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
     sys.exit(main())
 EOF
 chmod a+x /usr/local/bin/atm
+sudo apt-get install dos2unix
+dos2unix /usr/local/bin/atm
 echo "创建成功，尝试第一次启动ATM"
 atm -h
 
