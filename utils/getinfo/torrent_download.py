@@ -9,6 +9,7 @@ import sys
 import shutil
 import yaml
 import urllib
+import requests
 
 
 start_time = time.time()
@@ -209,12 +210,11 @@ def download_torrent(ws,yamlinfo,download):
     download = download.strip()
     url_list = download.split("\n")
     file_path = f"{yamlinfo['basic']['torrent_path']}"
-    scraper = cloudscraper.create_scraper()
     counter = 1
     for url in url_list:
         print(url)
         passkey = ws["I" + str(counter + 1)].value
-        r = scraper.get(url,params={"passkey": passkey})
+        r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
             file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
             file_name = urllib.parse.unquote(file_name)
