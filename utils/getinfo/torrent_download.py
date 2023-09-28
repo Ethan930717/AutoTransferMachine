@@ -194,7 +194,7 @@ def get_torrent(yamlinfo):
             sys.exit()
 def download_torrent(ws,yamlinfo,download):
     url_list = download
-    file_path = f"{yamlinfo['basic']['workpath']['torrent_path']}"
+    file_path = f"{yamlinfo['basic']['torrent_path']}"
     scraper = cloudscraper.create_scraper()
     counter = 1
     for url in url_list:
