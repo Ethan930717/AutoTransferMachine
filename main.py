@@ -68,6 +68,7 @@ def main():
     if yamlinfo['mod']=='download':
         td.get_torrent(yamlinfo)
 
+
     if yamlinfo['mod']=='transinfo':
         if yamlinfo['basic']['torrent_list']:
             if "xlsx" in yamlinfo['basic']['torrent_list']:
