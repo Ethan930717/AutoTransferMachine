@@ -115,7 +115,7 @@ def get_torrent(yamlinfo):
                             pattern = "id=(\d+)&hit"
                             torrent_id= re.search(pattern, details)
                             if torrent_id:
-                                print(torrent_id.group(1))
+                                pass
                             else:
                                 print("未识别到种子ID")
                             download = details.replace("details", "download")
@@ -133,7 +133,6 @@ def get_torrent(yamlinfo):
                             ws["G" + str(row)] = sitename
                             ws["H" + str(row)] = sitecookie
                             ws["I" + str(row)] = sitepasskey
-
                             row += 1  # 行号加一
                             logger.info(f'{title}获取成功')
                         except IndexError:
@@ -212,13 +211,13 @@ def get_torrent(yamlinfo):
             logger.info("选择错误，请重新选择")
             continue
 def download_torrent(ws,yamlinfo):
-    logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}torrent_download.log")
+    logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}/torrent_download.log")
     row = ws.max_row
-    file_path = f"{yamlinfo['basic']['torrent_path']}"
+    file_path = f"{yamlinfo['basic']['torrent_path']}/"
     old_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
     logger.info(f'开始下载种子，当前种子文件夹中文件数量为{old_count}个')
     url_list = []
-    counter = 0
+    counter = 1
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
