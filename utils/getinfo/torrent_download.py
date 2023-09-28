@@ -11,6 +11,7 @@ import yaml
 import urllib
 import requests
 import os
+import logging
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -211,6 +212,7 @@ def get_torrent(yamlinfo):
             logger.info("选择错误，请重新选择")
             continue
 def download_torrent(ws,yamlinfo):
+    logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}torrent_download.log")
     row = ws.max_row
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     old_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
@@ -222,18 +224,23 @@ def download_torrent(ws,yamlinfo):
         url_list.append(download)
         row += 1
     for url in url_list:
-        print(url)
         passkey = ws["I" + str(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
-            file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
-            file_name = urllib.parse.unquote(file_name)
-            # 拼接完整的文件路径
-            file_full_path = file_path + file_name
-            with open(file_full_path, "wb") as f:
-                f.write(r.content)
-            print(f"下载成功：{file_name}")
-            counter += 1
+            content_disposition = r.headers.get("Content-Disposition")
+            if content_disposition:
+                file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
+                file_name = urllib.parse.unquote(file_name)
+                # 拼接完整的文件路径
+                file_full_path = file_path + file_name
+                with open(file_full_path, "wb") as f:
+                    f.write(r.content)
+                print(f"下载成功：{file_name}")
+                counter += 1
+            else:
+                print("无法获取文件名,相关信息已记录在日志中，请查看record文件夹中的torrent_download.log")
+                logging.error(f"无法获取文件名，下载失败：{url}")
+
         else:
             print(f"下载失败：{url}")
             continue  # 跳过当前循环，继续下一个链接
