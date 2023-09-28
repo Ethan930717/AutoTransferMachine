@@ -151,23 +151,28 @@ def get_torrent(yamlinfo):
     logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
     shutil.move(yamlinfo['basic']['screenshot_path'] + '/' + sitename + '_torrents.xlsx',yamlinfo['basic']['record_path'] + '/' + sitename + '_torrents.xlsx')
     choice = input("请输入您的选择：")
-    if choice == "1":
-        print("以下是所有的种子链接：")
-        for i in range(2, row):
-            details = ws["E" + str(i)].value
-            print(details)
-    elif choice == "2":
-        print("以下是所有的下载链接：")
-        for i in range(2, row):
-            download = ws["F" + str(i)].value
-            url_list = []
-            url_list.append(download)
+    while True:
+        if choice == "1":
+            print("以下是所有的种子链接：")
+            for i in range(2, row):
+                details = ws["E" + str(i)].value
+                print(details)
+        elif choice == "2":
+            print("以下是所有的下载链接：")
+            for i in range(2, row):
+                download = ws["F" + str(i)].value
+                url_list = []
+                url_list.append(download)
+                final_url_list = []
+                for download in url_list:
+                    sub_url_list = download.split("\n")
+                    final_url_list.extend(sub_url_list)
             print(download)
-    elif choice == "3":
-        print("好的")
-    else:
-        print("让你选123，你选了啥？拜拜")
-        sys.exit()
+        elif choice == "3":
+            print("好的")
+        else:
+            logger.info("选择错误，请重新选择")
+            continue
     #获取path序列
     while True:
         forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
@@ -208,10 +213,10 @@ def get_torrent(yamlinfo):
         else:
             logger.info("选择错误，请重新选择")
             continue
-def download_torrent(ws,yamlinfo,url_list):
+def download_torrent(ws,yamlinfo,final_url_list):
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
-    for url in url_list:
+    for url in final_url_list:
         passkey = ws["I" + str(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
