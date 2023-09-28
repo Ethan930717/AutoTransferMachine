@@ -222,6 +222,7 @@ def download_torrent(ws,yamlinfo,row):
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
     for url in final_url_list:
+        url = url[1:-1]
         passkey = ws["I" + str(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
