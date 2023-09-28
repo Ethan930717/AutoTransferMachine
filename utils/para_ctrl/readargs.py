@@ -7,7 +7,7 @@ def readargs():
     yaml_path = os.path.join(mainpath,"au.yaml")
     basic_path = os.path.join(mainpath,"basicinfo.yaml")
     torrent_list = os.path.join(mainpath,"torrentlist.CSV")
-    parser = argparse.ArgumentParser(description='欢迎使用ATM自动转种机，交流Q群870081858，请自备最新的PTPP截图申请入群，进群需验证发种总数超过100')
+    parser = argparse.ArgumentParser(description='欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858')
 
     parser.add_argument('-u','--upload', action='store_true', default=False, help='自动转种模式')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='自动登陆模式')
