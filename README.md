@@ -13,23 +13,30 @@
 
 ## :warning:安装说明
 1. #### 安装PYTHON环境，已安装可跳过
-   * 更新源 `sudo apt update && sudo apt upgrade`
-   * 安装依赖 `sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
-   * 下载安装包 `wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz`
-   * 解压并编译 
+   * 更新源 :star:
+     * `sudo apt update && sudo apt upgrade`
+   *    安装依赖 :star:
+         * `sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
+   * 下载安装包 :star:
+     * `wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz`
+   * 解压并编译 :star:
      * `tar xzf Python-3.10.0.tgz` 
      *    `cd Python-3.10.0` 
        * `./configure --enable-optimizations` 
        * `make altinstall`
-   * 测试 `sudo python3 -m pip install --upgrade pip`
-   * 删除安装包（如有需要） 
+   * 测试 :star:
+     * `sudo python3 -m pip install --upgrade pip`
+   * 删除安装包（如有需要） :star:
      * `sudo rm -rf /home/Python-3.10.0` 
      * `sudo rm /home/Python-3.10.0.tgz`
 
 2. #### 安装ATM
-   * 安装ATM依赖 `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
-   * 安装ATM本体 `pip install AutoTransferMachine`
-   * 设置ATM配置信息 `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
+   * 安装ATM依赖 :star:
+     * `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
+   * 安装ATM本体:star:
+     * `pip install AutoTransferMachine`
+   * 设置ATM配置信息 :star:
+     * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
 
    #### 3.完成
 ## :warning:已适配转出站点
