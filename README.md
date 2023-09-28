@@ -1,5 +1,5 @@
 # Auto Transfer Machine
-**> :heart_on_fire:AutoTransferMachine转载机 - 为发光发热而生:heart_on_fire:**
+**> :heart_on_fire:ATM转载机 - 为发光发热而生:heart_on_fire:**
 
 ## :triangular_flag_on_post:功能
 
