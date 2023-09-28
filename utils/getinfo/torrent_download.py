@@ -187,7 +187,7 @@ def get_torrent(yamlinfo):
                     f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    return download_torrent(ws, yamlinfo, download)
+                    return download_torrent(ws, yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()
@@ -200,7 +200,7 @@ def get_torrent(yamlinfo):
                 dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    return download_torrent(ws, yamlinfo, download)
+                    return download_torrent(ws, yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()
