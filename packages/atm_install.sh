@@ -15,7 +15,7 @@ echo "输入地址有误，请重新输入！"
 fi
 done
 echo "检查安装环境"
-sudo rm -rf /usr/local/lib/python3.9/dist-packages/AutoTransferMachine
+sudo rm -rf /usr/local/lib/python3.10/dist-packages/AutoTransferMachine
 sudo rm /usr/local/bin/atm
 echo "开始安装"
 sudo apt update && sudo apt upgrade
@@ -39,7 +39,7 @@ pip install ffmpeg mediainfo maketorrent loguru pyyaml doubaninfo pip install lo
 
 echo "转移openpyxl包"
 cd $dir/AutoTransferMachine/packages
-unzip -o openpyxl.zip -d /usr/local/lib/python3.9/dist-packages/
+unzip -o openpyxl.zip -d /usr/local/lib/python3.10/dist-packages/
 echo "删除openpyxl压缩包"
 sudo rm openpyxl.zip
 echo "生成转种配置文件"
@@ -51,7 +51,7 @@ mv atm /usr/local/bin/
 chmod +x /usr/local/bin/atm
 echo "转移ATM包"
 cd $dir
-mv AutoTransferMachine /usr/local/lib/python3.9/dist-packages/
+mv AutoTransferMachine /usr/local/lib/python3.10/dist-packages/
 echo "删除package文件夹"
 sudo rm packages
 echo "测试运行情况"
