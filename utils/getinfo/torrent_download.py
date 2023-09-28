@@ -10,7 +10,7 @@ import shutil
 import yaml
 import urllib
 import requests
-
+import os
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -134,7 +134,7 @@ def get_torrent(yamlinfo):
                             ws["I" + str(row)] = sitepasskey
 
                             row += 1  # 行号加一
-                            print(title,size,seeders,uploadtime,details)
+                            logger.info(f'{title}获取成功')
                         except IndexError:
                             continue
             else:
@@ -213,8 +213,10 @@ def get_torrent(yamlinfo):
 def download_torrent(ws,yamlinfo):
     row = ws.max_row
     file_path = f"{yamlinfo['basic']['torrent_path']}"
-    counter = 1
+    old_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
+    logger.info(f'开始下载种子，当前种子文件夹中文件数量为{old_count}个')
     url_list = []
+    counter = 0
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
@@ -231,8 +233,10 @@ def download_torrent(ws,yamlinfo):
             with open(file_full_path, "wb") as f:
                 f.write(r.content)
             print(f"下载成功：{file_name}")
+            counter += 1
         else:
             print(f"下载失败：{url}")
             continue  # 跳过当前循环，继续下一个链接
-    logger.info(f'下载完成，本次共下载{counter}个种子')
+    new_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
+    logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子')
 
