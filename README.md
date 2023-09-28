@@ -1,5 +1,4 @@
 <h1 align="center"> ⭐️ Auto Transfer Machine ⭐️ </h1>
-**> :heart_on_fire:ATM转载机 - 为发光发热而生:heart_on_fire:**
 <h2 align="center"><strong>:heart_on_fire:为发光发热而生:heart_on_fire:</a></strong></h2>
 ## :triangular_flag_on_post:功能
 
