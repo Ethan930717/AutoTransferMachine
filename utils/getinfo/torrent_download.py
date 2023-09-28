@@ -211,28 +211,28 @@ def get_torrent(yamlinfo):
             logger.info("选择错误，请重新选择")
             continue
 def download_torrent(ws,yamlinfo):
-    url_list = []
     row = 2
+    file_path = f"{yamlinfo['basic']['torrent_path']}"
+    counter = 1
+    url_list = []
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
         row += 1
-    file_path = f"{yamlinfo['basic']['torrent_path']}"
-    counter = 1
-    for url in url_list:
-        print(url)
-        passkey = ws["I" + str(counter + 1)].value
-        r = requests.get(url,params={"passkey": passkey})
-        if r.status_code == 200:
-            file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
-            file_name = urllib.parse.unquote(file_name)
-            # 拼接完整的文件路径
-            file_full_path = file_path + file_name
-            with open(file_full_path, "wb") as f:
-                f.write(r.content)
-            print(f"下载成功：{file_name}")
-        else:
-            print(f"下载失败：{url}")
-            continue  # 跳过当前循环，继续下一个链接
+        for url in url_list:
+            print(url)
+            passkey = ws["I" + str(counter + 1)].value
+            r = requests.get(url,params={"passkey": passkey})
+            if r.status_code == 200:
+                file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
+                file_name = urllib.parse.unquote(file_name)
+                # 拼接完整的文件路径
+                file_full_path = file_path + file_name
+                with open(file_full_path, "wb") as f:
+                    f.write(r.content)
+                print(f"下载成功：{file_name}")
+            else:
+                print(f"下载失败：{url}")
+                continue  # 跳过当前循环，继续下一个链接
     logger.info(f'下载完成，本次共下载{counter}个种子')
 
