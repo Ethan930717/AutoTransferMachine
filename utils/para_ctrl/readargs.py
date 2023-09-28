@@ -5,7 +5,6 @@ import os
 def readargs():
     mainpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     yaml_path = os.path.join(mainpath,"au.yaml")
-    basic_path = os.path.join(mainpath,"basicinfo.yaml")
     torrent_list = os.path.join(mainpath,"torrentlist.CSV")
     parser = argparse.ArgumentParser(description='欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858')
 
@@ -23,6 +22,5 @@ def readargs():
     parser.add_argument('-mf','--media-file', type=str, help='指定媒体路径',required=False,default='')
     parser.add_argument('-in','--img-num', type=int, help='指定上传图片数量,默认三张',required=False,default=3)
     parser.add_argument('-yp','--yaml-path', type=str, help='指定你的au.yaml路径',required=True,default=yaml_path)
-    parser.add_argument('-bp','--basic-path', type=str, help='指定你的basicinfo.yaml路径',required=False,default=basic_path)
     args = parser.parse_args()
     return args

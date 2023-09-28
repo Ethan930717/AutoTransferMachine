@@ -18,8 +18,7 @@ def read_para():
         raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
 
     au_data   = readyaml(args.yaml_path)
-    basic_data = readyaml(args.basic_path)
-    merge_para(basic_data,au_data)
+    merge_para(au_data)
 
     if 'basic' in au_data and 'workpath' in au_data['basic']:
         if not os.path.exists(au_data['basic']['workpath']):

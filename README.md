@@ -40,7 +40,7 @@
 
 #### :crayon:3.安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
 ## :warning:使用说明
-   * 目录结构 :christmas_tree:
+   * 目录结构
 
     atm
     │
@@ -51,6 +51,23 @@
     ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
     │
     └─torrent_path    //种子存放目录
+
+* 工作逻辑
+
+         :arrow_down:1.从站点批量获取资源信息，将信息保存在record_path目录，并将种子下载保存至torrent_path目录
+
+         :writing_hand:2.通过第一步获取的资源链接，批量生成转载信息，自动生成模板写入yaml的path info中
+
+         :arrow_heading_up:3.通过第二步生成的模板，实现资源转发
+
+* 运行指令(yaml自行更改)    
+    * 批量获取资源信息`atm -yp "/atm/au.yaml" -dl`
+    * 模板转换`atm -yp "/atm/au.yaml" -tr`
+    * 转种模式`atm -yp "/atm/au.yaml" -u`
+    * 生成豆瓣PTGEN`atm -yp "/atm/au.yaml" -di -du '豆瓣链接'`
+    * 截图并上传图床`atm -yp "/atm/au.yaml" -mi -mf '视频路径' -ih 图床名称 -iform 图片格式(bbcode或img) -in 截图数量`
+    * 链接转图床`atm -yp "/atm/au.yaml" -iu //适用性较低，为简化模板已暂时关闭本功能` 
+    * 簽到模式`atm -yp "/atm/au.yaml" -s` //待更新
 
 ## :warning:已适配转出站点
 
