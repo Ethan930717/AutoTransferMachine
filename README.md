@@ -16,9 +16,15 @@
    * 更新源 `sudo apt update && sudo apt upgrade`
    * 安装依赖 `sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
    * 下载安装包 `wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz`
-   * 解压并编译 `tar xzf Python-3.10.0.tgz` `cd Python-3.10.0` `./configure --enable-optimizations` `make altinstall`
+   * 解压并编译 
+     * `tar xzf Python-3.10.0.tgz` 
+     *    `cd Python-3.10.0` 
+       * `./configure --enable-optimizations` 
+       * `make altinstall`
    * 测试 `sudo python3 -m pip install --upgrade pip`
-   * 删除安装包（如有需要） `sudo rm -rf /home/Python-3.10.0` `sudo rm /home/Python-3.10.0.tgz`
+   * 删除安装包（如有需要） 
+     * `sudo rm -rf /home/Python-3.10.0` 
+     * `sudo rm /home/Python-3.10.0.tgz`
 
 2. #### 安装ATM
    * 安装ATM依赖 `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
