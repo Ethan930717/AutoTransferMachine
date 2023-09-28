@@ -156,7 +156,7 @@ def get_torrent(yamlinfo):
             print("以下是所有的种子链接：")
             for i in range(2, row):
                 details = ws["E" + str(i)].value
-                print(details)
+                return print(details)
         elif choice == "2":
             print("以下是所有的下载链接：")
             for i in range(2, row):
@@ -167,9 +167,9 @@ def get_torrent(yamlinfo):
                 for download in url_list:
                     sub_url_list = download.split("\n")
                     final_url_list.extend(sub_url_list)
-            print(download)
+            return print(download)
         elif choice == "3":
-            print("好的")
+            return print("好的")
         else:
             logger.info("选择错误，请重新选择")
             continue
