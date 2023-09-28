@@ -164,14 +164,10 @@
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars.githubusercontent.com/u/17682201?v=4" width="150px;"/><br /><sub><b>莫与</b></sub>](https://github.com/dongshuyan)  <br /> | [<img src="https://avatars.githubusercontent.com/u/32202634?v=4" width="150px;"/><br /><sub><b>明日</b></sub>](https://github.com/tomorrow505/)<br /> | [<img src="https://avatars.githubusercontent.com/u/53997080?v=4" width="150px;"/><br /><sub><b>大卫</b></sub>](https://github.com/ledccn)<br /> | [<img src="https://avatars.githubusercontent.com/u/103914473?v=4" width="150px;"/><br /><sub><b>栗山未来</b></sub>](https://github.com/vertex-app)<br /> | 
-|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢贾佬:gift_heart: </h1>
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢86佬:gift_heart: </h1>
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢莫与佬:gift_heart: </h1>
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢明日佬:gift_heart: </h1>
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢大卫佬:gift_heart: </h1>
- <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢所有为PT圈子发光发热的大佬:gift_heart: </h1>
+| [<img src="https://avatars.githubusercontent.com/u/17682201?v=4" width="175px;"/><br /><sub><b>莫与</b></sub>](https://github.com/dongshuyan)  <br /> | [<img src="https://avatars.githubusercontent.com/u/32202634?v=4" width="175px;"/><br /><sub><b>明日</b></sub>](https://github.com/tomorrow505/)<br /> | [<img src="https://avatars.githubusercontent.com/u/53997080?v=4" width="175px;"/><br /><sub><b>大卫</b></sub>](https://github.com/ledccn)<br /> | [<img src="https://avatars.githubusercontent.com/u/103914473?v=4" width="175px;"/><br /><sub><b>栗山未来</b></sub>](https://github.com/vertex-app)<br /> | [<img src="http://ptpimg.me/p11a08.jpg" width="175px;"/><br /><sub><b>shmt86</b></sub>](https://pterclub.com/userdetails.php?id=751)<br /> | 
+|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+ 
+
 
 
 
