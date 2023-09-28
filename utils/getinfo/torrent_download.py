@@ -212,6 +212,7 @@ def get_torrent(yamlinfo):
             continue
 def download_torrent(ws,yamlinfo,row):
     url_list = []
+    row = int(row)
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
@@ -219,7 +220,7 @@ def download_torrent(ws,yamlinfo,row):
     counter = 1
     for url in url_list:
         print(url)
-        passkey = ws["I" + str(counter + 1)].value
+        passkey = ws["I" + row(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
             file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
