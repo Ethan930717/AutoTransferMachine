@@ -210,17 +210,18 @@ def get_torrent(yamlinfo):
         else:
             logger.info("选择错误，请重新选择")
             continue
-def download_torrent(ws,yamlinfo,row):
+def download_torrent(ws,yamlinfo):
     url_list = []
-    row = int(row)
+    row = 2
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
+        row += 1
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
     for url in url_list:
         print(url)
-        passkey = ws["I" + row(counter + 1)].value
+        passkey = ws["I" + str(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
             file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
