@@ -207,12 +207,11 @@ def get_torrent(yamlinfo):
             logger.info("选择错误，请重新选择")
             continue
 def download_torrent(ws,yamlinfo,download):
-    download = download.strip()
-    url_list = download.split("\n")
+    url_list = download.strip()
+    print(url_list)
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     counter = 1
     for url in url_list:
-        print(url)
         passkey = ws["I" + str(counter + 1)].value
         r = requests.get(url,params={"passkey": passkey})
         if r.status_code == 200:
