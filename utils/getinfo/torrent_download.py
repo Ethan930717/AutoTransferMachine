@@ -212,6 +212,7 @@ def download_torrent(ws,yamlinfo,download):
     scraper = cloudscraper.create_scraper()
     counter = 1
     for url in url_list:
+        print(url)
         passkey = ws["I" + str(counter + 1)].value
         r = scraper.get(url,params={"passkey": passkey})
         if r.status_code == 200:
