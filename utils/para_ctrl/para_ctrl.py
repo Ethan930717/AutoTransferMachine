@@ -18,7 +18,6 @@ def read_para():
         raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
 
     au_data   = readyaml(args.yaml_path)
-    merge_para(au_data)
 
     if 'basic' in au_data and 'workpath' in au_data['basic']:
         if not os.path.exists(au_data['basic']['workpath']):
@@ -124,15 +123,5 @@ def read_para():
 
     return au_data
 
-def merge_para(dict1,dict2):
-    '''
-    将dict1中的内容合并入dict2,如果有相同内容保持dict2
-    '''
-    if not (type(dict1)==dict and type(dict2)==dict):
-        return 
-    for item in dict1:
-        if item in dict2:
-            merge_para(dict1[item],dict2[item])
-        else:
-            dict2[item]=dict1[item]
+
 
