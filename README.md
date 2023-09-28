@@ -67,7 +67,7 @@
     * 生成豆瓣PTGEN`atm -yp "/atm/au.yaml" -di -du '豆瓣链接'`
     * 截图并上传图床`atm -yp "/atm/au.yaml" -mi -mf '视频路径' -ih 图床名称 -iform 图片格式(bbcode或img) -in 截图数量`
     * 链接转图床`atm -yp "/atm/au.yaml" -iu //适用性较低，为简化模板已暂时关闭本功能` 
-    * 簽到模式`atm -yp "/atm/au.yaml" -s` //待更新
+    * 簽到模式`atm -yp "/atm/au.yaml" -s //待更新` 
 
 ## :warning:已适配转出站点
 
@@ -158,6 +158,29 @@
     <td align="center"></td> <!-- 施工中 -->
   </tr> 
 </table>
+
+
+ <br/>:sparkling_heart:感谢86佬长期以来提供的大力帮助
+ <br/>:sparkling_heart:感谢明日佬的
+
+
+<br>
+
+<h1 align="center"> ️:gift_heart: 特别感谢 :gift_heart: </h1>
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars.githubusercontent.com/u/17682201?v=4" width="150px;"/><br /><sub><b>莫与</b></sub>](https://github.com/dongshuyan)  <br /> | [<img src="https://avatars.githubusercontent.com/u/32202634?v=4" width="150px;"/><br /><sub><b>明日</b></sub>](https://github.com/tomorrow505/)<br /> | [<img src="https://avatars.githubusercontent.com/u/53997080?v=4" width="150px;"/><br /><sub><b>大卫</b></sub>](https://github.com/ledccn)<br /> | [<img src="https://avatars.githubusercontent.com/u/103914473?v=4" width="150px;"/><br /><sub><b>栗山未来</b></sub>](https://github.com/vertex-app)<br /> | 
+|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|
+             <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢贾佬:gift_heart: </h1>
+             <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢莫与佬:gift_heart: </h1>
+             <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢明日佬:gift_heart: </h1>
+             <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢大卫佬:gift_heart: </h1>
+             <h1 align="center"> ️:gift_heart:<br/>:sparkling_heart:感谢所有为PT圈子发展发光发热的人们:gift_heart: </h1>
+
+
+
+
 
 
 
