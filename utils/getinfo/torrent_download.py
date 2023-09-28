@@ -8,7 +8,7 @@ from loguru import logger
 import sys
 import shutil
 import yaml
-
+import urllib
 
 
 start_time = time.time()
@@ -20,10 +20,10 @@ def cookies_raw2jar(raw_cookies):
     return cookiejar_from_dict(cookie_dict)
 
 def get_torrent(yamlinfo):
-    choosesite = input(f"请选择你要下载种子的网站\n1.影")
+    choosesite = input(f"请选择你要获取信息的网站\n1.影")
     if choosesite == "1":
         sitename = "shadowflow"
-        logger.info('即将从影站下载种子')
+        logger.info('即将从影站获取种子信息')
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
@@ -176,6 +176,40 @@ def get_torrent(yamlinfo):
             with open(au, "w") as f:
                 yaml.dump(yamlinfo, f)
         logger.info(f"修改完成，当前yaml模板的torrent_list为{yamlinfo['basic']['torrent_list']}")
+        dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
+        if dlsure.upper() == "Y":
+            logger.info("开始下载")
+            return download_torrent(ws,yamlinfo,download)
+        else:
+            logger.info("未选择下载种子，即将结束本次任务,如需单独开启下载任务，请使用td指令")
+            sys.exit()
     else:
-        logger.info("未选择替换路径，即将结束本次任务")
-        sys.exit()
+        dlsure = input(
+            f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
+        if dlsure.upper() == "Y":
+            logger.info("开始下载")
+            return download_torrent(ws, yamlinfo, download)
+        else:
+            logger.info("未选择下载种子，即将结束本次任务,如需单独开启下载任务，请使用td指令")
+            sys.exit()
+def download_torrent(ws,yamlinfo,download):
+    url_list = download
+    file_path = f"{yamlinfo['basic']['workpath']['torrent_path']}"
+    scraper = cloudscraper.create_scraper()
+    counter = 1
+    for url in url_list:
+        cookie = ws["H" + str(counter + 1)].value
+        r = scraper.get(url,cookies=cookies_raw2jar(cookie),timeout=30)
+        if r.status_code == 200:
+            file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
+            file_name = urllib.parse.unquote(file_name)
+            # 拼接完整的文件路径
+            file_full_path = file_path + file_name
+            with open(file_full_path, "wb") as f:
+                f.write(r.content)
+            print(f"下载成功：{file_name}")
+        else:
+            print(f"下载失败：{url}")
+            continue  # 跳过当前循环，继续下一个链接
+    logger.info(f'下载完成，本次共下载{counter}个种子')
+
