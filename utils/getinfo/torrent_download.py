@@ -193,7 +193,8 @@ def get_torrent(yamlinfo):
             logger.info("未选择下载种子，即将结束本次任务,如需单独开启下载任务，请使用td指令")
             sys.exit()
 def download_torrent(ws,yamlinfo,download):
-    url_list = download
+    download = download.strip()
+    url_list = download.split("\n")
     file_path = f"{yamlinfo['basic']['torrent_path']}"
     scraper = cloudscraper.create_scraper()
     counter = 1
