@@ -1,12 +1,12 @@
 <h1 align="center"> ⭐️ Auto Transfer Machine ⭐️ </h1>
 <h2 align="center"><strong>:heart_on_fire:为发光发热而生:heart_on_fire:</a></strong></h2>
 
-## :triangular_flag_on_post:功能
+<h1 align="center"> triangular_flag_on_post:功能:triangular_flag_on_post: </h1>
 
-* 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源）
-* 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种
-* 自动生成截图（可指定数量与格式）
-* 自动生成新的PTGEN与MediaINFO信息
+<h1 align="center"> 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源） </h1>
+<h1 align="center"> 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种 </h1>
+<h1 align="center"> 自动生成截图（可指定数量与格式） </h1>
+<h1 align="center"> 自动生成新的PTGEN与MediaINFO信息 </h1>
 
 ## :warning:注意事项
 * 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
