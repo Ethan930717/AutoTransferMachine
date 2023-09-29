@@ -14,8 +14,8 @@ def read_para():
     su=0#sign
     ru=0#resources upload
     if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img+args.download+args.transinfo==1:
-        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
-        raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
+        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
+        raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
 
     au_data   = readyaml(args.yaml_path)
 
