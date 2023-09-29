@@ -4,34 +4,27 @@
 name: Python package
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+ push: 
+   paths:
+     - 'setup.py'
 
 jobs:
-  build:
+ deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v3
+     - name: Set up Python
+       uses: actions/setup-python@v4
+       with:
+         python-version: '3.x'
 
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
-
-    env:
+    - name: Sync dependencies
       TWINE_USERNAME: __token__
-      TWINE_PASSWORD: pypi-AgEIcHlwaS5vcmcCJDc1MGJjMjM0LTFmOGQtNGQ5Ni1iNzhhLWU2MzE0M2QxYzE2MwACKlszLCIxMjk0ZjdlMC1hNTMwLTRhYzktYWFmYS04MzQ4NTQzMjkzYTQiXQAABiCTskEq-xYSaTRU3Zd5lYwz_vKmM6vwG1F5fNxkx4xKNA
+      TWINE_PASSWORD: ${{secrets.PYPI_PASSWORD}}
       run: |
         python3 setup.py sdist bdist_wheel
         twine upload dist/*
