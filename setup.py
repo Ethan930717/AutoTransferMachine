@@ -1,6 +1,6 @@
 import setuptools
 
-with open("AutoTransferMachine/README.md", "r") as fh:
+with open("README.md", "r") as fh:
 
     setuptools.setup(
 name="AutoTransferMachine",
