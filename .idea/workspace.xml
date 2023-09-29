@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="76f23aac-33a2-47f0-9a09-b97c703491b2" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/atm/atm_install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/atm/au.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/atm/list.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/edittorrent/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/edittorrent/edittorrent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/getinfo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/getinfo/info_transfer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/getinfo/makeyaml.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/getinfo/torrent_download.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/chevereto.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/imgbox.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/imgupload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/ptpimg.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/img_upload/smms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/douban_book.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/douban_movie.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/doubaninfo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/maketorrent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/mediafile/mediafile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/para_ctrl/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/para_ctrl/para_ctrl.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/para_ctrl/readargs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/para_ctrl/readyaml.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/pathinfo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/pathinfo/pathinfo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/seed_machine/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/seed_machine/qb_control.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/seed_machine/seed_machine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/site/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/site/site.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/audience_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/auto_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/btschool_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/carpt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/cyanbug_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/dajiao_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/discfan_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/dragonhd_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/freefarm_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/gtk_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/haidan_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hares_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdarea_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdatmos_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hddolby_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdfans_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdhome_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdmayi_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdpost_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdpt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdsky_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdtime_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdu_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdvideo_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hdzone_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hhclub_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hitpt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/hudbt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/icc_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ilolicon_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/itzmx_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/joyhd_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/kufei_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/mangguo_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/mteam_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/nanyang_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/okpt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/oshen_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/pandapt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/piggo_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ptcafe_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ptchina_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/pter_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/pthome_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ptlsp_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ptsbao_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/pttime_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/redleaves_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/rousi_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/shadowflow_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/soulvoice_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ssd_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/tccf_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ubits_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/upload_tools.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/wintersakura_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/wuerpt_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/ydy_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/yiptba_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/zhuque_upload.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTransferMachine/utils/uploader/zmpt_upload.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2W3iSFPxE72F2nFAcbCoJmiYCiO" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="76f23aac-33a2-47f0-9a09-b97c703491b2" name="更改" comment="" />
+      <created>1695967661440</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695967661440</updated>
+      <workItem from="1695967662467" duration="1841000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
