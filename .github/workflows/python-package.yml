@@ -16,17 +16,17 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
    
-    - name: Sync dependencies
+  steps:
+    - name: pypi-github-sync
       uses: PabloLec/pypi-github-sync@v1.0.2
       with:
-        github_repo: Ethan930717/AutoTransferMachine
-          twine_username: ${{secrets.PYPI_TOKEN}
-          twine_password: ${{secrets.PYPI_PASSWORD}
+          github_repo: Ethan930717/AutoTransferMachine
+          twine_username: ${{ secrets.PYPI_USERNAME }}
+          twine_password: ${{ secrets.PYPI_PASSWORD }}
+          verify_metadata: true
+          skip_existing: true
+          verbose: true
+
 
       
