@@ -4,7 +4,7 @@ with open("AutoTransferMachine/README.md", "r") as fh:
 
     setuptools.setup(
 name="AutoTransferMachine",
-version="0.0.5",
+version="0.0.6",
 author="hudan717",
 author_email="dahupt@gmail.com",
 description="PT自动转载工具",
