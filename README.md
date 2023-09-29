@@ -18,17 +18,18 @@
    *    安装依赖 :star:
          * `sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
    * 下载安装包 :star:
-     * `wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz`
+     * `wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz`
    * 解压并编译 :star:
-     * `tar xzf Python-3.10.0.tgz` 
-     *    `cd Python-3.10.0` 
+     * `tar xzf Python-3.9.0.tgz` 
+     *    `cd Python-3.9.0` 
        * `./configure --enable-optimizations` 
+       * `sudo su`
        * `make altinstall`
    * 测试 :star:
      * `sudo python3 -m pip install --upgrade pip`
    * 删除安装包（如有需要） :star:
-     * `sudo rm -rf /home/Python-3.10.0` 
-     * `sudo rm /home/Python-3.10.0.tgz`
+     * `sudo rm -rf /home/Python-3.9.0` 
+     * `sudo rm /home/Python-3.9.0.tgz`
 
 2. #### 安装ATM
    * 安装ATM依赖 :star:
@@ -38,7 +39,7 @@
    * 设置ATM配置信息 :star:
      * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
 
-#### :crayon:3.如果你看到了指令说明界面，则说明工具已安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
+#### :crayon:3.如果你看到了指令说明界面，则工具已安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
  <img src="https://img.pterclub.com/images/2023/09/29/1.png" />
 
 ## :warning:使用说明
@@ -169,8 +170,6 @@
 | [<img src="https://avatars.githubusercontent.com/u/17682201?v=4" width="175px;"/><br /><sub><b>莫与</b></sub>](https://github.com/dongshuyan)  <br /> | [<img src="https://avatars.githubusercontent.com/u/32202634?v=4" width="175px;"/><br /><sub><b>明日</b></sub>](https://github.com/tomorrow505/)<br /> | [<img src="https://avatars.githubusercontent.com/u/53997080?v=4" width="175px;"/><br /><sub><b>大卫</b></sub>](https://github.com/ledccn)<br /> | [<img src="https://avatars.githubusercontent.com/u/103914473?v=4" width="175px;"/><br /><sub><b>贾佬</b></sub>](https://github.com/vertex-app)<br /> | [<img src="https://img.pterclub.com/images/2023/09/29/p11a08.jpg" width="175px;"/><br /><sub><b>shmt86</b></sub>](https://pterclub.com/userdetails.php?id=751)<br /> | 
 |:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
  
-
-
 
 
 
