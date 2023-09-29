@@ -19,7 +19,7 @@ jobs:
       uses: PabloLec/pypi-github-sync@v1.0.2
       with:
           github_repo: Ethan930717/AutoTransferMachine
-          twine_username: __token__
+          twine_username: '__token__'
           twine_password: ${{ secrets.PYPI_PASSWORD }}
           verify_metadata: true
           skip_existing: true
