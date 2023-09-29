@@ -38,7 +38,9 @@
    * 设置ATM配置信息 :star:
      * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
 
-#### :crayon:3.安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
+#### :crayon:3.如果你看到了指令说明界面，则说明工具已安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
+ <img src="https://img.pterclub.com/images/2023/09/29/1.png" />
+
 ## :warning:使用说明
    * 目录结构
 
