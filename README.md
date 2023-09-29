@@ -16,7 +16,7 @@
    * 更新源 :star:
      * `sudo apt update && sudo apt upgrade`
    *    安装依赖 :star:
-         * `sudo apt install -y wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
+         * `sudo apt install -y pip wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
    * 下载安装包 :star:
      * `wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz`
    * 解压并编译 :star:
