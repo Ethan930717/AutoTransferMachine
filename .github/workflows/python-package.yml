@@ -4,7 +4,7 @@
 name: Python package
 
 on:
-  tag:
+  release:
     types: [created]
 
 jobs:
