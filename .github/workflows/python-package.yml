@@ -4,27 +4,25 @@
 name: Python package
 
 on:
- push: 
-   paths:
-     - 'setup.py'
+  release:
+    types: [created]
 
 jobs:
- deploy:
-   runs-on: ubuntu-latest
-   steps:
-     - uses: actions/checkout@v3
-     - name: Set up Python
-       uses: actions/setup-python@v4
-       with:
-         python-version: '3.x'
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+          python-version: '3.x'    
+    - name: pypi-github-sync
+      uses: PabloLec/pypi-github-sync@v1.0.2
+      with:
+          github_repo: Ethan930717/AutoTransferMachine
+          twine_username: ${{ secrets.PYPI_USERNAME }}
+          twine_password: ${{ secrets.PYPI_PASSWORD }}
+          verify_metadata: true
+          skip_existing: true
+          verbose: true
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-    - name: Sync dependencies
-      TWINE_USERNAME: __token__
-      TWINE_PASSWORD: ${{secrets.PYPI_PASSWORD}}
-      run: |
-        python3 setup.py sdist bdist_wheel
-        twine upload dist/*
+      
