@@ -19,10 +19,10 @@ jobs:
       uses: PabloLec/pypi-github-sync@v1.0.2
       with:
           github_repo: Ethan930717/AutoTransferMachine
-          twine_username: ${{ secrets.PYPI_USERNAME }}
-          twine_password: ${{ secrets.PYPI_PASSWORD }}
-          verify_metadata: false
-          skip_existing: false
-          verbose: false
+          twine_username:
+          twine_password:
+          verify_metadata: true
+          skip_existing: true
+          verbose: true
 
       
