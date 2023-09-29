@@ -1,0 +1,16 @@
+ffmpeg
+mediainfo
+maketorrent
+loguru
+pyyaml
+doubaninfo
+requests
+beautifulsoup4
+lxml
+cloudscraper
+qbittorrent-api
+openpyxl
+torf
+typing
+pathlib
+progress
