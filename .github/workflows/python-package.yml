@@ -1,0 +1,28 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+          python-version: '3.x'    
+    - name: pypi-github-sync
+      uses: PabloLec/pypi-github-sync@v1.0.2
+      with:
+          github_repo: Ethan930717/AutoTransferMachine
+          twine_username:
+          twine_password:
+          verify_metadata: true
+          skip_existing: true
+          verbose: true
+
+      

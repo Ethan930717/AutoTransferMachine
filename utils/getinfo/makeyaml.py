@@ -1,8 +1,8 @@
 import re
 import datetime
-import sys
+from loguru import logger
 
-def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,imdb_id,country,date,standard,tmdb_id,choice,torrent,audata):
+def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent):
     #亚洲国家
     east_asia = ["中国大陆", "蒙古", "朝鲜", "韩国", "日本", "香港", "台湾", "澳门","中国" ] #仅作判定使用，无任何地缘政治因素
     southeast_asia = ["菲律宾", "越南", "老挝", "柬埔寨", "缅甸", "泰国", "马来西亚", "文莱", "新加坡", "印度尼西亚", "东帝汶"]
@@ -15,15 +15,15 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     #站点特判
     #碟粉非亚洲资源与动漫.年份大于五年
     current_year = datetime.date.today().year # 获取当前年份
-    keep_year = abs(current_year - int(date))
+    keep_year = abs(current_year - int(madeyear))
     if country in asia and not "anime" in type and keep_year > 4:
         discfan = '0'
         print(f"当前资源产地为{country},类型为{type},上映时间{keep_year}年\n符合碟粉发种要求")
     else:
         discfan = 'null'
         print(f"当前资源产地为{country},类型为{type},上映时间{keep_year}年\n不符合碟粉发种要求")
-    #ilolicon动漫
-    if not type == 'anime':
+
+    if not 'anime' in type:
         ilolicon = 'null'
     else:
         ilolicon = '0'
@@ -103,6 +103,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     site += f"    wuerpt: 0\n"
     site += f"    zhuque: 0\n"
     site += f"    zmpt: 0\n"
+    site += f"    ilolicon: {ilolicon}\n"
 
     # 确定中文名
     cnname = ""
@@ -134,7 +135,8 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     print(enname)
 
     #获取path序列
-    f = open('text.txt', 'r',encoding='utf-8') # 以只读模式打开文件
+    au = f"{yamlinfo['basic']['workpath']}au.yaml"
+    f = open(au, 'r',encoding='utf-8') # 以只读模式打开文件
     lines = f.readlines() # 读取所有行并存储在列表中
     f.close() # 关闭文件
 
@@ -260,7 +262,7 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    tags: {tags}\n"
     text += f"    sub: {team}\n"
     text += f"    type: {type}\n"
-    text += f'    contenthead: \'[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]YingWEB[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]\'\n'
+    text += f'    contenthead: \'[quote][b][color=#d98a91][size=3][font=Arial Black]转自[/size][size=5]{team}[/size][size=3]，感谢原作者发布[/color][/size][/font][/b][/quote]\'\n'
     text += f"    audio_format: {audio}\n"
     text += f"    video_format: {codec}\n"
     text += f"    medium: {medium}\n"
@@ -271,13 +273,6 @@ def mkyaml(counter,filename,name,small_descr,tags,team,type,audio,codec,medium,d
     text += f"    imdb_url: {imdb}\n"
     text += f"    tmdb_id: {tmdb_id}\n"
     text += f"{site}"
-    print(text)
-    if choice.lower() == "n" :
-        f = open("text.txt", "w", encoding="utf-8")
+    logger.info(text)
+    with open(au, "a+", encoding="utf-8") as f:
         f.write(text)
-    elif choice.lower() == "y":
-        f = open("text.txt",  "a+", encoding="utf-8")
-        f.write(text)
-    else:
-        print("输入错误，请重新运行程序")
-        sys.exit(0)

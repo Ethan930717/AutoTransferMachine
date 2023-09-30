@@ -4,6 +4,8 @@ from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
 
 import os
 from loguru import logger
+import csv
+import urllib
 
 def read_para():
     args = readargs()
@@ -11,14 +13,11 @@ def read_para():
     iu=0#img upload
     su=0#sign
     ru=0#resources upload
-    if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img+args.download==1:
-        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
-        raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
-
+    if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img+args.download+args.transinfo==1:
+        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
+        raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
 
     au_data   = readyaml(args.yaml_path)
-    basic_data = readyaml(args.basic_path)
-    merge_para(basic_data,au_data)
 
     if 'basic' in au_data and 'workpath' in au_data['basic']:
         if not os.path.exists(au_data['basic']['workpath']):
@@ -35,7 +34,8 @@ def read_para():
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
     
-    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download'
+    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download'+args.transinfo*'transinfo'
+
 
     if args.upload:
         if not 'path info' in au_data or len(au_data['path info'])==0:
@@ -119,26 +119,9 @@ def read_para():
         if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
             au_data['basic']['picture_num']=int(args.img_num)
 
-
         au_data['media_file']=args.media_file
-
-
-
-
-
-
 
     return au_data
 
-def merge_para(dict1,dict2):
-    '''
-    将dict1中的内容合并入dict2,如果有相同内容保持dict2
-    '''
-    if not (type(dict1)==dict and type(dict2)==dict):
-        return 
-    for item in dict1:
-        if item in dict2:
-            merge_para(dict1[item],dict2[item])
-        else:
-            dict2[item]=dict1[item]
+
 

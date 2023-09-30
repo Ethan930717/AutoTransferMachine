@@ -5,13 +5,13 @@ import os
 def readargs():
     mainpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     yaml_path = os.path.join(mainpath,"au.yaml")
-    basic_path = os.path.join(mainpath,"basicinfo.yaml")
-    torrent_list = os.path.join(mainpath,"torrentlist.txt")
-    parser = argparse.ArgumentParser(description='欢迎使用ATM自动转种机，交流Q群870081858，请自备最新的PTPP截图申请入群，进群需验证发种总数超过100')
+    torrent_list = os.path.join(mainpath,"torrentlist.CSV")
+    parser = argparse.ArgumentParser(description='欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858')
 
     parser.add_argument('-u','--upload', action='store_true', default=False, help='自动转种模式')
     parser.add_argument('-s','--sign', action='store_true', default=False, help='自动登陆模式')
     parser.add_argument('-dl', '--download', action='store_true', default=False, help='拉种模式')
+    parser.add_argument('-tr', '--transinfo', action='store_true', default=False, help='pathinfo模板转换')
     parser.add_argument('-iu','--img-upload', action='store_true', default=False, help='使用图片链接转发图床')
     parser.add_argument('-di','--douban-info', action='store_true', default=False, help='获取豆瓣信息')
     parser.add_argument('-mi','--media-img', action='store_true', default=False, help='自动截图并上传图床')
@@ -22,6 +22,5 @@ def readargs():
     parser.add_argument('-mf','--media-file', type=str, help='指定媒体路径',required=False,default='')
     parser.add_argument('-in','--img-num', type=int, help='指定上传图片数量,默认三张',required=False,default=3)
     parser.add_argument('-yp','--yaml-path', type=str, help='指定你的au.yaml路径',required=True,default=yaml_path)
-    parser.add_argument('-bp','--basic-path', type=str, help='指定你的basicinfo.yaml路径',required=False,default=basic_path)
     args = parser.parse_args()
     return args

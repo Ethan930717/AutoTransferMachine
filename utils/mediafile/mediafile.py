@@ -113,6 +113,7 @@ class mediafile(object):
         self.screenshotaddress = basic['screenshot_path']
         self.torrentaddress    = basic['torrent_path'] #种子文件目录
         self.screenshotnum     = int(basic['picture_num'])
+        self.tmdbapi           = basic['tmdb_api']
         self.imgdata           = imgdata
         
         self.path              = os.path.dirname(mediapath)
@@ -791,9 +792,8 @@ class mediafile(object):
                 search_url = base_url + "/search/movie"                
             else:    
                 search_url = base_url + "/search/multi"
-            api_key = "107492d808d58cb5f5fae5005c7d764d"
             params = {
-                "api_key": api_key ,
+                "api_key": self.tmdbapi ,
                 "language": "zh-CN",
                 "query": self.englishname
             }

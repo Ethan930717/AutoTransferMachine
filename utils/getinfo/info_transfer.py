@@ -4,6 +4,11 @@ from bs4 import BeautifulSoup
 from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
+from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
+import openpyxl
+import urllib
+from loguru import logger
+import re
 
 def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字符串转换为cookiejar对象
     cookie_dict = {}
@@ -14,14 +19,37 @@ def cookies_raw2jar(raw_cookies): # 定义一个函数，将原始的cookie字�
 scraper = cloudscraper.create_scraper()
 
 
-cookie = "cookie"
-tmdb_api = "tmdbapi"
-
-
-def getmediainfo(url_list):
-    counter = 0
+def getmediainfo(yamlinfo):
+    au = f"{yamlinfo['basic']['workpath']}au.yaml"
+    wb = openpyxl.load_workbook(yamlinfo['basic']['torrent_list'])
+    ws = wb.active
+    data = ws.values
+    url_list = [cell for row in data for cell in row if "detail" in cell]
+    writemode = input(f"请选择模板转换方式\nY.在原有的pathinfo下自动续写\nN.覆盖原有的pathinfo，从path1开始生成（默认自动续写）")
+    if writemode.lower() == "n":
+        logger.info('当前为覆盖模式')
+        with open(au, "r",encoding="utf-8") as f:
+            lines = f.readlines()
+            for index, line in enumerate(lines):
+                if "path info" in line:
+                    path_index = index
+                    break
+            new_lines = lines[:path_index + 1]
+            f.close()
+            with open(au, "w", encoding="utf-8") as f:
+                for new_line in new_lines:
+                    f.write(new_line)
+    else:
+        logger.info('当前为续写模式')
+    print(yamlinfo['basic']['torrent_list'])
+    tmdb_api = yamlinfo['basic']['tmdb_api']
+    counter = 1
     for url in url_list:
-        import makeyaml
+        result = urllib.parse.urlparse(url)
+        siteurl = urllib.parse.urlunparse((result.scheme, result.netloc, '', '', '', ''))
+        sitename = ws["G" + str(counter + 1)].value
+        cookie = ws["H" + str(counter + 1)].value
+        print(f"当前域名 {siteurl},匹配站点{sitename}")
         r = scraper.post(url, cookies=cookies_raw2jar(cookie), timeout=30)
         soup = BeautifulSoup(r.text, "html.parser")
         tree = lxml.etree.HTML(r.text)
@@ -32,7 +60,7 @@ def getmediainfo(url_list):
         try:
             name = tree.xpath(xpath_name)[0]
             name = name.rstrip()
-            getteam = text.split("-")
+            getteam = name.split("-")
             # 取列表的最后一个元素，即最后一个"-"后面的内容
             team = getteam[-1]
         except IndexError:
@@ -40,6 +68,7 @@ def getmediainfo(url_list):
         print(f"成功记录主标题名 {name}")
 
     # 种子名称
+        filename=""
         try:
             links = soup.find_all("a", class_="index")
             for link in links:
@@ -49,7 +78,7 @@ def getmediainfo(url_list):
                     filename=torrent.replace(".torrent","")
                     filename=filename.replace("[Shadow].","")
         except IndexError:
-            torrent= input(f"无法读取种子名称，请手动输入,种子地址{url}")
+            filename= input(f"无法读取种子名称，请手动输入,种子地址{url}")
         print(f"成功读取文件名称 {filename}")
 
         #副标题
@@ -65,6 +94,7 @@ def getmediainfo(url_list):
         #产地&年份
         kdescr = soup.find(id="kdescr")
         lines = kdescr.text.split("\n")
+        country = ''
         try:
             for line in lines:
                 if "◎产　　地　" in line:
@@ -73,13 +103,17 @@ def getmediainfo(url_list):
         except IndexError:
             country= input(f"无法确认产地，请手动输入,文件标题{name}")
 
+
+        madeyear=''
         try:
-            for line in lines:
-                if "◎年　　份　" in line:
-                    date = line.split("◎年　　份　")[1]
-            print(f"读取年份成功 {date}")
+            match = re.search("◎年　　份　(\d+)", kdescr.text)
+            if match:
+                madeyear = match.group(1)
+                print(f"读取年份成功 {madeyear}")
+            else:
+                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}")
         except IndexError:
-            date= input(f"无法确认年份，请手动输入,文件标题{name}")
+            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}")
 
         #标签
         try:
@@ -167,6 +201,7 @@ def getmediainfo(url_list):
             print("无法获取基本信息")
 
     # 豆瓣
+        douban = ""
         try:
             dblinks = soup.find_all("a", href=lambda x: x and "douban" in x)
             douban = [(link.get("href"), link.get_text()) for link in dblinks]
@@ -174,10 +209,11 @@ def getmediainfo(url_list):
                 douban = douban.get("href")
                 print(f"成功获取豆瓣链接 {douban}")
         except IndexError:
-            douban = ""
             print("无法获取豆瓣链接")
 
         #IMDB
+        imdb = ""
+        tmdb_id = ""
         try:
             imdblinks = soup.find_all("a", href=lambda x: x and "imdb" in x)
             if imdblinks:
@@ -224,12 +260,11 @@ def getmediainfo(url_list):
                 else:
                     imdb = ""
                     print("该资源暂无imdb链接")
-        except IndexError:
-            imdb = ""
+        except Exception as e:
             print("无法获取IMDB链接")
-        print(f"第{counter}个资源读取完成")
-        return makeyaml.mkyaml(counter, filename, name, small_descr, tags, team, type, audio, codec, medium, douban, imdb, imdb_id, country, date, standard, tmdb_id, choice, torrent,audata)
-
+        logger.info(f"第{counter}个资源读取完成")
+        mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
+    logger.info(f"模板转换结束,本次共转换path模板{counter}个")
 
 
 
