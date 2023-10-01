@@ -427,7 +427,7 @@ path info:
 EOF
 echo "创建yaml配置模板成功，创建启动指令文件"
 cd /usr/local/bin/
-cat > atm << EOF
+sudo tee atm > /dev/null << EOF
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import re
@@ -437,9 +437,9 @@ if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
     sys.exit(main())
 EOF
-chmod a+x /usr/local/bin/atm
+sudo chmod a+x /usr/local/bin/atm
 sudo apt-get install dos2unix
-dos2unix /usr/local/bin/atm
+sudo dos2unix /usr/local/bin/atm
 echo "创建成功，尝试第一次启动ATM"
 atm -h
 
