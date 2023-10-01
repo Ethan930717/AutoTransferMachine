@@ -102,7 +102,7 @@ def get_torrent(yamlinfo):
                 ws["H1"] = "cookie"
                 ws["I1"] = "passkey"
                 for tr in trs:
-                    if any(x in tr.text for x in tags):
+                    if any(x in tr.text for x in tags) and not "MYTVS" in tr.text.upper():
                         print(f"不符合筛选条件，跳过")
                         continue
                     else:
