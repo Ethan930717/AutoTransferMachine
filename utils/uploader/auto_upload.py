@@ -56,5 +56,6 @@ from AutoTransferMachine.utils.uploader.tccf_upload import tccf_upload
 from AutoTransferMachine.utils.uploader.hdpost_upload import hdpost_upload
 from AutoTransferMachine.utils.uploader.ilolicon_upload import ilolicon_upload
 from AutoTransferMachine.utils.uploader.shadowflow_upload import shadowflow_upload
+from AutoTransferMachine.utils.uploader.kimoji_upload import kimoji_upload
 def auto_upload(siteitem,file,record_path,qbinfo,basic,hashlist):
     return eval(siteitem.sitename+'_upload(siteitem,file,record_path,qbinfo,basic,hashlist)')
