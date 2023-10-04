@@ -64,7 +64,7 @@ def getmediainfo(yamlinfo):
             # 取列表的最后一个元素，即最后一个"-"后面的内容
             team = getteam[-1]
         except IndexError:
-            name = input(f"无法读取主标题名，请手动输入,种子地址{url}")
+            name = input(f"无法读取主标题名，请手动输入,种子地址{url}\n请在此输入正确的主标题名：")
         print(f"成功记录主标题名 {name}")
 
     # 种子名称
@@ -78,7 +78,7 @@ def getmediainfo(yamlinfo):
                     filename=torrent.replace(".torrent","")
                     filename=filename.replace("[Shadow].","")
         except IndexError:
-            filename= input(f"无法读取种子名称，请手动输入,种子地址{url}")
+            filename= input(f"无法读取种子名称，请手动输入,种子地址{url}\n请在此输入正确的种子名称：")
         print(f"成功读取文件名称 {filename}")
 
         #副标题
@@ -88,7 +88,7 @@ def getmediainfo(yamlinfo):
             for small_descr in texts_sdescr:
                print(f"成功读取副标题名 {small_descr}")
         except IndexError:
-            small_descr = input(f"无法读取副标题名，请手动输入,种子地址{url}")
+            small_descr = input(f"无法读取副标题名，请手动输入,种子地址{url}\n请在此输入正确的副标题名：")
 
 
         #产地&年份
@@ -101,7 +101,7 @@ def getmediainfo(yamlinfo):
                     country = line.split("◎产　　地　")[1]
             print(f"读取产地成功 {country}")
         except IndexError:
-            country= input(f"无法确认产地，请手动输入,文件标题{name}")
+            country= input(f"无法确认产地，请手动输入,文件标题{name}\n请在此输入正确的产地（国家）：")
 
 
         madeyear=''
@@ -111,9 +111,9 @@ def getmediainfo(yamlinfo):
                 madeyear = match.group(1)
                 print(f"读取年份成功 {madeyear}")
             else:
-                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}")
+                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
         except IndexError:
-            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}")
+            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
 
         #标签
         try:
@@ -125,13 +125,13 @@ def getmediainfo(yamlinfo):
                 print("当前尚未适配转载该类型资源，即将跳过本资源")
                 continue
         except IndexError:
-            tags = input(f"无法确认标签，请手动输入,资源链接{url}")
+            tags = input(f"无法确认标签，请手动输入,资源链接{url}\n请在此输入正确的标签：")
 
         #确认完结
         if "complete" in name.lower() and "完结" in tags:
             complete = 1
         elif "complete" in name.lower() and not "完结" in tags:
-            choice = input("标题包含Complete，但资源未勾选完结标签，请手动确认该资源是否完结。输入'1'代表完结，输入'0'代表未完结")
+            choice = input(f'标题包含Complete，但资源未勾选完结标签，请手动确认该资源是否完结\n输入1代表完结，输入0代表未完结: ')
             if choice == '1':
                 complete = 1
             elif choice == '0':
@@ -139,7 +139,7 @@ def getmediainfo(yamlinfo):
             else:
                 print("无效的输入，请重新输入")
         elif not "complete" in name.lower() and "完结" in tags:
-            choice = input("资源已勾选完结标签，但标题不包含Complete，请手动确认该资源是否完结。输入'1'代表完结，输入'0'代表未完结")
+            choice = input(f'资源已勾选完结标签，但标题不包含Complete，请手动确认该资源是否完结\n输入1代表完结，输入0代表未完结: ')
             if choice == '1':
                 complete = 1
                 name = input(f"请在主标题中手动加入Complete,添加位置在季数之后，如 S01 Complete\n当前主标题{name}")
