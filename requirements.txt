@@ -13,3 +13,4 @@ pathlib
 argparse
 typing
 setuptools
+qbittorrent-api

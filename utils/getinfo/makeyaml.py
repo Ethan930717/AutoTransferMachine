@@ -253,7 +253,7 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
     text += f"    downloadpath: /download\n"
     text += f"    enable: 1\n"
     text += f"    collection: 1\n"
-    text += f"    path: /home/media/{filename}\n"
+    text += f"    path: /atm/media/{filename}\n"
     text += f"    uploadname: \"{name}\"\n"
     text += f"    filename: \"{torrent}\"\n"
     text += f"    chinesename: \"{cnname}\"\n"
