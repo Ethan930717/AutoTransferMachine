@@ -1,6 +1,6 @@
-from AutoTransferMachine.utils.para_ctrl.readyaml import readyaml
-from AutoTransferMachine.utils.para_ctrl.readargs import readargs
-from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
+from utils.para_ctrl.readyaml import readyaml
+from utils.para_ctrl.readargs import readargs
+from utils.para_ctrl.readyaml import write_yaml
 
 import os
 from loguru import logger

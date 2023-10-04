@@ -1,5 +1,5 @@
-from AutoTransferMachine.utils.pathinfo.pathinfo import findnum
-from AutoTransferMachine.utils.pathinfo.pathinfo import findeps
+from utils.pathinfo.pathinfo import findnum
+from utils.pathinfo.pathinfo import findeps
 import os
 from loguru import logger
 import time
@@ -7,9 +7,9 @@ import requests
 import re
 import json
 import sys
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.getinfo.info_transfer import getmediainfo
+from utils.img_upload.imgupload import img_upload
+from utils.img_upload.imgupload import img_upload
+from utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
 
 

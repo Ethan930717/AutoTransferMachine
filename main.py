@@ -3,14 +3,14 @@ import os
 import csv
 import fileinput
 import urllib
-from AutoTransferMachine.utils.para_ctrl.para_ctrl import *
-from AutoTransferMachine.utils.site.site import makesites
-from AutoTransferMachine.utils.pathinfo.pathinfo import findpathinfo
-from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.mediafile.mediafile import *
-import AutoTransferMachine.utils.getinfo.torrent_download as td
-from AutoTransferMachine.utils.getinfo.info_transfer import *
+from utils.para_ctrl.para_ctrl import *
+from utils.site.site import makesites
+from utils.pathinfo.pathinfo import findpathinfo
+from utils.seed_machine.seed_machine import start_machine
+from utils.img_upload.imgupload import img_upload
+from utils.mediafile.mediafile import *
+import utils.getinfo.torrent_download as td
+from utils.getinfo.info_transfer import *
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch

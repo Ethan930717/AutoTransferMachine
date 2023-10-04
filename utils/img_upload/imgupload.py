@@ -1,9 +1,9 @@
 import os
 from loguru import logger
-from AutoTransferMachine.utils.img_upload.chevereto import chevereto_api_upload_files,chevereto_cookie_upload_files
-from AutoTransferMachine.utils.img_upload.ptpimg import ptpimg_upload_files
-from AutoTransferMachine.utils.img_upload.smms import smms_upload_files
-from AutoTransferMachine.utils.img_upload.imgbox import imgbox_upload_files
+from utils.img_upload.chevereto import chevereto_api_upload_files,chevereto_cookie_upload_files
+from utils.img_upload.ptpimg import ptpimg_upload_files
+from utils.img_upload.smms import smms_upload_files
+from utils.img_upload.imgbox import imgbox_upload_files
 
 
 def existitem(imgdata,item):

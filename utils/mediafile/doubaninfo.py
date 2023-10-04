@@ -5,8 +5,8 @@ import requests
 import re
 import json
 import sys
-from AutoTransferMachine.utils.mediafile.douban_book import *
-from AutoTransferMachine.utils.mediafile.douban_movie import *
+from utils.mediafile.douban_book import *
+from utils.mediafile.douban_movie import *
 
 def getdoubaninfo(url:str='',cookie:str=''):
     if 'movie.douban.com' in url:
