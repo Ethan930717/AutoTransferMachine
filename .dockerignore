@@ -1,0 +1,7 @@
+.github
+__pycache__
+README.md
+LICENSE
+.dockerignore
+requirements.txt
+dockerfile
