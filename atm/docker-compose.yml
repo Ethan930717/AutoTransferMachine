@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  atm:
+    image: hudan717/atm
+    volumes:
+      - ./:/atm #./修改为atm文件夹目录,如果compose文件就在该路径下，则不用更改
+      - /home/media:/media #/home/media修改为你的视频文件所在路径
+    stdin_open: true
+    tty: true
