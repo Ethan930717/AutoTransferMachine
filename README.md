@@ -25,6 +25,8 @@
      * 下载以后，自行修改compose中的媒体映射路径
      * 在compose所在路径下，启动容器 `docker-compose run atm`
      * :star:请注意，要用 `docker-compose run` 不能用 `docker-compose up`
+     * 容器启动后会自动进入内部的/app路径，输入./a即可开启脚本
+   
        ## :warning:使用说明
        * 目录结构
 
@@ -38,6 +40,15 @@
        ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
        │
        └─torrent_path    //种子存放目录
+
+* 使用建议
+     * 容器的运行建议跑在screen下，以下给出最基本的screen操作流程
+     `sudo apt-get install screen` 安装screen
+      `screen -R atm` 创建一个名为atm的screen(screen可以理解成windows的分屏)
+     * 在atm分屏中开启脚本后，你可以通过ctrl+a+d退出atm的screen，回到ssh主界面进行别的操作
+     * 如果要回去看看脚本的工作进度，可以使用`screen -r atm` 或者 `screen -D -r atm`指令切换回screen
+     * 脚本运行过程中，你可以通过`ctrl+z`随时暂停脚本,同时在暂停状态下，你也可以通过输入`fg`让脚本继续工作
+
 
 * 工作逻辑
 
