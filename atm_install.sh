@@ -22,7 +22,7 @@ sudo mv $dir atm
 cd atm
 curl -o "atm.zip" https://pan.dahu.fun/d/file/atm.zip?sign=yjLNnG5S4oD21ZIIC-0y02CFZSRq5TJAccdhRtfKVeQ=:0
 sudo apt install unzip
-unzip "atm.zip" -d "$atm"
+unzip "atm.zip" 
 echo "atm配置文件加载成功，您的视频文件夹路径前级已变更为atm"
 docker-compose run atm
 
