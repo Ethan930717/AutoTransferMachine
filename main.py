@@ -1,8 +1,6 @@
-from loguru import logger
+import re
+import sys
 import os
-import csv
-import fileinput
-import urllib
 from utils.para_ctrl.para_ctrl import *
 from utils.site.site import makesites
 from utils.pathinfo.pathinfo import findpathinfo
@@ -18,7 +16,6 @@ def main():
     os.system('clear')
     logger.info("AutoTransferMachine启动\n")
     yamlinfo=read_para()
-    #设置路径，如果有下载文件都下载到screenshot_path
     os.chdir(yamlinfo['basic']['screenshot_path'])
     if 'basic' in yamlinfo and 'log' in yamlinfo['basic'] and yamlinfo['basic']['log']!=None:
         log = yamlinfo['basic']['log']
