@@ -50,7 +50,7 @@ def read_para():
         logger.error('模式选择有误，请重试')
         raise ValueError('模式选择有误，请重试')
 
-    if args.upload:
+    if modechoice == "1":
         if not 'path info' in au_data or len(au_data['path info'])==0:
             logger.error('参数输入错误，发布资源请至少输入一个本地文件地址')
             raise ValueError ('参数输入错误，发布资源请至少输入一个本地文件地址')
