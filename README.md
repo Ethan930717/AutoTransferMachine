@@ -20,22 +20,24 @@
 2. #### 拉取镜像 :star:
      * `docker pull hudan717/atm`
 
-3. #### 加载ATM配置文档 :star:
-     * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm_install.sh)`
+3. #### 加载ATM配置文档及启动 :star:
+     * 把atm文件夹下载到你的机器中的任意位置，里面分别有三个子文件夹，里面各有一个占位的空文件，下载以后可以删除也可以不用理会
+     * 下载以后，自行修改compose中的媒体映射路径
+     * 在compose所在路径下，启动容器 `docker-compose run atm`
+     * :star:请注意，要用 `docker-compose run` 不能用 `docker-compose up`
+       ## :warning:使用说明
+       * 目录结构
 
-## :warning:使用说明
-   * 目录结构
-
-    atm
-    │ docker-compose.yml //compose文档
-    │
-    │ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
-    │  
-    ├─record_path     //日志存放目录
-    │
-    ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
-    │
-    └─torrent_path    //种子存放目录
+       atm
+       │ docker-compose.yml //compose文档
+       │
+       │ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
+       │  
+       ├─record_path     //日志存放目录
+       │
+       ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
+       │
+       └─torrent_path    //种子存放目录
 
 * 工作逻辑
 
