@@ -29,18 +29,17 @@
    
   ## :warning:使用说明
   * 目录结构
-atm
-│
-│
-│ docker-compose.yml //compose文档
-│
-│ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
-│  
-├─record_path     //日志存放目录
-│
-├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
-│
-└─torrent_path    //种子存放目录
+                    atm
+                    │
+                    │ docker-compose.yml //compose文档
+                    │
+                    │ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
+                    │  
+                    ├─record_path     //日志存放目录
+                    │
+                    ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
+                    │
+                    └─torrent_path    //种子存放目录
 
 * 使用建议
      * 容器的运行建议跑在screen下，以下给出最基本的screen操作流程
