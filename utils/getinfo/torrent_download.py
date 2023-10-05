@@ -38,14 +38,12 @@ def get_torrent(yamlinfo):
     ws = wb.active
     row = 2
     ws.title = f"{sitename}_torrents"
-    pagenum = input('请输入本次需要爬取几页种子: ')
-    while True:
-        if int(pagenum)  > 0:  # 如果输入是正整数
+    try:
+        pagenum = int(input('请输入本次需要爬取几页种子: '))
+        if pagenum > 0:  # 如果输入是正整数
             print(f"您选择了爬取{pagenum}页种子")
-            break
-        else:
-            print(f'您输入的数字不合理，请重新输入！\n请输入正确的页数: ')
-            continue
+    except ValueError:
+        print('输入错误，请输入一个整数。')
     outtag = input(
         f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR\n请输入排除项:")
     tags = []
