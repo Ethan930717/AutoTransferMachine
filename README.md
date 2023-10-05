@@ -12,26 +12,15 @@
 * 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
 
 ## :warning:安装说明
-1. #### 安装PYTHON环境，已安装可跳过
-   * 更新源 :star:
-     * `sudo apt update && sudo apt upgrade`
-   *    安装依赖 :star:
-         * `sudo apt install -y pip wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
-   * 下载安装包 :star:
-     * `wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz`
-   * 解压并编译 :star:
-     * `tar xzf Python-3.9.0.tgz` 
-     *    `cd Python-3.9.0` 
-       * `./configure --enable-optimizations` 
-       * `sudo su`
-       * `make altinstall`
-   * 测试 :star:
-     * `sudo python3 -m pip install --upgrade pip`
-   * 删除安装包（如有需要） :star:
-     * `sudo rm -rf /home/Python-3.9.0` 
-     * `sudo rm /home/Python-3.9.0.tgz`
+1. #### 安装Docker以及Docker-compose环境 :star:
+     * `curl -fsSL https://get.docker.com -o get-docker.sh`
+     * `sudo sh get-docker.sh`
+     * `sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
-2. #### 安装ATM
+2. #### 拉取镜像 :star:
+     * `docker pull hudan717/atm`
+
+3. #### 编辑ATM配置文档 :star:
    * 安装ATM依赖 :star:
      * `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
    * 安装ATM本体:star:
@@ -39,13 +28,12 @@
    * 设置ATM配置信息 :star:
      * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
 
-#### :crayon:3.如果你看到了指令说明界面，则工具已安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
- <img src="https://img.pterclub.com/images/2023/09/29/1.png" />
 
 ## :warning:使用说明
    * 目录结构
 
     atm
+    │ docker-compose.yml //compose文档
     │
     │ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
     │  
@@ -61,16 +49,8 @@
 
          :writing_hand:2.通过第一步获取的资源链接，批量生成转载信息，自动生成模板写入yaml的path info中
 
-         :arrow_heading_up:3.通过第二步生成的模板，实现资源转发
+         :arrow_heading_up:3.通过第二步生成的模板，实现资源转发（若本地已有资源，可自行编辑yaml直接进行转发）
 
-* 运行指令(yaml自行更改)    
-    * 批量获取资源信息`atm -yp "/atm/au.yaml" -dl`
-    * 模板转换`atm -yp "/atm/au.yaml" -tr`
-    * 转种模式`atm -yp "/atm/au.yaml" -u`
-    * 生成豆瓣PTGEN`atm -yp "/atm/au.yaml" -di -du '豆瓣链接'`
-    * 截图并上传图床`atm -yp "/atm/au.yaml" -mi -mf '视频路径' -ih 图床名称 -iform 图片格式(bbcode或img) -in 截图数量`
-    * 链接转图床`atm -yp "/atm/au.yaml" -iu //适用性较低，为简化模板已暂时关闭本功能` 
-    * 簽到模式`atm -yp "/atm/au.yaml" -s //待更新` 
 
 ## :warning:已适配转出站点
 
