@@ -6,5 +6,6 @@ RUN pip install -r requirement.txt
 COPY . .
 RUN mkdir -p /atm
 RUN mkdir -p /media
-ENTRYPOINT ["python3", "main.py", "-yp", "/atm/au.yaml"]
+RUN chmod a+x a
+ENTRYPOINT "/bin/bash -c"
 
