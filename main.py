@@ -14,7 +14,7 @@ from doubaninfo.doubaninfo import getdoubaninfo
 @logger.catch
 def main():
     os.system('clear')
-    logger.info(f'欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858\n脚本运行过程中，可使用ctrl+c退出')
+    logger.info(f'欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858')
     yamlinfo=read_para()
     os.chdir(yamlinfo['basic']['screenshot_path'])
     if 'basic' in yamlinfo and 'log' in yamlinfo['basic'] and yamlinfo['basic']['log']!=None:

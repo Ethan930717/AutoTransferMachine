@@ -13,7 +13,7 @@ def choose_function():
     print("3. 拉种模式")
     print("4. pathinfo模板转换")
     print("5. 自动截图并上传图床")
-    print("0. 退出程序")
+    print("脚本运行过程中，可使用ctrl+c退出")
     modechoice = input("请输入你的选择：")
     return modechoice
 
