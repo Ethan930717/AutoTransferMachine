@@ -15,14 +15,14 @@ echo "输入地址有误，请重新输入！"
 fi
 done
 parent=$(dirname "$dir")
-cd $parent
-mkdir -p "atm"
+atm="$parent/atm"
+sudo mkdir -p "$atm"
 echo "创建atm文件夹成功"
 sudo mv $dir atm
-cd atm
-curl -o "atm.zip" https://pan.dahu.fun/d/file/atm.zip?sign=yjLNnG5S4oD21ZIIC-0y02CFZSRq5TJAccdhRtfKVeQ=:0
+cd $atm
+curl -o "$atm.zip" https://pan.dahu.fun/d/file/atm.zip?sign=yjLNnG5S4oD21ZIIC-0y02CFZSRq5TJAccdhRtfKVeQ=:0
 sudo apt install unzip
-unzip "atm.zip" 
+unzip "atm.zip"
 echo "atm配置文件加载成功，您的视频文件夹路径前级已变更为atm"
 docker-compose run atm
 
