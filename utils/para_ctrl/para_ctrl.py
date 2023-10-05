@@ -39,13 +39,13 @@ def read_para():
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
     if modechoice == "1":
-        au_data['mod']=='upload'
+        au_data['mod']='upload'
     elif modechoice == "2":
-        au_data['mod']=='sign'
+        au_data['mod']='sign'
     elif modechoice == "3":
-        au_data['mod']=='download'
+        au_data['mod']='download'
     elif modechoice == "4":
-        au_data['mod']=='transinfo'
+        au_data['mod']='transinfo'
     else:
         logger.error('模式选择有误，请重试')
         raise ValueError('模式选择有误，请重试')
