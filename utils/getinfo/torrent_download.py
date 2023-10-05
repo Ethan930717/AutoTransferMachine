@@ -40,7 +40,7 @@ def get_torrent(yamlinfo):
     ws.title = f"{sitename}_torrents"
     pagenum = input('请输入本次需要爬取几页种子: ')
     while True:
-        if pagenum > 0:  # 如果输入是正整数
+        if int(pagenum)  > 0:  # 如果输入是正整数
             print(f"您选择了爬取{pagenum}页种子")
             break
         else:
