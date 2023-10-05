@@ -20,14 +20,8 @@
 2. #### 拉取镜像 :star:
      * `docker pull hudan717/atm`
 
-3. #### 编辑ATM配置文档 :star:
-   * 安装ATM依赖 :star:
-     * `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
-   * 安装ATM本体:star:
-     * `pip install AutoTransferMachine`
-   * 设置ATM配置信息 :star:
-     * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
-
+3. #### 加载ATM配置文档 :star:
+     * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm_install.sh)`
 
 ## :warning:使用说明
    * 目录结构
