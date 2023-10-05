@@ -5,5 +5,5 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
 RUN mkdir -p /atm
-ENTRYPOINT ["python3", "main.py", "-yp", "/atm/au.yaml"]
+RUN mkdir -p /media
 
