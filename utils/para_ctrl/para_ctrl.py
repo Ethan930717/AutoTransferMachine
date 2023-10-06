@@ -8,12 +8,12 @@ import csv
 import urllib
 def choose_function():
     print("请选择你想要执行的功能：")
-    print("1. 自动转种模式")
-    print(f"1. 发种模式(适用于发布自己的资源，而不是转发其他资源)")
-    print("2. 签到模式")
-    print("3. 拉种模式")
-    print("4. pathinfo模板转换")
-    print("5. 自动截图并上传图床")
+    print(f"1. 自动转种模式(从本地抓取种子上传）")
+    print(f"2. 发种模式(适用于发布自己的资源，自动制种，而不是转发其他资源)")
+    print("3. 签到模式")
+    print("4. 拉种模式")
+    print("5. pathinfo模板转换")
+    print("6. 自动截图并上传图床")
     print("脚本运行过程中，可使用ctrl+c退出")
     modechoice = input("请输入你的选择：")
     return modechoice

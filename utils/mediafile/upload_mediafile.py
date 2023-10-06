@@ -1424,38 +1424,34 @@ def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
         self.sublan = '[' + self.pathinfo.txt_info + ']'
     if self.pathinfo.audio_info != '':
         self.language = self.pathinfo.audio_info
-
-
-        self.uploadname = str(self.englishname) + ' ' + str(self.year)
-        self.small_descr = self.chinesename.strip()
-
-        medianame = self.uploadname
-        if self.pathinfo.type == 'anime' or self.pathinfo.type == 'tv' or self.pathinfo.type == 'doc':
-            self.uploadname = self.uploadname + ' ' + self.season
-            # if int(self.seasonnum)>1:
-            # self.small_descr=self.small_descr+' | '+self.season_ch.strip()
-            medianame = self.uploadname
-            if not self.isdir:
+    self.uploadname = str(self.englishname) + ' ' + str(self.year)
+    self.small_descr = self.chinesename.strip()
+    self.uploadname = self.uploadname
+    if self.pathinfo.type == 'anime' or self.pathinfo.type == 'tv' or self.pathinfo.type == 'doc':
+        self.uploadname = self.uploadname + ' ' + self.season
+        # if int(self.seasonnum)>1:
+        # self.small_descr=self.small_descr+' | '+self.season_ch.strip()
+        if not self.isdir:
+            self.uploadname = self.uploadname + 'E' + self.episodename
+            self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
+        elif self.pathinfo.collection == 2:
+            eps_temp = findeps([self.mediapath])
+            eps_temp.sort()
+            if len(eps_temp) > 1:
+                self.uploadname = self.uploadname + 'E' + str(eps_temp[0]).zfill(2) + '-E' + str(eps_temp[-1]).zfill(2)
+                self.small_descr = self.small_descr + ' | 第' + str(eps_temp[0]).zfill(2) + '-' + str(eps_temp[-1]).zfill(
+                    2) + '集'
+            else:
                 self.uploadname = self.uploadname + 'E' + self.episodename
                 self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
-            elif self.pathinfo.collection == 2:
-                eps_temp = findeps([self.mediapath])
-                eps_temp.sort()
-                if len(eps_temp) > 1:
-                    self.uploadname = self.uploadname + 'E' + str(eps_temp[0]).zfill(2) + '-E' + str(eps_temp[-1]).zfill(2)
-                    self.small_descr = self.small_descr + ' | 第' + str(eps_temp[0]).zfill(2) + '-' + str(eps_temp[-1]).zfill(
-                        2) + '集'
-                else:
-                    self.uploadname = self.uploadname + 'E' + self.episodename
-                    self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
-            elif self.complete == 1:
-                self.uploadname = self.uploadname
-                self.small_descr = self.small_descr + ' | 全 ' + str(self.pathinfo.max) + ' 集'
-            else:
-                self.uploadname = self.uploadname + 'E' + str(self.pathinfo.min).zfill(2) + '-E' + str(self.pathinfo.max).zfill(
-                    2)
-                self.small_descr = self.small_descr + ' | 第' + str(self.pathinfo.min).zfill(2) + '-' + str(
-                    self.pathinfo.max).zfill(2) + '集'
+        elif self.complete == 1:
+            self.uploadname = self.uploadname
+            self.small_descr = self.small_descr + ' | 全 ' + str(self.pathinfo.max) + ' 集'
+        else:
+            self.uploadname = self.uploadname + 'E' + str(self.pathinfo.min).zfill(2) + '-E' + str(self.pathinfo.max).zfill(
+                2)
+            self.small_descr = self.small_descr + ' | 第' + str(self.pathinfo.min).zfill(2) + '-' + str(
+                self.pathinfo.max).zfill(2) + '集'
 
         if self.douban_dict['directors']:
             self.small_descr = self.small_descr + ' | 导演: ' + self.douban_dict['directors'][0]['name'].strip()
@@ -1467,18 +1463,18 @@ def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
             for i in range(min(len(self.douban_dict['actors']) - 1, 4)):
                 self.small_descr = self.small_descr + ' / ' + self.douban_dict['actors'][i + 1]['name'].strip()
 
-        medianame = medianame + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + '-' + self.sub
-        while '  ' in medianame:
-            medianame = medianame.replace('  ', ' ')
-        medianame = medianame.replace(' ', '.')
+        self.uploadname = self.uploadname + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + '-' + self.sub
+        while '  ' in self.uploadname:
+            self.uploadname = self.uploadname.replace('  ', ' ')
+        self.uploadname = self.uploadname.replace(' ', '.')
 
         if 'new_folder' in self.basic and self.basic['new_folder'] == 1:
             if self.pathinfo.zeroday_name != '':
                 self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
             else:
-                self.topath = os.path.join(self.pathinfo.path, medianame)
-                self.pathinfo.zeroday_name = medianame
-                self.pathinfo.infodict['zeroday_name'] = medianame
+                self.topath = os.path.join(self.pathinfo.path, self.uploadname)
+                self.pathinfo.zeroday_name = self.uploadname
+                self.pathinfo.infodict['zeroday_name'] = self.uploadname
         elif 'new_folder' in self.basic and self.basic['new_folder'] == 2:
             if self.pathinfo.zeroday_name != '':
                 self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
@@ -1487,9 +1483,9 @@ def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
                 while '  ' in tempchinesename:
                     tempchinesename = tempchinesename.replace('  ', ' ')
                 tempchinesename = tempchinesename.replace(' ', '.')
-                self.topath = os.path.join(self.pathinfo.path, tempchinesename + '.' + medianame)
-                self.pathinfo.infodict['zeroday_name'] = tempchinesename + '.' + medianame
-                self.pathinfo.zeroday_name = tempchinesename + '.' + medianame
+                self.topath = os.path.join(self.pathinfo.path, tempchinesename + '.' + self.uploadname)
+                self.pathinfo.infodict['zeroday_name'] = tempchinesename + '.' + self.uploadname
+                self.pathinfo.zeroday_name = tempchinesename + '.' + self.uploadname
                 del (tempchinesename)
         else:
             self.topath = self.mediapath
@@ -1539,11 +1535,8 @@ def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
             self.complete = 0
         self.getinfo_done = 1
 
-
-        def print(self):
-            self.getfullinfo()
-            attr = ['uploadname', 'small_descr', 'content', 'rating', 'douban_atm']
-            for item in attr:
-                exec('print("' + item + ':"  ,self.' + item + '  )')
-
-
+    def print(self):
+        self.getfullinfo()
+        attr = ['uploadname', 'small_descr', 'content', 'rating']
+        for item in attr:
+            exec('print("' + item + ':"  ,self.' + item + '  )')
