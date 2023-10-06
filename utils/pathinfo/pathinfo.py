@@ -196,7 +196,7 @@ class pathinfo(object):
                 exec('self.exist_'+item+'=True')
 
         #可有可无的属性,后面不写入配置文件
-        attr_disp=['upload_name','video_type','video_format','audio_format','year','zeroday_name','exinfo','seasonnum','imdb_url','bgm_url','anidb_url','transfer','txt_info','audio_info','from_url','contenttail','contenthead','screenshot','small_descr','source','tags','medium','tmdb_id','imdb_id','tmdb_name',"filename"]
+        attr_disp=['uploadname','video_type','video_format','audio_format','year','zeroday_name','exinfo','seasonnum','imdb_url','bgm_url','anidb_url','transfer','txt_info','audio_info','from_url','contenttail','contenthead','screenshot','small_descr','source','tags','medium','tmdb_id','imdb_id','tmdb_name',"filename"]
         for item in attr_disp:
             if not item in infodict or infodict[item]==None:
                 exec('self.'+item+'=""')
