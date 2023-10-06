@@ -167,12 +167,12 @@ def seedmachine_single(pathinfo,sites,pathyaml,basic,qbinfo,imgdata,hashlist):
                 errornum=errornum+1
                 log_error=log_error+str(errornum)+':\t'+siteitem.sitename+'   \t'+logstr+'\n'
                 logger.warning(logstr)
-                errorsite=errorsite+siteitem.sitename+'\n'            
+                errorsite=errorsite+siteitem.sitename+logstr+'\n'
             elif '已存在' in  logstr:
                 errornum=errornum+1
                 log_error=log_error+str(errornum)+':\t'+siteitem.sitename+'   \t'+logstr+'\n'
                 logger.warning(logstr)
-                errorsite=errorsite+siteitem.sitename+'\n'                
+                errorsite=errorsite+siteitem.sitename+logstr+'\n'
                 #记录已发布的种子
                 exec('pathinfo.'+siteitem.sitename+'_done.append(pathep)')
                 exec('pathinfo.'+siteitem.sitename+'_done.sort()')
@@ -276,12 +276,12 @@ def seedmachine(pathinfo,sites,pathyaml,basic,qbinfo,imgdata,hashlist):
             errornum=errornum+1
             log_error=log_error+str(errornum)+':\t'+siteitem.sitename+'  \t'+logstr+'\n'
             logger.warning(logstr)
-            errorsite=errorsite+siteitem.sitename+'\n'
+            errorsite=errorsite+siteitem.sitename+logstr+'\n'
         elif '已存在' in  logstr:
             errornum=errornum+1
             log_error=log_error+str(errornum)+':\t'+siteitem.sitename+'   \t'+logstr+'\n'
             logger.warning(logstr)
-            errorsite=errorsite+siteitem.sitename+'\n'            
+            errorsite=errorsite+siteitem.sitename+logstr+'\n'
             #记录已发布的种子
             if not 'movie' in pathinfo.type.lower():
                 for epitem in pathinfo.eps:
