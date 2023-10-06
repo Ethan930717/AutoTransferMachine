@@ -5,6 +5,7 @@ from utils.para_ctrl.para_ctrl import *
 from utils.site.site import makesites
 from utils.pathinfo.pathinfo import findpathinfo
 from utils.seed_machine.seed_machine import start_machine
+from utils.seedupload_machine.seedupload_machine import startupload_machine
 from utils.img_upload.imgupload import img_upload
 from utils.mediafile.mediafile import *
 import utils.getinfo.torrent_download as td
@@ -29,7 +30,19 @@ def main():
         logger.info('成功上传图床')
         print(res)
 
-    if yamlinfo['mod']=='upload':
+    if yamlinfo['mod'] == 'upload':
+        sites = makesites(yamlinfo['site info'])
+        # for item in sites:
+        #    sites[item].print()
+
+        pathlist = findpathinfo(yamlinfo, sites)
+        # for item in pathlist:
+        #    item.print()
+
+        startupload_machine(pathlist, sites, yamlinfo)
+        write_yaml(yamlinfo)
+
+    if yamlinfo['mod']=='transfer':
         torrentaddress = yamlinfo['basic']['torrent_path']
         sites=makesites(yamlinfo['site info'])
         #for item in sites:

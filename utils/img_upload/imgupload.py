@@ -24,7 +24,7 @@ def createimgdict(imgdata):
         imgdict['smms']=True
     if existitem(imgdata,'pter')  and existitem(imgdata['pter'],'url') and existitem(imgdata['pter'],'cookie') :
         imgdict['pter']=True
-    if existitem(imgdata,'dahu')  and existitem(imgdata['dahu'],'url') and existitem(imgdata['dahu'],'cookie') :
+    if existitem(imgdata,'kimoji')  and existitem(imgdata['kimoji'],'url') and existitem(imgdata['kimoji'],'cookie') :
         imgdict['dahu']=True
     if existitem(imgdata,'freeimage')  and existitem(imgdata['freeimage'],'url') and existitem(imgdata['freeimage'],'cookie') :
         imgdict['freeimage']=True
@@ -88,8 +88,8 @@ def img_upload(imgdata,imglist:list[str],host:str='',form:str='img',fail:bool=Fa
             logger.warning('图床'+host+'配置信息缺失')
         if res=='':
             success=False
-    elif 'dahu' in host.lower():
-        host='dahu'
+    elif 'kimoji' in host.lower():
+        host='kimoji'
         logger.info('正在尝试使用'+host+'上传图片,请稍等...')
         if imgdict[host]==True:
             res=chevereto_cookie_upload_files(imgpaths=imglist,url=imgdata[host]['url'].strip('/'), cookie=imgdata[host]['cookie'], form=form)

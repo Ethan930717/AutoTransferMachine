@@ -9,6 +9,7 @@ import urllib
 def choose_function():
     print("请选择你想要执行的功能：")
     print("1. 自动转种模式")
+    print(f"1. 发种模式(适用于发布自己的资源，而不是转发其他资源)")
     print("2. 签到模式")
     print("3. 拉种模式")
     print("4. pathinfo模板转换")
@@ -39,12 +40,14 @@ def read_para():
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
     if modechoice == "1":
-        au_data['mod']='upload'
+        au_data['mod']='transfer'
     elif modechoice == "2":
-        au_data['mod']='sign'
+        au_data['mod']='upload'
     elif modechoice == "3":
-        au_data['mod']='download'
+        au_data['mod']='sign'
     elif modechoice == "4":
+        au_data['mod']='download'
+    elif modechoice == "5":
         au_data['mod']='transinfo'
     else:
         logger.error('模式选择有误，请重试')
