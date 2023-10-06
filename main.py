@@ -8,6 +8,7 @@ from utils.seed_machine.seed_machine import start_machine
 from utils.seedupload_machine.seedupload_machine import startupload_machine
 from utils.img_upload.imgupload import img_upload
 from utils.mediafile.mediafile import *
+from utils.mediafile.upload_mediafile import *
 import utils.getinfo.torrent_download as td
 from utils.getinfo.info_transfer import *
 from doubaninfo.doubaninfo import getdoubaninfo

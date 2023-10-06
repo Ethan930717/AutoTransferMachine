@@ -2,7 +2,7 @@ from loguru import logger
 from utils.para_ctrl.readyaml import write_yaml
 import os
 from utils.pathinfo.pathinfo import findnum
-from utils.mediafile.mediafile import mediafile
+from utils.mediafile.upload_mediafile import mediafile
 from utils.uploader.auto_upload import auto_upload
 from shutil import move
 from qbittorrentapi import Client
@@ -61,7 +61,7 @@ def start_hash(qbinfo, hashlist):
             logger.warning('开始种子发生错误,错误信息: %s' % (r))
 
 
-def seeduploadmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
+def seedmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
     '''
     para:
         pathinfo
@@ -206,7 +206,7 @@ def seeduploadmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, 
 
 
 # 发布剩余合集
-def seeduploadmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
+def seedmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
     # 把没发布的集数转移到新建文件夹内
     log_error = ''
     log_succ = ''
@@ -349,7 +349,7 @@ def seeduploadmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, ha
 
 
 # 发布合集
-def seeduploadmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
+def seedmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
     '''
     para:
         pathinfo
@@ -470,13 +470,13 @@ def startupload_machine(pathlist, sites, yamlinfo):
             logger.info('路径' + path.path + '的enable被设置为0，已忽略')
             continue
         if (path.type == 'anime' or path.type == 'tv' or path.type == 'doc') and path.collection == 0:
-            log_error, log_succ = seeduploadmachine_single(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
+            log_error, log_succ = seedmachine_single(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
                                                      yamlinfo['qbinfo'], yamlinfo['image hosting'], hashlist)
         elif (path.type == 'anime' or path.type == 'tv' or path.type == 'doc') and path.collection == 2:
-            log_error, log_succ = seeduploadmachine_rest(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
+            log_error, log_succ = seedmachine_rest(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
                                                    yamlinfo['qbinfo'], yamlinfo['image hosting'], hashlist)
         else:
-            log_error, log_succ = seeduploadmachine(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
+            log_error, log_succ = seedmachine(path, sites, yamlinfo['path info'][path.pathid], yamlinfo['basic'],
                                               yamlinfo['qbinfo'], yamlinfo['image hosting'], hashlist)
         write_yaml(yamlinfo)
         if not log_succ == '':

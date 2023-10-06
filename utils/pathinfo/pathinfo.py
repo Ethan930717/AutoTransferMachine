@@ -165,7 +165,6 @@ class pathinfo(object):
                 self.min=10000
                 self.max=-1000
 
-
     def __init__(self,pathid,infodict,sites,basic):
         self.pathid=pathid
         self.sites=[]
@@ -174,7 +173,7 @@ class pathinfo(object):
         self.max=1
         self.min=1
         #必须有的属性
-        attr_must=['path','chinesename','englishname','sub','uploadname']
+        attr_must=['path','chinesename','englishname','sub']
         for item in attr_must:
             if not item in infodict or infodict[item]==None:
                 logger.error('未识别'+pathid+' 中的'+item+'信息')

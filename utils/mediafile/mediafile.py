@@ -8,7 +8,6 @@ import re
 import json
 import sys
 from utils.img_upload.imgupload import img_upload
-from utils.img_upload.imgupload import img_upload
 from utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
 
