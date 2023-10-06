@@ -18,10 +18,8 @@ def audience_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     #选择类型
     if 'anime' in file1.pathinfo.type.lower() and '完结' in file1.pathinfo.tags:
         select_type='402'
-        tags.append('dh')
     elif 'anime' in file1.pathinfo.type.lower():
         select_type='401'
-        tags.append('dh')
     elif 'show' in file1.pathinfo.type.lower():
         select_type='403'                 
     elif 'tv' in file1.pathinfo.type.lower():
@@ -172,14 +170,17 @@ def audience_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     else:
         team_sel='5'
     logger.info('制作组已成功选择为'+file1.sub)
-    
+
+
+    tags=list(set(tags))
+    if 'anime' in file1.pathinfo.type.lower():
+        tags.append('dh')
     if '国' in file1.language or '中' in file1.language or '国语' in file1.pathinfo.tags:
         tags.append('gy')
     if '简' in file1.sublan or '繁' in file1.sublan or '中' in file1.sublan or '中字' in file1.pathinfo.tags:
         tags.append('zz')
     if file1.transfer==0:
         tags.append('yc')
-
     if '完结' in file1.pathinfo.tags :
         tags.append('wj')
     if '杜比' in file1.pathinfo.tags or 'DOLBY' in file1.pathinfo.tags or 'Dolby' in file1.pathinfo.tags:
@@ -190,8 +191,6 @@ def audience_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         tags.append('hdrm')
     elif 'HDR10' in file1.pathinfo.tags:
         tags.append('hdr10')             
-    
-    tags=list(set(tags))
     tags.sort()
     
     if siteinfo.uplver==1:
