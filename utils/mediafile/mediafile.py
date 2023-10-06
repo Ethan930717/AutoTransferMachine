@@ -1032,53 +1032,53 @@ class mediafile(object):
         if not found:
             logger.info(f"没有找到同名种子文件，请手动确认,以下为当前文件夹下的所有文件{file_path}")
 
-def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
-    if self.getinfo_done==1:
-        return
+    def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
+        if self.getinfo_done==1:
+            return
 
-    trytime=0
-    while not self.getptgen_done==1:
-        logger.info('正在获取豆瓣信息...')
-        trytime += 1
-        if trytime>10:
-            logger.error('获取豆瓣信息失败')
-            raise Exception('获取豆瓣信息失败')
-        self.get_douban()
-        '''
-        if self.getptgen_done<1:
-            self.getptgen_douban_info()
-        if self.getptgen_done<1:
-            self.getdoubaninfo()
-        '''
-        if self.getptgen_done<1:
-            time.sleep(3)
+        trytime=0
+        while not self.getptgen_done==1:
+            logger.info('正在获取豆瓣信息...')
+            trytime += 1
+            if trytime>10:
+                logger.error('获取豆瓣信息失败')
+                raise Exception('获取豆瓣信息失败')
+            self.get_douban()
+            '''
+            if self.getptgen_done<1:
+                self.getptgen_douban_info()
+            if self.getptgen_done<1:
+                self.getdoubaninfo()
+            '''
+            if self.getptgen_done<1:
+                time.sleep(3)
 
-    self.getmediainfo()
+        self.getmediainfo()
 
-    if self.pathinfo.year!='':
-        self.year=self.pathinfo.year
-    if self.pathinfo.video_type!='':
-        self.type=self.pathinfo.video_type
-    if self.pathinfo.video_format!='':
-        self.Video_Format=self.pathinfo.video_format
-    if self.pathinfo.audio_format!='':
-        self.Audio_Format=self.pathinfo.audio_format
-    if self.pathinfo.txt_info!='':
-        self.sublan='['+self.pathinfo.txt_info+']'
-    if self.pathinfo.audio_info!='':
-        self.language=self.pathinfo.audio_info
-    self.uploadname=self.pathinfo.uploadname #确定主标题
-    self.small_descr=self.pathinfo.small_descr #确定副标题
-    self.getimgurl()
-    if self.pathinfo.screenshot!='':
-        self.screenshoturl=self.pathinfo.screenshot+'\n'+self.screenshoturl
-    self.content=self.douban_info+"\n[quote=Mediainfo]\n"+self.mediainfo+"[/quote]\n"+self.screenshoturl
-    if self.pathinfo.contenthead!='':
-        self.content= self.pathinfo.contenthead+self.content #简介礼节
-    if self.pathinfo.contenttail!='':
-        self.content= self.content+self.pathinfo.contenttail #简介末尾
-    self.find_torrentfile()
-    self.getinfo_done=1 #信息收集完成
+        if self.pathinfo.year!='':
+            self.year=self.pathinfo.year
+        if self.pathinfo.video_type!='':
+            self.type=self.pathinfo.video_type
+        if self.pathinfo.video_format!='':
+            self.Video_Format=self.pathinfo.video_format
+        if self.pathinfo.audio_format!='':
+            self.Audio_Format=self.pathinfo.audio_format
+        if self.pathinfo.txt_info!='':
+            self.sublan='['+self.pathinfo.txt_info+']'
+        if self.pathinfo.audio_info!='':
+            self.language=self.pathinfo.audio_info
+        self.uploadname=self.pathinfo.uploadname #确定主标题
+        self.small_descr=self.pathinfo.small_descr #确定副标题
+        self.getimgurl()
+        if self.pathinfo.screenshot!='':
+            self.screenshoturl=self.pathinfo.screenshot+'\n'+self.screenshoturl
+        self.content=self.douban_info+"\n[quote=Mediainfo]\n"+self.mediainfo+"[/quote]\n"+self.screenshoturl
+        if self.pathinfo.contenthead!='':
+            self.content= self.pathinfo.contenthead+self.content #简介礼节
+        if self.pathinfo.contenttail!='':
+            self.content= self.content+self.pathinfo.contenttail #简介末尾
+        self.find_torrentfile()
+        self.getinfo_done=1 #信息收集完成
 
     def print(self):
         self.getfullinfo()

@@ -1389,151 +1389,151 @@ def gettorrent(self, tracker='https://announce.leaguehd.com/announce.php'):
             logger.warning('文件 ' + item + ' 丢失')
 
 
-def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
-    if self.getinfo_done == 1:
-        return
+    def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
+        if self.getinfo_done == 1:
+            return
 
-    trytime = 0
-    while not self.getptgen_done == 1:
-        logger.info('正在获取豆瓣信息...')
-        trytime += 1
-        if trytime > 10:
-            logger.error('获取豆瓣信息失败')
-            raise Exception('获取豆瓣信息失败')
-        self.get_douban()
-        '''
-        if self.getptgen_done<1:
-            self.getptgen_douban_info()
-        if self.getptgen_done<1:
-            self.getdoubaninfo()
-        '''
-        if self.getptgen_done < 1:
-            time.sleep(3)
+        trytime = 0
+        while not self.getptgen_done == 1:
+            logger.info('正在获取豆瓣信息...')
+            trytime += 1
+            if trytime > 10:
+                logger.error('获取豆瓣信息失败')
+                raise Exception('获取豆瓣信息失败')
+            self.get_douban()
+            '''
+            if self.getptgen_done<1:
+                self.getptgen_douban_info()
+            if self.getptgen_done<1:
+                self.getdoubaninfo()
+            '''
+            if self.getptgen_done < 1:
+                time.sleep(3)
 
-    self.getmediainfo()
+        self.getmediainfo()
 
-    if self.pathinfo.year != '':
-        self.year = self.pathinfo.year
-    if self.pathinfo.video_type != '':
-        self.type = self.pathinfo.video_type
-    if self.pathinfo.video_format != '':
-        self.Video_Format = self.pathinfo.video_format
-    if self.pathinfo.audio_format != '':
-        self.Audio_Format = self.pathinfo.audio_format
-    if self.pathinfo.txt_info != '':
-        self.sublan = '[' + self.pathinfo.txt_info + ']'
-    if self.pathinfo.audio_info != '':
-        self.language = self.pathinfo.audio_info
-    self.uploadname = str(self.englishname) + ' ' + str(self.year)
-    self.small_descr = self.chinesename.strip()
-    self.uploadname = self.uploadname
-    if self.pathinfo.type == 'anime' or self.pathinfo.type == 'tv' or self.pathinfo.type == 'doc':
-        self.uploadname = self.uploadname + ' ' + self.season
-        # if int(self.seasonnum)>1:
-        # self.small_descr=self.small_descr+' | '+self.season_ch.strip()
-        if not self.isdir:
-            self.uploadname = self.uploadname + 'E' + self.episodename
-            self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
-        elif self.pathinfo.collection == 2:
-            eps_temp = findeps([self.mediapath])
-            eps_temp.sort()
-            if len(eps_temp) > 1:
-                self.uploadname = self.uploadname + 'E' + str(eps_temp[0]).zfill(2) + '-E' + str(eps_temp[-1]).zfill(2)
-                self.small_descr = self.small_descr + ' | 第' + str(eps_temp[0]).zfill(2) + '-' + str(eps_temp[-1]).zfill(
-                    2) + '集'
-            else:
+        if self.pathinfo.year != '':
+            self.year = self.pathinfo.year
+        if self.pathinfo.video_type != '':
+            self.type = self.pathinfo.video_type
+        if self.pathinfo.video_format != '':
+            self.Video_Format = self.pathinfo.video_format
+        if self.pathinfo.audio_format != '':
+            self.Audio_Format = self.pathinfo.audio_format
+        if self.pathinfo.txt_info != '':
+            self.sublan = '[' + self.pathinfo.txt_info + ']'
+        if self.pathinfo.audio_info != '':
+            self.language = self.pathinfo.audio_info
+        self.uploadname = str(self.englishname) + ' ' + str(self.year)
+        self.small_descr = self.chinesename.strip()
+        self.uploadname = self.uploadname
+        if self.pathinfo.type == 'anime' or self.pathinfo.type == 'tv' or self.pathinfo.type == 'doc':
+            self.uploadname = self.uploadname + ' ' + self.season
+            # if int(self.seasonnum)>1:
+            # self.small_descr=self.small_descr+' | '+self.season_ch.strip()
+            if not self.isdir:
                 self.uploadname = self.uploadname + 'E' + self.episodename
                 self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
-        elif self.complete == 1:
-            self.uploadname = self.uploadname
-            self.small_descr = self.small_descr + ' | 全 ' + str(self.pathinfo.max) + ' 集'
-        else:
-            self.uploadname = self.uploadname + 'E' + str(self.pathinfo.min).zfill(2) + '-E' + str(self.pathinfo.max).zfill(
-                2)
-            self.small_descr = self.small_descr + ' | 第' + str(self.pathinfo.min).zfill(2) + '-' + str(
-                self.pathinfo.max).zfill(2) + '集'
-
-        if self.douban_dict['directors']:
-            self.small_descr = self.small_descr + ' | 导演: ' + self.douban_dict['directors'][0]['name'].strip()
-            for i in range(min(len(self.douban_dict['directors']) - 1, 1)):
-                self.small_descr = self.small_descr + ' / ' + self.douban_dict['directors'][i + 1]['name'].strip()
-
-        if self.douban_dict['actors']:
-            self.small_descr = self.small_descr + ' | 主演: ' + self.douban_dict['actors'][0]['name'].strip()
-            for i in range(min(len(self.douban_dict['actors']) - 1, 4)):
-                self.small_descr = self.small_descr + ' / ' + self.douban_dict['actors'][i + 1]['name'].strip()
-
-        self.uploadname = self.uploadname + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + '-' + self.sub
-        while '  ' in self.uploadname:
-            self.uploadname = self.uploadname.replace('  ', ' ')
-        self.uploadname = self.uploadname.replace(' ', '.')
-
-        if 'new_folder' in self.basic and self.basic['new_folder'] == 1:
-            if self.pathinfo.zeroday_name != '':
-                self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
+            elif self.pathinfo.collection == 2:
+                eps_temp = findeps([self.mediapath])
+                eps_temp.sort()
+                if len(eps_temp) > 1:
+                    self.uploadname = self.uploadname + 'E' + str(eps_temp[0]).zfill(2) + '-E' + str(eps_temp[-1]).zfill(2)
+                    self.small_descr = self.small_descr + ' | 第' + str(eps_temp[0]).zfill(2) + '-' + str(eps_temp[-1]).zfill(
+                        2) + '集'
+                else:
+                    self.uploadname = self.uploadname + 'E' + self.episodename
+                    self.small_descr = self.small_descr + ' | 第' + self.episodename + '集'
+            elif self.complete == 1:
+                self.uploadname = self.uploadname
+                self.small_descr = self.small_descr + ' | 全 ' + str(self.pathinfo.max) + ' 集'
             else:
-                self.topath = os.path.join(self.pathinfo.path, self.uploadname)
-                self.pathinfo.zeroday_name = self.uploadname
-                self.pathinfo.infodict['zeroday_name'] = self.uploadname
-        elif 'new_folder' in self.basic and self.basic['new_folder'] == 2:
-            if self.pathinfo.zeroday_name != '':
-                self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
+                self.uploadname = self.uploadname + 'E' + str(self.pathinfo.min).zfill(2) + '-E' + str(self.pathinfo.max).zfill(
+                    2)
+                self.small_descr = self.small_descr + ' | 第' + str(self.pathinfo.min).zfill(2) + '-' + str(
+                    self.pathinfo.max).zfill(2) + '集'
+
+            if self.douban_dict['directors']:
+                self.small_descr = self.small_descr + ' | 导演: ' + self.douban_dict['directors'][0]['name'].strip()
+                for i in range(min(len(self.douban_dict['directors']) - 1, 1)):
+                    self.small_descr = self.small_descr + ' / ' + self.douban_dict['directors'][i + 1]['name'].strip()
+
+            if self.douban_dict['actors']:
+                self.small_descr = self.small_descr + ' | 主演: ' + self.douban_dict['actors'][0]['name'].strip()
+                for i in range(min(len(self.douban_dict['actors']) - 1, 4)):
+                    self.small_descr = self.small_descr + ' / ' + self.douban_dict['actors'][i + 1]['name'].strip()
+
+            self.uploadname = self.uploadname + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + '-' + self.sub
+            while '  ' in self.uploadname:
+                self.uploadname = self.uploadname.replace('  ', ' ')
+            self.uploadname = self.uploadname.replace(' ', '.')
+
+            if 'new_folder' in self.basic and self.basic['new_folder'] == 1:
+                if self.pathinfo.zeroday_name != '':
+                    self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
+                else:
+                    self.topath = os.path.join(self.pathinfo.path, self.uploadname)
+                    self.pathinfo.zeroday_name = self.uploadname
+                    self.pathinfo.infodict['zeroday_name'] = self.uploadname
+            elif 'new_folder' in self.basic and self.basic['new_folder'] == 2:
+                if self.pathinfo.zeroday_name != '':
+                    self.topath = os.path.join(self.pathinfo.path, self.pathinfo.zeroday_name)
+                else:
+                    tempchinesename = self.chinesename.strip()
+                    while '  ' in tempchinesename:
+                        tempchinesename = tempchinesename.replace('  ', ' ')
+                    tempchinesename = tempchinesename.replace(' ', '.')
+                    self.topath = os.path.join(self.pathinfo.path, tempchinesename + '.' + self.uploadname)
+                    self.pathinfo.infodict['zeroday_name'] = tempchinesename + '.' + self.uploadname
+                    self.pathinfo.zeroday_name = tempchinesename + '.' + self.uploadname
+                    del (tempchinesename)
             else:
-                tempchinesename = self.chinesename.strip()
-                while '  ' in tempchinesename:
-                    tempchinesename = tempchinesename.replace('  ', ' ')
-                tempchinesename = tempchinesename.replace(' ', '.')
-                self.topath = os.path.join(self.pathinfo.path, tempchinesename + '.' + self.uploadname)
-                self.pathinfo.infodict['zeroday_name'] = tempchinesename + '.' + self.uploadname
-                self.pathinfo.zeroday_name = tempchinesename + '.' + self.uploadname
-                del (tempchinesename)
-        else:
-            self.topath = self.mediapath
+                self.topath = self.mediapath
 
-        self.uploadname_ssd = self.uploadname + ' ' + self.type + ' ' + self.standard_sel + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
-                    self.audio_num > 1) * ('.' + str(self.audio_num) + 'Audio') + '-' + self.sub
-        if self.pathinfo.complete == 1:
-            self.uploadname = self.uploadname + ' Complete ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
-                        self.audio_num > 1) * (' ' + str(self.audio_num) + 'Audio') + '-' + self.sub
-        else:
-            self.uploadname = self.uploadname + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
-                        self.audio_num > 1) * (' ' + str(self.audio_num) + 'Audio') + '-' + self.sub
+            self.uploadname_ssd = self.uploadname + ' ' + self.type + ' ' + self.standard_sel + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
+                        self.audio_num > 1) * ('.' + str(self.audio_num) + 'Audio') + '-' + self.sub
+            if self.pathinfo.complete == 1:
+                self.uploadname = self.uploadname + ' Complete ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
+                            self.audio_num > 1) * (' ' + str(self.audio_num) + 'Audio') + '-' + self.sub
+            else:
+                self.uploadname = self.uploadname + ' ' + self.standard_sel + ' ' + self.type + ' ' + self.Video_Format + ' ' + self.Audio_Format + (
+                            self.audio_num > 1) * (' ' + str(self.audio_num) + 'Audio') + '-' + self.sub
 
-        try:
-            if self.language != '':
-                self.small_descr = self.small_descr + ' [' + self.language + ']'
-        except:
-            logger.warning('未找到资源语言信息，默认为日语')
-            self.small_descr = self.small_descr + ' [日语]'
+            try:
+                if self.language != '':
+                    self.small_descr = self.small_descr + ' [' + self.language + ']'
+            except:
+                logger.warning('未找到资源语言信息，默认为日语')
+                self.small_descr = self.small_descr + ' [日语]'
 
-        if not self.sublan == '':
-            self.small_descr = self.small_descr + ' ' + self.sublan
-        else:
-            self.small_descr = self.small_descr + ' [无字幕]'
-        self.small_descr = self.small_descr.replace('（', '(').replace('）', ')')
+            if not self.sublan == '':
+                self.small_descr = self.small_descr + ' ' + self.sublan
+            else:
+                self.small_descr = self.small_descr + ' [无字幕]'
+            self.small_descr = self.small_descr.replace('（', '(').replace('）', ')')
 
-        if self.pathinfo.small_descr != '':
-            self.small_descr = self.pathinfo.small_descr
-        # logger.debug('副标题为'+self.small_descr)
+            if self.pathinfo.small_descr != '':
+                self.small_descr = self.pathinfo.small_descr
+            # logger.debug('副标题为'+self.small_descr)
 
-        self.getimgurl()
-        if self.pathinfo.screenshot != '':
-            self.screenshoturl = self.pathinfo.screenshot + '\n' + self.screenshoturl
-        self.content = self.douban_info + "\n[quote=Mediainfo]\n" + self.mediainfo + "[/quote]\n" + self.screenshoturl
-        if self.pathinfo.contenthead != '':
-            self.content = self.pathinfo.contenthead + self.content  # 简介礼节
-        if self.pathinfo.contenttail != '':
-            self.content = self.content + self.pathinfo.contenttail  # 简介末尾
-        '''
-        if 'new_folder' in self.basic and self.basic['new_folder']>=1:
+            self.getimgurl()
+            if self.pathinfo.screenshot != '':
+                self.screenshoturl = self.pathinfo.screenshot + '\n' + self.screenshoturl
+            self.content = self.douban_info + "\n[quote=Mediainfo]\n" + self.mediainfo + "[/quote]\n" + self.screenshoturl
+            if self.pathinfo.contenthead != '':
+                self.content = self.pathinfo.contenthead + self.content  # 简介礼节
+            if self.pathinfo.contenttail != '':
+                self.content = self.content + self.pathinfo.contenttail  # 简介末尾
+            '''
+            if 'new_folder' in self.basic and self.basic['new_folder']>=1:
+                self.gettorrent(tracker)
+            else:
+                self.mktorrent(tracker)
+            '''
             self.gettorrent(tracker)
-        else:
-            self.mktorrent(tracker)
-        '''
-        self.gettorrent(tracker)
-        if not (self.complete == 1 or self.complete == 0):
-            self.complete = 0
-        self.getinfo_done = 1
+            if not (self.complete == 1 or self.complete == 0):
+                self.complete = 0
+            self.getinfo_done = 1
 
     def print(self):
         self.getfullinfo()
