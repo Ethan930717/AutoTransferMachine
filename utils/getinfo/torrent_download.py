@@ -239,19 +239,31 @@ def download_torrent(ws,yamlinfo):
                 logging.error(f"无法获取文件名，下载失败：{url}")
         else:
             print(f"下载失败：{url}")
-            continue  # 跳过当前循环，继续下一个链接
+            continue 
     new_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
     logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子')
     choice = input(f"是否需要将本次下载的种子添加到qbittorrent中？\nY:是      N：否")
     if choice.upper() == "Y":
-        client = Client(host=yamlinfo['qbinfo']['qburl'], username=yamlinfo['qbinfo']['qbwebuiusername'], password=yamlinfo['qbinfo']['qbwebuipassword'])
-        for file_name in os.listdir(file_path):
-            file_full_path = file_path + file_name
-            with open(file_full_path, "rb") as f:
-                torrent_content = f.read()
-            client.download_from_file(torrent_content)
-            print(f"已将{file_name}添加到qbittorrent中")
-        print("已将所有种子添加到qbittorrent中")
+        is_paused = False
+        try:
+            client = Client(host=yamlinfo['qbinfo']['qburl'], username=yamlinfo['qbinfo']['qbwebuiusername'], password=yamlinfo['qbinfo']['qbwebuipassword'])
+        except:
+            logger.warning('Qbittorrent登录失败,将种子添加到QB任务失败')
+            return False
+        logger.info('正在登录Qbittorrent')
+        try:
+            client.auth_log_in()
+        except:
+            logger.warning('Qbittorrent信息错误，登录失败，请检查au.yaml文件里的url、用户名、密码')
+            return False
+        logger.info('成功登录Qbittorrent')
+        for url in url_list:
+            res=client.torrents_add(urls=url,is_skip_checking=True,is_paused=False)
+            if res == "Ok.":
+                print(f"添加成功")
+            elif "Torrent is already in the download list" in res:
+                print(f"已存在")
+        print("添加完成")
     elif choice.upper() == "N":
         print("本次脚本运行结束，下次再见")
         exit()
