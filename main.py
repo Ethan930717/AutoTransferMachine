@@ -5,7 +5,7 @@ from utils.para_ctrl.para_ctrl import *
 from utils.site.site import makesites
 from utils.pathinfo.pathinfo import findpathinfo
 from utils.seed_machine.seed_machine import start_machine
-from utils.seedupload_machine.seedupload_machine import startupload_machine
+from utils.seed_machine.seedupload_machine import startupload_machine
 from utils.img_upload.imgupload import img_upload
 from utils.mediafile.mediafile import *
 from utils.mediafile.upload_mediafile import *
