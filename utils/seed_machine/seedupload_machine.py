@@ -147,7 +147,7 @@ def seedmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashli
             uploadtime = 0
             # 用模板获取mediainfo
             file1.updatemediainfo(siteitem.mediainfo_template_file)
-            while upload_success == False and uploadtime < 3:
+            while upload_success == False and uploadtime < 2:
                 uploadtime = uploadtime + 1
                 logger.info('第' + str(uploadtime) + '次尝试发布')
 
@@ -169,12 +169,12 @@ def seedmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashli
                 errornum = errornum + 1
                 log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '   \t' + logstr + '\n'
                 logger.warning(logstr)
-                errorsite = errorsite + siteitem.sitename + '\n'
+                errorsite = errorsite + siteitem.sitename +logstr+'\n'
             elif '已存在' in logstr:
                 errornum = errornum + 1
                 log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '   \t' + logstr + '\n'
                 logger.warning(logstr)
-                errorsite = errorsite + siteitem.sitename + '\n'
+                errorsite = errorsite + siteitem.sitename +logstr+'\n'
                 # 记录已发布的种子
                 exec('pathinfo.' + siteitem.sitename + '_done.append(pathep)')
                 exec('pathinfo.' + siteitem.sitename + '_done.sort()')
@@ -300,7 +300,7 @@ def seedmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist
         upload_success = False
         uploadtime = 0
 
-        while upload_success == False and uploadtime < 3:
+        while upload_success == False and uploadtime < 2:
             uploadtime = uploadtime + 1
             logger.info('第' + str(uploadtime) + '次尝试发布')
             upload_success, logstr = auto_upload(siteitem, file1, basic['record_path'], qbinfo, basic, hashlist)
@@ -314,12 +314,12 @@ def seedmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist
             siteitem.enable = 0
             errornum = errornum + 1
             log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '  \t' + logstr + '\n'
-            errorsite = errorsite + siteitem.sitename + '\n'
+            errorsite = errorsite + siteitem.sitename +logstr+'\n'
             logger.warning(logstr)
         elif '已存在' in logstr:
             errornum = errornum + 1
             log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '   \t' + logstr + '\n'
-            errorsite = errorsite + siteitem.sitename + '\n'
+            errorsite = errorsite + siteitem.sitename +logstr+'\n'
             logger.warning(logstr)
             # 记录已发布的种子
             for epitem in eps:
@@ -397,7 +397,7 @@ def seedmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
         uploadtime = 0
         # 用模板获取mediainfo
         file1.updatemediainfo(siteitem.mediainfo_template_file)
-        while upload_success == False and uploadtime < 3:
+        while upload_success == False and uploadtime < 2:
             uploadtime = uploadtime + 1
             logger.info('第' + str(uploadtime) + '次尝试发布')
 
@@ -414,12 +414,12 @@ def seedmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
             errornum = errornum + 1
             log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '  \t' + logstr + '\n'
             logger.warning(logstr)
-            errorsite = errorsite + siteitem.sitename + '\n'
+            errorsite = errorsite + siteitem.sitename +logstr+'\n'
         elif '已存在' in logstr:
             errornum = errornum + 1
             log_error = log_error + str(errornum) + ':\t' + siteitem.sitename + '   \t' + logstr + '\n'
             logger.warning(logstr)
-            errorsite = errorsite + siteitem.sitename + '\n'
+            errorsite = errorsite + siteitem.sitename +logstr+'\n'
             # 记录已发布的种子
             if not 'movie' in pathinfo.type.lower():
                 for epitem in pathinfo.eps:
