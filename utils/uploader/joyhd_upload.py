@@ -50,7 +50,7 @@ def joyhd_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #子类型
-    if 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.Videio_Format:
+    if 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.Video_Format:
         select_source='5'
         logger.info('已成功填写类型为Movie 10bit') 
     elif 'movie' in file1.pathinfo.type.lower() and 'WEB' in file1.type.upper():

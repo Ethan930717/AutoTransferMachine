@@ -71,26 +71,26 @@ def kimoji_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
         logger.info('未识别到媒介信息，不选择媒介')
 
     # 选择编码
-    if '264' in file1.Videio_Format or 'AVC' in file1.Videio_Format.upper():
+    if '264' in file1.Video_Format or 'AVC' in file1.Video_Format.upper():
         codec_sel = '1'
         logger.info('已成功选择编码为H264/AVC')
-    elif '265' in file1.Videio_Format.upper() or 'HEVC' in file1.Videio_Format.upper():
+    elif '265' in file1.Video_Format.upper() or 'HEVC' in file1.Video_Format.upper():
         codec_sel = '6'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'MPEG' in file1.Videio_Format.upper():
+    elif 'MPEG' in file1.Video_Format.upper():
         codec_sel = '4'
         logger.info('已成功选择编码为MPEG')
-    elif 'MVC' in file1.Videio_Format.upper():
+    elif 'MVC' in file1.Video_Format.upper():
         codec_sel = '10'
-    elif 'XVID' in file1.Videio_Format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel = '3'
-    elif 'VC' in file1.Videio_Format.upper():
+    elif 'VC' in file1.Video_Format.upper():
      codec_sel = '2'
-    elif 'VP' in file1.Videio_Format.upper():
+    elif 'VP' in file1.Video_Format.upper():
      codec_sel = '7'
-    elif 'AV' in file1.Videio_Format.upper():
+    elif 'AV' in file1.Video_Format.upper():
       codec_sel = '8'
-    elif 'PRO' in file1.Videio_Format.upper():
+    elif 'PRO' in file1.Video_Format.upper():
       codec_sel = '9'
     else:
         codec_sel = '5'

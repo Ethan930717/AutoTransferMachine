@@ -84,37 +84,37 @@ def hdpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.Videio_Format.lower() and '264' in file1.Videio_Format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.Videio_Format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.Videio_Format.lower() and '265' in file1.Videio_Format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.Videio_Format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-2' in file1.Videio_Format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='4'
         logger.info('已成功选择编码为MPEG-2')         
-    elif 'VC' in file1.Videio_Format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为VC1')          
-    elif 'AV1' in file1.Videio_Format.upper():
+    elif 'AV1' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为AV1')    
-    elif 'VP9' in file1.Videio_Format.upper():
+    elif 'VP9' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为VP9')  
-    elif 'XVID' in file1.Videio_Format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为XVID')       
     else:

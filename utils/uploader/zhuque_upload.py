@@ -99,13 +99,13 @@ def zhuque_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
     logger.info('已成功选择媒介为' + file1.type)
 
     # 选择编码
-    if 'H' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel = '101'
-    elif 'X' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
+    elif 'X' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel = '103'
-    elif 'X' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
+    elif 'X' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel = '104'
-    elif 'H' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel = '102'
     else:
         codec_sel = '105'
