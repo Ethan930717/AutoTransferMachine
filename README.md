@@ -1,15 +1,19 @@
 <h1 align="center"> ⭐️ Auto Transfer Machine ⭐️ </h1>
 <h2 align="center"><strong>:heart_on_fire:为发光发热而生:heart_on_fire:</a></strong></h2>
 
-## :triangular_flag_on_post:功能
+## :triangular_flag_on_post:主要功能
+<img src="https://img.kimoji.club/images/2023/10/06/ATM.jpg" alt="ATM.jpg" border="0" />
 
-* 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源）
-* 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种
-* 自动生成截图（可指定数量与格式）
+* 1.转种模式：自动从源站抓取媒体信息并转种
+* 2.发种模式：自动从本地媒体文件中提取信息并发种
+* 3.站点签到（有空再做）
+* 4.批量爬取站点指定资源并下载到本地
+* 5.生成转种模板
+* 6.从媒体中截取指定数量、格式的图片，上传到指定图床（有空再做）
 * 自动生成新的PTGEN与MediaINFO信息
 
 ## :warning:注意事项
-* 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
+* 使用有门槛，有问题需自行研究，脚本打开以后有群号，建议群内提问或提建议，没事不要提issue
 
 ## :warning:安装说明
 1. #### 安装Docker以及Docker-compose环境 :star:
