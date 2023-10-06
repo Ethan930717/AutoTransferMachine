@@ -19,18 +19,19 @@ qbinfo:
 image hosting:              #图床
   seq:                      #这边可以调整图床优先级顺序
     1: pter
-    2: smms
-    3: freeimage
+    2: ptpimg
+    3: smms
+    4: freeimage
   pter:
     cookie: KEEP_LOGIN_GOAUTH=vrksE%3Aecd5c7992a32ff3***********  #cookie直接F12从控制台复制抓取即可，不用引号
     url: https://s3.pterclub.com
-
   smms:
     apikey:
-
   freeimage:
     cookie:
     url: https://freeimage.host/
+  ptpimg:
+    apikey: apikey
 
 site info:  #站点信息,为方便大家使用，所有适配的站点全部加到了，需要的站点填上信息，然后将enable设为1即可启用
   audience:
@@ -295,7 +296,7 @@ site info:  #站点信息,为方便大家使用，所有适配的站点全部加
     cookie: 
     passkey: 
     uplver: 0
-    url: https://www.pttime.org/t
+    url: https://www.pttime.org/
   redleaves:
     enable: 0
     cookie: 
