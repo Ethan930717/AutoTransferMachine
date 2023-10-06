@@ -190,13 +190,13 @@ def carpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
             "size": "0",
             "descr": file1.content,
             "type": select_type,
-            "medium_sel": medium_sel,
-            "codec_sel": codec_sel,
-            "audiocodec_sel": audiocodec_sel,
-            "standard_sel": standard_sel,
-            "team_sel": team_sel,
+            "medium_sel[4]": medium_sel,
+            "codec_sel[4]": codec_sel,
+            "audiocodec_sel[4]": audiocodec_sel,
+            "standard_sel[4]": standard_sel,
+            "team_sel[4]": team_sel,
             "uplver": uplver,
-            "tags[]": tags,
+            "tags[4][]": tags,
             }
     scraper=cloudscraper.create_scraper()
     headers = {
