@@ -12,6 +12,8 @@ import urllib
 import requests
 import os
 import logging
+import qbittorrentapi
+from qbittorrentapi import Client
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -235,10 +237,27 @@ def download_torrent(ws,yamlinfo):
             else:
                 print("无法获取文件名,相关信息已记录在日志中，请查看record文件夹中的torrent_download.log")
                 logging.error(f"无法获取文件名，下载失败：{url}")
-
         else:
             print(f"下载失败：{url}")
             continue  # 跳过当前循环，继续下一个链接
     new_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
     logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子')
+    choice = input(f"是否需要将本次下载的种子添加到qbittorrent中？\nY:是      N：否")
+    if choice.upper() == "Y":
+        client = Client(host=yamlinfo['qbinfo']['qburl'], username=yamlinfo['qbinfo']['qbwebuiusername'], password=yamlinfo['qbinfo']['qbwebuipassword'])
+        for file_name in os.listdir(file_path):
+            file_full_path = file_path + file_name
+            with open(file_full_path, "rb") as f:
+                torrent_content = f.read()
+            client.download_from_file(torrent_content)
+            print(f"已将{file_name}添加到qbittorrent中")
+        print("已将所有种子添加到qbittorrent中")
+    elif choice.upper() == "N":
+        print("本次脚本运行结束，下次再见")
+        exit()
+    else:
+        print("无效的输入，请重新输入")
+        download_torrent(ws, yamlinfo)
+
+
 
