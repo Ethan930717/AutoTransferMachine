@@ -147,7 +147,7 @@ def seedmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashli
             uploadtime = 0
             # 用模板获取mediainfo
             file1.updatemediainfo(siteitem.mediainfo_template_file)
-            while upload_success == False and uploadtime < 2:
+            while upload_success == False and uploadtime < 1:
                 uploadtime = uploadtime + 1
                 logger.info('第' + str(uploadtime) + '次尝试发布')
 
@@ -300,7 +300,7 @@ def seedmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist
         upload_success = False
         uploadtime = 0
 
-        while upload_success == False and uploadtime < 2:
+        while upload_success == False and uploadtime < 1:
             uploadtime = uploadtime + 1
             logger.info('第' + str(uploadtime) + '次尝试发布')
             upload_success, logstr = auto_upload(siteitem, file1, basic['record_path'], qbinfo, basic, hashlist)
@@ -397,7 +397,7 @@ def seedmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
         uploadtime = 0
         # 用模板获取mediainfo
         file1.updatemediainfo(siteitem.mediainfo_template_file)
-        while upload_success == False and uploadtime < 2:
+        while upload_success == False and uploadtime < 1:
             uploadtime = uploadtime + 1
             logger.info('第' + str(uploadtime) + '次尝试发布')
 
