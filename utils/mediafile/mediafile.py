@@ -1032,7 +1032,7 @@ class mediafile(object):
         if not found:
             logger.info(f"没有找到同名种子文件，请手动确认,以下为当前文件夹下的所有文件{file_path}")
 
-    def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
+    def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
         if self.getinfo_done==1:
             return
 

@@ -138,7 +138,7 @@ def seedmachine_single(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashli
 
         logger.info('正在发布路径' + pathinfo.path + '下第' + str(pathep) + '集资源:' + filepath)
         logger.info('正在抓取资源信息,请稍后...')
-        file1.getfullinfo(pathyaml)
+        file1.getfullinfo()
         for siteitem in site_upload:
             if siteitem.enable == 0:
                 continue
@@ -271,7 +271,7 @@ def seedmachine_rest(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist
         # 获取file全部信息
         file1 = mediafile(path_new, pathinfo, basic, imgdata)
         logger.info('正在抓取资源信息,请稍后...')
-        file1.getfullinfo(pathyaml)
+        file1.getfullinfo()
         if not pathinfo.imdb_url == '' and ((not 'imdb_url' in pathyaml) or pathyaml['imdb_url'] == None):
             pathyaml['imdb_url'] = pathinfo.imdb_url
         if file1.complete == 1 and (
@@ -381,7 +381,7 @@ def seedmachine(pathinfo, sites, pathyaml, basic, qbinfo, imgdata, hashlist):
     # 获取file全部信息
     file1 = mediafile(pathinfo.path, pathinfo, basic, imgdata)
     logger.info('正在抓取资源信息,请稍后...')
-    file1.getfullinfo(pathyaml)
+    file1.getfullinfo()
     if not pathinfo.imdb_url == '' and ((not 'imdb_url' in pathyaml) or pathyaml['imdb_url'] == None):
         pathyaml['imdb_url'] = pathinfo.imdb_url
     if file1.complete == 1 and (

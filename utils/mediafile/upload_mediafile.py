@@ -1387,7 +1387,7 @@ class mediafile(object):
             else:
                 logger.warning('文件 ' + item + ' 丢失')
 
-    def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
+    def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
         if self.getinfo_done == 1:
             return
         trytime = 0

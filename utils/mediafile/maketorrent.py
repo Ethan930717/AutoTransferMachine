@@ -16,8 +16,8 @@ def make_private_torrent(filepath: str, torrentname:str, tracker="https://announ
     path = Path(filepath)
     piece_size = 4 * 1024 * 1024
     private = True
-    created_by = "Upload Machine"
-    source = "Upload Machine"
+    created_by = "ATM"
+    source = "ATM"
     trytime=0
     filesize=0
 
