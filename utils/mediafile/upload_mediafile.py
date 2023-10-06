@@ -1311,82 +1311,82 @@ class mediafile(object):
         self.getptgen_done = 1
 
 
-def mktorrent(self, tracker='https://announce.leaguehd.com/announce.php'):
-    # if self.mktorrent_done==1:
-    #    return
-    torrentpath = os.path.join(self.screenshotaddress, str(self.episode) + '.torrent')
-    self.torrentpath = torrentpath
-    mktorrent(self.topath, torrentpath, tracker=tracker)
-    self.mktorrent_done = 1
+    def mktorrent(self, tracker='https://announce.leaguehd.com/announce.php'):
+        # if self.mktorrent_done==1:
+        #    return
+        torrentpath = os.path.join(self.screenshotaddress, str(self.episode) + '.torrent')
+        self.torrentpath = torrentpath
+        mktorrent(self.topath, torrentpath, tracker=tracker)
+        self.mktorrent_done = 1
 
 
-def gettorrent(self, tracker='https://announce.leaguehd.com/announce.php'):
-    if not ('new_folder' in self.basic and self.basic['new_folder'] >= 1):
-        self.mktorrent(tracker)
-        return
-    dirpath = os.path.dirname(self.topath)
-    filelist = []
-    if not os.path.exists(self.topath):
-        os.makedirs(self.topath)
-    else:
-        ls = os.listdir(self.topath)
-        for i in ls:
-            c_path = os.path.join(self.topath, i)
-            if i.startswith('.') and os.path.exists(c_path):
-                try:
-                    os.remove(c_path)
-                except Exception as r:
-                    logger.error('删除.开头文件"' + c_path + '"发生错误: %s' % (r))
-                continue
-            if (os.path.isdir(c_path)):
-                if not os.path.exists(os.path.join(dirpath, i)):
-                    newpath = move(c_path, dirpath)
-                    filelist.append(newpath)
-                else:
-                    logger.warning('由于文件' + c_path + '在里外文件夹均已存在,已改名为_temp')
-                    try:
-                        os.rename(c_path, c_path + '_temp')
-                    except Exception as r:
-                        logger.error('rename文件夹"' + c_path + '"发生错误: %s' % (r))
-                    newpath = move(c_path + '_temp', dirpath)
-                    filelist.append(newpath)
-            else:
-                if not os.path.exists(os.path.join(dirpath, i)):
-                    newpath = move(c_path, dirpath)
-                    filelist.append(newpath)
-                else:
-                    logger.warning('由于文件' + c_path + '在里外文件夹均已存在,已改名为_temp')
-                    stem, suffix = os.path.splitext(c_path)
-                    try:
-                        os.rename(c_path, stem + '_temp' + suffix)
-                        newpath = move(stem + '_temp' + suffix, dirpath)
-                        filelist.append(newpath)
-                    except Exception as r:
-                        logger.error('rename temp文件"' + c_path + '"发生错误: %s' % (r))
-
-    logger.info('检测到路径制种，将先删除掉路径里面所有种子文件(torrent后缀)以及隐藏文件（.开头的文件）...')
-    deletetorrent(self.topath)
-    if os.path.isdir(self.mediapath):
-        ls = os.listdir(self.mediapath)
-        for i in ls:
-            c_path = os.path.join(self.mediapath, i)
-            if (os.path.isdir(c_path)) or (i.startswith('.')) or (not (
-                    os.path.splitext(i)[1].lower() == ('.mp4') or os.path.splitext(i)[1].lower() == ('.mkv') or
-                    os.path.splitext(i)[1].lower() == ('.avi') or os.path.splitext(i)[1].lower() == ('.ts'))):
-                continue
-            move(c_path, self.topath)
-    else:
-        move(self.mediapath, self.topath)
-
-    self.mktorrent(tracker)
-
-    for item in filelist:
-        if os.path.exists(item):
-            newpath = move(item, self.topath)
-            if '_temp' in newpath and os.path.exists(newpath):
-                os.rename(newpath, newpath.replace('_temp', ''))
+    def gettorrent(self, tracker='https://announce.leaguehd.com/announce.php'):
+        if not ('new_folder' in self.basic and self.basic['new_folder'] >= 1):
+            self.mktorrent(tracker)
+            return
+        dirpath = os.path.dirname(self.topath)
+        filelist = []
+        if not os.path.exists(self.topath):
+            os.makedirs(self.topath)
         else:
-            logger.warning('文件 ' + item + ' 丢失')
+            ls = os.listdir(self.topath)
+            for i in ls:
+                c_path = os.path.join(self.topath, i)
+                if i.startswith('.') and os.path.exists(c_path):
+                    try:
+                        os.remove(c_path)
+                    except Exception as r:
+                        logger.error('删除.开头文件"' + c_path + '"发生错误: %s' % (r))
+                    continue
+                if (os.path.isdir(c_path)):
+                    if not os.path.exists(os.path.join(dirpath, i)):
+                        newpath = move(c_path, dirpath)
+                        filelist.append(newpath)
+                    else:
+                        logger.warning('由于文件' + c_path + '在里外文件夹均已存在,已改名为_temp')
+                        try:
+                            os.rename(c_path, c_path + '_temp')
+                        except Exception as r:
+                            logger.error('rename文件夹"' + c_path + '"发生错误: %s' % (r))
+                        newpath = move(c_path + '_temp', dirpath)
+                        filelist.append(newpath)
+                else:
+                    if not os.path.exists(os.path.join(dirpath, i)):
+                        newpath = move(c_path, dirpath)
+                        filelist.append(newpath)
+                    else:
+                        logger.warning('由于文件' + c_path + '在里外文件夹均已存在,已改名为_temp')
+                        stem, suffix = os.path.splitext(c_path)
+                        try:
+                            os.rename(c_path, stem + '_temp' + suffix)
+                            newpath = move(stem + '_temp' + suffix, dirpath)
+                            filelist.append(newpath)
+                        except Exception as r:
+                            logger.error('rename temp文件"' + c_path + '"发生错误: %s' % (r))
+
+        logger.info('检测到路径制种，将先删除掉路径里面所有种子文件(torrent后缀)以及隐藏文件（.开头的文件）...')
+        deletetorrent(self.topath)
+        if os.path.isdir(self.mediapath):
+            ls = os.listdir(self.mediapath)
+            for i in ls:
+                c_path = os.path.join(self.mediapath, i)
+                if (os.path.isdir(c_path)) or (i.startswith('.')) or (not (
+                        os.path.splitext(i)[1].lower() == ('.mp4') or os.path.splitext(i)[1].lower() == ('.mkv') or
+                        os.path.splitext(i)[1].lower() == ('.avi') or os.path.splitext(i)[1].lower() == ('.ts'))):
+                    continue
+                move(c_path, self.topath)
+        else:
+            move(self.mediapath, self.topath)
+
+        self.mktorrent(tracker)
+
+        for item in filelist:
+            if os.path.exists(item):
+                newpath = move(item, self.topath)
+                if '_temp' in newpath and os.path.exists(newpath):
+                    os.rename(newpath, newpath.replace('_temp', ''))
+            else:
+                logger.warning('文件 ' + item + ' 丢失')
 
     def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
         if self.getinfo_done == 1:
