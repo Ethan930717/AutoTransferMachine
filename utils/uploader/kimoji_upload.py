@@ -36,34 +36,34 @@ def kimoji_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
     logger.info('已成功填写类型为' + file1.pathinfo.type)
 
     # 选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel = '6'
         logger.info('已成功选择媒介为WEB-DL')
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel = '10'
         logger.info('已成功选择媒介为UHD-BLURAY')
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel = '1'
         logger.info('已成功选择媒介为BLURAY')
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel = '7'
         logger.info('已成功选择媒介为ENCODE')
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel = '5'
         logger.info('已成功选择媒介为HDTV')
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel = '11'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel = '3'
         logger.info('已成功选择媒介为DVD')
-    elif 'CD' in file1.pathinfo.medium.upper():
+    elif 'CD' in file1.type.upper():
         medium_sel = '8'
         logger.info('已成功选择媒介为CD')
-    elif 'MINI' in file1.pathinfo.medium.upper():
+    elif 'MINI' in file1.type.upper():
         medium_sel = '4'
         logger.info('已成功选择媒介为CD')
-    elif 'TRACK' in file1.pathinfo.medium.upper():
+    elif 'TRACK' in file1.type.upper():
         medium_sel = '9'
         logger.info('已成功选择媒介为CD')
     else:
@@ -71,26 +71,26 @@ def kimoji_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
         logger.info('未识别到媒介信息，不选择媒介')
 
     # 选择编码
-    if '264' in file1.pathinfo.video_format or 'AVC' in file1.pathinfo.video_format.upper():
+    if '264' in file1.Videio_Format or 'AVC' in file1.Videio_Format.upper():
         codec_sel = '1'
         logger.info('已成功选择编码为H264/AVC')
-    elif '265' in file1.pathinfo.video_format.upper() or 'HEVC' in file1.pathinfo.video_format.upper():
+    elif '265' in file1.Videio_Format.upper() or 'HEVC' in file1.Videio_Format.upper():
         codec_sel = '6'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'MPEG' in file1.pathinfo.video_format.upper():
+    elif 'MPEG' in file1.Videio_Format.upper():
         codec_sel = '4'
         logger.info('已成功选择编码为MPEG')
-    elif 'MVC' in file1.pathinfo.video_format.upper():
+    elif 'MVC' in file1.Videio_Format.upper():
         codec_sel = '10'
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Videio_Format.upper():
         codec_sel = '3'
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Videio_Format.upper():
      codec_sel = '2'
-    elif 'VP' in file1.pathinfo.video_format.upper():
+    elif 'VP' in file1.Videio_Format.upper():
      codec_sel = '7'
-    elif 'AV' in file1.pathinfo.video_format.upper():
+    elif 'AV' in file1.Videio_Format.upper():
       codec_sel = '8'
-    elif 'PRO' in file1.pathinfo.video_format.upper():
+    elif 'PRO' in file1.Videio_Format.upper():
       codec_sel = '9'
     else:
         codec_sel = '5'

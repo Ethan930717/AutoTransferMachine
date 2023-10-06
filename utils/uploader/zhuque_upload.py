@@ -76,19 +76,19 @@ def zhuque_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
     logger.info('TMDBID为' + str(file1.pathinfo.tmdb_id))
 
     # 选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel = '309'
-    elif 'UHD' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel = '302'
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel = '301'
-    elif 'BLU' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel = '303'
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel = '304'
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel = '305'
-    elif 'HDTV' in file1.pathinfo.medium.upper() and '2160' in file1.standard_sel:
+    elif 'HDTV' in file1.type.upper() and '2160' in file1.standard_sel:
         medium_sel = '307'
     elif 'HDTV' in file1.type.upper():
         medium_sel = '308'
@@ -99,13 +99,13 @@ def zhuque_upload(siteinfo, file1, record_path, qbinfo, basic, hashlist):
     logger.info('已成功选择媒介为' + file1.type)
 
     # 选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
         codec_sel = '101'
-    elif 'X' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    elif 'X' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
         codec_sel = '103'
-    elif 'X' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'X' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
         codec_sel = '104'
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
         codec_sel = '102'
     else:
         codec_sel = '105'

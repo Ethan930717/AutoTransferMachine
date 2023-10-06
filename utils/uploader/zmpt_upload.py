@@ -73,31 +73,31 @@ def zmpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为WEB-DL')               
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为DVDR')   
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel='2'
         logger.info('已成功选择媒介为DVD')
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为MiniBD')           
     else:

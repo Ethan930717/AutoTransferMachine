@@ -50,25 +50,25 @@ def joyhd_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #子类型
-    if 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.pathinfo.video_format:
+    if 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.Videio_Format:
         select_source='5'
         logger.info('已成功填写类型为Movie 10bit') 
-    elif 'movie' in file1.pathinfo.type.lower() and 'WEB' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'WEB' in file1.type.upper():
         select_source='4'
         logger.info('已成功填写类型为Movie WEBDL') 
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_source='55'
         logger.info('已成功填写类型为Movie BLURAY')  
-    elif 'movie' in file1.pathinfo.type.lower() and 'DVD' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'DVD' in file1.type.upper():
         select_source='79'
         logger.info('已成功填写类型为Movie DVD')         
-    elif 'movie' in file1.pathinfo.type.lower() and 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'HDTV' in file1.type.upper():
         select_source='80'
         logger.info('已成功填写类型为Movie HDTV')
-    elif 'movie' in file1.pathinfo.type.lower() and 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'ENCODE' in file1.type.upper():
         select_source='81'
         logger.info('已成功填写类型为Movie BDRIP')
-    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_source='57'
         logger.info('已成功填写类型为Movie REMUX')
     elif 'movie' in file1.pathinfo.type.lower() and '2160p' in file1.standard_sel.lower():

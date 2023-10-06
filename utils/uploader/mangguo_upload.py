@@ -50,34 +50,34 @@ def mangguo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择来源
-    if 'WEB' in file1.pathinfo.source.upper():
+    if 'WEB' in file1.source.upper():
         source_sel='7'
         logger.info('已成功选择来源为WEB-DL')          
-    elif 'UHD' in file1.pathinfo.source.upper():
+    elif 'UHD' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为UHD-BLURAY')         
-    elif 'BLU' in file1.pathinfo.source.upper():
+    elif 'BLU' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.source.upper():
+    elif 'ENCODE' in file1.source.upper():
         source_sel='6'
         logger.info('已成功选择来源为ENCODE')         
-    elif 'HDTV' in file1.pathinfo.source.upper():
+    elif 'HDTV' in file1.source.upper():
         source_sel='4'
         logger.info('已成功选择来源为HDTV')         
-    elif 'REMUX' in file1.pathinfo.source.upper():
+    elif 'REMUX' in file1.source.upper():
         source_sel='6'
         logger.info('已成功选择来源为REMUX')
-    elif 'HD' in file1.pathinfo.source.upper() and 'DVD' in file1.pathinfo.source.upper():
+    elif 'HD' in file1.source.upper() and 'DVD' in file1.source.upper():
         source_sel='2'
         logger.info('已成功选择来源为HD DVD')
-    elif 'DVD' in file1.pathinfo.source.upper():
+    elif 'DVD' in file1.source.upper():
         source_sel='3'
         logger.info('已成功选择来源为DVD')
-    elif 'SACD' in file1.pathinfo.source.upper():
+    elif 'SACD' in file1.source.upper():
         source_sel='9'
         logger.info('已成功选择来源为SACD') 
-    elif 'CD' in file1.pathinfo.source.upper():
+    elif 'CD' in file1.source.upper():
         source_sel='8'
         logger.info('已成功选择来源为CD')      
     else:

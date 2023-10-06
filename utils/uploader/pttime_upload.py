@@ -90,7 +90,7 @@ def pttime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     if '杜比' in file1.pathinfo.tags or 'Dolby' in file1.pathinfo.tags or 'DOLBY' in file1.pathinfo.tags:
         tags.append('dbsj')
         logger.info('已选择杜比视界标签')
-    if 'blu' in file1.pathinfo.medium.lower():
+    if 'blu' in file1.type.lower():
         tags.append('dwj')
         logger.info('已选择原盘标签') 
     if '2160' in file1.standard_sel or '4k' in file1.standard_sel.lower():

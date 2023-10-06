@@ -48,21 +48,21 @@ def rousi_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
     source_sel='24'
     #选择来源
-    if 'WEB' in file1.pathinfo.source.upper():
+    if 'WEB' in file1.source.upper():
         source_sel='24'
-    elif 'UHD' in file1.pathinfo.source.upper():
+    elif 'UHD' in file1.source.upper():
         source_sel='23'
-    elif 'BLU' in file1.pathinfo.source.upper():
+    elif 'BLU' in file1.source.upper():
         source_sel='22'
-    elif 'ENCODE' in file1.pathinfo.source.upper():
+    elif 'ENCODE' in file1.source.upper():
         source_sel='24'
     elif 'dvd' in file1.type.lower():
         source_sel='25'
-    elif 'ENCODE' in file1.pathinfo.source.upper():
+    elif 'ENCODE' in file1.source.upper():
         source_sel='22'
-    elif 'HDTV' in file1.pathinfo.source.upper():
+    elif 'HDTV' in file1.source.upper():
         source_sel='26'
-    elif 'REMUX' in file1.pathinfo.source.upper():
+    elif 'REMUX' in file1.source.upper():
         source_sel='22'
     else:
         source_sel='28'

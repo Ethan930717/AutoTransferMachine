@@ -15,7 +15,6 @@ from progress.bar import IncrementalBar
 from torf import Torrent
 from pathlib import Path
 
-
 def deletetorrent(delpath=''):
     if delpath == '':
         delpath = os.path.dirname(os.path.abspath(__file__))
@@ -196,8 +195,7 @@ def mktorrent_old(filepath, torrentname, tracker="https://announce.leaguehd.com/
             logger.warning('删除种子发生错误: %s' % (r))
 
     logger.info('正在对下面路径制作种子:' + filepath)
-    # order='mktorrent -v -p -f -l 24 -c "Made by Auto_Upload" -a '+tracker+' -o \"'+torrentname+ '\" \"'+filepath+'\"'+' > /dev/null'
-    order = 'mktorrent -v -p -l 24 -c "Made by Upload_Machine" -a ' + tracker + ' -o \"' + torrentname + '\" \"' + filepath + '\"'
+    order = 'mktorrent -v -p -l 24 -c "Made by ATM" -a ' + tracker + ' -o \"' + torrentname + '\" \"' + filepath + '\"'
     # logger.info(order)
     trytime = 0
     filesize = 0
@@ -247,8 +245,8 @@ def mktorrent(filepath: str, torrentname: str, tracker="https://announce.leagueh
     path = Path(filepath)
     piece_size = 4 * 1024 * 1024
     private = True
-    created_by = "Upload Machine"
-    source = "Upload Machine"
+    created_by = "ATM"
+    source = "ATM"
     trytime = 0
     filesize = 0
 
@@ -441,6 +439,7 @@ class mediafile(object):
         dlgroup = ['NaN-Raws', 'NaN Raws', 'NC-Raws', 'NC Raws', 'Lilith-Raws', 'Lilith Raws', 'ANi', 'Skymoon-Raws',
                    'Skymoon Raws', 'GMTeam', 'GM-Team']
         self.type = 'WEBRip'
+        self.source = 'WEB-DL'
         self.Video_Format = 'H264'
 
         if 'hdtvrip' in self.filename.lower() or 'hdtv-rip' in self.filename.lower() or 'tv-rip' in self.filename.lower() or 'tvrip' in self.filename.lower():
@@ -1388,10 +1387,9 @@ class mediafile(object):
             else:
                 logger.warning('文件 ' + item + ' 丢失')
 
-    def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
+    def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
         if self.getinfo_done == 1:
             return
-
         trytime = 0
         while not self.getptgen_done == 1:
             logger.info('正在获取豆瓣信息...')
@@ -1413,8 +1411,10 @@ class mediafile(object):
 
         if self.pathinfo.year != '':
             self.year = self.pathinfo.year
-        if self.pathinfo.video_type != '':
-            self.type = self.pathinfo.video_type
+        if self.pathinfo.medium != '':
+            self.type = self.pathinfo.medium
+        if self.pathinfo.source != '':
+            self.source = self.pathinfo.source
         if self.pathinfo.video_format != '':
             self.Video_Format = self.pathinfo.video_format
         if self.pathinfo.audio_format != '':

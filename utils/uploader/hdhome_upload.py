@@ -17,13 +17,13 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择类型
-    if 'anime' in file1.pathinfo.type.lower() and 'UHD' in file1.pathinfo.medium.upper():
+    if 'anime' in file1.pathinfo.type.lower() and 'UHD' in file1.type.upper():
         select_type='501'
         logger.info('已成功填写类型为anime Blu-Ray')
-    elif 'anime' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'anime' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='454'
         logger.info('已成功填写类型为anime Blu-Ray')
-    elif 'anime' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'anime' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_type='448'
         logger.info('已成功填写类型为anime REMUX')
     elif 'anime' in file1.pathinfo.type.lower() and '1080p' in file1.standard_sel.lower():
@@ -35,13 +35,13 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'anime' in file1.pathinfo.type.lower() and '2160' in file1.standard_sel.lower():
         select_type='449'
         logger.info('已成功填写类型为anime 2160p')        
-    elif 'tv' in file1.pathinfo.type.lower() and 'UHD' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'UHD' in file1.type.upper():
         select_type='502'
         logger.info('已成功填写类型为tv Blu-Ray')
-    elif 'tv' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='453'
         logger.info('已成功填写类型为tv Blu-Ray')
-    elif 'tv' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_type='437'
         logger.info('已成功填写类型为tv REMUX')
     elif 'tv' in file1.pathinfo.type.lower() and '1080p' in file1.standard_sel.lower():
@@ -56,10 +56,10 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'tv' in file1.pathinfo.type.lower() and '2160' in file1.standard_sel.lower():
         select_type='438'
         logger.info('已成功填写类型为tv 2160p')  
-    elif 'show' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'show' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='452'
         logger.info('已成功填写类型为show Blu-Ray')
-    elif 'show' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'show' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_type='430'
         logger.info('已成功填写类型为show REMUX')
     elif 'show' in file1.pathinfo.type.lower() and '1080i' in file1.standard_sel.lower():
@@ -74,13 +74,13 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'show' in file1.pathinfo.type.lower() and '2160' in file1.standard_sel.lower():
         select_type='431'
         logger.info('已成功填写类型为show 2160p')                   
-    elif 'movie' in file1.pathinfo.type.lower() and 'UHD' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'UHD' in file1.type.upper():
         select_type='499'
         logger.info('已成功填写类型为Movie UHD-4K')
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='450'
         logger.info('已成功填写类型为Movie Blu-Ray')
-    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_type='415'
         logger.info('已成功填写类型为Movie REMUX')
     elif 'movie' in file1.pathinfo.type.lower() and '2160p' in file1.standard_sel.lower():
@@ -92,13 +92,13 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'movie' in file1.pathinfo.type.lower() and '720' in file1.standard_sel.lower():
         select_type='413'
         logger.info('已成功填写类型为Movie 720p')                     
-    elif 'doc' in file1.pathinfo.type.lower() and 'UHD' in file1.pathinfo.medium.upper():
+    elif 'doc' in file1.pathinfo.type.lower() and 'UHD' in file1.type.upper():
         select_type='500'
         logger.info('已成功填写类型为doc Blu-Ray')
-    elif 'doc' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'doc' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='451'
         logger.info('已成功填写类型为doc Blu-Ray')
-    elif 'doc' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'doc' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_type='421'
         logger.info('已成功填写类型为doc REMUX')
     elif 'doc' in file1.pathinfo.type.lower() and '1080p' in file1.standard_sel.lower():
@@ -132,19 +132,19 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择来源
-    if 'WEB' in file1.pathinfo.source.upper():
+    if 'WEB' in file1.source.upper():
         source_sel='7'
         logger.info('已成功选择来源为WEB-DL')  
-    elif 'UHD' in file1.pathinfo.source.upper():
+    elif 'UHD' in file1.source.upper():
         source_sel='9'
         logger.info('已成功选择来源为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.source.upper():
+    elif 'BLU' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为BLURAY')               
-    elif 'HDTV' in file1.pathinfo.source.upper():
+    elif 'HDTV' in file1.source.upper():
         source_sel='4'
         logger.info('已成功选择来源为HDTV')        
-    elif 'DVD' in file1.pathinfo.source.upper():
+    elif 'DVD' in file1.source.upper():
         source_sel='3'
         logger.info('已成功选择来源为DVD')     
     else:
@@ -153,31 +153,31 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为WEB-DL')  
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为DVDR') 
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为MiniBD')
-    elif 'CD' in file1.pathinfo.medium.upper():
+    elif 'CD' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为CD')       
     else:
@@ -186,28 +186,28 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Videio_Format.upper() and '264' in file1.Videio_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Videio_Format.lower() and '264' in file1.Videio_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Videio_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Videio_Format.upper() and '265' in file1.Videio_Format:
         codec_sel='2'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Videio_Format.lower() and '265' in file1.Videio_Format:
         codec_sel='2'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Videio_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Videio_Format.upper():
         codec_sel='4'
         logger.info('已成功选择编码为MPEG-2')         
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Videio_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为VC1')            
     else:
@@ -216,33 +216,33 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择音频编码
-    if file1.pathinfo.audio_format=='AAC':
+    if file1.Audio_Format=='AAC':
         audiocodec_sel='6'
-    elif 'DTS-HD' in file1.pathinfo.audio_format.upper() and '7.1' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HD' in file1.Audio_Format.upper() and '7.1' in file1.Audio_Format.upper():
         audiocodec_sel='17'
-    elif 'DTS-HD' in file1.pathinfo.audio_format.upper() and 'MA' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HD' in file1.Audio_Format.upper() and 'MA' in file1.Audio_Format.upper():
         audiocodec_sel='11'
-    elif 'DTS-HD' in file1.pathinfo.audio_format.upper() and 'HR' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HD' in file1.Audio_Format.upper() and 'HR' in file1.Audio_Format.upper():
         audiocodec_sel='18'
-    elif 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
+    elif 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='12'
-    elif 'TRUE' in file1.pathinfo.audio_format.upper():
+    elif 'TRUE' in file1.Audio_Format.upper():
         audiocodec_sel='13'
-    elif 'FLAC' in file1.pathinfo.audio_format.upper():
+    elif 'FLAC' in file1.Audio_Format.upper():
         audiocodec_sel='1'
-    elif 'APE' in file1.pathinfo.audio_format.upper():
+    elif 'APE' in file1.Audio_Format.upper():
         audiocodec_sel='2'
-    elif 'MP3' in file1.pathinfo.audio_format.upper():
+    elif 'MP3' in file1.Audio_Format.upper():
         audiocodec_sel='4'
-    elif 'EAC3' in file1.pathinfo.audio_format.upper() or 'EAC-3' in file1.pathinfo.audio_format.upper() or 'DDP' in file1.pathinfo.audio_format.upper():
+    elif 'EAC3' in file1.Audio_Format.upper() or 'EAC-3' in file1.Audio_Format.upper() or 'DDP' in file1.Audio_Format.upper():
         audiocodec_sel='15'
-    elif 'AC3' in file1.pathinfo.audio_format.upper() or 'AC-3' in file1.pathinfo.audio_format.upper() or 'DD' in file1.pathinfo.audio_format.upper():
+    elif 'AC3' in file1.Audio_Format.upper() or 'AC-3' in file1.Audio_Format.upper() or 'DD' in file1.Audio_Format.upper():
         audiocodec_sel='15'
-    elif 'DTS' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'WAV' in file1.pathinfo.audio_format.upper():
+    elif 'WAV' in file1.Audio_Format.upper():
         audiocodec_sel='16'
-    elif 'LPCM' in file1.pathinfo.audio_format.upper():
+    elif 'LPCM' in file1.Audio_Format.upper():
         audiocodec_sel='14'
     else:
         audiocodec_sel='0'
@@ -266,7 +266,7 @@ def hdhome_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     logger.info('已成功选择分辨率')
     
     #选择处理
-    if 'ENCODE' in file1.pathinfo.medium.upper():
+    if 'ENCODE' in file1.type.upper():
         processing_sel='2'
     else:
         processing_sel='1'
