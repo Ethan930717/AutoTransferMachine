@@ -32,7 +32,7 @@ def get_video_duration(video_path: str):
     #duration_info = float(a.buffer.read().decode('utf-8'))
     return duration_info
 
-def takescreenshot(file,screenshotaddress,screenshotnum,basic):
+def takescreenshot(file,screenshotaddress,screenshotnum,yamlinfo):
     '''
     para:
         file:视频文件
@@ -58,13 +58,13 @@ def takescreenshot(file,screenshotaddress,screenshotnum,basic):
     timestep=duration*1.0/(screenshotnum+3)
     firststep=timestep*2
 
-    if basic['picture_format'].lower() == "png":
+    if yamlinfo['basic']['picture_format'].lower() == "png":
         picture_format = ".png"
-    elif basic['picture_format'].lower() == "gif":
+    elif yamlinfo['basic']['picture_format'].lower() == "gif":
         picture_format = ".gif"
-    elif basic['picture_format'].lower() == "bmp":
+    elif yamlinfo['basic']['picture_format'].lower() == "bmp":
         picture_format = ".bmp"
-    elif basic['picture_format'].lower() == "tiff":
+    elif yamlinfo['basic']['picture_format'].lower() == "tiff":
         picture_format = ".tiff"
     else:
         picture_format = ".jpg"
