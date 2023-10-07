@@ -14,7 +14,7 @@ def choose_function():
     print("4. 拉种模式")
     print("5. pathinfo模板转换")
     print("6. 自动截图并上传图床")
-    print("脚本运行过程中，可使用ctrl+c退出")
+    print(f"脚本运行过程中，可使用ctrl+c退出,ctrl+z暂停,暂停过程中输入'fg'恢复运行")
     modechoice = input("请输入你的选择：")
     return modechoice
 
