@@ -422,11 +422,9 @@ class MoviePageParse:
             try:
                 # all content
                 summary = str(self.film_soup.find('span', class_='all hidden').text)
-                summary = summary.replace('\n', '').replace('\u3000', '')
             except Exception as err:
                 # short content
                 summary = str(self.film_soup.find('span', property='v:summary').text)
-                summary = summary.replace('\n', '').replace('\u3000', '')
         except Exception as err:
             summary = ''
         return summary

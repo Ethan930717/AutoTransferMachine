@@ -28,8 +28,8 @@
      * 下载以后，自行修改compose中的媒体映射路径
      * 在compose所在路径下，启动容器 `docker-compose run atm`
      * :star:请注意，要用 `docker-compose run` 不能用 `docker-compose up`
-     * 容器启动后会自动进入内部的/app路径，输入`./a`开启脚本
-       * :star:为减少docker镜像的更新频率，加入了容器内升级脚本的功能，输入`./update`即可拉取最新脚本:star:
+     * 容器启动后会自动进入内部的/app路径，输入`./update`更新最新脚本，输入`./a`开启脚本
+
 ## :warning:使用说明
 
 * 使用建议
