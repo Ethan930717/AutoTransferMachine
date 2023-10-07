@@ -276,7 +276,6 @@ def hares_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
             "color": "0",
             "font": "0",
             "size": "0",
-            "screenshots": file1.screenshoturl
             "descr": file1.pathinfo.contenthead+'\n'+file1.douban_info.replace(''.join(re.findall('\[img\]https://img9\.douban.*p\d*.jpg\[/img\]',file1.douban_info)),'')+'\n'+file1.pathinfo.contenttail,
             "technical_info" : file1.mediainfo,
             "type": select_type,
