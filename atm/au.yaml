@@ -1,5 +1,6 @@
 basic:
   picture_num: 6                 #默认自动截图的张数，不设置就是3
+  picture_format: jpg            #截图格式，可选jpg/png/gif/bmp/tiff，写其它默认jpg
   workpath: /atm/                #不用动
   new_folder: 0                  #不用动
   check: 0                       #不用动
