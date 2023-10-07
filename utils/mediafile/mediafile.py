@@ -32,7 +32,7 @@ def get_video_duration(video_path: str):
     #duration_info = float(a.buffer.read().decode('utf-8'))
     return duration_info
 
-def takescreenshot(file,screenshotaddress,screenshotnum,yamlinfo):
+def takescreenshot(file,screenshotaddress,screenshotnum,basic):
     '''
     para:
         file:视频文件
@@ -58,13 +58,13 @@ def takescreenshot(file,screenshotaddress,screenshotnum,yamlinfo):
     timestep=duration*1.0/(screenshotnum+3)
     firststep=timestep*2
 
-    if yamlinfo['basic']['picture_format'].lower() == "png":
+    if basic['picture_format'].lower() == "png":
         picture_format = ".png"
-    elif yamlinfo['basic']['picture_format'].lower() == "gif":
+    elif basic['picture_format'].lower() == "gif":
         picture_format = ".gif"
-    elif yamlinfo['basic']['picture_format'].lower() == "bmp":
+    elif basic['picture_format'].lower() == "bmp":
         picture_format = ".bmp"
-    elif yamlinfo['basic']['picture_format'].lower() == "tiff":
+    elif basic['picture_format'].lower() == "tiff":
         picture_format = ".tiff"
     else:
         picture_format = ".jpg"
@@ -241,7 +241,7 @@ class mediafile(object):
 
     def getscreenshot(self):
         if self.getscreenshot_done==0:
-            takescreenshot(self.address,self.screenshotaddress,self.screenshotnum)
+            takescreenshot(self.address,self.screenshotaddress,self.screenshotnum,self.basic)
             self.getscreenshot_done=1
     
     def getimgurl(self,server=''):
