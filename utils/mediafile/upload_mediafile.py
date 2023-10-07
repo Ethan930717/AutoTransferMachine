@@ -332,14 +332,26 @@ def takescreenshot(file, screenshotaddress, screenshotnum):
             os.remove(c_path)
     timestep = duration * 1.0 / (screenshotnum + 3)
     firststep = timestep * 2
+
+    if basic['picture_format'].lower() == "png":
+        picture_format = ".png"
+    elif basic['picture_format'].lower() == "gif":
+        picture_format = ".gif"
+    elif basic['picture_format'].lower() == "bmp":
+        picture_format = ".bmp"
+    elif basic['picture_format'].lower() == "tiff":
+        picture_format = ".tiff"
+    else:
+        picture_format = ".jpg"
+
     for i in range(screenshotnum):
         firststep = firststep + timestep
         if 'win32' in sys.platform:
             screenshotstr = 'ffmpeg -ss ' + str(firststep) + ' -i "' + file + '" -f image2 -y "' + os.path.join(
-                screenshotaddress, str(i + 1) + '.jpg') + '"'
+                screenshotaddress, str(i + 1) + picture_format) + '"'
         else:
             screenshotstr = 'ffmpeg -ss ' + str(firststep) + ' -i "' + file + '" -f image2 -y "' + os.path.join(
-                screenshotaddress, str(i + 1) + '.jpg') + '" &> /dev/null'
+                screenshotaddress, str(i + 1) + picture_format) + '" &> /dev/null'
         # print(screenshotstr)
         os.system(screenshotstr)
     logger.info('截图完毕')
@@ -526,8 +538,20 @@ class mediafile(object):
             return ''
         self.getscreenshot()
         imgpaths = []
+
+        if self.basic['picture_formatm'].lower() == "png":
+            picture_format = ".png"
+        elif self.basic['picture_formatm'].lower() == "gif":
+            picture_format = ".gif"
+        elif self.basic['picture_formatm'].lower() == "bmp":
+            picture_format = ".bmp"
+        elif self.basic['picture_formatm'].lower() == "tiff":
+            picture_format = ".tiff"
+        else:
+            picture_format = ".jpg"
+
         for i in range(self.screenshotnum):
-            imgpaths.append(os.path.join(self.screenshotaddress, str(i + 1) + '.jpg'))
+            imgpaths.append(os.path.join(self.screenshotaddress, str(i + 1) + picture_format))
         logger.info('正在将' + self.chinesename + '的第' + self.episodename + '集截图上传' + server + '图床,请稍等...')
         res = img_upload(imgdata=self.imgdata, imglist=imgpaths, host=server, form='bbcode')
         if res == '':

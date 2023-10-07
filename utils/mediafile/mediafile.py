@@ -10,6 +10,7 @@ import sys
 from utils.img_upload.imgupload import img_upload
 from utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
+from utils.para_ctrl.readyaml import readyaml
 
 
 
@@ -31,7 +32,7 @@ def get_video_duration(video_path: str):
     #duration_info = float(a.buffer.read().decode('utf-8'))
     return duration_info
 
-def takescreenshot(file,screenshotaddress,screenshotnum):
+def takescreenshot(file,screenshotaddress,screenshotnum,basic):
     '''
     para:
         file:视频文件
@@ -56,12 +57,24 @@ def takescreenshot(file,screenshotaddress,screenshotnum):
             os.remove(c_path)
     timestep=duration*1.0/(screenshotnum+3)
     firststep=timestep*2
+
+    if basic['picture_format'].lower() == "png":
+        picture_format = ".png"
+    elif basic['picture_format'].lower() == "gif":
+        picture_format = ".gif"
+    elif basic['picture_format'].lower() == "bmp":
+        picture_format = ".bmp"
+    elif basic['picture_format'].lower() == "tiff":
+        picture_format = ".tiff"
+    else:
+        picture_format = ".jpg"
+
     for i in range (screenshotnum):
         firststep=firststep+timestep
         if 'win32' in sys.platform:
-            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+'.jpg')+'"'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'"'
         else:
-            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+'.jpg')+'" &> /dev/null'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'" &> /dev/null'
         #print(screenshotstr)
         os.system(screenshotstr)
     logger.info('截图完毕')
@@ -237,6 +250,17 @@ class mediafile(object):
         '''
         0张图的特判
         '''
+        if self.basic['picture_formatm'].lower() == "png":
+            picture_format = ".png"
+        elif self.basic['picture_formatm'].lower() == "gif":
+            picture_format = ".gif"
+        elif self.basic['picture_formatm'].lower() == "bmp":
+            picture_format = ".bmp"
+        elif self.basic['picture_formatm'].lower() == "tiff":
+            picture_format = ".tiff"
+        else:
+            picture_format = ".jpg"
+
         if 'picture_num' in self.basic and int(self.basic['picture_num'])==0:
             self.screenshoturl=''
             self.getimgurl_done=1
@@ -244,7 +268,7 @@ class mediafile(object):
         self.getscreenshot()
         imgpaths=[]
         for i in range (self.screenshotnum):
-            imgpaths.append(os.path.join(self.screenshotaddress,str(i+1)+'.jpg'))
+            imgpaths.append(os.path.join(self.screenshotaddress,str(i+1)+picture_format))
         logger.info('正在将'+self.chinesename +'的第'+self.episodename+'集截图上传'+server+'图床,请稍等...')
         res=img_upload(imgdata=self.imgdata,imglist=imgpaths,host=server,form='bbcode')
         if res=='':
