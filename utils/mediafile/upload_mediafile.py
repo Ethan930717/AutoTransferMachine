@@ -305,7 +305,7 @@ def get_video_duration(video_path: str):
     return duration_info
 
 
-def takescreenshot(file, screenshotaddress, screenshotnum):
+def takescreenshot(file,screenshotaddress,screenshotnum,basic):
     '''
     para:
         file:视频文件
@@ -313,25 +313,23 @@ def takescreenshot(file, screenshotaddress, screenshotnum):
         screenshotaddress:存放截图地址，截图后除了新截图其他文件会被清空
         screenshotnum:截图数量
     '''
-    logger.info('正在对视频' + file + '截图' + str(screenshotnum) + '张并存入文件夹' + screenshotaddress)
-    i = os.path.basename(file)
-    if (os.path.isdir(file)) or (i.startswith('.')) or (not (
-            os.path.splitext(i)[1].lower() == ('.mp4') or os.path.splitext(i)[1].lower() == ('.mkv') or
-            os.path.splitext(i)[1].lower() == ('.avi') or os.path.splitext(i)[1].lower() == ('.ts'))):
-        logger.error(file + '非视频文件,无法截图')
-        raise ValueError(file + '非视频文件,无法截图')
-    duration = get_video_duration(file)
-    if abs(duration) < 1e-9:
-        logger.error(file + '视频文件播放时长过短,无法截图')
-        raise ValueError(file + '视频文件播放时长过短,无法截图')
-    # 清空截图文件夹
+    logger.info('正在对视频'+file+'截图'+str(screenshotnum)+'张并存入文件夹'+screenshotaddress)
+    i=os.path.basename(file)
+    if (os.path.isdir(file)) or (i.startswith('.')) or (not(  os.path.splitext(i)[1].lower()== ('.mp4') or os.path.splitext(i)[1].lower()== ('.mkv')  or os.path.splitext(i)[1].lower()== ('.avi') or os.path.splitext(i)[1].lower()== ('.ts')    )):
+        logger.error(file+'非视频文件,无法截图')
+        raise ValueError (file+'非视频文件,无法截图')
+    duration=get_video_duration(file)
+    if abs(duration)<1e-9:
+        logger.error(file+'视频文件播放时长过短,无法截图')
+        raise ValueError (file+'视频文件播放时长过短,无法截图')
+    #清空截图文件夹
     ls = os.listdir(screenshotaddress)
     for i in ls:
         c_path = os.path.join(screenshotaddress, i)
         if not (os.path.isdir(c_path)):
             os.remove(c_path)
-    timestep = duration * 1.0 / (screenshotnum + 3)
-    firststep = timestep * 2
+    timestep=duration*1.0/(screenshotnum+3)
+    firststep=timestep*2
 
     if basic['picture_format'].lower() == "png":
         picture_format = ".png"
@@ -344,15 +342,13 @@ def takescreenshot(file, screenshotaddress, screenshotnum):
     else:
         picture_format = ".jpg"
 
-    for i in range(screenshotnum):
-        firststep = firststep + timestep
+    for i in range (screenshotnum):
+        firststep=firststep+timestep
         if 'win32' in sys.platform:
-            screenshotstr = 'ffmpeg -ss ' + str(firststep) + ' -i "' + file + '" -f image2 -y "' + os.path.join(
-                screenshotaddress, str(i + 1) + picture_format) + '"'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'"'
         else:
-            screenshotstr = 'ffmpeg -ss ' + str(firststep) + ' -i "' + file + '" -f image2 -y "' + os.path.join(
-                screenshotaddress, str(i + 1) + picture_format) + '" &> /dev/null'
-        # print(screenshotstr)
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'" &> /dev/null'
+        #print(screenshotstr)
         os.system(screenshotstr)
     logger.info('截图完毕')
 
@@ -455,26 +451,35 @@ class mediafile(object):
         self.Video_Format = 'H264'
 
         if 'hdtvrip' in self.filename.lower() or 'hdtv-rip' in self.filename.lower() or 'tv-rip' in self.filename.lower() or 'tvrip' in self.filename.lower():
-            self.type = 'HDTVRip'
+            self.type='HDTVRip'
+            self.source='HDTVRip'
         elif 'hdtv' in self.filename.lower():
-            self.type = 'HDTV'
+            self.type='HDTV'
+            self.source ='HDTV'
         elif 'bdrip' in self.filename.lower() or 'bd-rip' in self.filename.lower():
-            self.type = 'BDRip'
+            self.type='BDRip'
+            self.source='BDRip'
         elif 'remux' in self.filename.lower():
-            self.type = 'Remux'
+            self.type='Remux'
+            self.source = 'Remux'
         elif 'bluray' in self.filename.lower() or 'blu-ray' in self.filename.lower():
-            self.type = 'Bluray'
+            self.type='Bluray'
+            self.source = 'Bluray'
         elif 'dvdrip' in self.filename.lower() or 'dvd-rip' in self.filename.lower():
-            self.type = 'DVDRip'
-        elif 'dvd' in self.filename.lower():
-            self.type = 'DVD'
-        elif 'webdl' in self.filename.lower() or 'web-dl' in self.filename.lower():
-            self.type = 'WEB-DL'
+            self.type='DVDRip'
+            self.source = 'DVDRip'
+        elif 'dvd' in self.filename.lower() :
+            self.type='DVD'
+            self.source ='DVD'
+        elif 'webdl' in self.filename.lower() or 'web-dl' in self.filename.lower() :
+            self.type='WEB-DL'
+            self.source ='WEB-DL'
         elif 'webrip' in self.filename.lower() or 'web-rip' in self.filename.lower():
-            self.type = 'WEBRip'
-        elif self.sub in dlgroup or (
-                'WEB' in self.sub.upper() and not 'WEBRRP' in self.sub.upper() and not '爪爪' in self.pathinfo.exinfo):
-            self.type = 'WEB-DL'
+            self.type='WEBRip'
+            self.source = 'WEBRip'
+        elif self.sub in dlgroup or ('WEB' in self.sub.upper() and not 'WEBRRP' in self.sub.upper() and not '爪爪' in self.pathinfo.exinfo):
+            self.type='WEB-DL'
+            self.source ='WEB-DL'
 
         self.getscreenshot_done = 0
         self.getimgurl_done = 0
@@ -523,7 +528,7 @@ class mediafile(object):
 
     def getscreenshot(self):
         if self.getscreenshot_done == 0:
-            takescreenshot(self.address, self.screenshotaddress, self.screenshotnum)
+            takescreenshot(self.address, self.screenshotaddress, self.screenshotnum,self.basic)
             self.getscreenshot_done = 1
 
     def getimgurl(self, server=''):

@@ -172,24 +172,35 @@ class mediafile(object):
         
         if 'hdtvrip' in self.filename.lower() or 'hdtv-rip' in self.filename.lower() or 'tv-rip' in self.filename.lower() or 'tvrip' in self.filename.lower():
             self.type='HDTVRip'
+            self.source='HDTVRip'
         elif 'hdtv' in self.filename.lower():
             self.type='HDTV'
+            self.source ='HDTV'
         elif 'bdrip' in self.filename.lower() or 'bd-rip' in self.filename.lower():
             self.type='BDRip'
+            self.source='BDRip'
         elif 'remux' in self.filename.lower():
             self.type='Remux'
+            self.source = 'Remux'
         elif 'bluray' in self.filename.lower() or 'blu-ray' in self.filename.lower():
             self.type='Bluray'
+            self.source = 'Bluray'
         elif 'dvdrip' in self.filename.lower() or 'dvd-rip' in self.filename.lower():
             self.type='DVDRip'
+            self.source = 'DVDRip'
         elif 'dvd' in self.filename.lower() :
             self.type='DVD'
+            self.source ='DVD'
         elif 'webdl' in self.filename.lower() or 'web-dl' in self.filename.lower() :
             self.type='WEB-DL'
+            self.source ='WEB-DL'
         elif 'webrip' in self.filename.lower() or 'web-rip' in self.filename.lower():
             self.type='WEBRip'
+            self.source = 'WEBRip'
         elif self.sub in dlgroup or ('WEB' in self.sub.upper() and not 'WEBRRP' in self.sub.upper() and not '爪爪' in self.pathinfo.exinfo):
             self.type='WEB-DL'
+            self.source ='WEB-DL'
+
 
         self.getscreenshot_done=0
         self.getimgurl_done=0
