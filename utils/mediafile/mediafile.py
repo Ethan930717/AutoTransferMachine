@@ -250,13 +250,13 @@ class mediafile(object):
         '''
         0张图的特判
         '''
-        if self.basic['picture_formatm'].lower() == "png":
+        if self.basic['picture_format'].lower() == "png":
             picture_format = ".png"
-        elif self.basic['picture_formatm'].lower() == "gif":
+        elif self.basic['picture_format'].lower() == "gif":
             picture_format = ".gif"
-        elif self.basic['picture_formatm'].lower() == "bmp":
+        elif self.basic['picture_format'].lower() == "bmp":
             picture_format = ".bmp"
-        elif self.basic['picture_formatm'].lower() == "tiff":
+        elif self.basic['picture_format'].lower() == "tiff":
             picture_format = ".tiff"
         else:
             picture_format = ".jpg"
