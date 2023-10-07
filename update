@@ -1,0 +1,6 @@
+#!/bin/bash
+atm_path=/app #atm文件夹的路径
+git_url=https://github.com/Ethan930717/AutoTransferMachine #GitHub仓库的URL
+rm -rf $atm_path
+git clone $git_url $atm_path
+echo "ATM更新成功!"
