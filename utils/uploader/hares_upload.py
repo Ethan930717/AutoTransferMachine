@@ -268,14 +268,15 @@ def hares_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
     torrent_file = file1.torrentpath
     file_tup = ("file", (os.path.basename(torrent_file), open(torrent_file, 'rb'), 'application/x-bittorrent')),
-            
 
     other_data = {
             "name": file1.uploadname,
             "small_descr": file1.small_descr+file1.pathinfo.exinfo,
+            "pt_gen[douban][link]": file1.doubanurl,
             "color": "0",
             "font": "0",
             "size": "0",
+            "screenshots": file1.screenshoturl
             "descr": file1.pathinfo.contenthead+'\n'+file1.douban_info.replace(''.join(re.findall('\[img\]https://img9\.douban.*p\d*.jpg\[/img\]',file1.douban_info)),'')+'\n'+file1.pathinfo.contenttail,
             "technical_info" : file1.mediainfo,
             "type": select_type,

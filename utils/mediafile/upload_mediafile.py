@@ -926,6 +926,21 @@ class mediafile(object):
         self.Height = int(media_json['media']['track'][1]['Height'].strip())
         self.BitDepth = int(media_json['media']['track'][1]['BitDepth'].strip())
         self.Audio_Format = media_json['media']['track'][2]['Format']
+
+        #获取HDR信息
+        if colour_primaries in media_json['media']['track'][1] or hdr_format in media_json['media']['track'][1]:
+            if media_json['media']['track'][1]['colour_primaries'] == "BT.2020" or media_json['media']['track'][1]['hdr_format'] == "SMPTE ST 2094 App 4, Version 1, HDR10+ Profile A compatible":
+                self.hdr_type = "HDR10+"
+            elif media_json['media']['track'][1]['colour_primaries'] == "BT.2020" or media_json['media']['track'][1]['hdr_format'] == "SMPTE ST 2086, HDR10 compatible":
+                self.hdr_type = "HDR10"
+            elif media_json['media']['track'][1]['colour_primaries'] == "Display P3" or media_json['media']['track'][1]['hdr_format'] == "Dolby Vision, Version 1.0, dvhe.04.06, BL+RPU":
+                self.hdr_type = "Dolby Vision"
+            else:
+                self.hdr_type = "SDR"
+        else:
+            self.hdr_type = None
+
+        #获取分辨率
         if 'Scan type' in media_json['media']['track'][1]:
             self.scan_type = media_json['media']['track'][1]['Scan type']
         else:
@@ -1423,6 +1438,7 @@ class mediafile(object):
             self.sublan = '[' + self.pathinfo.txt_info + ']'
         if self.pathinfo.audio_info != '':
             self.language = self.pathinfo.audio_info
+
 
         self.uploadname = str(self.englishname) + ' ' + str(self.year)
         self.small_descr = self.chinesename.strip()

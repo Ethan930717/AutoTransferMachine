@@ -153,7 +153,7 @@ class mediafile(object):
             self.season_ch         = self.pathinfo.season_ch
             self.complete          = self.pathinfo.complete
 
-        dlgroup           =['NaN-Raws','NaN Raws','NC-Raws','NC Raws','Lilith-Raws','Lilith Raws','ANi','Skymoon-Raws','Skymoon Raws','GMTeam','GM-Team']
+        dlgroup           =['NaN-Raws','NaN Raws','NC-Raws','NC Raws','Lilith-Raws','Lilith Raws','ANi','Skymoon-Raws','Skymoon Raws','GMTeam','GM-Team','YingWEB']
         self.type              ='WEBRip'
         self.Video_Format      ='H264'
         
@@ -413,7 +413,7 @@ class mediafile(object):
                 elif 'Language' in item :
                     if 'CHINESE' in item['Language'].upper() or '中' in item['Language'].upper() or 'CH' in item['Language'].upper() or 'ZH' in item['Language'].upper() or '国' in item['Language'].upper() or '国语' in self.pathinfo.small_descr:
                         ch=1
-                    if  'JA' in item['Language'].upper() or 'JP' in item['Language'].upper() or '日' in item['Language'].upper():
+                    if 'JA' in item['Language'].upper() or 'JP' in item['Language'].upper() or '日' in item['Language'].upper():
                         jp=1
                     if 'EN' in item['Language'].upper() or '英' in item['Language'].upper():
                         en=1
@@ -626,6 +626,12 @@ class mediafile(object):
         self.Height            =int(media_json['media']['track'][1]['Height'].strip())
         self.BitDepth          =int(media_json['media']['track'][1]['BitDepth'].strip())
         self.Audio_Format      =media_json['media']['track'][2]['Format']
+
+
+        #获取HDR信息
+
+
+        #获取分辨率
         if 'Scan type' in media_json['media']['track'][1]:
             self.scan_type=media_json['media']['track'][1]['Scan type']
         else:
