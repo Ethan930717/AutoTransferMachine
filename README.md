@@ -1,76 +1,51 @@
 <h1 align="center"> ⭐️ Auto Transfer Machine ⭐️ </h1>
 <h2 align="center"><strong>:heart_on_fire:为发光发热而生:heart_on_fire:</a></strong></h2>
 
-## :triangular_flag_on_post:功能
+## :triangular_flag_on_post:主要功能
+<img src="https://img.kimoji.club/images/2023/10/06/ATM.jpg" alt="ATM.jpg" border="0" />
 
-* 批量爬取站点指定资源并下载到本地（例：可通过脚本选择爬取影站除禁转、分集外的所有资源）
-* 自动从源站抓取转种需要的媒体信息，通过POST达到精确转种
-* 自动生成截图（可指定数量与格式）
-* 自动生成新的PTGEN与MediaINFO信息
+* 1.转种模式：自动从源站抓取媒体信息并转种
+* 2.发种模式：自动从本地媒体文件中提取信息并发种
+* 3.站点签到（有空再做）
+* 4.批量爬取站点指定资源并下载到本地
+* 5.生成转种模板
+* 6.从媒体中截取指定数量、格式的图片，上传到指定图床（有空再做）
 
 ## :warning:注意事项
-* 部分有特殊MediaINFO模板的站点，以及对转出有严格要求的站点慎用
+* 使用有门槛，有问题需自行研究，脚本打开以后有群号，建议群内提问或提建议，没事不要提issue
 
 ## :warning:安装说明
-1. #### 安装PYTHON环境，已安装可跳过
-   * 更新源 :star:
-     * `sudo apt update && sudo apt upgrade`
-   *    安装依赖 :star:
-         * `sudo apt install -y pip wget build-essential libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev`
-   * 下载安装包 :star:
-     * `wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz`
-   * 解压并编译 :star:
-     * `tar xzf Python-3.9.0.tgz` 
-     *    `cd Python-3.9.0` 
-       * `./configure --enable-optimizations` 
-       * `sudo su`
-       * `make altinstall`
-   * 测试 :star:
-     * `sudo python3 -m pip install --upgrade pip`
-   * 删除安装包（如有需要） :star:
-     * `sudo rm -rf /home/Python-3.9.0` 
-     * `sudo rm /home/Python-3.9.0.tgz`
+1. #### 安装Docker以及Docker-compose环境 :star:
+     * `curl -fsSL https://get.docker.com -o get-docker.sh`
+     * `sudo sh get-docker.sh`
+     * `sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
 
-2. #### 安装ATM
-   * 安装ATM依赖 :star:
-     * `sudo apt-get install -y python3-pip ffmpeg mediainfo mktorrent screen unzip git`
-   * 安装ATM本体:star:
-     * `pip install AutoTransferMachine`
-   * 设置ATM配置信息 :star:
-     * `bash <(curl -s https://raw.githubusercontent.com/Ethan930717/AutoTransferMachine/main/atm/atm_install.sh)`
+2. #### 拉取镜像 :star:
+     * `docker pull hudan717/atm`
 
-#### :crayon:3.如果你看到了指令说明界面，则工具已安装完成，以上所有pip指令如果运行异常，可尝试使用pip3
- <img src="https://img.pterclub.com/images/2023/09/29/1.png" />
+3. #### 加载ATM配置文档及启动 :star:
+     * 把atm文件夹下载到你的机器中的任意位置，里面分别有三个子文件夹，里面各有一个占位的空文件，下载以后可以删除也可以不用理会
+     * 下载以后，自行修改compose中的媒体映射路径
+     * 在compose所在路径下，启动容器 `docker-compose run atm`
+     * :star:请注意，要用 `docker-compose run` 不能用 `docker-compose up`
+     * 容器启动后会自动进入内部的/app路径，输入`./update`更新最新脚本，输入`./a`开启脚本
 
 ## :warning:使用说明
-   * 目录结构
 
-    atm
-    │
-    │ au.yaml         //核心配置文件，需自行添加大量参数，内附说明
-    │  
-    ├─record_path     //日志存放目录
-    │
-    ├─screenshot_path //截图暂存目录，每个新的资源开始转发后会自动清空，不会占用空间
-    │
-    └─torrent_path    //种子存放目录
+* 使用建议
+     * 容器的运行建议跑在screen下，以下给出最基本的screen操作流程
+     * `sudo apt-get install screen` 安装screen
+     * `screen -R atm` 创建一个名为atm的screen(可以理解成windows的分屏)
+     * 在atm分屏中开启脚本后，你可以通过ctrl+a+d退出atm的screen，回到ssh主界面进行别的操作
+     * 如果要回去看看脚本的工作进度，可以使用`screen -r atm` 或者 `screen -D -r atm`指令切换回screen
+     * 脚本运行过程中，你可以通过`ctrl+z`随时暂停脚本,同时在暂停状态下，你也可以通过输入`fg`让脚本继续工作
 
-* 工作逻辑
 
-         :arrow_down:1.从站点批量获取资源信息，将信息保存在record_path目录，并将种子下载保存至torrent_path目录
+## :star:更新流
 
-         :writing_hand:2.通过第一步获取的资源链接，批量生成转载信息，自动生成模板写入yaml的path info中
-
-         :arrow_heading_up:3.通过第二步生成的模板，实现资源转发
-
-* 运行指令(yaml自行更改)    
-    * 批量获取资源信息`atm -yp "/atm/au.yaml" -dl`
-    * 模板转换`atm -yp "/atm/au.yaml" -tr`
-    * 转种模式`atm -yp "/atm/au.yaml" -u`
-    * 生成豆瓣PTGEN`atm -yp "/atm/au.yaml" -di -du '豆瓣链接'`
-    * 截图并上传图床`atm -yp "/atm/au.yaml" -mi -mf '视频路径' -ih 图床名称 -iform 图片格式(bbcode或img) -in 截图数量`
-    * 链接转图床`atm -yp "/atm/au.yaml" -iu //适用性较低，为简化模板已暂时关闭本功能` 
-    * 簽到模式`atm -yp "/atm/au.yaml" -s //待更新` 
+* 增加server酱推送功能，每次任务完成后会推送消息通知
+* 增加拉种模式下种子下载到本地后，同时导入到QB（默认暂停），方便随时下载
+* 增加截图格式选择功能，用于适配个别站点硬性规定需要png源图的奇怪需求
 
 ## :warning:已适配转出站点
 

@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -40,37 +40,37 @@ def piggo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
     #选择来源
 
-    if 'WEB' in file1.pathinfo.source.upper():
+    if 'WEB' in file1.source.upper():
         source_sel='7'
         logger.info('已成功选择来源为WEB-DL')  
-    elif 'UHD' in file1.pathinfo.source.upper() and 'DIY' in file1.pathinfo.source.upper():
+    elif 'UHD' in file1.source.upper() and 'DIY' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为UHD-BLURAY DIY')         
-    elif 'UHD' in file1.pathinfo.source.upper():
+    elif 'UHD' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.source.upper() and 'DIY' in file1.pathinfo.source.upper():
+    elif 'BLU' in file1.source.upper() and 'DIY' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为BLURAY DIY') 
-    elif 'BLU' in file1.pathinfo.source.upper():
+    elif 'BLU' in file1.source.upper():
         source_sel='1'
         logger.info('已成功选择来源为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.source.upper():
+    elif 'ENCODE' in file1.source.upper():
         source_sel='6'
         logger.info('已成功选择来源为ENCODE')         
-    elif 'HDTV' in file1.pathinfo.source.upper():
+    elif 'HDTV' in file1.source.upper():
         source_sel='5'
         logger.info('已成功选择来源为HDTV')         
-    elif 'REMUX' in file1.pathinfo.source.upper():
+    elif 'REMUX' in file1.source.upper():
         source_sel='6'
         logger.info('已成功选择来源为REMUX')
-    elif 'DVD' in file1.pathinfo.source.upper():
+    elif 'DVD' in file1.source.upper():
         source_sel='3'
         logger.info('已成功选择来源为DVD')
-    elif 'DVD' in file1.pathinfo.source.upper() and 'HD' in file1.pathinfo.source.upper():
+    elif 'DVD' in file1.source.upper() and 'HD' in file1.source.upper():
         source_sel='3'
         logger.info('已成功选择来源为HDDVD')
-    elif 'TV' in file1.pathinfo.source.upper():
+    elif 'TV' in file1.source.upper():
         source_sel='5'
         logger.info('已成功选择来源为DVD')              
     else:
@@ -78,40 +78,40 @@ def piggo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         logger.info('已成功选择来源为其它') 
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为WEB-DL')        
-    elif 'UHD' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为UHD-BLURAY DIY')         
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为BLURAY DIY') 
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')      
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为DVDR')        
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为HDDVD')
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为MiniBD')
-    elif 'TRACK' in file1.pathinfo.medium.upper():
+    elif 'TRACK' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为TRACK')         
     else:
@@ -120,31 +120,31 @@ def piggo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG' in file1.pathinfo.video_format.upper():
+    elif 'MPEG' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为MPEG')          
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为VC1')          
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为XVID')          
     else:
@@ -153,34 +153,34 @@ def piggo_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择音频编码
-    if file1.pathinfo.audio_format=='AAC':
+    if file1.Audio_Format=='AAC':
         audiocodec_sel='6'
-    elif 'DTS-HDMA' in file1.pathinfo.audio_format.upper() or 'DTS-HD MA' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HDMA' in file1.Audio_Format.upper() or 'DTS-HD MA' in file1.Audio_Format.upper():
         audiocodec_sel='8'
-    elif 'DOLBY' in file1.pathinfo.audio_format.upper() and 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
+    elif 'DOLBY' in file1.Audio_Format.upper() and 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='10'
         tags.append(12)
-    elif 'TRUE' in file1.pathinfo.audio_format.upper():
+    elif 'TRUE' in file1.Audio_Format.upper():
         audiocodec_sel='10'
-    elif 'FLAC' in file1.pathinfo.audio_format.upper():
+    elif 'FLAC' in file1.Audio_Format.upper():
         audiocodec_sel='1'
-    elif 'APE' in file1.pathinfo.audio_format.upper():
+    elif 'APE' in file1.Audio_Format.upper():
         audiocodec_sel='2'
-    elif 'MP3' in file1.pathinfo.audio_format.upper():
+    elif 'MP3' in file1.Audio_Format.upper():
         audiocodec_sel='4'
-    elif 'EAC3' in file1.pathinfo.audio_format.upper() or 'EAC-3' in file1.pathinfo.audio_format.upper() or 'DDP' in file1.pathinfo.audio_format.upper():
+    elif 'EAC3' in file1.Audio_Format.upper() or 'EAC-3' in file1.Audio_Format.upper() or 'DDP' in file1.Audio_Format.upper():
         audiocodec_sel='8'
-    elif 'AC3' in file1.pathinfo.audio_format.upper() or 'AC-3' in file1.pathinfo.audio_format.upper() or 'DD' in file1.pathinfo.audio_format.upper():
+    elif 'AC3' in file1.Audio_Format.upper() or 'AC-3' in file1.Audio_Format.upper() or 'DD' in file1.Audio_Format.upper():
         audiocodec_sel='8'
-    elif 'DTS' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'WAV' in file1.pathinfo.audio_format.upper():
+    elif 'WAV' in file1.Audio_Format.upper():
         audiocodec_sel='7'
-    elif 'OGG' in file1.pathinfo.audio_format.upper():
+    elif 'OGG' in file1.Audio_Format.upper():
         audiocodec_sel='5'
-    elif 'OPUS' in file1.pathinfo.audio_format.upper():
+    elif 'OPUS' in file1.Audio_Format.upper():
         audiocodec_sel='7'
-    elif 'PCM' in file1.pathinfo.audio_format.upper():
+    elif 'PCM' in file1.Audio_Format.upper():
         audiocodec_sel='11'
     else:
         audiocodec_sel='7'

@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -48,49 +48,49 @@ def hdu_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'DVD' in file1.pathinfo.medium.upper():
+    if 'DVD' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为DVD')  
-    elif 'tv' in file1.pathinfo.type.lower() and 'WEB' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'WEB' in file1.type.upper():
         medium_sel='13'
         logger.info('已成功选择媒介为WEB-DL TV')
-    elif 'WEB' in file1.pathinfo.medium.upper():
+    elif 'WEB' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为WEB-DL')   
-    elif 'tv' in file1.pathinfo.type.lower() and 'UHD' in file1.pathinfo.medium.upper() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'UHD' in file1.type.upper() and 'REMUX' in file1.type.upper():
         medium_sel='16'
         logger.info('已成功选择媒介为TV UHD-REMUX')
-    elif 'UHD' in file1.pathinfo.medium.upper() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper() and 'REMUX' in file1.type.upper():
         medium_sel='15'
         logger.info('已成功选择媒介为UHD-REMUX')
-    elif 'tv' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         medium_sel='12'
         logger.info('已成功选择媒介为REMUX TV')
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为UHDBLURAY')           
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'tv' in file1.pathinfo.type.lower() and 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'tv' in file1.pathinfo.type.lower() and 'ENCODE' in file1.type.upper():
         medium_sel='14'
         logger.info('已成功选择媒介为ENCODETV')
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为ENCODE')           
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为MiniBD') 
-    elif 'CD' in file1.pathinfo.medium.upper():
+    elif 'CD' in file1.type.upper():
         medium_sel='9'
         logger.info('已成功选择媒介为CD')       
     else:
@@ -98,34 +98,34 @@ def hdu_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         logger.info('未识别到媒介信息，选择other')
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='16'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='14'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='14'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='14'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG' in file1.pathinfo.video_format.upper():
+    elif 'MPEG' in file1.Video_Format.upper():
         codec_sel='18'
         logger.info('已成功选择编码为MPEG-2')         
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为VC1')          
-    elif 'AV1' in file1.pathinfo.video_format.upper():
+    elif 'AV1' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为AV1')    
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为XVID')        
     else:
@@ -134,31 +134,31 @@ def hdu_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择音频编码
-    if file1.pathinfo.audio_format=='AAC':
+    if file1.Audio_Format=='AAC':
         audiocodec_sel='6'
-    elif 'DTS' in file1.pathinfo.audio_format.upper() and 'X' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper() and 'X' in file1.Audio_Format.upper():
         audiocodec_sel='16'
-    elif 'DTS' in file1.pathinfo.audio_format.upper() and 'MA' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper() and 'MA' in file1.Audio_Format.upper():
         audiocodec_sel='1'
-    elif 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
+    elif 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'TRUE' in file1.pathinfo.audio_format.upper():
+    elif 'TRUE' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'FLAC' in file1.pathinfo.audio_format.upper():
+    elif 'FLAC' in file1.Audio_Format.upper():
         audiocodec_sel='7'
-    elif 'APE' in file1.pathinfo.audio_format.upper():
+    elif 'APE' in file1.Audio_Format.upper():
         audiocodec_sel='10'
-    elif 'EAC3' in file1.pathinfo.audio_format.upper() or 'EAC-3' in file1.pathinfo.audio_format.upper() or 'DDP' in file1.pathinfo.audio_format.upper():
+    elif 'EAC3' in file1.Audio_Format.upper() or 'EAC-3' in file1.Audio_Format.upper() or 'DDP' in file1.Audio_Format.upper():
         audiocodec_sel='2'
-    elif 'AC3' in file1.pathinfo.audio_format.upper() or 'AC-3' in file1.pathinfo.audio_format.upper() or 'DD' in file1.pathinfo.audio_format.upper():
+    elif 'AC3' in file1.Audio_Format.upper() or 'AC-3' in file1.Audio_Format.upper() or 'DD' in file1.Audio_Format.upper():
         audiocodec_sel='2'
-    elif 'DTS' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper():
         audiocodec_sel='4'
-    elif 'WAV' in file1.pathinfo.audio_format.upper():
+    elif 'WAV' in file1.Audio_Format.upper():
         audiocodec_sel='17'
-    elif 'LPCM' in file1.pathinfo.audio_format.upper():
+    elif 'LPCM' in file1.Audio_Format.upper():
         audiocodec_sel='11'
-    elif 'MPEG' in file1.pathinfo.audio_format.upper():
+    elif 'MPEG' in file1.Audio_Format.upper():
         audiocodec_sel='18'
     else:
         audiocodec_sel='13'

@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -50,46 +50,46 @@ def mteam_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     logger.info('已成功填写类型为'+file1.pathinfo.type)
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='16'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='16'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='16'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-4' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-4' in file1.Video_Format.upper():
         codec_sel='15'
         logger.info('已成功选择编码为MPEG')
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='4'
         logger.info('已成功选择编码为MPEG')                     
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为VC1')          
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为XVID')
-    elif 'FLAC' in file1.pathinfo.video_format.upper():
+    elif 'FLAC' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为FLAC') 
-    elif 'DTS' in file1.pathinfo.video_format.upper():
+    elif 'DTS' in file1.Video_Format.upper():
         codec_sel='11'
         logger.info('已成功选择编码为DTS')
-    elif 'AC' in file1.pathinfo.video_format.upper() and '3' in file1.pathinfo.video_format.upper():
+    elif 'AC' in file1.Video_Format.upper() and '3' in file1.Video_Format.upper():
         codec_sel='12'
         logger.info('已成功选择编码为AC3')
-    elif 'AAC' in file1.pathinfo.video_format.upper():
+    elif 'AAC' in file1.Video_Format.upper():
         codec_sel='18'
         logger.info('已成功选择编码为DTS')                                              
     else:

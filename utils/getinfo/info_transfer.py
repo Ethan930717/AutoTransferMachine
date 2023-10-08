@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from lxml import etree
 import requests
 from requests.cookies import cookiejar_from_dict
-from AutoTransferMachine.utils.getinfo.makeyaml import mkyaml
+from utils.getinfo.makeyaml import mkyaml
 import openpyxl
 import urllib
 from loguru import logger

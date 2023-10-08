@@ -12,6 +12,8 @@ import urllib
 import requests
 import os
 import logging
+import qbittorrentapi
+from qbittorrentapi import Client
 
 start_time = time.time()
 def cookies_raw2jar(raw_cookies):
@@ -38,14 +40,12 @@ def get_torrent(yamlinfo):
     ws = wb.active
     row = 2
     ws.title = f"{sitename}_torrents"
-    pagenum = input('请输入本次需要爬取几页种子: ')
-    while True:
+    try:
+        pagenum = int(input('请输入本次需要爬取几页种子: '))
         if pagenum > 0:  # 如果输入是正整数
             print(f"您选择了爬取{pagenum}页种子")
-            break
-        else:
-            print(f'您输入的数字不合理，请重新输入！\n请输入正确的页数: ')
-            continue
+    except ValueError:
+        print('输入错误，请输入一个整数。')
     outtag = input(
         f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR\n请输入排除项:")
     tags = []
@@ -195,7 +195,7 @@ def get_torrent(yamlinfo):
         elif forsure.upper() == 'N':
             logger.info('已选择不替换路径')
             while True:
-                dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
+                dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（选是则同步将种子上传到QB，默认添加后为暂停状态）\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
                     return download_torrent(ws, yamlinfo)
@@ -216,6 +216,17 @@ def download_torrent(ws,yamlinfo):
     logger.info(f'开始下载种子，当前种子文件夹中文件数量为{old_count}个')
     url_list = []
     counter = 1
+    try:
+        client = Client(host=yamlinfo['qbinfo']['qburl'], username=yamlinfo['qbinfo']['qbwebuiusername'],
+                        password=yamlinfo['qbinfo']['qbwebuipassword'])
+    except:
+        logger.warning(f'Qbittorrent登录失败')
+    logger.info('正在登录Qbittorrent')
+    try:
+        client.auth_log_in()
+    except:
+        logger.warning('Qbittorrent信息错误，登录失败，请检查au.yaml文件里的url、用户名、密码')
+    logger.info('成功登录Qbittorrent')
     for i in range(2, row):
         download = ws["F" + str(i)].value
         url_list.append(download)
@@ -232,15 +243,27 @@ def download_torrent(ws,yamlinfo):
                 file_full_path = file_path + file_name
                 with open(file_full_path, "wb") as f:
                     f.write(r.content)
-                print(f"下载成功：{file_name}")
+                print(f"{file_name}种子文件已成功保存到本地")
+                res = client.torrents_add(urls=url, is_skip_checking=False, is_paused=True)
+                if res == "Ok.":
+                    print(f"{file_name}添加Qbittorent成功")
+                elif "fail" in res.lower():
+                    print(f"{file_name}添加Qbittorent失败")
+                elif "Torrent is already in the download list" in res:
+                    print(f"{file_name}在Qbittorent中已存在")
                 counter += 1
             else:
                 print("无法获取文件名,相关信息已记录在日志中，请查看record文件夹中的torrent_download.log")
                 logging.error(f"无法获取文件名，下载失败：{url}")
-
         else:
             print(f"下载失败：{url}")
-            continue  # 跳过当前循环，继续下一个链接
+            continue
     new_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
     logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子')
+
+
+
+
+
+
 

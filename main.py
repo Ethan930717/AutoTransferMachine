@@ -1,24 +1,23 @@
-from loguru import logger
+import re
+import sys
 import os
-import csv
-import fileinput
-import urllib
-from AutoTransferMachine.utils.para_ctrl.para_ctrl import *
-from AutoTransferMachine.utils.site.site import makesites
-from AutoTransferMachine.utils.pathinfo.pathinfo import findpathinfo
-from AutoTransferMachine.utils.seed_machine.seed_machine import start_machine
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.mediafile.mediafile import *
-import AutoTransferMachine.utils.getinfo.torrent_download as td
-from AutoTransferMachine.utils.getinfo.info_transfer import *
+from utils.para_ctrl.para_ctrl import *
+from utils.site.site import makesites
+from utils.pathinfo.pathinfo import findpathinfo
+from utils.seed_machine.seed_machine import start_machine
+from utils.seed_machine.seedupload_machine import startupload_machine
+from utils.img_upload.imgupload import img_upload
+from utils.mediafile.mediafile import *
+from utils.mediafile.upload_mediafile import *
+import utils.getinfo.torrent_download as td
+from utils.getinfo.info_transfer import *
 from doubaninfo.doubaninfo import getdoubaninfo
 
 @logger.catch
 def main():
     os.system('clear')
-    logger.info("AutoTransferMachine启动\n")
+    logger.info(f'欢迎使用大胡开发的ATM自动转种机，如果你有意和我一起开发和测试本工具，欢迎你加入ATM研发群870081858')
     yamlinfo=read_para()
-    #设置路径，如果有下载文件都下载到screenshot_path
     os.chdir(yamlinfo['basic']['screenshot_path'])
     if 'basic' in yamlinfo and 'log' in yamlinfo['basic'] and yamlinfo['basic']['log']!=None:
         log = yamlinfo['basic']['log']
@@ -32,7 +31,19 @@ def main():
         logger.info('成功上传图床')
         print(res)
 
-    if yamlinfo['mod']=='upload':
+    if yamlinfo['mod'] == 'upload':
+        sites = makesites(yamlinfo['site info'])
+        # for item in sites:
+        #    sites[item].print()
+
+        pathlist = findpathinfo(yamlinfo, sites)
+        # for item in pathlist:
+        #    item.print()
+
+        startupload_machine(pathlist, sites, yamlinfo)
+        write_yaml(yamlinfo)
+
+    if yamlinfo['mod']=='transfer':
         torrentaddress = yamlinfo['basic']['torrent_path']
         sites=makesites(yamlinfo['site info'])
         #for item in sites:

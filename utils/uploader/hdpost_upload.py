@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 from bs4 import BeautifulSoup
@@ -68,25 +68,25 @@ def hdpost_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     post_url = f"{url}post/{select_type}"
 
     #选择规格
-    if 'WEBRIP' in file1.pathinfo.medium.upper():
+    if 'WEBRIP' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为WEBRIP')  
-    elif 'WEB' in file1.pathinfo.medium.upper():
+    elif 'WEB' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为WEB-DL')            
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为UHD')
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'FLAC' in file1.pathinfo.medium.upper():
+    elif 'FLAC' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为FLAC')      
     else:

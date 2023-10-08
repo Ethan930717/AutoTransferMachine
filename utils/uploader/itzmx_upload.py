@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -23,7 +23,7 @@ def itzmx_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'tv' in file1.pathinfo.type.lower():
         select_type='402'
         logger.info('已成功填写类型为剧集')          
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='401'
         logger.info('已成功填写类型为电影')                      
     elif 'doc' in file1.pathinfo.type.lower():

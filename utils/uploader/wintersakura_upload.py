@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -47,38 +47,38 @@ def wintersakura_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'WEBRIP' in file1.pathinfo.medium.upper():
+    if 'WEBRIP' in file1.type.upper():
         medium_sel='25'
         logger.info('已成功选择媒介为WEB-DL')
-    elif 'WEB' in file1.pathinfo.medium.upper():
+    elif 'WEB' in file1.type.upper():
         medium_sel='21'
         logger.info('已成功选择媒介为UHD-BLURAY DIY')                
-    elif 'UHD' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为UHD-BLURAY DIY')
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为UHD-BLURAY')
         tags.append(22)
         logger.info('已选择原盘')                 
-    elif 'BLU' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper() and 'DIY' in file1.type.upper():
         medium_sel='13'
         logger.info('已成功选择媒介为BLURAY-DIY')
-    elif 'BLU' in file1.pathinfo.medium.upper() and():
+    elif 'BLU' in file1.type.upper() and():
         medium_sel='12'
         logger.info('已成功选择媒介为BLURAY') 
         tags.append(22)
         logger.info('已选择原盘')                           
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='15'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='16'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='14'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='17'
         logger.info('已成功选择媒介为DVD')      
     else:
@@ -88,31 +88,31 @@ def wintersakura_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='8'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='9'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='7'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='9'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='11'
         logger.info('已成功选择编码为MPEG-2')          
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='10'
         logger.info('已成功选择编码为VC1')          
-    elif 'AV' in file1.pathinfo.video_format.upper():
+    elif 'AV' in file1.Video_Format.upper():
         codec_sel='16'
         logger.info('已成功选择编码为AV1')       
     else:

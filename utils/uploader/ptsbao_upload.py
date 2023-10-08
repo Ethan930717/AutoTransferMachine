@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 import requests
@@ -51,19 +51,19 @@ def ptsbao_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     if 'movie' in file1.pathinfo.type.lower() and 'DIY' in file1.pathinfo.tags:
         select_source='93'
         logger.info('已成功填写类型为Movie DIY') 
-    elif 'movie' in file1.pathinfo.type.lower() and 'WEB' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'WEB' in file1.type.upper():
         select_source='4'
         logger.info('已成功填写类型为Movie WEBDL') 
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_source='55'
         logger.info('已成功填写类型为Movie BLURAY')  
-    elif 'movie' in file1.pathinfo.type.lower() and 'DVD' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'DVD' in file1.type.upper():
         select_source='79'
         logger.info('已成功填写类型为Movie DVD')         
-    elif 'movie' in file1.pathinfo.type.lower() and 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'HDTV' in file1.type.upper():
         select_source='94'
         logger.info('已成功填写类型为Movie HDTV')
-    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         select_source='88'
         logger.info('已成功填写类型为Movie REMUX')
     elif 'movie' in file1.pathinfo.type.lower() and '2160p' in file1.standard_sel.lower():
@@ -150,22 +150,22 @@ def ptsbao_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         logger.info('已成功填写类型为其它')         
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='2'
         logger.info('已成功选择媒介为WEB-DL')              
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为UHD-BLURAY')         
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY DIY')          
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为DVD')
-    elif 'CD' in file1.pathinfo.medium.upper():
+    elif 'CD' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为CD')         
     else:
@@ -174,34 +174,34 @@ def ptsbao_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='6'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='4'
         logger.info('已成功选择编码为MPEG-2')            
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为VC1')  
-    elif 'VP' in file1.pathinfo.video_format.upper():
+    elif 'VP' in file1.Video_Format.upper():
         codec_sel='7'
         logger.info('已成功选择编码为VP9')
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为XVID')                  
     else:
@@ -268,11 +268,11 @@ def ptsbao_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择处理
-    if 'ENCODE' in file1.pathinfo.medium.upper():
+    if 'ENCODE' in file1.type.upper():
         processing_sel='2'
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         processing_sel='1'
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         processing_sel='5'
     else:
         processing_sel='3'
@@ -327,7 +327,7 @@ def ptsbao_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         hdr = 'yes'
     if '2160' in file1.standard_sel or '4K' in file1.standard_sel.upper():
         k4 = 'yes'
-    if 'BLU' in file1.pathinfo.medium.upper():
+    if 'BLU' in file1.type.upper():
         yp = 'yes'
     if 'DIY' in file1.pathinfo.tags:
         diy = 'yes'

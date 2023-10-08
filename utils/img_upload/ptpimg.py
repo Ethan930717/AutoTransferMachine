@@ -56,7 +56,6 @@ def ptpimg_upload_files(imgpaths: list, api_key: str, form='img'):
             logger.info('PTPIMG第'+str(imgnum)+'张图片上传成功！')
         else:
             logger.warning('PTPIMG第'+str(imgnum)+'张图片'+imgpath+'上传失败')
-            return ''
     return liststr.strip()
     
 

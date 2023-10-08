@@ -49,7 +49,7 @@ class MoviePageParse:
                 'sec-ch-ua-platform': '"macOS"',
             }
         movie_info_html = requests.get(movie_url,headers=headers,timeout=20).text
-        self.movie_info_html=movie_info_html
+        self.movie_info_html= movie_info_html
         self.film_soup = BeautifulSoup(self.movie_info_html, 'lxml')
 
     def _get_movie_name(self):
@@ -422,11 +422,9 @@ class MoviePageParse:
             try:
                 # all content
                 summary = str(self.film_soup.find('span', class_='all hidden').text)
-                summary = summary.replace('\n', '').replace('\u3000', '').replace(' ', '')
             except Exception as err:
                 # short content
                 summary = str(self.film_soup.find('span', property='v:summary').text)
-                summary = summary.replace('\n', '').replace('\u3000', '').replace(' ', '')
         except Exception as err:
             summary = ''
         return summary

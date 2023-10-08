@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -71,34 +71,34 @@ def freefarm_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='12'
         logger.info('已成功选择媒介为WEB-DL')  
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='2'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为DVDR')
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel='14'
         logger.info('已成功选择媒介为DVD')
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='10'
         logger.info('已成功选择媒介为MiniBD')
-    elif 'TRACK' in file1.pathinfo.medium.upper():
+    elif 'TRACK' in file1.type.upper():
         medium_sel='11'
         logger.info('已成功选择媒介为TRACK')          
     else:
@@ -107,36 +107,36 @@ def freefarm_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='2'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='4'
         logger.info('已成功选择编码为x264')     
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='2'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='3'
         logger.info('已成功选择编码为x265')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='1'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-4' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-4' in file1.Video_Format.upper():
         codec_sel='7'
         logger.info('已成功选择编码为MPEG-4')  
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='8'
-    elif 'MPEG-4' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-4' in file1.Video_Format.upper():
         codec_sel='7'
         logger.info('已成功选择编码为MPEG-4')         
-    elif 'MVC' in file1.pathinfo.video_format.upper():
+    elif 'MVC' in file1.Video_Format.upper():
         codec_sel='10'
         logger.info('已成功选择编码为MVC')          
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='9'
         logger.info('已成功选择编码为XVID')          
     else:
@@ -145,37 +145,37 @@ def freefarm_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择音频编码
-    if file1.pathinfo.audio_format=='AAC':
+    if file1.Audio_Format=='AAC':
         audiocodec_sel='13'
-    elif 'DTS' in file1.pathinfo.audio_format.upper() and '7.1' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper() and '7.1' in file1.Audio_Format.upper():
         audiocodec_sel='10'
-    elif 'DTS' in file1.pathinfo.audio_format.upper() and 'X' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper() and 'X' in file1.Audio_Format.upper():
         audiocodec_sel='6'
-    elif 'DTS-HD' in file1.pathinfo.audio_format.upper() and 'MA' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HD' in file1.Audio_Format.upper() and 'MA' in file1.Audio_Format.upper():
         audiocodec_sel='2'
-    elif 'DTS-HD' in file1.pathinfo.audio_format.upper() and 'HR' in file1.pathinfo.audio_format.upper():
+    elif 'DTS-HD' in file1.Audio_Format.upper() and 'HR' in file1.Audio_Format.upper():
         audiocodec_sel='3'
-    elif 'AutoTransferMachineOS' in file1.pathinfo.audio_format.upper():
+    elif 'AutoTransferMachineOS' in file1.Audio_Format.upper():
         audiocodec_sel='1'
-    elif 'TRUE' in file1.pathinfo.audio_format.upper():
+    elif 'TRUE' in file1.Audio_Format.upper():
         audiocodec_sel='5'
-    elif 'FLAC' in file1.pathinfo.audio_format.upper():
+    elif 'FLAC' in file1.Audio_Format.upper():
         audiocodec_sel='9'
-    elif 'APE' in file1.pathinfo.audio_format.upper():
+    elif 'APE' in file1.Audio_Format.upper():
         audiocodec_sel='15'
-    elif 'MP3' in file1.pathinfo.audio_format.upper():
+    elif 'MP3' in file1.Audio_Format.upper():
         audiocodec_sel='12'
-    elif 'EAC3' in file1.pathinfo.audio_format.upper() or 'EAC-3' in file1.pathinfo.audio_format.upper() or 'DDP' in file1.pathinfo.audio_format.upper():
+    elif 'EAC3' in file1.Audio_Format.upper() or 'EAC-3' in file1.Audio_Format.upper() or 'DDP' in file1.Audio_Format.upper():
         audiocodec_sel='4'
-    elif 'AC3' in file1.pathinfo.audio_format.upper() or 'AC-3' in file1.pathinfo.audio_format.upper() or 'DD' in file1.pathinfo.audio_format.upper():
+    elif 'AC3' in file1.Audio_Format.upper() or 'AC-3' in file1.Audio_Format.upper() or 'DD' in file1.Audio_Format.upper():
         audiocodec_sel='4'
-    elif 'DTS' in file1.pathinfo.audio_format.upper():
+    elif 'DTS' in file1.Audio_Format.upper():
         audiocodec_sel='14'
-    elif 'WAV' in file1.pathinfo.audio_format.upper():
+    elif 'WAV' in file1.Audio_Format.upper():
         audiocodec_sel='11'
-    elif 'LPCM' in file1.pathinfo.audio_format.upper():
+    elif 'LPCM' in file1.Audio_Format.upper():
         audiocodec_sel='7'
-    elif 'OGG' in file1.pathinfo.audio_format.upper():
+    elif 'OGG' in file1.Audio_Format.upper():
         audiocodec_sel='21'
     else:
         audiocodec_sel='22'

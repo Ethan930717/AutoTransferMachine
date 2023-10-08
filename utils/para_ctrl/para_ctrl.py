@@ -1,24 +1,30 @@
-from AutoTransferMachine.utils.para_ctrl.readyaml import readyaml
-from AutoTransferMachine.utils.para_ctrl.readargs import readargs
-from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
+from utils.para_ctrl.readyaml import readyaml
+from utils.para_ctrl.readargs import readargs
+from utils.para_ctrl.readyaml import write_yaml
 
 import os
 from loguru import logger
 import csv
 import urllib
+def choose_function():
+    print("请选择你想要执行的功能：")
+    print(f"1. 自动转种模式(从本地抓取种子上传）")
+    print(f"2. 发种模式(适用于发布自己的资源，自动制种，而不是转发其他资源)")
+    print("3. 签到模式")
+    print("4. 拉种模式")
+    print("5. pathinfo模板转换")
+    print("6. 自动截图并上传图床")
+    print(f"脚本运行过程中，可使用ctrl+c退出,ctrl+z暂停,暂停过程中输入'fg'恢复运行")
+    modechoice = input("请输入你的选择：")
+    return modechoice
 
 def read_para():
     args = readargs()
-
+    modechoice=choose_function()
     iu=0#img upload
     su=0#sign
     ru=0#resources upload
-    if not args.img_upload+args.sign+args.upload+args.douban_info+args.media_img+args.download+args.transinfo==1:
-        logger.error('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
-        raise ValueError ('参数输入错误，上传模式 -u,签到模式 -s,拉种模式 -dl, 模板转换模式 -tr, 上传图床模式 -iu,获取豆瓣信息 -di, 获取视频截图链接 -mi, 必须且只能选择一个。')
-
-    au_data   = readyaml(args.yaml_path)
-
+    au_data  = readyaml(args.yaml_path)
     if 'basic' in au_data and 'workpath' in au_data['basic']:
         if not os.path.exists(au_data['basic']['workpath']):
             logger.info('检测到workpath目录并未创建，正在新建文件夹：'+au_data['basic']['workpath'])
@@ -33,11 +39,21 @@ def read_para():
 
     au_data['yaml_path']=args.yaml_path
     write_yaml(au_data)
-    
-    au_data['mod']=args.media_img*'media_img'+args.img_upload*'img_upload'+args.sign*'sign'+args.upload*'upload'+args.douban_info*'douban_info'+args.download*'download'+args.transinfo*'transinfo'
+    if modechoice == "1":
+        au_data['mod']='transfer'
+    elif modechoice == "2":
+        au_data['mod']='upload'
+    elif modechoice == "3":
+        au_data['mod']='sign'
+    elif modechoice == "4":
+        au_data['mod']='download'
+    elif modechoice == "5":
+        au_data['mod']='transinfo'
+    else:
+        logger.error('模式选择有误，请重试')
+        raise ValueError('模式选择有误，请重试')
 
-
-    if args.upload:
+    if modechoice == "1":
         if not 'path info' in au_data or len(au_data['path info'])==0:
             logger.error('参数输入错误，发布资源请至少输入一个本地文件地址')
             raise ValueError ('参数输入错误，发布资源请至少输入一个本地文件地址')
@@ -54,72 +70,6 @@ def read_para():
         if not 'start' in au_data['qbinfo'] or not (int(au_data['qbinfo']['start'])==1 or int(au_data['qbinfo']['start'])==0):
             au_data['qbinfo']['start']=0
             logger.warning('未找到qbinfo中的start(添加到qb的种子是否自动开始)参数,已设置为0(不自动开始)')
-
-
-
-    
-    if args.img_upload:
-        if 'img_host' in args and not args.img_host=='':
-            au_data['img_host']=args.img_host
-        else:
-            au_data['img_host']=''
-
-        if 'img_form' in args and not args.img_form=='':
-            au_data['img_form']=args.img_form
-        else:
-            au_data['img_form']='img'
-
-        filelist=[]
-        if 'img_file' in args and args.img_file==None:
-            logger.error('参数输入错误，上传图片请至少输入一个本地文件地址')
-            raise ValueError ('参数输入错误，上传图片请至少输入一个本地文件地址')
-        for item in args.img_file:
-            for imgitem in item:
-                if not imgitem in filelist:
-                    filelist.append(imgitem)
-        if len(filelist)==0:
-            logger.error('参数输入错误，上传图片请至少输入一个本地文件地址')
-            raise ValueError ('参数输入错误，上传图片请至少输入一个本地文件地址')
-        au_data['imgfilelist']=filelist
-
-    if args.douban_info:
-        
-        if not 'douban_url' in args or ( args.douban_info==None or args.douban_info==''):
-            logger.error('参数输入错误，请输入--douban-url 豆瓣链接')
-            raise ValueError ('参数输入错误，请输入--douban-url 豆瓣链接')
-        
-        au_data['douban_url']=args.douban_url
-
-    if args.media_img:
-
-        if not 'media_file' in args or ( args.media_file==None or args.media_file==''):
-            logger.error('参数输入错误，请输入media-file 视频文件路径')
-            raise ValueError ('参数输入错误，请输入media-file 视频文件路径')
-
-        if not 'basic' in au_data or not 'picture_num' in au_data['basic'] or ( au_data['basic']['picture_num']==None or au_data['basic']['picture_num']==''):
-            logger.warning('未找到yaml文件中截图数量参数picture_num,已设置为3')
-            if not 'basic' in au_data:
-                au_data['basic']=dict()
-            au_data['basic']['picture_num']=3
-
-        if not 'basic' in au_data or not 'screenshot_path' in au_data['basic'] or ( au_data['basic']['screenshot_path']==None or au_data['basic']['screenshot_path']==''):
-            logger.error('参数输入错误，请前往yaml文件配置截图路径参数screenshot_path')
-            raise ValueError ('参数输入错误，请前往yaml文件配置截图路径参数screenshot_path')
-
-        if 'img_host' in args and not args.img_host=='':
-            au_data['img_host']=args.img_host
-        else:
-            au_data['img_host']=''
-
-        if 'img_form' in args and not args.img_form=='':
-            au_data['img_form']=args.img_form
-        else:
-            au_data['img_form']='img'
-
-        if 'img_num' in args and not (args.img_num=='' or args.img_num==None) :
-            au_data['basic']['picture_num']=int(args.img_num)
-
-        au_data['media_file']=args.media_file
 
     return au_data
 

@@ -1,5 +1,5 @@
-from AutoTransferMachine.utils.pathinfo.pathinfo import findnum
-from AutoTransferMachine.utils.pathinfo.pathinfo import findeps
+from utils.pathinfo.pathinfo import findnum
+from utils.pathinfo.pathinfo import findeps
 import os
 from loguru import logger
 import time
@@ -7,10 +7,10 @@ import requests
 import re
 import json
 import sys
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.img_upload.imgupload import img_upload
-from AutoTransferMachine.utils.getinfo.info_transfer import getmediainfo
+from utils.img_upload.imgupload import img_upload
+from utils.getinfo.info_transfer import getmediainfo
 from doubaninfo.doubaninfo import getdoubaninfo
+from utils.para_ctrl.readyaml import readyaml
 
 
 
@@ -32,7 +32,7 @@ def get_video_duration(video_path: str):
     #duration_info = float(a.buffer.read().decode('utf-8'))
     return duration_info
 
-def takescreenshot(file,screenshotaddress,screenshotnum):
+def takescreenshot(file,screenshotaddress,screenshotnum,basic):
     '''
     para:
         file:视频文件
@@ -57,12 +57,24 @@ def takescreenshot(file,screenshotaddress,screenshotnum):
             os.remove(c_path)
     timestep=duration*1.0/(screenshotnum+3)
     firststep=timestep*2
+
+    if basic['picture_format'].lower() == "png":
+        picture_format = ".png"
+    elif basic['picture_format'].lower() == "gif":
+        picture_format = ".gif"
+    elif basic['picture_format'].lower() == "bmp":
+        picture_format = ".bmp"
+    elif basic['picture_format'].lower() == "tiff":
+        picture_format = ".tiff"
+    else:
+        picture_format = ".jpg"
+
     for i in range (screenshotnum):
         firststep=firststep+timestep
         if 'win32' in sys.platform:
-            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+'.jpg')+'"'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'"'
         else:
-            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+'.jpg')+'" &> /dev/null'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'" &> /dev/null'
         #print(screenshotstr)
         os.system(screenshotstr)
     logger.info('截图完毕')
@@ -154,30 +166,41 @@ class mediafile(object):
             self.season_ch         = self.pathinfo.season_ch
             self.complete          = self.pathinfo.complete
 
-        dlgroup           =['NaN-Raws','NaN Raws','NC-Raws','NC Raws','Lilith-Raws','Lilith Raws','ANi','Skymoon-Raws','Skymoon Raws','GMTeam','GM-Team']
+        dlgroup           =['NaN-Raws','NaN Raws','NC-Raws','NC Raws','Lilith-Raws','Lilith Raws','ANi','Skymoon-Raws','Skymoon Raws','GMTeam','GM-Team','YingWEB']
         self.type              ='WEBRip'
         self.Video_Format      ='H264'
         
         if 'hdtvrip' in self.filename.lower() or 'hdtv-rip' in self.filename.lower() or 'tv-rip' in self.filename.lower() or 'tvrip' in self.filename.lower():
             self.type='HDTVRip'
+            self.source='HDTVRip'
         elif 'hdtv' in self.filename.lower():
             self.type='HDTV'
+            self.source ='HDTV'
         elif 'bdrip' in self.filename.lower() or 'bd-rip' in self.filename.lower():
             self.type='BDRip'
+            self.source='BDRip'
         elif 'remux' in self.filename.lower():
             self.type='Remux'
+            self.source = 'Remux'
         elif 'bluray' in self.filename.lower() or 'blu-ray' in self.filename.lower():
             self.type='Bluray'
+            self.source = 'Bluray'
         elif 'dvdrip' in self.filename.lower() or 'dvd-rip' in self.filename.lower():
             self.type='DVDRip'
+            self.source = 'DVDRip'
         elif 'dvd' in self.filename.lower() :
             self.type='DVD'
+            self.source ='DVD'
         elif 'webdl' in self.filename.lower() or 'web-dl' in self.filename.lower() :
             self.type='WEB-DL'
+            self.source ='WEB-DL'
         elif 'webrip' in self.filename.lower() or 'web-rip' in self.filename.lower():
             self.type='WEBRip'
+            self.source = 'WEBRip'
         elif self.sub in dlgroup or ('WEB' in self.sub.upper() and not 'WEBRRP' in self.sub.upper() and not '爪爪' in self.pathinfo.exinfo):
             self.type='WEB-DL'
+            self.source ='WEB-DL'
+
 
         self.getscreenshot_done=0
         self.getimgurl_done=0
@@ -229,7 +252,7 @@ class mediafile(object):
 
     def getscreenshot(self):
         if self.getscreenshot_done==0:
-            takescreenshot(self.address,self.screenshotaddress,self.screenshotnum)
+            takescreenshot(self.address,self.screenshotaddress,self.screenshotnum,self.basic)
             self.getscreenshot_done=1
     
     def getimgurl(self,server=''):
@@ -238,6 +261,17 @@ class mediafile(object):
         '''
         0张图的特判
         '''
+        if self.basic['picture_format'].lower() == "png":
+            picture_format = ".png"
+        elif self.basic['picture_format'].lower() == "gif":
+            picture_format = ".gif"
+        elif self.basic['picture_format'].lower() == "bmp":
+            picture_format = ".bmp"
+        elif self.basic['picture_format'].lower() == "tiff":
+            picture_format = ".tiff"
+        else:
+            picture_format = ".jpg"
+
         if 'picture_num' in self.basic and int(self.basic['picture_num'])==0:
             self.screenshoturl=''
             self.getimgurl_done=1
@@ -245,7 +279,7 @@ class mediafile(object):
         self.getscreenshot()
         imgpaths=[]
         for i in range (self.screenshotnum):
-            imgpaths.append(os.path.join(self.screenshotaddress,str(i+1)+'.jpg'))
+            imgpaths.append(os.path.join(self.screenshotaddress,str(i+1)+picture_format))
         logger.info('正在将'+self.chinesename +'的第'+self.episodename+'集截图上传'+server+'图床,请稍等...')
         res=img_upload(imgdata=self.imgdata,imglist=imgpaths,host=server,form='bbcode')
         if res=='':
@@ -414,7 +448,7 @@ class mediafile(object):
                 elif 'Language' in item :
                     if 'CHINESE' in item['Language'].upper() or '中' in item['Language'].upper() or 'CH' in item['Language'].upper() or 'ZH' in item['Language'].upper() or '国' in item['Language'].upper() or '国语' in self.pathinfo.small_descr:
                         ch=1
-                    if  'JA' in item['Language'].upper() or 'JP' in item['Language'].upper() or '日' in item['Language'].upper():
+                    if 'JA' in item['Language'].upper() or 'JP' in item['Language'].upper() or '日' in item['Language'].upper():
                         jp=1
                     if 'EN' in item['Language'].upper() or '英' in item['Language'].upper():
                         en=1
@@ -627,6 +661,12 @@ class mediafile(object):
         self.Height            =int(media_json['media']['track'][1]['Height'].strip())
         self.BitDepth          =int(media_json['media']['track'][1]['BitDepth'].strip())
         self.Audio_Format      =media_json['media']['track'][2]['Format']
+
+
+        #获取HDR信息
+
+
+        #获取分辨率
         if 'Scan type' in media_json['media']['track'][1]:
             self.scan_type=media_json['media']['track'][1]['Scan type']
         else:
@@ -1033,10 +1073,10 @@ class mediafile(object):
         if not found:
             logger.info(f"没有找到同名种子文件，请手动确认,以下为当前文件夹下的所有文件{file_path}")
 
-    def getfullinfo(self,tracker='https://announce.leaguehd.com/announce.php'):
+    def getfullinfo(self, tracker='https://announce.leaguehd.com/announce.php'):
         if self.getinfo_done==1:
             return
-        
+
         trytime=0
         while not self.getptgen_done==1:
             logger.info('正在获取豆瓣信息...')

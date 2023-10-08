@@ -1,0 +1,16 @@
+loguru
+DateTime
+lxml
+cloudscraper
+requests
+openpyxl
+beautifulsoup4
+PyYAML
+doubaninfo
+progress
+torf
+pathlib
+argparse
+typing
+setuptools
+qbittorrent-api

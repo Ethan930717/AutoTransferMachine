@@ -1,7 +1,7 @@
 from loguru import logger
 import time
 import os
-from AutoTransferMachine.utils.uploader.upload_tools import *
+from utils.uploader.upload_tools import *
 import re
 import cloudscraper
 
@@ -24,7 +24,7 @@ def hdtime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         select_type='403'        
     elif 'tv' in file1.pathinfo.type.lower():
         select_type='402'
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         select_type='424'    
     elif 'movie' in file1.pathinfo.type.lower():
         select_type='401'
@@ -44,16 +44,16 @@ def hdtime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     logger.info('已成功填写类型为'+file1.pathinfo.type)
 
     #选择来源
-    if 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.pathinfo.medium.upper():
+    if 'movie' in file1.pathinfo.type.lower() and 'REMUX' in file1.type.upper():
         source_sel='81'
         logger.info('已成功选择来源为电影-REMUX')  
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper() and 'DIY' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper() and 'DIY' in file1.type.upper():
         source_sel='80'
         logger.info('已成功选择来源为电影-DIY原盘')        
-    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.pathinfo.medium.upper():
+    elif 'movie' in file1.pathinfo.type.lower() and 'BLU' in file1.type.upper():
         source_sel='79'
         logger.info('已成功选择来源为电影-BLURAY原盘')        
-    elif 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.pathinfo.video_format.lower():
+    elif 'movie' in file1.pathinfo.type.lower() and '10bit' in file1.Video_Format.lower():
         source_sel='3'
         logger.info('已成功选择来源为电影-10bit')
     elif 'movie' in file1.pathinfo.type.lower() and '1080' in file1.standard_sel:
@@ -62,7 +62,7 @@ def hdtime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
     elif 'movie' in file1.pathinfo.type.lower() and '720' in file1.standard_sel:
         source_sel='5'
         logger.info('已成功选择来源为电影-720')          
-    elif 'anime' in file1.pathinfo.type.lower() and '10bit' in file1.pathinfo.video_format.lower():
+    elif 'anime' in file1.pathinfo.type.lower() and '10bit' in file1.Video_Format.lower():
         source_sel='83'
         logger.info('已成功选择来源为动漫-10bit')
     elif 'anime' in file1.pathinfo.type.lower() and "完结" in file1.pathinfo.tags:
@@ -99,34 +99,34 @@ def hdtime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择媒介
-    if 'WEB' in file1.pathinfo.medium.upper():
+    if 'WEB' in file1.type.upper():
         medium_sel='0'
         logger.info('已成功选择媒介为WEB-DL')  
-    elif 'UHD' in file1.pathinfo.medium.upper():
+    elif 'UHD' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为UHD-BLURAY')        
-    elif 'BLU' in file1.pathinfo.medium.upper():
+    elif 'BLU' in file1.type.upper():
         medium_sel='1'
         logger.info('已成功选择媒介为BLURAY')         
-    elif 'ENCODE' in file1.pathinfo.medium.upper():
+    elif 'ENCODE' in file1.type.upper():
         medium_sel='7'
         logger.info('已成功选择媒介为ENCODE')        
-    elif 'HDTV' in file1.pathinfo.medium.upper():
+    elif 'HDTV' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为HDTV')        
-    elif 'REMUX' in file1.pathinfo.medium.upper():
+    elif 'REMUX' in file1.type.upper():
         medium_sel='3'
         logger.info('已成功选择媒介为REMUX')
-    elif 'DVDR' in file1.pathinfo.medium.upper():
+    elif 'DVDR' in file1.type.upper():
         medium_sel='6'
         logger.info('已成功选择媒介为DVDR') 
-    elif 'DVD' in file1.pathinfo.medium.upper():
+    elif 'DVD' in file1.type.upper():
         medium_sel='5'
         logger.info('已成功选择媒介为DVD') 
-    elif 'BD' in file1.pathinfo.medium.upper():
+    elif 'BD' in file1.type.upper():
         medium_sel='4'
         logger.info('已成功选择媒介为MiniBD') 
-    elif 'CD' in file1.pathinfo.medium.upper():
+    elif 'CD' in file1.type.upper():
         medium_sel='8'
         logger.info('已成功选择媒介为CD')       
     else:
@@ -136,40 +136,40 @@ def hdtime_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
 
 
     #选择编码
-    if 'H' in file1.pathinfo.video_format.upper() and '264' in file1.pathinfo.video_format:
+    if 'H' in file1.Video_Format.upper() and '264' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format and '10bit' in file1.pathinfo.video_format.lower():
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format and '10bit' in file1.Video_Format.lower():
         codec_sel='12'
         logger.info('已成功选择编码为x264-10bit')
-    elif 'x' in file1.pathinfo.video_format.lower() and '264' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '264' in file1.Video_Format:
         codec_sel='10'
         logger.info('已成功选择编码为x264')        
-    elif 'AVC' in file1.pathinfo.video_format:
+    elif 'AVC' in file1.Video_Format:
         codec_sel='1'
         logger.info('已成功选择编码为H264/AVC')                
-    elif 'H' in file1.pathinfo.video_format.upper() and '265' in file1.pathinfo.video_format:
+    elif 'H' in file1.Video_Format.upper() and '265' in file1.Video_Format:
         codec_sel='12'
         logger.info('已成功选择编码为H265/HEVC')
-    elif 'x' in file1.pathinfo.video_format.lower() and '265' in file1.pathinfo.video_format:
+    elif 'x' in file1.Video_Format.lower() and '265' in file1.Video_Format:
         codec_sel='12'
         logger.info('已成功选择编码为H265/HEVC')    
-    elif 'HEVC' in file1.pathinfo.video_format.upper():
+    elif 'HEVC' in file1.Video_Format.upper():
         codec_sel='12'
         logger.info('已成功选择编码为H265/HEVC')                
-    elif 'MPEG-2' in file1.pathinfo.video_format.upper():
+    elif 'MPEG-2' in file1.Video_Format.upper():
         codec_sel='4'
         logger.info('已成功选择编码为MPEG-2')         
-    elif 'VC' in file1.pathinfo.video_format.upper():
+    elif 'VC' in file1.Video_Format.upper():
         codec_sel='2'
         logger.info('已成功选择编码为VC1')          
-    elif 'AV1' in file1.pathinfo.video_format.upper():
+    elif 'AV1' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为AV1')    
-    elif 'VP9' in file1.pathinfo.video_format.upper():
+    elif 'VP9' in file1.Video_Format.upper():
         codec_sel='5'
         logger.info('已成功选择编码为VP9')  
-    elif 'XVID' in file1.pathinfo.video_format.upper():
+    elif 'XVID' in file1.Video_Format.upper():
         codec_sel='3'
         logger.info('已成功选择编码为XVID')       
     else:

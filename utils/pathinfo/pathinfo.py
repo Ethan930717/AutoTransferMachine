@@ -4,7 +4,7 @@ from urllib.parse import quote
 from urllib.parse import unquote
 import re
 import requests
-from AutoTransferMachine.utils.para_ctrl.readyaml import write_yaml
+from utils.para_ctrl.readyaml import write_yaml
 from shutil import move
 
 def findnum(name):
@@ -165,7 +165,6 @@ class pathinfo(object):
                 self.min=10000
                 self.max=-1000
 
-
     def __init__(self,pathid,infodict,sites,basic):
         self.pathid=pathid
         self.sites=[]
@@ -174,7 +173,7 @@ class pathinfo(object):
         self.max=1
         self.min=1
         #必须有的属性
-        attr_must=['path','chinesename','englishname','sub','uploadname']
+        attr_must=['path','chinesename','englishname','sub']
         for item in attr_must:
             if not item in infodict or infodict[item]==None:
                 logger.error('未识别'+pathid+' 中的'+item+'信息')
@@ -197,7 +196,7 @@ class pathinfo(object):
                 exec('self.exist_'+item+'=True')
 
         #可有可无的属性,后面不写入配置文件
-        attr_disp=['video_type','video_format','audio_format','year','zeroday_name','exinfo','seasonnum','imdb_url','bgm_url','anidb_url','transfer','txt_info','audio_info','from_url','contenttail','contenthead','screenshot','small_descr','source','tags','medium','tmdb_id','imdb_id','tmdb_name',"filename"]
+        attr_disp=['uploadname','video_type','video_format','audio_format','year','zeroday_name','exinfo','seasonnum','imdb_url','bgm_url','anidb_url','transfer','txt_info','audio_info','from_url','contenttail','contenthead','screenshot','small_descr','source','tags','medium','tmdb_id','imdb_id','tmdb_name',"filename"]
         for item in attr_disp:
             if not item in infodict or infodict[item]==None:
                 exec('self.'+item+'=""')
