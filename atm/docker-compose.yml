@@ -7,3 +7,4 @@ services:
       - /home/media:/media #/home/media修改为你的视频文件所在路径
     stdin_open: true
     tty: true
+    entrypoint: '/bin/bash'
