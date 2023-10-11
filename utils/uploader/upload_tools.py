@@ -40,7 +40,7 @@ def afterupload(r, fileinfo, record_path, siteinfo, file1, qbinfo, hashlist):
             return True, fileinfo + '种子发布成功,但是做种失败，失败原因:未设置zhuque站点torrentkey.' + ',当前网址:' + String_url
         downloadurl = 'https://zhuque.in/api/torrent/download/' + str(
             r.json()['data']['id']) + '/' + siteinfo.torrentkey
-    elif siteinfo.sitename == 'hdarea' or siteinfo.sitename == 'hdzone' or siteinfo.sitename == 'hitpt' or siteinfo.sitename == 'hudbt' or siteinfo.sitename == 'itzmx' or siteinfo.sitename == 'joyhd' or siteinfo.sitename == 'audience' or siteinfo.sitename == 'ilolicon':
+    elif siteinfo.sitename == 'hdarea' or siteinfo.sitename == 'hdzone' or siteinfo.sitename == 'hitpt' or siteinfo.sitename == 'hudbt' or siteinfo.sitename == 'itzmx' or siteinfo.sitename == 'joyhd' or siteinfo.sitename == 'audience' or siteinfo.sitename == 'ilolicon' or siteinfo.sitename == 'zmpt':
         downloadurl = String_url.replace("details", "download")
         downloadurl = f"{downloadurl}&passkey={siteinfo.passkey}"
     elif siteinfo.sitename == 'haidan':
