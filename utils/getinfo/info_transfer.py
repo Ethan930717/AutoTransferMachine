@@ -264,7 +264,6 @@ def getmediainfo(yamlinfo):
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
         mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
-    logger.info(f"模板转换结束,本次共转换path模板{counter}个")
 
 
 
