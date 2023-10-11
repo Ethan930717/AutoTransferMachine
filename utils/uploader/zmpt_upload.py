@@ -137,7 +137,7 @@ def zmpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
         tags.append(3)
     if '国' in file1.language or '中' in file1.language:
         tags.append(5)
-    if not file1.sublan=='' and ('简' in file1.sublan or '繁' in file1.sublan or '中' in file1.sublan):
+    if '简' in file1.sublan or '繁' in file1.sublan or '中' in file1.sublan or '中' in file1.pathinfo.tags:
         tags.append(6)
     if 'HDR' in file1.pathinfo.tags:
         tags.append(7)
