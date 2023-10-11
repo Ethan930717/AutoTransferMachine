@@ -109,11 +109,15 @@ def getmediainfo(yamlinfo):
             match = re.search("◎年　　份　(\d+)", kdescr.text)
             if match:
                 madeyear = match.group(1)
-                print(f"读取年份成功 {madeyear}")
             else:
-                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
+                year_match = re.search(r"\b(19\d{2}|20\d{2})\b", name)
+                if year_match:
+                    madeyear = year_match.group(0)
+                    print(f"从文件名中提取年份成功 {madeyear}")
+                else:
+                    madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
         except IndexError:
-            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
+            madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
 
         #标签
         try:
