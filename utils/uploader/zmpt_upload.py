@@ -173,6 +173,7 @@ def zmpt_upload(siteinfo,file1,record_path,qbinfo,basic,hashlist):
             "medium_sel[4]": medium_sel,
             "standard_sel[4]": standard_sel,
             "team_sel[4]": team_sel,
+            "codec_sel[4]": "7",
             "uplver": uplver,
             "tags[4][]": tags,
             }
