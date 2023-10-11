@@ -225,7 +225,7 @@ def download_torrent(ws,yamlinfo):
     try:
         client.auth_log_in()
     except:
-        logger.warning('Qbittorrent信息错误，登录失败，请检查au.yaml文件里的url、用户名、密码')
+        logger.warning(f"Qbittorrent信息错误，登录失败，\n当前设置的Qbittorent地址为{yamlinfo['qbinfo']['qburl']},用户名{yamlinfo['qbinfo']['qbwebuiusername']}，密码{yamlinfo['qbinfo']['qbwebuipassword']}，请检查")
     logger.info('成功登录Qbittorrent')
     for i in range(2, row):
         download = ws["F" + str(i)].value
