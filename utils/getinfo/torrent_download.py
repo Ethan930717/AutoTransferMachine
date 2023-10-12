@@ -47,37 +47,37 @@ def get_torrent(yamlinfo):
     except ValueError:
         print('输入错误，请输入一个整数。')
     outtag = input(
-        f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源) \n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12 \n做种人数(seed)，体积(size)筛选请使用前后比较符，如0<seed<5则为排除做种人数小于5人的种子，10<size<100则表示排除体积在10GB-100GB之间的种子，可与关键字一同筛选）\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR\n请输入排除项:")
+        f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源，注意区分大小写) \n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12 \n做种人数(seed)，体积(size)筛选请使用前后比较符，如0<seed<5则为排除做种人数小于5人的种子，10<size<100则表示排除体积在10GB-100GB之间的种子，可与关键字一同筛选）\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n gy.国语 yy.粤语 zz.中字 diy.DIY wj.完结 fj.分集 db.杜比视界 hdr.HDR\n请输入排除项:")
     tags = []
     tags.append("禁转")
     tags.append("限转")
-    if "a" in outtag.lower():
+    if "A" in outtag():
         tags.append("电影")
-    if "b" in outtag.lower():
+    if "B" in outtag():
         tags.append("剧集")
-    if "c" in outtag.lower():
+    if "C" in outtag():
         tags.append("综艺")
-    if "d" in outtag.lower():
+    if "D" in outtag():
         tags.append("动漫")
-    if "e" in outtag.lower():
+    if "E" in outtag():
         tags.append("纪录片")
-    if "f" in outtag.lower():
+    if "F" in outtag():
         tags.append("MV")
-    if "gy" in outtag.lower():
+    if "gy" in outtag():
         tags.append("国语")
-    if "yy" in outtag.lower():
+    if "yy" in outtag():
         tags.append("粤语")
-    if "zz" in outtag.lower():
+    if "zz" in outtag():
         tags.append("中字")
-    if "diy" in outtag.lower():
+    if "diy" in outtag():
         tags.append("DIY")
-    if "wj" in outtag.lower():
+    if "wj" in outtag():
         tags.append("完结")
-    if "fj" in outtag.lower():
+    if "fj" in outtag():
         tags.append("分集")
-    if "db" in outtag.lower():
+    if "db" in outtag():
         tags.append("杜比视界")
-    if "hdr" in outtag.lower():
+    if "hdr" in outtag():
         tags.append("HDR")
     tags_str = " ".join(tags)
     # 解析输入，查找是否包含seed筛选条件
