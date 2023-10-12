@@ -205,7 +205,7 @@ def getmediainfo(yamlinfo):
             print("无法获取基本信息")
 
     # 豆瓣
-        douban = ""
+        douban = None
         try:
             dblinks = soup.find_all("a", href=lambda x: x and "douban" in x)
             douban = [(link.get("href"), link.get_text()) for link in dblinks]

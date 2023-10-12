@@ -91,7 +91,7 @@ def get_torrent(yamlinfo):
                 seed_min = int(match.group(1))
                 seed_max = int(match.group(2))
                 seed_filter = lambda x: seed_min <= int(x) < seed_max
-                seedprint = f"做种人数在{seed_min}到{seed_max}之间"
+                seedprint = f"做种人数在{seed_min}到{seed_max}之间,"
 
         # 解析输入，查找是否包含size筛选条件
         size_filter = None
@@ -102,8 +102,8 @@ def get_torrent(yamlinfo):
                 size_min = int(match.group(1))
                 size_max = int(match.group(2))
                 size_filter = lambda x: size_min <= int(x) < size_max
-                sizeprint = f"体积在{size_min}到{size_max}之间"
-        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源\n确认：Y \n重选： N \n")
+                sizeprint = f"体积在{size_min}GB到{size_max}GB之间"
+        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint}{sizeprint}的资源\n确认：Y \n重选： N \n")
         if download_ensure.lower() == "y":
             break
         elif download_ensure.lower() == "n":
