@@ -93,14 +93,16 @@ def get_torrent(yamlinfo):
 
     # 解析输入，查找是否包含size筛选条件
     size_filter = None
-    sizedprint = None
+    sizeprint = None
     if 'size' in outtag:
         match = re.search(r'(\d+)\s*<\s*size\s*<\s*(\d+)', outtag)
         if match:
             size_min = int(match.group(1))
             size_max = int(match.group(2))
             size_filter = lambda x: size_min < int(x) < size_max
-            sizeprint = f"体积在{size_min}GB到{size_max}GB之间"
+            sizeprint = f"体积在{size_min}到{size_max}之间"
+
+
     logger.info(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源，爬种即将开始")
     for page in range(pagenum):
         torrent_url= f"{siteurl}torrents.php?page={page}"
@@ -127,10 +129,10 @@ def get_torrent(yamlinfo):
                     else:
                         seeders = tr.find_all("td")[-4].text
                         size = tr.find_all("td")[-5].text
+                        size_pattern = re.search(r'(\d+\.\d+|\d+)', size)
+                        size = float(size_pattern.group(1)) / 1024 if 'MB' in size else float(size_pattern.group(1))
                         # 将MB单位的体积转换为GB单位
-                        size = int(size) / 1024 if 'MB' in size else int(size)
                         if (seed_filter is None or seed_filter(seeders)) and (size_filter is None or size_filter(size)):
-
                             try:
                                 embedded = tr.find("td", class_="embedded")
                                 a = embedded.find("a", href=lambda x: "details" in x)
