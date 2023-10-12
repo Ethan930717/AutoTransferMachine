@@ -53,33 +53,33 @@ def get_torrent(yamlinfo):
         tags = []
         tags.append("禁转")
         tags.append("限转")
-        if "A" in outtag():
+        if "A" in outtag:
             tags.append("电影")
-        if "B" in outtag():
+        if "B" in outtag:
             tags.append("剧集")
-        if "C" in outtag():
+        if "C" in outtag:
             tags.append("综艺")
-        if "D" in outtag():
+        if "D" in outtag:
             tags.append("动漫")
-        if "E" in outtag():
+        if "E" in outtag:
             tags.append("纪录片")
-        if "F" in outtag():
+        if "F" in outtag:
             tags.append("MV")
-        if "gy" in outtag():
+        if "gy" in outtag:
             tags.append("国语")
-        if "yy" in outtag():
+        if "yy" in outtag:
             tags.append("粤语")
-        if "zz" in outtag():
+        if "zz" in outtag:
             tags.append("中字")
-        if "diy" in outtag():
+        if "diy" in outtag:
             tags.append("DIY")
-        if "wj" in outtag():
+        if "wj" in outtag:
             tags.append("完结")
-        if "fj" in outtag():
+        if "fj" in outtag:
             tags.append("分集")
-        if "db" in outtag():
+        if "db" in outtag:
             tags.append("杜比视界")
-        if "hdr" in outtag():
+        if "hdr" in outtag:
             tags.append("HDR")
         tags_str = " ".join(tags)
         # 解析输入，查找是否包含seed筛选条件
