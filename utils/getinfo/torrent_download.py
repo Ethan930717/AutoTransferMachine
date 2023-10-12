@@ -24,7 +24,7 @@ def cookies_raw2jar(raw_cookies):
     return cookiejar_from_dict(cookie_dict)
 
 def get_torrent(yamlinfo):
-    choosesite = input(f"请选择你要获取信息的网站\n1.影")
+    choosesite = input(f"请选择你要获取信息的网站\n1.影 \n请输入序号:")
     if choosesite == "1":
         sitename = "shadowflow"
         logger.info('即将从影站获取种子信息')
@@ -84,7 +84,7 @@ def get_torrent(yamlinfo):
         tags_str = " ".join(tags)
         # 解析输入，查找是否包含seed筛选条件
         seed_filter = None
-        seedprint = None
+        seedprint = ""
         if 'seed' in outtag:
             match = re.search(r'(\d+)\s*<\s*seed\s*<\s*(\d+)', outtag)
             if match:
@@ -95,7 +95,7 @@ def get_torrent(yamlinfo):
 
         # 解析输入，查找是否包含size筛选条件
         size_filter = None
-        sizeprint = None
+        sizeprint = ""
         if 'size' in outtag:
             match = re.search(r'(\d+)\s*<\s*size\s*<\s*(\d+)', outtag)
             if match:
@@ -103,7 +103,7 @@ def get_torrent(yamlinfo):
                 size_max = int(match.group(2))
                 size_filter = lambda x: size_min < int(x) < size_max
                 sizeprint = f"体积在{size_min}到{size_max}之间"
-        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源，确认：Y \n重选： N \n")
+        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源\n确认：Y \n重选： N \n")
         if download_ensure.lower() == "y":
             break
         elif download_ensure.lower() == "n":
