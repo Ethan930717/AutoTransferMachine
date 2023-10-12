@@ -131,7 +131,7 @@ def get_torrent(yamlinfo):
                         if len(td_list) >= 4:
                             seeders = td_list[-4].text
                         else:
-                            pass
+                            continue
                         size = tr.find_all("td")[-5].text
                         size_pattern = re.search(r'(\d+\.\d+|\d+)', size)
                         size = float(size_pattern.group(1)) / 1024 if 'MB' in size else float(size_pattern.group(1))
