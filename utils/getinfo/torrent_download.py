@@ -12,7 +12,6 @@ import urllib
 import requests
 import os
 import logging
-import qbittorrentapi
 from qbittorrentapi import Client
 
 start_time = time.time()

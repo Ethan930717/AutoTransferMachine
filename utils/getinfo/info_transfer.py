@@ -30,15 +30,16 @@ def getmediainfo(yamlinfo):
         logger.info('当前为覆盖模式')
         with open(au, "r",encoding="utf-8") as f:
             lines = f.readlines()
-            for index, line in enumerate(lines):
-                if "path info" in line:
-                    path_index = index
-                    break
-            new_lines = lines[:path_index + 1]
-            f.close()
-            with open(au, "w", encoding="utf-8") as f:
-                for new_line in new_lines:
-                    f.write(new_line)
+        above_path_info = True
+        new_lines = []
+        for line in lines:
+            if "path info" in line:
+                above_path_info = False  # 发现 "path info" 行，将标志设为 False
+            if above_path_info:
+                new_lines.append(line)
+        with open(au, "w", encoding="utf-8") as f:
+            for new_line in new_lines:
+                f.write(new_line)
     else:
         logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
