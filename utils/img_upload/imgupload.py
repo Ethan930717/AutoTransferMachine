@@ -13,7 +13,7 @@ def existitem(imgdata,item):
 
 def createimgdict(imgdata):
     imgdict=dict()
-    imghostlist=['ptpimg','picgo','smms','pter','imgbox','freeimage']
+    imghostlist=['ptpimg','picgo','smms','pter','imgbox','freeimage','kimoji']
     for item in imghostlist:
         imgdict[item]=False
     if existitem(imgdata,'ptpimg') and existitem(imgdata['ptpimg'],'apikey'):
@@ -25,7 +25,7 @@ def createimgdict(imgdata):
     if existitem(imgdata,'pter')  and existitem(imgdata['pter'],'url') and existitem(imgdata['pter'],'cookie') :
         imgdict['pter']=True
     if existitem(imgdata,'kimoji')  and existitem(imgdata['kimoji'],'url') and existitem(imgdata['kimoji'],'cookie') :
-        imgdict['dahu']=True
+        imgdict['kimoji']=True
     if existitem(imgdata,'freeimage')  and existitem(imgdata['freeimage'],'url') and existitem(imgdata['freeimage'],'cookie') :
         imgdict['freeimage']=True
     imgdict['imgbox']=True
