@@ -46,64 +46,70 @@ def get_torrent(yamlinfo):
             print(f"您选择了爬取{pagenum}页种子")
     except ValueError:
         print('输入错误，请输入一个整数。')
-    outtag = input(
-        f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源，注意区分大小写) \n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12 \n做种人数(seed)，体积(size)筛选请使用前后比较符，如0<seed<5则为排除做种人数小于5人的种子，10<size<100则表示排除体积在10GB-100GB之间的种子，可与关键字一同筛选）\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n gy.国语 yy.粤语 zz.中字 diy.DIY wj.完结 fj.分集 db.杜比视界 hdr.HDR\n请输入排除项:")
-    tags = []
-    tags.append("禁转")
-    tags.append("限转")
-    if "A" in outtag():
-        tags.append("电影")
-    if "B" in outtag():
-        tags.append("剧集")
-    if "C" in outtag():
-        tags.append("综艺")
-    if "D" in outtag():
-        tags.append("动漫")
-    if "E" in outtag():
-        tags.append("纪录片")
-    if "F" in outtag():
-        tags.append("MV")
-    if "gy" in outtag():
-        tags.append("国语")
-    if "yy" in outtag():
-        tags.append("粤语")
-    if "zz" in outtag():
-        tags.append("中字")
-    if "diy" in outtag():
-        tags.append("DIY")
-    if "wj" in outtag():
-        tags.append("完结")
-    if "fj" in outtag():
-        tags.append("分集")
-    if "db" in outtag():
-        tags.append("杜比视界")
-    if "hdr" in outtag():
-        tags.append("HDR")
-    tags_str = " ".join(tags)
-    # 解析输入，查找是否包含seed筛选条件
-    seed_filter = None
-    seedprint = None
-    if 'seed' in outtag:
-        match = re.search(r'(\d+)\s*<\s*seed\s*<\s*(\d+)', outtag)
-        if match:
-            seed_min = int(match.group(1))
-            seed_max = int(match.group(2))
-            seed_filter = lambda x: seed_min < int(x) < seed_max
-            seedprint = f"做种人数在{seed_min}到{seed_max}之间"
+    while True:
 
-    # 解析输入，查找是否包含size筛选条件
-    size_filter = None
-    sizeprint = None
-    if 'size' in outtag:
-        match = re.search(r'(\d+)\s*<\s*size\s*<\s*(\d+)', outtag)
-        if match:
-            size_min = int(match.group(1))
-            size_max = int(match.group(2))
-            size_filter = lambda x: size_min < int(x) < size_max
-            sizeprint = f"体积在{size_min}到{size_max}之间"
+        outtag = input(
+            f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源，注意区分大小写) \n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12 \n做种人数(seed)，体积(size)筛选请使用前后比较符，如0<seed<5则为排除做种人数小于5人的种子，10<size<100则表示排除体积在10GB-100GB之间的种子，可与关键字一同筛选）\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n gy.国语 yy.粤语 zz.中字 diy.DIY wj.完结 fj.分集 db.杜比视界 hdr.HDR\n请输入排除项:")
+        tags = []
+        tags.append("禁转")
+        tags.append("限转")
+        if "A" in outtag():
+            tags.append("电影")
+        if "B" in outtag():
+            tags.append("剧集")
+        if "C" in outtag():
+            tags.append("综艺")
+        if "D" in outtag():
+            tags.append("动漫")
+        if "E" in outtag():
+            tags.append("纪录片")
+        if "F" in outtag():
+            tags.append("MV")
+        if "gy" in outtag():
+            tags.append("国语")
+        if "yy" in outtag():
+            tags.append("粤语")
+        if "zz" in outtag():
+            tags.append("中字")
+        if "diy" in outtag():
+            tags.append("DIY")
+        if "wj" in outtag():
+            tags.append("完结")
+        if "fj" in outtag():
+            tags.append("分集")
+        if "db" in outtag():
+            tags.append("杜比视界")
+        if "hdr" in outtag():
+            tags.append("HDR")
+        tags_str = " ".join(tags)
+        # 解析输入，查找是否包含seed筛选条件
+        seed_filter = None
+        seedprint = None
+        if 'seed' in outtag:
+            match = re.search(r'(\d+)\s*<\s*seed\s*<\s*(\d+)', outtag)
+            if match:
+                seed_min = int(match.group(1))
+                seed_max = int(match.group(2))
+                seed_filter = lambda x: seed_min < int(x) < seed_max
+                seedprint = f"做种人数在{seed_min}到{seed_max}之间"
 
-
-    logger.info(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源，爬种即将开始")
+        # 解析输入，查找是否包含size筛选条件
+        size_filter = None
+        sizeprint = None
+        if 'size' in outtag:
+            match = re.search(r'(\d+)\s*<\s*size\s*<\s*(\d+)', outtag)
+            if match:
+                size_min = int(match.group(1))
+                size_max = int(match.group(2))
+                size_filter = lambda x: size_min < int(x) < size_max
+                sizeprint = f"体积在{size_min}到{size_max}之间"
+        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint},{sizeprint}的资源，确认：Y \n重选： N \n")
+        if download_ensure.lower() == "y":
+            break
+        elif download_ensure.lower() == "n":
+            continue
+        else:
+            print("输入有误，请输入Y或者N")
     for page in range(pagenum):
         torrent_url= f"{siteurl}torrents.php?page={page}"
         r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
