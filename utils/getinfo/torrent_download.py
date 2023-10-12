@@ -63,21 +63,21 @@ def get_torrent(yamlinfo):
         tags.append("纪录片")
     if "f" in outtag.lower():
         tags.append("MV")
-    if "1" in outtag:
+    if "gy" in outtag.lower:
         tags.append("国语")
-    if "2" in outtag:
+    if "yy" in outtag.lower:
         tags.append("粤语")
-    if "3" in outtag:
+    if "zz" in outtag.lower:
         tags.append("中字")
-    if "4" in outtag:
+    if "diy" in outtag.lower:
         tags.append("DIY")
-    if "5" in outtag:
+    if "wj" in outtag.lower:
         tags.append("完结")
-    if "6" in outtag:
+    if "fj" in outtag.lower:
         tags.append("分集")
-    if "7" in outtag:
+    if "db" in outtag.lower:
         tags.append("杜比视界")
-    if "8" in outtag:
+    if "hdr" in outtag.lower:
         tags.append("HDR")
     tags_str = " ".join(tags)
     # 解析输入，查找是否包含seed筛选条件
