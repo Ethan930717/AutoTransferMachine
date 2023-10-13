@@ -74,7 +74,7 @@ def takescreenshot(file,screenshotaddress,screenshotnum,basic):
         if 'win32' in sys.platform:
             screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'"'
         else:
-            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'" &> /dev/null'
+            screenshotstr='ffmpeg -ss '+str(firststep)+' -i "'+file+'" -frames:v 1 -f image2 -y "'+os.path.join(screenshotaddress,str(i+1)+picture_format)+'" &> /dev/null'
         #print(screenshotstr)
         os.system(screenshotstr)
     logger.info('截图完毕')
