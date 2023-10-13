@@ -12,7 +12,6 @@ import urllib
 import requests
 import os
 import logging
-import qbittorrentapi
 from qbittorrentapi import Client
 
 start_time = time.time()
@@ -24,7 +23,7 @@ def cookies_raw2jar(raw_cookies):
     return cookiejar_from_dict(cookie_dict)
 
 def get_torrent(yamlinfo):
-    choosesite = input(f"请选择你要获取信息的网站\n1.影")
+    choosesite = input(f"请选择你要获取信息的网站\n1.影 \n请输入序号:")
     if choosesite == "1":
         sitename = "shadowflow"
         logger.info('即将从影站获取种子信息')
@@ -46,41 +45,70 @@ def get_torrent(yamlinfo):
             print(f"您选择了爬取{pagenum}页种子")
     except ValueError:
         print('输入错误，请输入一个整数。')
-    outtag = input(
-        f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源）\n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n 1.国语 2.粤语 3.中字 4.DIY 5.完结 6.分集 7.杜比视界 8.HDR\n请输入排除项:")
-    tags = []
-    tags.append("禁转")
-    tags.append("限转")
-    if "a" in outtag.lower():
-        tags.append("电影")
-    if "b" in outtag.lower():
-        tags.append("剧集")
-    if "c" in outtag.lower():
-        tags.append("综艺")
-    if "d" in outtag.lower():
-        tags.append("动漫")
-    if "e" in outtag.lower():
-        tags.append("纪录片")
-    if "f" in outtag.lower():
-        tags.append("MV")
-    if "1" in outtag:
-        tags.append("国语")
-    if "2" in outtag:
-        tags.append("粤语")
-    if "3" in outtag:
-        tags.append("中字")
-    if "4" in outtag:
-        tags.append("DIY")
-    if "5" in outtag:
-        tags.append("完结")
-    if "6" in outtag:
-        tags.append("分集")
-    if "7" in outtag:
-        tags.append("杜比视界")
-    if "8" in outtag:
-        tags.append("HDR")
-    tags_str = " ".join(tags)
-    logger.info(f"选择完毕，本次将为您排除{tags_str}的资源，爬种即将开始")
+    while True:
+
+        outtag = input(
+            f"请选择需要排除的资源关键字，可多选，无格式要求（默认排除禁转、限转资源，注意区分大小写) \n例：排除有国语粤语标签的动漫和综艺资源，则输入CD12 \n做种人数(seed)，体积(size)筛选请使用前后比较符，如0<seed<5则为排除做种人数小于5人的种子，10<size<100则表示排除体积在10GB-100GB之间的种子，可与关键字一同筛选）\n A.电影 B.剧集 C.综艺 D.动漫 E.纪录片 F.MV\n gy.国语 yy.粤语 zz.中字 diy.DIY wj.完结 fj.分集 db.杜比视界 hdr.HDR\n请输入排除项:")
+        tags = []
+        tags.append("禁转")
+        tags.append("限转")
+        if "A" in outtag:
+            tags.append("电影")
+        if "B" in outtag:
+            tags.append("剧集")
+        if "C" in outtag:
+            tags.append("综艺")
+        if "D" in outtag:
+            tags.append("动漫")
+        if "E" in outtag:
+            tags.append("纪录片")
+        if "F" in outtag:
+            tags.append("MV")
+        if "gy" in outtag:
+            tags.append("国语")
+        if "yy" in outtag:
+            tags.append("粤语")
+        if "zz" in outtag:
+            tags.append("中字")
+        if "diy" in outtag:
+            tags.append("DIY")
+        if "wj" in outtag:
+            tags.append("完结")
+        if "fj" in outtag:
+            tags.append("分集")
+        if "db" in outtag:
+            tags.append("杜比视界")
+        if "hdr" in outtag:
+            tags.append("HDR")
+        tags_str = " ".join(tags)
+        # 解析输入，查找是否包含seed筛选条件
+        seed_filter = None
+        seedprint = ""
+        if 'seed' in outtag:
+            match = re.search(r'(\d+)\s*<\s*seed\s*<\s*(\d+)', outtag)
+            if match:
+                seed_min = int(match.group(1))
+                seed_max = int(match.group(2))
+                seed_filter = lambda x: seed_min <= int(x) < seed_max
+                seedprint = f"做种人数在{seed_min}到{seed_max}之间,"
+
+        # 解析输入，查找是否包含size筛选条件
+        size_filter = None
+        sizeprint = ""
+        if 'size' in outtag:
+            match = re.search(r'(\d+)\s*<\s*size\s*<\s*(\d+)', outtag)
+            if match:
+                size_min = int(match.group(1))
+                size_max = int(match.group(2))
+                size_filter = lambda x: size_min <= int(x) < size_max
+                sizeprint = f"体积在{size_min}GB到{size_max}GB之间"
+        download_ensure = input(f"选择完毕，本次将为您排除{tags_str},{seedprint}{sizeprint}的资源\n确认：Y \n重选： N \n")
+        if download_ensure.lower() == "y":
+            break
+        elif download_ensure.lower() == "n":
+            continue
+        else:
+            print("输入有误，请输入Y或者N")
     for page in range(pagenum):
         torrent_url= f"{siteurl}torrents.php?page={page}"
         r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie),timeout=30)
@@ -104,37 +132,49 @@ def get_torrent(yamlinfo):
                         print(f"不符合筛选条件，跳过")
                         continue
                     else:
-                        try:
-                            embedded = tr.find("td", class_="embedded")
-                            a = embedded.find("a", href=lambda x: "details" in x)
-                            b = a["href"]
-                            title = a["title"]
-                            details = f"{siteurl}{b}"
-                            pattern = "id=(\d+)&hit"
-                            torrent_id= re.search(pattern, details)
-                            if torrent_id:
-                                pass
-                            else:
-                                print("未识别到种子ID")
-                            download = details.replace("details", "download")
-                            download = download.replace("hit=1", f"passkey={sitepasskey}")
-                            seeders = tr.find_all("td")[-4].text
-                            size = tr.find_all("td")[-5].text
-                            uploadtime = tr.find_all("td")[-6].text
-                            ws["A" + str(row)] = title
-                            ws["B" + str(row)] = size
-                            ws["C" + str(row)] = seeders
-                            ws["D" + str(row)] = uploadtime
-                            ws["E" + str(row)] = details
-                             #ws["E" + str(row)] = torrent_id.group(1)
-                            ws["F" + str(row)] = download
-                            ws["G" + str(row)] = sitename
-                            ws["H" + str(row)] = sitecookie
-                            ws["I" + str(row)] = sitepasskey
-                            row += 1  # 行号加一
-                            logger.info(f'{title}获取成功')
-                        except IndexError:
+                        td_list = tr.find_all("td")
+                        if len(td_list) >= 4:
+                            seeders = td_list[-4].text
+                        else:
                             continue
+                        size = tr.find_all("td")[-5].text
+                        size_pattern = re.search(r'(\d+\.\d+|\d+)', size)
+                        size = float(size_pattern.group(1)) / 1024 if 'MB' in size else float(size_pattern.group(1))
+                        # 将MB单位的体积转换为GB单位
+                        if (seed_filter is None or seed_filter(seeders)) and (size_filter is None or size_filter(size)):
+                            try:
+                                embedded = tr.find("td", class_="embedded")
+                                a = embedded.find("a", href=lambda x: "details" in x)
+                                b = a["href"]
+                                title = a["title"]
+                                details = f"{siteurl}{b}"
+                                pattern = "id=(\d+)&hit"
+                                torrent_id= re.search(pattern, details)
+                                if torrent_id:
+                                    pass
+                                else:
+                                    print("未识别到种子ID")
+                                download = details.replace("details", "download")
+                                download = download.replace("hit=1", f"passkey={sitepasskey}")
+                                seeders = tr.find_all("td")[-4].text
+                                size = tr.find_all("td")[-5].text
+                                uploadtime = tr.find_all("td")[-6].text
+                                ws["A" + str(row)] = title
+                                ws["B" + str(row)] = size
+                                ws["C" + str(row)] = seeders
+                                ws["D" + str(row)] = uploadtime
+                                ws["E" + str(row)] = details
+                                 #ws["E" + str(row)] = torrent_id.group(1)
+                                ws["F" + str(row)] = download
+                                ws["G" + str(row)] = sitename
+                                ws["H" + str(row)] = sitecookie
+                                ws["I" + str(row)] = sitepasskey
+                                row += 1  # 行号加一
+                                logger.info(f'{title}获取成功')
+                            except IndexError:
+                                continue
+                        else:
+                            print(f"不符合筛选条件，跳过")
             else:
                 print("没东西了，停")
                 break
@@ -225,7 +265,7 @@ def download_torrent(ws,yamlinfo):
     try:
         client.auth_log_in()
     except:
-        logger.warning('Qbittorrent信息错误，登录失败，请检查au.yaml文件里的url、用户名、密码')
+        logger.warning(f"Qbittorrent信息错误，登录失败，\n当前设置的Qbittorent地址为{yamlinfo['qbinfo']['qburl']},用户名{yamlinfo['qbinfo']['qbwebuiusername']}，密码{yamlinfo['qbinfo']['qbwebuipassword']}，请检查")
     logger.info('成功登录Qbittorrent')
     for i in range(2, row):
         download = ws["F" + str(i)].value

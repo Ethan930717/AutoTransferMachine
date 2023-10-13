@@ -30,15 +30,16 @@ def getmediainfo(yamlinfo):
         logger.info('当前为覆盖模式')
         with open(au, "r",encoding="utf-8") as f:
             lines = f.readlines()
-            for index, line in enumerate(lines):
-                if "path info" in line:
-                    path_index = index
-                    break
-            new_lines = lines[:path_index + 1]
-            f.close()
-            with open(au, "w", encoding="utf-8") as f:
-                for new_line in new_lines:
-                    f.write(new_line)
+        above_path_info = True
+        new_lines = []
+        for line in lines:
+            if "path info" in line:
+                above_path_info = False  # 发现 "path info" 行，将标志设为 False
+            if above_path_info:
+                new_lines.append(line)
+        with open(au, "w", encoding="utf-8") as f:
+            for new_line in new_lines:
+                f.write(new_line)
     else:
         logger.info('当前为续写模式')
     print(yamlinfo['basic']['torrent_list'])
@@ -109,11 +110,15 @@ def getmediainfo(yamlinfo):
             match = re.search("◎年　　份　(\d+)", kdescr.text)
             if match:
                 madeyear = match.group(1)
-                print(f"读取年份成功 {madeyear}")
             else:
-                madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
+                year_match = re.search(r"\b(19\d{2}|20\d{2})\b", name)
+                if year_match:
+                    madeyear = year_match.group(0)
+                    print(f"从文件名中提取年份成功 {madeyear}")
+                else:
+                    madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
         except IndexError:
-            madeyear= input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
+            madeyear = input(f"无法确认年份，请手动输入,文件标题{name}\n请在此输入正确年份：")
 
         #标签
         try:
@@ -201,7 +206,7 @@ def getmediainfo(yamlinfo):
             print("无法获取基本信息")
 
     # 豆瓣
-        douban = ""
+        douban = None
         try:
             dblinks = soup.find_all("a", href=lambda x: x and "douban" in x)
             douban = [(link.get("href"), link.get_text()) for link in dblinks]
@@ -264,7 +269,6 @@ def getmediainfo(yamlinfo):
             print("无法获取IMDB链接")
         logger.info(f"第{counter}个资源读取完成")
         mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec,medium,douban,imdb,country,madeyear,standard,tmdb_id,torrent)
-    logger.info(f"模板转换结束,本次共转换path模板{counter}个")
 
 
 
