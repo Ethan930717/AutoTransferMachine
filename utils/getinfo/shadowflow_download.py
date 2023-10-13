@@ -19,7 +19,7 @@ def cookies_raw2jar(raw_cookies):
     return cookiejar_from_dict(cookie_dict)
 
 def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time):
-    row = 1
+    row = 0
     scraper = cloudscraper.create_scraper()
     csv_filename = f"{sitename}_torrents.csv"
     file = open(csv_filename, mode='w', newline='', encoding='utf-8-sig')
@@ -138,6 +138,7 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
                                 uploadtime = tr.find_all("td")[-6].text
                                 writer.writerow([title, size, seeders, uploadtime, details, download, sitename, sitecookie,sitepasskey])
                                 logger.info(f'{title}获取成功')
+                                row += 1
                             except IndexError:
                                 continue
                         else:
@@ -148,11 +149,11 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
         else:
             print("没东西了，停")
             continue
+
     file.close()
-    total_rows = row - 1
     end_time = time.time()
     execution_time = end_time - start_time
-    logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
+    logger.info(f"爬取结束，本次共读取到{row}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
     # 移动文件到指定目录
     if os.path.exists(csv_filename):
         os.makedirs(yamlinfo['basic']['record_path'], exist_ok=True)
