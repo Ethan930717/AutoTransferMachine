@@ -23,7 +23,7 @@ def cookies_raw2jar(raw_cookies):
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict)
 
-def shadowflow_down(raw_cookies,sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time):
+def shadowflow_down(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time):
     scraper = cloudscraper.create_scraper()
     wb = openpyxl.Workbook()
     ws = wb.active

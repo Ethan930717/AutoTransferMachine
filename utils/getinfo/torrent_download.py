@@ -22,7 +22,7 @@ def get_torrent(yamlinfo):
     siteurl = yamlinfo['site info'][sitename]['url']
     sitecookie = yamlinfo['site info'][sitename]['cookie']
     sitepasskey = yamlinfo['site info'][sitename]['passkey']
-    return shadowflow_down(sitename,siteurl,sitecookie,yamlinfo,start_time)
+    shadowflow_down(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time)
 
 def download_torrent(ws,yamlinfo):
     logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}/torrent_download.log")
