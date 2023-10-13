@@ -22,9 +22,9 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
     row = 1
     scraper = cloudscraper.create_scraper()
     csv_filename = f"{sitename}_torrents.csv"
-    with open(csv_filename, mode='w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.writer(file)
-        writer.writerow(["标题", "体积", "做种人数", "发布时间", "详情链接", "下载链接", "站点", "cookie", "passkey"])
+    file = open(csv_filename, mode='w', newline='', encoding='utf-8-sig')
+    writer = csv.writer(file)
+    writer.writerow(["标题", "体积", "做种人数", "发布时间", "详情链接", "下载链接", "站点", "cookie", "passkey"])
     try:
         pagenum = int(input('请输入本次需要爬取几页种子: '))
         if pagenum > 0:  # 如果输入是正整数
@@ -137,6 +137,7 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
                                 size = tr.find_all("td")[-5].text
                                 uploadtime = tr.find_all("td")[-6].text
                                 writer.writerow([title, size, seeders, uploadtime, details, download, sitename, sitecookie,sitepasskey])
+                                file.close()
                                 logger.info(f'{title}获取成功')
                             except IndexError:
                                 continue
