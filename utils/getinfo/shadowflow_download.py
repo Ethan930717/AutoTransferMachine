@@ -3,18 +3,12 @@ import cloudscraper
 from bs4 import BeautifulSoup
 import openpyxl
 from requests.cookies import cookiejar_from_dict
-from loguru import logger
 import time
 from loguru import logger
 import sys
 import shutil
 import yaml
-import urllib
-import requests
-import os
-import logging
-from qbittorrentapi import Client
-from utils.getinfo.torrent_download import *
+from utils.getinfo.torrent_download import download_torrent
 
 def cookies_raw2jar(raw_cookies):
     cookie_dict = {}
