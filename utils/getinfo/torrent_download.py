@@ -23,7 +23,7 @@ def get_torrent(yamlinfo):
     siteurl = yamlinfo['site info'][sitename]['url']
     sitecookie = yamlinfo['site info'][sitename]['cookie']
     sitepasskey = yamlinfo['site info'][sitename]['passkey']
-    shadowflow_down(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time)
+    shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time)
 
 
 
