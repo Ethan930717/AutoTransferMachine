@@ -228,7 +228,7 @@ def shadowflow_down(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time)
                 dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（选是则同步将种子上传到QB，默认添加后为暂停状态）\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    return download_torrent(ws, yamlinfo)
+                    download_torrent(ws, yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()
