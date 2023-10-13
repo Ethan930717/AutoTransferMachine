@@ -24,7 +24,6 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
     csv_filename = f"{sitename}_torrents.csv"
     with open(csv_filename, mode='w', newline='', encoding='utf-8-sig') as file:
         writer = csv.writer(file)
-        # 写入标题
         writer.writerow(["标题", "体积", "做种人数", "发布时间", "详情链接", "下载链接", "站点", "cookie", "passkey"])
     try:
         pagenum = int(input('请输入本次需要爬取几页种子: '))
@@ -154,7 +153,11 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
     execution_time = end_time - start_time
     logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
     # 移动文件到指定目录
-    shutil.move(csv_filename, os.path.join(yamlinfo['basic']['record_path'], csv_filename))
+    if os.path.exists(csv_filename):
+        os.makedirs(yamlinfo['basic']['record_path'], exist_ok=True)
+        shutil.move(csv_filename, os.path.join(yamlinfo['basic']['record_path'], csv_filename))
+    else:
+        print(f"文件 {csv_filename} 不存在!")
 
     # 打开CSV文件并读取数据
     csv_filepath = os.path.join(yamlinfo['basic']['record_path'], csv_filename)
@@ -217,7 +220,7 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
                 dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（选是则同步将种子上传到QB，默认添加后为暂停状态）\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    return download_torrent(ws, yamlinfo)
+                    return download_torrent(yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()
