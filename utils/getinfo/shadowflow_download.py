@@ -1,13 +1,14 @@
 import re
+import os
 import cloudscraper
 from bs4 import BeautifulSoup
-import openpyxl
 from requests.cookies import cookiejar_from_dict
 import time
 from loguru import logger
 import sys
 import shutil
 import yaml
+import csv
 from utils.getinfo.torrent_download import download_torrent
 
 def cookies_raw2jar(raw_cookies):
@@ -17,12 +18,14 @@ def cookies_raw2jar(raw_cookies):
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict)
 
-def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time):
+def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time):
+    row = 1
     scraper = cloudscraper.create_scraper()
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    row = 2
-    ws.title = f"{sitename}_torrents"
+    csv_filename = f"{sitename}_torrents.csv"
+    with open(csv_filename, mode='w', newline='', encoding='utf-8-sig') as file:
+        writer = csv.writer(file)
+        # 写入标题
+        writer.writerow(["标题", "体积", "做种人数", "发布时间", "详情链接", "下载链接", "站点", "cookie", "passkey"])
     try:
         pagenum = int(input('请输入本次需要爬取几页种子: '))
         if pagenum > 0:  # 如果输入是正整数
@@ -102,15 +105,6 @@ def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_t
             table = soup.find("table", class_="torrents")
             if table:
                 trs = table.find_all("tr")[1:]
-                ws["A1"] = "标题"
-                ws["B1"] = "体积"
-                ws["C1"] = "做种人数"
-                ws["D1"] = "发布时间"
-                ws["E1"] = "种子ID"
-                ws["F1"] = "下载链接"
-                ws["G1"] = "站点"
-                ws["H1"] = "cookie"
-                ws["I1"] = "passkey"
                 for tr in trs:
                     if any(x in tr.text for x in tags):
                         print(f"不符合筛选条件，跳过")
@@ -143,17 +137,7 @@ def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_t
                                 seeders = tr.find_all("td")[-4].text
                                 size = tr.find_all("td")[-5].text
                                 uploadtime = tr.find_all("td")[-6].text
-                                ws["A" + str(row)] = title
-                                ws["B" + str(row)] = size
-                                ws["C" + str(row)] = seeders
-                                ws["D" + str(row)] = uploadtime
-                                ws["E" + str(row)] = details
-                                # ws["E" + str(row)] = torrent_id.group(1)
-                                ws["F" + str(row)] = download
-                                ws["G" + str(row)] = sitename
-                                ws["H" + str(row)] = sitecookie
-                                ws["I" + str(row)] = sitepasskey
-                                row += 1  # 行号加一
+                                writer.writerow([title, size, seeders, uploadtime, details, download, sitename, sitecookie,sitepasskey])
                                 logger.info(f'{title}获取成功')
                             except IndexError:
                                 continue
@@ -165,42 +149,53 @@ def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_t
         else:
             print("没东西了，停")
             continue
-    wb.save(f"{sitename}_torrents.xlsx")
     total_rows = row - 1
-    total_pages = page + 1
     end_time = time.time()
     execution_time = end_time - start_time
     logger.info(f"爬取结束，本次共读取到{total_rows}个种子,耗时{execution_time}，请选择接下来的任务\n 1.批量打印种子链接 2.批量打印下载链接 3.跳过")
-    shutil.move(yamlinfo['basic']['screenshot_path'] + '/' + sitename + '_torrents.xlsx',yamlinfo['basic']['record_path'] + '/' + sitename + '_torrents.xlsx')
+    # 移动文件到指定目录
+    shutil.move(csv_filename, os.path.join(yamlinfo['basic']['record_path'], csv_filename))
+
+    # 打开CSV文件并读取数据
+    csv_filepath = os.path.join(yamlinfo['basic']['record_path'], csv_filename)
+    details_list = []
+    download_list = []
+
+    with open(csv_filepath, 'r', encoding='utf-8-sig') as file:
+        reader = csv.reader(file)
+        next(reader)  # 跳过标题行
+        for row in reader:
+            details_list.append(row[4])  # 假设详情在第5列，根据实际情况进行调整
+            download_list.append(row[5])  # 假设下载URL在第6列，根据实际情况进行调整
+
+    # 提示用户选择并打印相应的信息
     choice = input("请输入您的选择：")
     while True:
         if choice == "1":
             print("以下是所有的种子链接：")
-            for i in range(2, row):
-                details = ws["E" + str(i)].value
-                print(details)
+            for detail in details_list:
+                print(detail)
             break
         elif choice == "2":
             print("以下是所有的下载链接：")
-            for i in range(2, row):
-                download = ws["F" + str(i)].value
+            for download in download_list:
                 print(download)
             break
         elif choice == "3":
             print("好的")
             break
         else:
-            logger.info("选择错误，请重新选择")
-            continue
+            print("选择错误，请重新选择")
+            choice = input("请输入您的选择：")
     #获取path序列
     while True:
-        forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
+        forsure = input(f"本次数据已保存在{yamlinfo['basic']['record_path']}/{sitename}_torrents.csv\n是否需要将Yaml模板中的torrent_file路径替换成本次生成的数据文件路径\nY.是，替换路径\nN.否，不需要替换\n默认不替换")
         if forsure.upper() == 'Y':
             au = f"{yamlinfo['basic']['workpath']}au.yaml"
             logger.info(f"检测到模板路径为{au}")
             with open(au, "r") as f:
                 yamlinfo = yaml.load(f, Loader=yaml.FullLoader)
-                yamlinfo["basic"]["torrent_list"] = f"{yamlinfo['basic']['record_path']}/{sitename}_torrents.xlsx"
+                yamlinfo["basic"]["torrent_list"] = f"{yamlinfo['basic']['record_path']}/{sitename}_torrents.csv"
                 with open(au, "w") as f:
                     yaml.dump(yamlinfo, f)
             logger.info(f"修改完成，当前yaml模板的torrent_list为{yamlinfo['basic']['torrent_list']}")
@@ -209,7 +204,7 @@ def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_t
                     f'是否需要将本次抓取到的资源种子下载到本地（下载路径为torrent_path，请确认配置文件中已正确配置该项\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    return download_torrent(ws, yamlinfo)
+                    return download_torrent(yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()
@@ -222,7 +217,7 @@ def shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_t
                 dlsure = input(f'是否需要将本次抓取到的资源种子下载到本地（选是则同步将种子上传到QB，默认添加后为暂停状态）\nY.是，下载\nN，否，不下载')
                 if dlsure.upper() == "Y":
                     logger.info("开始下载")
-                    download_torrent(ws, yamlinfo)
+                    return download_torrent(ws, yamlinfo)
                 elif dlsure.upper() == "N":
                     logger.info("未选择下载种子，即将结束本次任务")
                     sys.exit()

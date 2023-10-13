@@ -8,6 +8,8 @@ import requests
 import os
 import logging
 from qbittorrentapi import Client
+import csv
+
 
 
 def get_torrent(yamlinfo):
@@ -27,14 +29,14 @@ def get_torrent(yamlinfo):
 
 
 
-def download_torrent(ws,yamlinfo):
+def download_torrent(yamlinfo):
     logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}/torrent_download.log")
-    row = ws.max_row
+    csv_path = yamlinfo["basic"]["torrent_list"]
     file_path = f"{yamlinfo['basic']['torrent_path']}/"
     old_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
     logger.info(f'开始下载种子，当前种子文件夹中文件数量为{old_count}个')
     url_list = []
-    counter = 1
+
     try:
         client = Client(host=yamlinfo['qbinfo']['qburl'], username=yamlinfo['qbinfo']['qbwebuiusername'],
                         password=yamlinfo['qbinfo']['qbwebuipassword'])
@@ -46,19 +48,27 @@ def download_torrent(ws,yamlinfo):
     except:
         logger.warning(f"Qbittorrent信息错误，登录失败，\n当前设置的Qbittorent地址为{yamlinfo['qbinfo']['qburl']},用户名{yamlinfo['qbinfo']['qbwebuiusername']}，密码{yamlinfo['qbinfo']['qbwebuipassword']}，请检查")
     logger.info('成功登录Qbittorrent')
-    for i in range(2, row):
-        download = ws["F" + str(i)].value
-        url_list.append(download)
-        row += 1
+
+    with open(csv_path, 'r', encoding='utf-8') as csvfile:
+        csvreader = csv.reader(csvfile)
+        next(csvreader)
+        for row in csvreader:
+            download_url = row[5]
+            url_list.append(download_url)
+    counter = 0
     for url in url_list:
-        passkey = ws["I" + str(counter + 1)].value
-        r = requests.get(url,params={"passkey": passkey})
+        with open(csv_path, 'r', encoding='utf-8') as csvfile:
+            csvreader = csv.reader(csvfile)
+            for _ in range(counter + 1):  # 跳到当前行
+                next(csvreader)
+            row = next(csvreader)
+            passkey = row[8]  # 假设 passkey 在第9列 (列I)
+        r = requests.get(url, params={"passkey": passkey})
         if r.status_code == 200:
             content_disposition = r.headers.get("Content-Disposition")
             if content_disposition:
                 file_name = r.headers["Content-Disposition"].split(";")[-1].split("=")[-1].strip('"')
                 file_name = urllib.parse.unquote(file_name)
-                # 拼接完整的文件路径
                 file_full_path = file_path + file_name
                 with open(file_full_path, "wb") as f:
                     f.write(r.content)
@@ -70,15 +80,15 @@ def download_torrent(ws,yamlinfo):
                     print(f"{file_name}添加Qbittorent失败")
                 elif "Torrent is already in the download list" in res:
                     print(f"{file_name}在Qbittorent中已存在")
-                counter += 1
             else:
                 print("无法获取文件名,相关信息已记录在日志中，请查看record文件夹中的torrent_download.log")
                 logging.error(f"无法获取文件名，下载失败：{url}")
         else:
             print(f"下载失败：{url}")
-            continue
+        counter += 1
     new_count = len([name for name in os.listdir(file_path) if os.path.isfile(os.path.join(file_path, name))])
-    logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子')
+    logger.info(f'下载完成，本次共下载了{counter}个种子，实际下载成功了{new_count - old_count}个种子,本次任务结束')
+    exit()
 
 
 

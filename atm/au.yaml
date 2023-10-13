@@ -7,7 +7,7 @@ basic:
   record_path: /atm/record_path           #记录类文件存放路径，不用动
   screenshot_path: /atm/screenshot_path   #截图暂存路径，不用动
   torrent_path: /atm/torrent_path         #种子下载目录，不用动
-  torrent_list: /atm/record_path/shadowflow_torrents.xlsx   #种子信息文档路径，工具的dl指令会自动生成
+  torrent_list: /atm/record_path/shadowflow_torrents.csv   #种子信息文档路径，工具的dl指令会自动生成
   doubancookie:                  #豆瓣的cookie，不用引号
   serverchan_api: SCT149************            #server酱的sendkey，发种结束后可以push推送通知，不用引号
   tmdb_api:                                     #tmdb的api，不用引号
