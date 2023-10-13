@@ -137,7 +137,6 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
                                 size = tr.find_all("td")[-5].text
                                 uploadtime = tr.find_all("td")[-6].text
                                 writer.writerow([title, size, seeders, uploadtime, details, download, sitename, sitecookie,sitepasskey])
-                                file.close()
                                 logger.info(f'{title}获取成功')
                             except IndexError:
                                 continue
@@ -149,6 +148,7 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
         else:
             print("没东西了，停")
             continue
+    file.close()
     total_rows = row - 1
     end_time = time.time()
     execution_time = end_time - start_time
