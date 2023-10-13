@@ -8,9 +8,10 @@ import requests
 import os
 import logging
 from qbittorrentapi import Client
-from utils.getinfo.shadowflow_download import *
+
 
 def get_torrent(yamlinfo):
+    from utils.getinfo.shadowflow_download import *
     start_time = time.time()
     choosesite = input(f"请选择你要获取信息的网站\n1.影 \n请输入序号:")
     if choosesite == "1":
