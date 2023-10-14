@@ -15,7 +15,6 @@ import csv
 def get_torrent(yamlinfo):
     from utils.getinfo.shadowflow_download import shadowflow_download
     from utils.getinfo.hhclub_download import hhclub_download
-    start_time = time.time()
     choosesite = input(f"请选择你要获取信息的网站\n1.影    2.憨憨     \n请输入序号:")
     if choosesite == "1":
         sitename = "shadowflow"

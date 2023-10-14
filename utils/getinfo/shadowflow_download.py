@@ -18,7 +18,7 @@ def cookies_raw2jar(raw_cookies):
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict)
 
-def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time):
+def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo):
     row = 0
     scraper = cloudscraper.create_scraper()
     csv_filename = f"{sitename}_torrents.csv"
@@ -95,6 +95,7 @@ def shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, st
             continue
         else:
             print("输入有误，请输入Y或者N")
+    start_time = time.time()
     for page in range(pagenum):
         torrent_url = f"{siteurl}torrents.php?page={page}"
         r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie), timeout=30)

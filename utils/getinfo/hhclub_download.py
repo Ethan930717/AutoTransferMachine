@@ -95,6 +95,7 @@ def hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_
             continue
         else:
             print("输入有误，请输入Y或者N")
+    start_time = time.time()
     for page in range(pagenum):
         torrent_url = f"{siteurl}torrents.php?page={page}"
         r = scraper.get(torrent_url, cookies=cookies_raw2jar(sitecookie), timeout=30)
@@ -116,8 +117,15 @@ def hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_
                     size_tag = torrent.find("div", class_="torrent-info-text-size")
                     if size_tag:
                         size = size_tag.text.strip()
-                        size_pattern = re.search(r'(\d+\.\d+|\d+)', size)
-                        size = float(size_pattern.group(1)) / 1024 if 'MB' in size else float(size_pattern.group(1))
+                        # 修改正则表达式以匹配数字和单位
+                        size_pattern = re.search(r'(\d+\.\d+|\d+)\s*(MB|GB)', size)
+                        if size_pattern:
+                            size_value = float(size_pattern.group(1))
+                            size_unit = size_pattern.group(2)
+                            # 根据单位进行转换
+                            if size_unit == 'MB':
+                                size_value = size_value / 1024
+                            size = f"{size_value:.2f}{size_unit}"
 
                     seeders_tag = torrent.find("div", class_="torrent-info-text-seeders")
                     if seeders_tag:
