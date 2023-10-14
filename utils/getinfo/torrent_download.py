@@ -22,14 +22,14 @@ def get_torrent(yamlinfo):
         siteurl = yamlinfo['site info'][sitename]['url']
         sitecookie = yamlinfo['site info'][sitename]['cookie']
         sitepasskey = yamlinfo['site info'][sitename]['passkey']
-        shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time)
+        shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo)
     elif choosesite == "2":
         sitename = "shadowflow"
         logger.info('即将从憨憨获取种子信息')
         siteurl = yamlinfo['site info'][sitename]['url']
         sitecookie = yamlinfo['site info'][sitename]['cookie']
         sitepasskey = yamlinfo['site info'][sitename]['passkey']
-        hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time)
+        hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo)
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
