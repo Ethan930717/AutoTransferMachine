@@ -86,58 +86,44 @@ def cookies_raw2jar(raw: str) -> dict:
 
 def recordupload(torrent_file, file1, String_url, downloadurl):
     logger.info('正在记录发布的资源到' + torrent_file)
+
+    file_opts = {'encoding': 'utf-8-sig', 'errors': 'ignore'}
+
     if not os.path.exists(torrent_file):
-        if 'win32' in sys.platform:
-            f = open(torrent_file, 'w+', encoding='utf-8-sig', errors='ignore')
-        else:
-            f = open(torrent_file, 'w+', encoding='utf-8-sig')
+        with open(torrent_file, 'w+', **file_opts) as f:
+            f.write('中文名,集数,发布日期,资源链接,资源下载链接\n0\n')
 
-        f.write('中文名,集数,发布日期,资源链接,资源下载链接\n0\n')
-        f.close()
+    with open(torrent_file, 'r', **file_opts) as f1:
+        list1 = f1.readlines()
 
-    if 'win32' in sys.platform:
-        with open(torrent_file, 'r', encoding='utf-8-sig', errors='ignore') as f1:
-            list1 = f1.readlines()
-    else:
-        with open(torrent_file, 'r') as f1:
-            list1 = f1.readlines()
-    while list1[-1].strip() == '':
-        a = list1.pop(-1)
-        del (a)
+    # 检查列表是否为空并清除空字符串
+    while list1 and list1[-1].strip() == '':
+        list1.pop(-1)
 
     try:
         num = int(list1[-1].replace(',', '').strip())
-        a = list1.pop(-1)
-        del (a)
-    except:
+        list1.pop(-1)
+    except (ValueError, IndexError):
+        logger.warning(f"无法转换最后一个值为整数或列表为空。使用默认值0。列表内容：{list1}")
         num = 0
-    if len(list1) > 0:
+
+    if list1:
         list1[-1] = list1[-1].strip() + '\n'
 
     now = datetime.datetime.now()
-
-    filestr = ''.join(list1)
-    newstr = ''
-
-    newstr = newstr + file1.chinesename.replace(',', ' ') + ','
-    if not (
-            'anime' in file1.pathinfo.type.lower() or 'tv' in file1.pathinfo.type.lower()) or file1.pathinfo.collection == 0:
-        newstr = newstr + file1.episodename.zfill(2) + ','
-    else:
-        newstr = newstr + '第' + str(file1.pathinfo.min).zfill(2) + '-' + str(file1.pathinfo.max).zfill(2) + '集 合集,'
-    newstr = newstr + str(now.year) + str(now.month).zfill(2) + str(now.day).zfill(2) + ','
-    newstr = newstr + str(String_url) + ','
-    newstr = newstr + str(downloadurl) + '\n'
+    newstr = (
+        f"{file1.chinesename.replace(',', ' ')},"
+        f"{'第' + str(file1.pathinfo.min).zfill(2) + '-' + str(file1.pathinfo.max).zfill(2) + '集 合集' if ('anime' in file1.pathinfo.type.lower() or 'tv' in file1.pathinfo.type.lower()) and file1.pathinfo.collection else file1.episodename.zfill(2)},"
+        f"{now.year}{now.month:02}{now.day:02},"
+        f"{String_url},"
+        f"{downloadurl}\n"
+    )
 
     logger.debug(newstr)
 
-    filestr = filestr + newstr + str(num + 1) + '\n'
-    if 'win32' in sys.platform:
-        f = open(torrent_file, 'w+', encoding='utf-8-sig', errors='ignore')
-    else:
-        f = open(torrent_file, 'w+', encoding='utf-8-sig')
-    f.write(filestr)
-    f.close()
+    with open(torrent_file, 'w+', **file_opts) as f:
+        f.write(''.join(list1) + newstr + str(num + 1) + '\n')
+
     logger.info('记录完毕')
 
 
