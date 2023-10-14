@@ -285,15 +285,19 @@ def hhclub_trans(yamlinfo,csv_filepath):
         tree = lxml.etree.HTML(r.text)
         print(f"当前检索链接 {url}")
 
-    #主标题
+        # 主标题
         xpath_name = '//*[@id="mainContent"]/div/div/div[1]/div[4]'
         try:
-            name = tree.xpath(xpath_name)[0]
-            name = name.rstrip()
-            getteam = name.split("-")
-            # 取列表的最后一个元素，即最后一个"-"后面的内容
-            team = getteam[-1]
-        except IndexError:
+            element = tree.xpath(xpath_name)[0]
+            name = element.text  # 从 lxml.etree._Element 对象中提取文本
+            if name:
+                name = name.rstrip()
+                getteam = name.split("-")
+                # 取列表的最后一个元素，即最后一个"-"后面的内容
+                team = getteam[-1]
+            else:
+                raise ValueError("Name text is empty")
+        except (IndexError, ValueError):
             name = input(f"无法读取主标题名，请手动输入,种子地址{url}\n请在此输入正确的主标题名：")
         print(f"成功记录主标题名 {name}")
 
