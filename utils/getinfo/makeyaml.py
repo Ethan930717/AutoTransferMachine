@@ -161,27 +161,27 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
 
 
     # 确认来源
-    if "UHD" in filename.upper()() and "BLU" in filename.upper()() and "DIY" in filename.upper()():
+    if "UHD" in filename.upper() and "BLU" in filename.upper() and "DIY" in filename.upper():
         source = "UHD BLURAY DIY"
-    elif "UHD" in filename.upper()() and "BLU" in filename.upper()():
+    elif "UHD" in filename.upper() and "BLU" in filename.upper():
         source = "UHD BLURAY"
-    elif "BLURAY" in filename.upper()():
+    elif "BLURAY" in filename.upper():
         source = "BLURAY"
-    elif "UHD" in filename.upper()() and "TV" in filename.upper()() and "DIY" in filename.upper()():
+    elif "UHD" in filename.upper() and "TV" in filename.upper() and "DIY" in filename.upper():
         source = "UHD TV DIY"
-    elif "UHD" in filename.upper()() and "TV" in filename.upper()():
+    elif "UHD" in filename.upper() and "TV" in filename.upper():
         source = "UHD TV"
-    elif "UHD" in filename.upper()():
+    elif "UHD" in filename.upper():
         source = "UHD"
-    elif "HDTV" in filename.upper()():
+    elif "HDTV" in filename.upper():
         source = "HDTV"
-    elif "WEB" in filename.upper()():
+    elif "WEB" in filename.upper():
         source = "WEBDL"
-    elif "DVD" in filename.upper()():
+    elif "DVD" in filename.upper():
         source = "DVD"
-    elif "CD" in filename.upper()():
+    elif "CD" in filename.upper():
         source = "CD"
-    elif "ENCODE" in filename.upper()():
+    elif "ENCODE" in filename.upper():
         source = "ENCODE"
     else:
         source = "OTHER"
@@ -209,41 +209,41 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
         codec = input(f"无法确认视频格式，请手动输入,文件标题{filename}")
 
     #确认音频
-    if "DTS-HD" in filename.upper()() and "MA" in filename.upper()() and "1.0" in filename.upper()():
+    if "DTS-HD" in filename.upper()and "MA" in filename.upper()and "1.0" in filename.upper():
         audio = "DTS-HD MA 1.0"
-    elif "DTS-HD" in filename.upper()() and "MA" in filename.upper()() and "2.0" in filename.upper()():
+    elif "DTS-HD" in filename.upper() and "MA" in filename.upper() and "2.0" in filename.upper():
         audio = "DTS-HD MA 2.0"
-    elif "DTS-HD" in filename.upper()() and "MA" in filename.upper()() and "5.1" in filename.upper()():
+    elif "DTS-HD" in filename.upper() and "MA" in filename.upper()and "5.1" in filename.upper():
         audio = "DTS-HD MA 5.1"
-    elif "DTS-HD" in filename.upper()() and "MA" in filename.upper()() and "7.1" in filename.upper()():
+    elif "DTS-HD" in filename.upper() and "MA" in filename.upper()and "7.1" in filename.upper():
         audio = "DTS-HD MA 7.1"
-    elif "TRUE" in filename.upper()() and "AutoTransferMachineOS" in filename.upper()() and "7.1" in filename.upper()():
+    elif "TRUE" in filename.upper() and "AutoTransferMachineOS" in filename.upper() and "7.1" in filename.upper():
         audio = "TrueHD AutoTransferMachineos 7.1"
-    elif "TRUE" in filename.upper()() and "AutoTransferMachineOS" in filename.upper()():
+    elif "TRUE" in filename.upper()and "AutoTransferMachineOS" in filename.upper():
         audio = "TrueHD AutoTransferMachineos"
-    elif "TRUE" in filename.upper()() and "5.1" in filename.upper()():
+    elif "TRUE" in filename.upper() and "5.1" in filename.upper():
         audio = "TrueHD 5.1"
-    elif "TRUE" in filename.upper()():
+    elif "TRUE" in filename.upper():
         audio = "TrueHD"
-    elif "AAC" in filename.upper()():
+    elif "AAC" in filename.upper():
         audio = "AAC"
-    elif "AC3" in filename.upper()():
+    elif "AC3" in filename.upper():
         audio = "AC3"
-    elif "AC3" in filename.upper()():
+    elif "AC3" in filename.upper():
         audio = "AC3"
-    elif "DDP" in filename.upper()() and "AutoTransferMachineOS" in filename.upper()() and "5.1" in filename.upper()():
+    elif "DDP" in filename.upper() and "AutoTransferMachineOS" in filename.upper() and "5.1" in filename.upper():
         audio = "DDP5.1 AutoTransferMachineos"
-    elif "DDP" in filename.upper()() and "5.1" in filename.upper()():
+    elif "DDP" in filename.upper() and "5.1" in filename.upper():
         audio = "DDP5.1"
-    elif "DDP" in filename.upper()() and "2.0" in filename.upper()():
+    elif "DDP" in filename.upper() and "2.0" in filename.upper():
         audio = "DDP2.0"
-    elif "DDP" in filename.upper()():
+    elif "DDP" in filename.upper():
         audio = "DDP"
-    elif "DD" in filename.upper()() and "2.0" in filename.upper()():
+    elif "DD" in filename.upper() and "2.0" in filename.upper():
         audio = "DD2.0"
-    elif "DD" in filename.upper()():
+    elif "DD" in filename.upper():
         audio = "DD"
-    elif "FLAC" in filename.upper()():
+    elif "FLAC" in filename.upper():
         audio = "FLAC"
     else:
         audio = input(f"无法确认音频格式，请手动输入,文件标题{name}")
