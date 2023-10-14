@@ -383,7 +383,19 @@ def hhclub_trans(yamlinfo,csv_filepath):
             choice = input(f'资源已勾选完结标签，但标题不包含Complete，请手动确认该资源是否完结\n输入1代表完结，输入0代表未完结: ')
             if choice == '1':
                 complete = 1
-                name = input(f"请在主标题中手动加入Complete,添加位置在季数之后，如 S01 Complete\n当前主标题{name}")
+                # 找到年份
+                match = re.search(r'(19\d{2}|20\d{2})', name)
+                if match:
+                    index = match.start()
+                    new_name = name[:index] + " Complete " + name[index:]
+                    confirmation = input(f'转换后的标题为 {new_name}，是否确认修改? （Y/N): ')
+                    if confirmation.lower() == 'y':
+                        name = new_name
+                    elif confirmation.lower() == 'n':
+                        name = input(f"请自行输入新的主标题：\n")
+                else:
+                    print("未找到标题中的年份信息，无法自动生成完整标题，请手动输入")
+                    name = input(f"请自行确定完整的主标题，一般在年份前加入Complete即可，当前标题{name}\n请输入")
             elif choice == '0':
                 complete = 0
             else:
@@ -405,7 +417,7 @@ def hhclub_trans(yamlinfo,csv_filepath):
                 standard = info_texts[6]  # 分辨率
                 if "电影" in type:
                     type = "movie"
-                elif "剧集" in type:
+                elif "电视剧" in type:
                     type = "tvseries"
                 elif "综艺" in type:
                     type = "tvshow"
