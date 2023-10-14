@@ -24,7 +24,7 @@ def get_torrent(yamlinfo):
         sitepasskey = yamlinfo['site info'][sitename]['passkey']
         shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo)
     elif choosesite == "2":
-        sitename = "shadowflow"
+        sitename = "hhclub"
         logger.info('即将从憨憨获取种子信息')
         siteurl = yamlinfo['site info'][sitename]['url']
         sitecookie = yamlinfo['site info'][sitename]['cookie']
