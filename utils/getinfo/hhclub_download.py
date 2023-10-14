@@ -18,7 +18,7 @@ def cookies_raw2jar(raw_cookies):
         cookie_dict[key] = value
     return cookiejar_from_dict(cookie_dict)
 
-def hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time):
+def hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo):
     row = 0
     scraper = cloudscraper.create_scraper()
     csv_filename = f"{sitename}_torrents.csv"
