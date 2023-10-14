@@ -387,7 +387,7 @@ def hhclub_trans(yamlinfo,csv_filepath):
                 match = re.search(r'(19\d{2}|20\d{2})', name)
                 if match:
                     index = match.start()
-                    new_name = name[:index] + " Complete " + name[index:]
+                    new_name = name[:index] + "Complete " + name[index:]
                     confirmation = input(f'转换后的标题为 {new_name}，是否确认修改? （Y/N): ')
                     if confirmation.lower() == 'y':
                         name = new_name
