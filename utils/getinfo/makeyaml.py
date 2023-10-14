@@ -187,21 +187,21 @@ def mkyaml(yamlinfo,counter,filename,name,small_descr,tags,team,type,audio,codec
         source = "OTHER"
 
     #确认编码
-    if "x265" in filename and "10bit" in filename:
+    if "x" in filename.lower() and "265" in filename.lower() and "10bit" in filename.lower():
         codec="x265 10bit"
-    elif "x265" in filename:
+    elif "x265" in filename.lower() or "x.265" in filename.lower():
         codec="x265"
-    elif "H265" in filename and "10bit" in filename and "HDR" in filename:
+    elif "H" in filename.upper() and "265" in filename and "10bit" in filename.lower() and "HDR" in filename.upper():
         codec="H265 10bit HDR"
-    elif "H265" in filename and "10bit" in filename:
+    elif "H" in filename.upper() and "265" in filename and "10bit" in filename.lower():
         codec="H265 10bit"
-    elif "H265" in filename:
+    elif "H265" in filename.upper() or "H.265" in filename.upper():
         codec="H265"
-    elif "H264" in filename:
+    elif "H264" in filename.upper() or "H.264" in filename.upper():
         codec="H264"
     elif "AVC" in filename:
         codec = "AVC"
-    elif "x264" in filename:
+    elif "x264" in filename.lower() or "x.264" in filename.lower():
         codec = "x264"
     elif "HEVC" in filename:
         codec = "HEVC"
