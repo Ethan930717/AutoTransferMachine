@@ -14,18 +14,28 @@ import csv
 
 def get_torrent(yamlinfo):
     from utils.getinfo.shadowflow_download import shadowflow_download
+    from utils.getinfo.hhclub_download import hhclub_download
     start_time = time.time()
-    choosesite = input(f"请选择你要获取信息的网站\n1.影 \n请输入序号:")
+    choosesite = input(f"请选择你要获取信息的网站\n1.影    2.憨憨     \n请输入序号:")
     if choosesite == "1":
         sitename = "shadowflow"
         logger.info('即将从影站获取种子信息')
+        siteurl = yamlinfo['site info'][sitename]['url']
+        sitecookie = yamlinfo['site info'][sitename]['cookie']
+        sitepasskey = yamlinfo['site info'][sitename]['passkey']
+        shadowflow_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time)
+    elif choosesite == "2":
+        sitename = "shadowflow"
+        logger.info('即将从憨憨获取种子信息')
+        siteurl = yamlinfo['site info'][sitename]['url']
+        sitecookie = yamlinfo['site info'][sitename]['cookie']
+        sitepasskey = yamlinfo['site info'][sitename]['passkey']
+        hhclub_download(sitename, siteurl, sitecookie, sitepasskey, yamlinfo, start_time)
     else:
         logger.info('未能识别当前选择的站点，退出脚本')
         sys.exit(0)
-    siteurl = yamlinfo['site info'][sitename]['url']
-    sitecookie = yamlinfo['site info'][sitename]['cookie']
-    sitepasskey = yamlinfo['site info'][sitename]['passkey']
-    shadowflow_download(sitename,siteurl,sitecookie,sitepasskey,yamlinfo,start_time)
+
+
 
 
 
