@@ -1,6 +1,6 @@
 import re
 import os
-from lxml import etree
+import lxml
 import cloudscraper
 from bs4 import BeautifulSoup
 from requests.cookies import cookiejar_from_dict
