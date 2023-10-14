@@ -36,8 +36,6 @@ def get_torrent(yamlinfo):
 
 
 
-
-
 def download_torrent(yamlinfo):
     logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s",filename=f"{yamlinfo['basic']['record_path']}/torrent_download.log")
     csv_path = yamlinfo["basic"]["torrent_list"]
